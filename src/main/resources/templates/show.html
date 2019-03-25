@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base::header">
+    <title>Show</title>
+</head>
+<body>
+<div th:replace="base::nav"></div>
+<br/>
+<div align="center" class="container">
+    <h2>Course Details</h2><br/>
+    <table class="table">
+        <tr>
+            <td>Title:</td>
+            <td><span th:text="${course.title}"></span><br/></td>
+        </tr>
+        <tr>
+            <td>Instructor:</td>
+            <td><span th:text="${course.instructor}"></span><br/></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><span th:text="${course.description}"></span><br/></td>
+        </tr>
+        <tr>
+            <td>Credits:</td>
+            <td><span th:text="${course.credit}"></span><br/></td>
+        </tr>
+    </table>
+    <div sec:authorize="hasAuthority('ADMIN')">
+        <a th:href="@{/update/{id}(id=${course.id})}">Edit</a> - <!-- Update -->
+        <a th:href="@{/delete/{id}(id=${course.id})}">Delete</a>
+    </div>
+</div>
+<br/>
+<div th:replace="base::footer"></div>
+</body>
+</html>

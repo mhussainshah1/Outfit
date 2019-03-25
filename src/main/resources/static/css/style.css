@@ -1,0 +1,19 @@
+.topmargin{
+    margin-top: 100px;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.error-message{
+    color: red;
+    font-style: Italic;
+}
