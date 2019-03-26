@@ -32,11 +32,6 @@ public class WeatherController {
     @Autowired
     WeatherService weatherService;
 
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
-
     @GetMapping("/weather")
     public String CityForm(Model model) {
         model.addAttribute("city", new String());

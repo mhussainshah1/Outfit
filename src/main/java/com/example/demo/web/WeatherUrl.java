@@ -2,7 +2,6 @@ package com.example.demo.web;
 
 
 public class WeatherUrl {
-
     private String url;
     private String apiKey;
 
