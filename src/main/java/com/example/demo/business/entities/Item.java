@@ -1,7 +1,6 @@
 package com.example.demo.business.entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -17,10 +16,10 @@ public class Item {
 
     @NotNull
     @Size(min=3)
-    private String fabric;
+    private String material;
 
     @NotNull
-    private boolean longShort;
+    private boolean size;
 
     //@NotNull
     //@Size(min = 4)
@@ -37,10 +36,10 @@ public class Item {
     public Item() {
     }
 
-    public Item(@NotNull @Size(min = 4) String color, @NotNull @Size(min = 3) String fabric, @NotNull boolean longShort, String picturePath, @NotNull @Size(min = 10) String description) {
+    public Item(@NotNull @Size(min = 4) String color, @NotNull @Size(min = 3) String material, @NotNull boolean size, String picturePath, @NotNull @Size(min = 10) String description) {
         this.color = color;
-        this.fabric = fabric;
-        this.longShort = longShort;
+        this.material = material;
+        this.size = size;
         this.picturePath = picturePath;
         this.description = description;
     }
@@ -61,20 +60,20 @@ public class Item {
         this.color = color;
     }
 
-    public String getFabric() {
-        return fabric;
+    public String getMaterial() {
+        return material;
     }
 
-    public void setFabric(String fabric) {
-        this.fabric = fabric;
+    public void setMaterial(String material) {
+        this.material = material;
     }
 
-    public boolean isLongShort() {
-        return longShort;
+    public boolean isSize() {
+        return size;
     }
 
-    public void setLongShort(boolean longShort) {
-        this.longShort = longShort;
+    public void setSize(boolean size) {
+        this.size = size;
     }
 
     public String getPicturePath() {
@@ -106,8 +105,8 @@ public class Item {
         return "Item{" +
                 "id=" + id +
                 ", color='" + color + '\'' +
-                ", fabric='" + fabric + '\'' +
-                ", longShort=" + longShort +
+                ", material='" + material + '\'' +
+                ", size=" + size +
                 ", picturePath='" + picturePath + '\'' +
                 ", description='" + description + '\'' +
                 ", category=" + category +

@@ -20,15 +20,15 @@ public class Category {
 
     @NotEmpty
     @Size(min=4)
-    private String bottoms;
+    private String bottom;
 
     @NotEmpty
     @Size(min=4)
-    private String Jackets;
+    private String Jacket;
 
     @NotEmpty
     @Size(min=4)
-    private String shoes;
+    private String shoe;
 
     @OneToMany(cascade = ALL, mappedBy = "category")
     public Set<Item> items;
@@ -37,12 +37,13 @@ public class Category {
         items = new HashSet<>();
     }
 
-    public Category(@NotEmpty @Size(min = 4) String top, @NotEmpty @Size(min = 4) String bottoms, @NotEmpty @Size(min = 4) String jackets, @NotEmpty @Size(min = 4) String shoes) {
+    public Category(@NotEmpty @Size(min = 4) String top, @NotEmpty @Size(min = 4) String bottom, @NotEmpty @Size(min = 4) String jacket, @NotEmpty @Size(min = 4) String shoe) {
         this.top = top;
-        this.bottoms = bottoms;
-        Jackets = jackets;
-        this.shoes = shoes;
+        this.bottom = bottom;
+        Jacket = jacket;
+        this.shoe = shoe;
     }
+
 
     public long getId() {
         return id;
@@ -60,28 +61,28 @@ public class Category {
         this.top = top;
     }
 
-    public String getBottoms() {
-        return bottoms;
+    public String getBottom() {
+        return bottom;
     }
 
-    public void setBottoms(String bottoms) {
-        this.bottoms = bottoms;
+    public void setBottom(String bottom) {
+        this.bottom = bottom;
     }
 
-    public String getJackets() {
-        return Jackets;
+    public String getJacket() {
+        return Jacket;
     }
 
-    public void setJackets(String jackets) {
-        Jackets = jackets;
+    public void setJacket(String jacket) {
+        Jacket = jacket;
     }
 
-    public String getShoes() {
-        return shoes;
+    public String getShoe() {
+        return shoe;
     }
 
-    public void setShoes(String shoes) {
-        this.shoes = shoes;
+    public void setShoe(String shoe) {
+        this.shoe = shoe;
     }
 
     public Set<Item> getItems() {

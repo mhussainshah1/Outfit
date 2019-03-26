@@ -7,7 +7,6 @@ public class WeatherUrl {
     private String apiKey;
 
     public WeatherUrl() {
-
     }
 
     public String getApiKey() {
@@ -25,6 +24,5 @@ public class WeatherUrl {
     public void setUrl(String url) {
         this.url = url;
     }
-
 
 }
