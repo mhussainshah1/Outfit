@@ -5,6 +5,7 @@ import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name = "User_Data")
@@ -43,6 +44,9 @@ public class User {
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
+
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "user")
+    private Set<Item> items;
 
     public User() {
     }
