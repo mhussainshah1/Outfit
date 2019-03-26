@@ -15,6 +15,7 @@ import java.io.IOException;
 
 @Service
 public class WeatherService {
+<<<<<<< HEAD
    /* private String url;
     private String apiKey;
 
@@ -49,4 +50,7 @@ public class WeatherService {
         ObjectMapper mapper = new ObjectMapper();
        return mapper.readValue(resp.getBody(), Weather.class);
     }*/
+=======
+
+>>>>>>> 9f4be5ae8a107b189bf2f5f713836fb39c2ca602
 }
