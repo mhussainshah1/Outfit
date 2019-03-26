@@ -1,5 +1,6 @@
 package com.example.demo.web;
 
+
 public class WeatherUrl {
 
     private String url;

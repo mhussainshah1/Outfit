@@ -38,6 +38,7 @@ public class WeatherController {
     public String getWeather(Model model, @ModelAttribute FormCityAttribute city)
             throws IOException {
 
+        //todo remove below code, FormCityAttribute, WeatherUrl  and make WeatherService Class
         UriComponents uriComponents = UriComponentsBuilder
                 .newInstance()
                 .scheme("http")
@@ -52,8 +53,8 @@ public class WeatherController {
 
         ObjectMapper mapper = new ObjectMapper();
         Weather weather = mapper.readValue(resp.getBody(), Weather.class);
-        model.addAttribute("weatherData", weather);
 
+        model.addAttribute("weatherData", weather);
         return "weatherDetails";
     }
 
