@@ -8,38 +8,51 @@
 </head>
 <body>
 <div th:replace="base::nav"></div>
-<!--All CRUD operations in one form-->
-<h2 align="center">Course List</h2><br/>
-<br/>
-<table class="table" style="width:100%">
-    <tr>
-        <th sec:authorize="hasAuthority('ADMIN')">Select</th>
-        <th>Title</th>
-        <th>Instructor</th>
-        <th>Credits</th>
-        <th sec:authorize="hasAuthority('ADMIN')">Actions</th>
-    </tr>
-    <!--enhanced for loop-->
-    <tr th:each="course : ${courses}">
-        <td sec:authorize="hasAuthority('ADMIN')">
-            <input type="checkbox">
-        </td>
-        <td>
-            <a th:href="@{/detail/{id}(id=${course.id})}">[[${course.title}]]</a><!-- Read -->
-        </td>
-        <td th:text="${course.instructor}"></td>
-        <td th:text="${course.credit}"></td>
 
-        <td sec:authorize="hasAuthority('ADMIN')">
-            <!--<span th:if="${user_id == course.user.id}">
+<div align="center" class="container">
 
-                </span>-->
-            <a th:href="@{/update/{id}(id=${course.id})}">Edit</a>-<!-- Update -->
-            <a th:href="@{/delete/{id}(id=${course.id})}">Delete</a><!-- Delete -->
-        </td>
+    <div sec:authorize="isAuthenticated()">
+        <form th:action="@{/weather}" method="post">
+            <div>
+                <label for="city">Enter the city name to check the weather</label>
+                <input id="city" name="city" type="text">
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 
-    </tr>
-</table>
+    <!--All CRUD operations in one form-->
+    <h2 align="center">Course List</h2><br/>
+    <br/>
+    <table class="table" style="width:100%">
+        <tr>
+            <th sec:authorize="hasAuthority('ADMIN')">Select</th>
+            <th>Title</th>
+            <th>Instructor</th>
+            <th>Credits</th>
+            <th sec:authorize="hasAuthority('ADMIN')">Actions</th>
+        </tr>
+        <!--enhanced for loop-->
+        <tr th:each="course : ${courses}">
+            <td sec:authorize="hasAuthority('ADMIN')">
+                <input type="checkbox">
+            </td>
+            <td>
+                <a th:href="@{/detail/{id}(id=${course.id})}">[[${course.title}]]</a><!-- Read -->
+            </td>
+            <td th:text="${course.instructor}"></td>
+            <td th:text="${course.credit}"></td>
+            <td sec:authorize="hasAuthority('ADMIN')">
+                <!--<span th:if="${user_id == course.user.id}">
+
+                    </span>-->
+                <a th:href="@{/update/{id}(id=${course.id})}">Edit</a>-<!-- Update -->
+                <a th:href="@{/delete/{id}(id=${course.id})}">Delete</a><!-- Delete -->
+            </td>
+        </tr>
+    </table>
+
+</div>
 <br/>
 <div th:replace="base::footer"></div>
 </body>
