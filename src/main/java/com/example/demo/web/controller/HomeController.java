@@ -68,7 +68,7 @@ public class HomeController {
         }
 
         course.setUser(userService.getUser());
-        courseRepository.save(course);//generate SQL statement and insert into database
+        courseRepository.save(course); //generate SQL statement and insert into database
         return "redirect:/";
     }
 

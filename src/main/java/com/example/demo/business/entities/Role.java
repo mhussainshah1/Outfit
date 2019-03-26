@@ -16,6 +16,7 @@ public class Role {
     private Collection<User> user;
 
     public Role() {
+
     }
 
     public Role(String role) {
