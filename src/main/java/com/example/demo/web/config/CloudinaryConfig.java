@@ -1,4 +1,4 @@
-package com.example.demo.Config;
+package com.example.demo.web.config;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.Singleton;
