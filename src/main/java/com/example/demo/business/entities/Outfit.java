@@ -31,18 +31,6 @@ public class Outfit {
             Random t = new Random();
 
 
-
-            // Int list of random variables specific to burrito options
-            int ax =  a.nextInt(4);
-            int bx =  b.nextInt(7);
-            int jx =  j.nextInt(8);
-            int sx =  s.nextInt(3);
-            int tx =  t.nextInt(6);
-
-
-
-
-
             //String array of Options
             String[] tops = {"White Short-sleeve T-Shirt, ", "Grey Short-sleeve Sports Shirt, ", "Blue T-Shirt, ", "Blue long Sleeve T-shirt, ", "Blue Short-sleeve Science Shirt, ", "Grey Long Sleeve, "};
             String[] bottoms = {"Cargo khaki, ", "Jeans Blue, ", "Khaki Brown, ", "Snow Gray, ", "Shorts Blue, ", "Shorts Grey,", "Shorts Khaki"};
@@ -50,7 +38,28 @@ public class Outfit {
             String[] jackets = {"Black Dark-Grey Jacket", "Black Grey Jacket", "Black Light-Grey Jacket", "Black Jacket", "Green Grey Jacket", "Northface Black Jacket", "Black Nike Windbreaker", "White Navy-Blue Windbreaker Columbia"};
             String[] accessories = {"Winter", "Spring", "Summer", "Fall"};
 
-            for (int i = 1; i < 6; i++) {
+            // Int list of bounds equal to the length of the attribute list to burrito options
+
+            int alength =  accessories.length;
+            int blength =  bottoms.length;
+            int jlength =  jackets.length;
+            int slength =  shoes.length;
+            int tlength =  tops.length;
+
+            // Int list of random variables specific to burrito options
+            int ax =  a.nextInt(alength+2);
+            int bx =  b.nextInt(blength+3);
+            int jx =  j.nextInt(jlength+2);
+            int sx =  s.nextInt(slength+2);
+            int tx =  t.nextInt(tlength+2);
+
+
+
+
+
+
+
+            for (int i = 1; i < 8; i++) {
                 // int j = i + 1;
                 System.out.println();
                 System.out.print("Outfit "+i+": ");
@@ -68,17 +77,7 @@ public class Outfit {
 
         }
 
-        //String burrito[] = {rice[rx], meat[mx], beans[bx], salsa[sx], veggies[vx]};
 
-        /*+ ", "+beans[bx]+ ", "+salsa[sx]+", "+veggies[vx]*/
-
-
-        // Print
-/*
-        System.out.println("Burrito ");
-        for (int i = 0; i <10 ; i++) {
-            System.out.println("Burrito " + i + rice[rx] +"," + meat[mx]);
-                            /*+ ", "+beans[bx]+ ", "+salsa[sx]+", "+veggies[vx]*/
     }
 
 
