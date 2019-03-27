@@ -13,12 +13,6 @@ import java.io.IOException;
 
 @Service
 public class WeatherService {
-<<<<<<< HEAD:src/main/java/com/example/demo/web/WeatherService.java
-
-   /* private String url;
-    private String apiKey;
-=======
->>>>>>> moe:src/main/java/com/example/demo/business/services/WeatherService.java
 
     @Autowired
     RestTemplate restTemp;
@@ -38,12 +32,6 @@ public class WeatherService {
         String uri = uriComponents.toUriString();
         ResponseEntity<String> resp = restTemp.exchange(uri, HttpMethod.GET, null, String.class);
         ObjectMapper mapper = new ObjectMapper();
-<<<<<<< HEAD:src/main/java/com/example/demo/web/WeatherService.java
-       return mapper.readValue(resp.getBody(), Weather.class);
-    }*/
-
-=======
         return mapper.readValue(resp.getBody(), Weather.class);
     }
->>>>>>> moe:src/main/java/com/example/demo/business/services/WeatherService.java
 }
