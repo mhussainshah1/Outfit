@@ -1,9 +1,15 @@
 package com.example.demo.business.entities;
 
-import javax.persistence.*;
+import com.example.demo.business.entities.Item;
+import com.example.demo.business.entities.Season;
 
+import javax.persistence.*;
+import java.util.Set;
+
+//Hot Mild Cold
 @Entity
-public class Season {
+public class Temperature {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -12,17 +18,17 @@ public class Season {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "item_id" ,nullable = false)
+    @JoinColumn(name = "item_id", nullable = false)
     private Item item;
 
     @ManyToOne
-    @JoinColumn(name = "temperature_id" ,nullable = false)
-    private Temperature temperature;
+    @JoinColumn(name = "season_id" , nullable = false)
+    private Season season;
 
-    public Season() {
+    public Temperature() {
     }
 
-    public Season(String name) {
+    public Temperature(String name) {
         this.name = name;
     }
 
@@ -50,11 +56,11 @@ public class Season {
         this.item = item;
     }
 
-    public Temperature getTemperature() {
-        return temperature;
+    public Season getSeason() {
+        return season;
     }
 
-    public void setTemperature(Temperature temperature) {
-        this.temperature = temperature;
+    public void setSeason(Season season) {
+        this.season = season;
     }
 }

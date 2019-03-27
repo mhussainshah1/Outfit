@@ -129,4 +129,11 @@ public class User {
         this.roles = roles;
     }
 
+    public Set<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Item> items) {
+        this.items = items;
+    }
 }

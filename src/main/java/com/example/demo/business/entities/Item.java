@@ -31,12 +31,19 @@ public class Item {
     private String description;
 
     @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "season_id", nullable = false)
+    private Season season;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
+    private Set<Temperature> temperature;
 
     public Item() {
     }
@@ -97,13 +104,6 @@ public class Item {
         this.description = description;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 
     @Override
     public String toString() {
@@ -116,5 +116,38 @@ public class Item {
                 ", description='" + description + '\'' +
                 ", category=" + category +
                 '}';
+    }
+
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Season getSeason() {
+        return season;
+    }
+
+    public void setSeason(Season season) {
+        this.season = season;
+    }
+
+    public Set<Temperature> getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(Set<Temperature> temperature) {
+        this.temperature = temperature;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
