@@ -1,16 +1,13 @@
 package com.example.demo.business.services;
 
-import com.example.demo.business.entities.Course;
-import com.example.demo.business.entities.InvalidPassword;
-import com.example.demo.business.entities.Role;
-import com.example.demo.business.entities.User;
-import com.example.demo.business.entities.repositories.CourseRepository;
-import com.example.demo.business.entities.repositories.InvalidPasswordRepository;
-import com.example.demo.business.entities.repositories.RoleRepository;
-import com.example.demo.business.entities.repositories.UserRepository;
+import com.example.demo.business.entities.*;
+import com.example.demo.business.entities.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -21,7 +18,16 @@ public class DataLoader implements CommandLineRunner {
     RoleRepository roleRepository;
 
     @Autowired
-    CourseRepository courseRepository;
+    CategoryRepository categoryRepository;
+
+    @Autowired
+    ItemRepository itemRepository;
+
+    @Autowired
+    SeasonRepository seasonRepository;
+
+    @Autowired
+    TemperatureRepository temperatureRepository;
 
     @Autowired
     InvalidPasswordRepository invalidPasswordRepository;
@@ -62,7 +68,7 @@ public class DataLoader implements CommandLineRunner {
         admin.setPassword(userService.encode(admin.getPassword()));
         userService.saveUser(admin);
 
-        Course course = new Course("Astrophysics", "Neil D Tyson", "Just a course on stars", 3);
+        /*Course course = new Course("Astrophysics", "Neil D Tyson", "Just a course on stars", 3);
         course.setUser(nan);
         courseRepository.save(course);
 
@@ -72,6 +78,57 @@ public class DataLoader implements CommandLineRunner {
 
         course = new Course("Freshman English", "Geraldine Pegram", "Learn your language chilern", 3);
         course.setUser(tolani);
-        courseRepository.save(course);
+        courseRepository.save(course);*/
+
+        categoryRepository.save(new Category("Top"));
+        Category top = categoryRepository.findByName("Top");
+     /*   category = new Category("Bottom");
+        category = new Category("Jacket");
+        category = new Category("Shoes");*/
+
+       /* seasonRepository.save(new Season("fall"));
+        Season fall = seasonRepository.findByName("fall");
+        Season winter = new Season("winter");
+        Season spring = new Season("spring");
+        Season summer = new Season("summer");*/
+
+        temperatureRepository.save(new Temperature("cold"));
+        Temperature cold = temperatureRepository.findByName("cold");
+        /*Temperature hot = new Temperature("hot");
+        Temperature mild = new Temperature("mild");
+        Temperature rainy = new Temperature("rainy");*/
+
+
+        Item shirt = new Item("white",
+                "s",
+                "Cotton",
+                "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553093077/java-bootcamp/nsgop8vivttqeqkkkynr.jpg",
+                "men",
+                moe,
+                top);
+        Set<Temperature> temps = new HashSet<>();
+        temps.add(cold);
+        shirt.setTemperature(temps);
+        itemRepository.save(shirt);
+
+        cold.setItem(shirt);
+        temperatureRepository.save(cold);
+
+       /* Car car1 = new Car("Honda","Accord",2019,"35 miles/gallon",45000.55,"https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1552081999/java-bootcamp/bo1q7fwi8qytkxi6yyus.jpg",category);
+        category.getCars().add(car1);
+        Car car2 = new Car("Toyota","Camry",2018,"35 miles/gallon",32000.02,"https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1552100700/java-bootcamp/mj2tywvdhsq0mleow3rp.png",category);
+        category.getCars().add(car2);
+        categoryRepository.save(category);
+        carRepository.save(car1);
+        carRepository.save(car2);*/
+
+
+        /*car = new Car("Mercedez","Benz",2019,"35 miles/gallon", 50000.85,"https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1552162481/java-bootcamp/klztzsqldrhak8lvs7zu.png",category);
+        category.getCars().add(car);
+        categoryRepository.save(category);
+        carRepository.save(car);
+*/
+
+
     }
 }
