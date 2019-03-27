@@ -21,23 +21,23 @@ public class UserService {
     RoleRepository roleRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository){
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public User findByEmail(String email){
+    public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
-    public Long countByEmail(String email){
+    public Long countByEmail(String email) {
         return userRepository.countByEmail(email);
     }
 
-    public User findByUsername(String username){
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
-    public void saveUser(User user){
+    public void saveUser(User user) {
         user.setRoles(Arrays.asList(roleRepository.findByRole("USER"))
                 .stream()
                 .collect(Collectors.toSet()));
@@ -45,13 +45,14 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void saveAdmin(User user){
+    public void saveAdmin(User user) {
         user.setRoles(Arrays.asList(roleRepository.findByRole("ADMIN"))
                 .stream()
                 .collect(Collectors.toSet()));
         user.setEnabled(true);
         userRepository.save(user);
     }
+
     // returns currently logged in user
     public User getUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -60,19 +61,19 @@ public class UserService {
         return user;
     }
 
-    public String encode(String password){
+    public String encode(String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         return passwordEncoder.encode(password);
     }
 
-    public boolean isAdmin(){
+    public boolean isAdmin() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getAuthorities()
                 .stream()
                 .anyMatch(r -> r.getAuthority().equals("ADMIN"));
     }
 
-    public boolean isUser(){
+    public boolean isUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getAuthorities()
                 .stream()

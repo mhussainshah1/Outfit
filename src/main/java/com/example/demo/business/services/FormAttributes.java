@@ -8,11 +8,9 @@ public class FormAttributes {
     private String city;
 
     public FormAttributes() {
-        super();
     }
 
     public FormAttributes(String city) {
-        super();
         this.city = city;
     }
 

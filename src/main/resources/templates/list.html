@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
 <head th:replace="base::header">
     <title>List</title>
 
@@ -12,7 +12,7 @@
 <div align="center" class="container">
 
     <div sec:authorize="isAuthenticated()">
-        <form th:action="@{/weather}" method="post">
+        <form method="post" th:action="@{/weather}">
             <div>
                 <label for="city">Enter the city name to check the weather</label>
                 <input id="city" name="city" type="text">

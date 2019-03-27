@@ -12,11 +12,11 @@ public class Item {
     private long id;
 
     @NotNull
-    @Size(min=4)
+    @Size(min = 4)
     private String color;
 
     @NotNull
-    @Size(min=3)
+    @Size(min = 3)
     private String material;
 
     @NotNull
@@ -27,7 +27,7 @@ public class Item {
     private String picturePath;
 
     @NotNull
-    @Size(min=10)
+    @Size(min = 10)
     private String description;
 
     @ManyToOne

@@ -10,28 +10,23 @@ import static javax.persistence.CascadeType.ALL;
 
 @Entity
 public class Category {
+    @OneToMany(cascade = ALL, mappedBy = "category")
+    public Set<Item> items;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
     @NotEmpty
-    @Size(min=4)
+    @Size(min = 4)
     private String top;
-
     @NotEmpty
-    @Size(min=4)
+    @Size(min = 4)
     private String bottom;
-
     @NotEmpty
-    @Size(min=4)
+    @Size(min = 4)
     private String Jacket;
-
     @NotEmpty
-    @Size(min=4)
+    @Size(min = 4)
     private String shoe;
-
-    @OneToMany(cascade = ALL, mappedBy = "category")
-    public Set<Item> items;
 
     public Category() {
         items = new HashSet<>();

@@ -1,6 +1,5 @@
 package com.example.demo.business.services;
 
-import com.example.demo.business.CustomerUserDetails;
 import com.example.demo.business.entities.Role;
 import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.UserRepository;
@@ -27,22 +26,22 @@ public class SSUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        try{
+        try {
             User appUser = userRepository.findByUsername(username);
-            if(appUser == null){
+            if (appUser == null) {
                 System.out.println("User not found with the provided username" + appUser.toString());
                 return null;
             }
             System.out.println("User from username " + appUser.toString());
             return new CustomerUserDetails(appUser, getAuthorities(appUser));
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new UsernameNotFoundException("User not found");
         }
     }
 
     private Set<GrantedAuthority> getAuthorities(User appUser) {
         Set<GrantedAuthority> authorities = new HashSet<>();
-        for(Role role: appUser.getRoles()){
+        for (Role role : appUser.getRoles()) {
             GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRole());
             authorities.add(grantedAuthority);
         }

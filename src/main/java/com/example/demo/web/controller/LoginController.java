@@ -62,11 +62,11 @@ public class LoginController {
                     user.getPets().add(pet);
                 }
             }*/
-            if(userService.isUser()){
+            if (userService.isUser()) {
                 user.setPassword(userService.encode(pw));
                 userService.saveUser(user);
             }
-            if(userService.isAdmin()){
+            if (userService.isAdmin()) {
                 user.setPassword(userService.encode(pw));
                 userService.saveAdmin(user);
             }
@@ -74,6 +74,7 @@ public class LoginController {
         }
         return "login";
     }
+
     @RequestMapping("/updateUser")
     public String viewUser(Model model,
                            HttpServletRequest request,

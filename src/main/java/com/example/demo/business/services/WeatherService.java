@@ -1,6 +1,5 @@
 package com.example.demo.business.services;
 
-import com.example.demo.web.Weather;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
@@ -16,10 +15,9 @@ import java.io.IOException;
 public class WeatherService {
 
     @Autowired
-    private WeatherUrl weatherData;
-
-    @Autowired
     RestTemplate restTemp;
+    @Autowired
+    private WeatherUrl weatherData;
 
     public Weather getWeather(FormAttributes formAttributes) throws IOException {
 
@@ -34,7 +32,6 @@ public class WeatherService {
         String uri = uriComponents.toUriString();
         ResponseEntity<String> resp = restTemp.exchange(uri, HttpMethod.GET, null, String.class);
         ObjectMapper mapper = new ObjectMapper();
-        Weather weather = mapper.readValue(resp.getBody(), Weather.class);
-        return weather;
+        return mapper.readValue(resp.getBody(), Weather.class);
     }
 }

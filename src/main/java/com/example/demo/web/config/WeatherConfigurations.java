@@ -18,17 +18,16 @@ public class WeatherConfigurations {
     @Value("${weather.apikey}")
     private String apikey;
 
-
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
-
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         PropertySourcesPlaceholderConfigurer c = new PropertySourcesPlaceholderConfigurer();
         c.setIgnoreUnresolvablePlaceholders(true);
         return c;
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 
     @Bean

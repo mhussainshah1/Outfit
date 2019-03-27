@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 
-
 import java.io.IOException;
 
 @Controller
@@ -31,7 +30,7 @@ public class WeatherController {
     @PostMapping("/weather")
     public String getWeather(Model model, @ModelAttribute FormAttributes formAttributes)
             throws IOException {
-        model.addAttribute("weatherData",weatherService.getWeather(formAttributes));
+        model.addAttribute("weatherData", weatherService.getWeather(formAttributes));
         return "weatherDetails";
     }
 

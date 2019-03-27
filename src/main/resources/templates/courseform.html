@@ -7,7 +7,7 @@
 <body>
 <div th:replace="base::nav"></div>
 <br/>
-<div class="container" align="center">
+<div align="center" class="container">
     <h2>Course Form</h2><br/>
     <form action="#" method="post" th:action="@{/process}" th:object="${course}">
         <input th:field="*{id}" type="hidden"/>
@@ -24,8 +24,8 @@
             </tr>
             <tr>
                 <td> Description:</td>
-                <td> <textarea rows="3" th:field="*{description}"></textarea></td>
-                <td> <span th:errors="*{description}" th:if="${#fields.hasErrors('description')}"></span></td>
+                <td><textarea rows="3" th:field="*{description}"></textarea></td>
+                <td><span th:errors="*{description}" th:if="${#fields.hasErrors('description')}"></span></td>
             </tr>
             <tr>
                 <td>Credits:</td>
