@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>
 
 <head th:replace="base::header">
 
@@ -16,8 +16,8 @@
     <form action="#" autocomplete="off" method="post" th:action="@{/register}" th:object="${user}">
 
         <p class="error-message"
-           th:if="${#fields.hasGlobalErrors()}"
            th:each="error : ${#fields.errors('global')}"
+           th:if="${#fields.hasGlobalErrors()}"
            th:text="${error}">Validation error</p>
 
         <div class="text-left">
@@ -25,7 +25,8 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="firstName">First Name</label>
                 <div class="col-sm-10 text-left">
-                    <input class="form-control" id="firstName" placeholder="First Name" th:field="*{firstName}" type="text">
+                    <input class="form-control" id="firstName" placeholder="First Name" th:field="*{firstName}"
+                           type="text">
                     <strong>
                         <span class="error-message"
                               th:errors="*{firstName}"
@@ -39,7 +40,8 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="lastName">Last Name</label>
                 <div class="col-sm-10 text-left">
-                    <input class="form-control" id="lastName" placeholder="Last Name" th:field="*{lastName}" type="text">
+                    <input class="form-control" id="lastName" placeholder="Last Name" th:field="*{lastName}"
+                           type="text">
                     <strong>
                         <span class="error-message"
                               th:errors="*{lastName}"
@@ -66,7 +68,8 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="username">Username</label>
                 <div class="col-sm-10 text-left">
-                    <input class="form-control" id="username" placeholder="User Name" th:field="*{username}" type="text">
+                    <input class="form-control" id="username" placeholder="User Name" th:field="*{username}"
+                           type="text">
                     <strong>
                         <span class="error-message"
                               th:errors="*{username}"
@@ -79,7 +82,8 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="password">Password</label>
                 <div class="col-sm-10">
-                    <input class="form-control" id="password" placeholder="Password" th:field="*{password}" type="password">
+                    <input class="form-control" id="password" placeholder="Password" th:field="*{password}"
+                           type="password">
                     <ul class="text-left"
                         th:each="error: ${#fields.errors('password')}">
                         <li th:each="message : ${error.split(',')}">
@@ -95,13 +99,14 @@
 
         <div class="form-group form-check">
             <div>
-                <input class="form-check-input" id="enabled" type="checkbox" th:field="*{enabled}"/>
+                <input class="form-check-input" id="enabled" th:field="*{enabled}" type="checkbox"/>
                 <label class="form-check-label" for="enabled">
                     I agree with the <a href="/termsandconditions">terms and conditions</a> for Registration.
                 </label>
             </div>
             <strong>
-                <span class="error-message" th:errors="*{enabled}" th:if="${#fields.hasErrors('enabled')}">Term Error</span>
+                <span class="error-message" th:errors="*{enabled}"
+                      th:if="${#fields.hasErrors('enabled')}">Term Error</span>
             </strong>
         </div>
 

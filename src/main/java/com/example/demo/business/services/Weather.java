@@ -1,34 +1,34 @@
-package com.example.demo.web;
+package com.example.demo.business.services;
 
 /**
  * [Source: (String)
- *
+ * <p>
  * "{
- *
+ * <p>
  * "coord":{"lon":-73.99,"lat":40.73},
- *
+ * <p>
  * "weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01n"}],
- *
+ * <p>
  * "base":"stations",
- *
+ * <p>
  * "main":{"temp":275.41,"pressure":1020,"humidity":29,"temp_min":273.15,"temp_max":277.15},
- *
+ * <p>
  * "visibility":16093,
- *
+ * <p>
  * "wind":{"speed":3.6,"deg":360},
- *
+ * <p>
  * "clouds":{"all":1},
- *
+ * <p>
  * "dt":1553583986,
- *
+ * <p>
  * "sys":{"type":1,"id":6015,"message":0.0093,"country":"US","sunrise":1553597383,"sunset":1553642009},
- *
+ * <p>
  * "id":5128581,
- *
+ * <p>
  * "name":"New York",
- *
+ * <p>
  * "cod":200
- *
+ * <p>
  * }"
  */
 
