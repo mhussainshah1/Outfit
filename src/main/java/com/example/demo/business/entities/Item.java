@@ -3,9 +3,6 @@ package com.example.demo.business.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class Item {
@@ -13,10 +10,13 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotNull
+    @NotEmpty
+    private String name;
+
+    @NotEmpty
     private String color;
 
-    @NotNull
+    @NotEmpty
     private String material;
 
     @NotEmpty
@@ -26,7 +26,7 @@ public class Item {
     //@Size(min = 4)
     private String picturePath;
 
-    @NotNull
+    @NotEmpty
     private String description;
 
     @ManyToOne
@@ -35,16 +35,14 @@ public class Item {
     @ManyToOne
     private Category category;
 
-
-    @OneToMany(mappedBy = "item")
-    private Set<Temperature> temperature;
+    @ManyToOne
+    private Temperature temperature;
 
     public Item() {
-        temperature = new HashSet<>();
     }
 
-    public Item(@NotNull @Size(min = 4) String color, @NotNull @Size(min = 3) String material, @NotEmpty String size, String picturePath, @NotNull @Size(min = 10) String description, User user, Category category) {
-        this();
+    public Item(@NotEmpty String name, @NotEmpty String color, @NotEmpty String material, @NotEmpty String size, String picturePath, @NotEmpty String description, User user, Category category, Temperature temperature) {
+        this.name = name;
         this.color = color;
         this.material = material;
         this.size = size;
@@ -52,7 +50,7 @@ public class Item {
         this.description = description;
         this.user = user;
         this.category = category;
-
+        this.temperature = temperature;
     }
 
     public long getId() {
@@ -63,6 +61,13 @@ public class Item {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
     public String getColor() {
         return color;
     }
@@ -119,11 +124,11 @@ public class Item {
         this.category = category;
     }
 
-    public Set<Temperature> getTemperature() {
+    public Temperature getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(Set<Temperature> temperature) {
+    public void setTemperature(Temperature temperature) {
         this.temperature = temperature;
     }
 
@@ -139,4 +144,6 @@ public class Item {
                 ", category=" + category +
                 '}';
     }
+
+
 }

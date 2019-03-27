@@ -1,6 +1,7 @@
 package com.example.demo.business.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 //Hot Mild Cold
 @Entity
@@ -12,9 +13,8 @@ public class Temperature {
 
     private String name;
 
-    @ManyToOne
-    private Item item;
-
+    @OneToMany(mappedBy = "temperature",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Item> item;
 
     public Temperature() {
     }
@@ -39,13 +39,12 @@ public class Temperature {
         this.name = name;
     }
 
-    public Item getItem() {
+
+    public Set<Item> getItem() {
         return item;
     }
 
-    public void setItem(Item item) {
+    public void setItem(Set<Item> item) {
         this.item = item;
     }
-
-
 }

@@ -8,7 +8,6 @@ import java.util.Collection;
 import java.util.Set;
 
 @Entity
-@Table(name = "User_Data")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

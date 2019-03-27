@@ -82,9 +82,15 @@ public class DataLoader implements CommandLineRunner {
 
         categoryRepository.save(new Category("Top"));
         Category top = categoryRepository.findByName("Top");
-     /*   category = new Category("Bottom");
-        category = new Category("Jacket");
-        category = new Category("Shoes");*/
+
+        categoryRepository.save(new Category("Bottom"));
+        Category bottom = categoryRepository.findByName("Bottom");
+
+        categoryRepository.save(new Category("Jacket"));
+        Category jacket = categoryRepository.findByName("Jacket");
+
+        categoryRepository.save(new Category("Shoes"));
+        Category shoe = categoryRepository.findByName("Shoes");
 
        /* seasonRepository.save(new Season("fall"));
         Season fall = seasonRepository.findByName("fall");
@@ -94,25 +100,74 @@ public class DataLoader implements CommandLineRunner {
 
         temperatureRepository.save(new Temperature("cold"));
         Temperature cold = temperatureRepository.findByName("cold");
-        /*Temperature hot = new Temperature("hot");
-        Temperature mild = new Temperature("mild");
-        Temperature rainy = new Temperature("rainy");*/
 
+        temperatureRepository.save(new Temperature("hot"));
+        Temperature hot = temperatureRepository.findByName("hot");
 
-        Item shirt = new Item("white",
-                "s",
-                "Cotton",
+        temperatureRepository.save(new Temperature("mild"));
+        Temperature mild = temperatureRepository.findByName("mild");
+
+        temperatureRepository.save(new Temperature("rainy"));
+        Temperature rainy = temperatureRepository.findByName("rainy");
+
+        Item shirt = new Item("shirt",
+                "white",
+                "cotton",
+                "small",
                 "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553093077/java-bootcamp/nsgop8vivttqeqkkkynr.jpg",
                 "men",
                 moe,
-                top);
-        Set<Temperature> temps = new HashSet<>();
-        temps.add(cold);
-        shirt.setTemperature(temps);
+                top,
+                cold);
         itemRepository.save(shirt);
 
-        cold.setItem(shirt);
-        temperatureRepository.save(cold);
+        Item pant = new Item("pant",
+                "white",
+                "polyester",
+                "small",
+                "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553093077/java-bootcamp/nsgop8vivttqeqkkkynr.jpg",
+                "men",
+                moe,
+                bottom,
+                cold);
+        itemRepository.save(pant);
+
+        Item lightJacket = new Item("light jacket",
+                "white",
+                "leather",
+                "small",
+                "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553093077/java-bootcamp/nsgop8vivttqeqkkkynr.jpg",
+                "men",
+                moe,
+                jacket,
+                mild);
+        itemRepository.save(lightJacket);
+
+        Item sandle = new Item("sandle",
+                "white",
+                "leather",
+                "US 10",
+                "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553093077/java-bootcamp/nsgop8vivttqeqkkkynr.jpg",
+                "men",
+                moe,
+                shoe,
+                hot);
+        itemRepository.save(sandle);
+
+       /* Item sandles = new Item("white",
+                "leather",
+                "L",
+                "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553093077/java-bootcamp/nsgop8vivttqeqkkkynr.jpg",
+                "men",
+                moe,
+                shoe);
+        temps = new HashSet<>();
+        temps.add(cold);
+        sandles.setTemperature(temps);
+        itemRepository.save(sandles);
+
+        cold.setItem(sandles);
+        temperatureRepository.save(cold);*/
 
        /* Car car1 = new Car("Honda","Accord",2019,"35 miles/gallon",45000.55,"https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1552081999/java-bootcamp/bo1q7fwi8qytkxi6yyus.jpg",category);
         category.getCars().add(car1);
