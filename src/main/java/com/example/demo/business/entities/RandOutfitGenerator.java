@@ -54,7 +54,12 @@ public class Outfit {
             int tx =  t.nextInt(tlength+2);
 
 
+// if (item.temp = hot){
 
+
+
+
+// }
 
 
 
