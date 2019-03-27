@@ -13,6 +13,7 @@ import java.io.IOException;
 
 @Service
 public class WeatherService {
+<<<<<<< HEAD:src/main/java/com/example/demo/web/WeatherService.java
 
    /* private String url;
     private String apiKey;
@@ -40,4 +41,9 @@ public class WeatherService {
 <<<<<<< HEAD:src/main/java/com/example/demo/web/WeatherService.java
        return mapper.readValue(resp.getBody(), Weather.class);
     }*/
+
+=======
+        return mapper.readValue(resp.getBody(), Weather.class);
+    }
+>>>>>>> moe:src/main/java/com/example/demo/business/services/WeatherService.java
 }
