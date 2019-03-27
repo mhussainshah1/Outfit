@@ -34,7 +34,7 @@ public class HomeController {
         if (userService.getUser() != null) {
             model.addAttribute("user_id", userService.getUser().getId());
         }
-        return "list";
+        return "login";
     }
 
     //Users with Admin role can view this page

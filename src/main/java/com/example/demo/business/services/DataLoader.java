@@ -48,7 +48,7 @@ public class DataLoader implements CommandLineRunner {
         nan.setPassword(userService.encode(nan.getPassword()));
         userService.saveUser(nan);
 
-        User moe = new User("mhussainshah79@gmail.com", "password", "Muhammad", "Shah", true, "moe");
+      /*  User moe = new User("mhussainshah79@gmail.com", "password", "Muhammad", "Shah", true, "moe");
         moe.setPassword(userService.encode(moe.getPassword()));
         userService.saveUser(moe);
 
@@ -70,6 +70,6 @@ public class DataLoader implements CommandLineRunner {
 
         course = new Course("Freshman English", "Geraldine Pegram", "Learn your language chilern", 3);
         course.setUser(tolani);
-        courseRepository.save(course);
+        courseRepository.save(course);*/
     }
 }
