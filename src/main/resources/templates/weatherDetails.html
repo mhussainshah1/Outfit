@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="base::header">
+    <title>Weather Data</title>
+</head>
+<body background="https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/SZMXphYEipbdr8zi/beautiful-clouds-close-up-weather-background_skp3rq4r__F0000.png">
+<div th:replace="base::nav"></div>
+
+
+<div align="center" class="div1">
+    <h2>Weather Data</h2>
+    <table id="table" style="width:100%">
+        <tr>
+            <th>City</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Temp</th>
+            <th>Min Temp</th>
+            <th>Max Temp</th>
+            <th>Weather</th>
+        </tr>
+        <tr th:each="weather ,iterStat: ${weatherData}" }>
+            <td><span th:text="${weather.getName()}"></span></td>
+            <td><span th:text="${weather.getLat()}"></span></td>
+            <td><span th:text="${weather.getLon()}"></span></td>
+            <td><span th:text="${weather.getTemp()}"></span></td>
+            <td><span th:text="${weather.getTempMin()}"></span></td>
+            <td><span th:text="${weather.getTempMax()}"></span></td>
+            <td><span th:text="${weather.getWeatherDescription()}"></span></td>
+
+        </tr>
+    </table>
+</div>
+<div th:replace="base::footer"></div>
+</body>
+</html>

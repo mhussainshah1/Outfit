@@ -1,18 +1,18 @@
 package com.example.demo.business.util;
 /**
  * The following class will provide you with a static method that returns the hex format md5 of an input string:
- *
+ * <p>
  * This class can then be used to return the MD5 hash of an email address (make sure you lower case it first!) like this:
  *
  * <ol>
- *     <li>
- *         String email = "someone@somewhere.com";
- *     </li>
- *     <li>
- *         String hash = MD5Util.md5Hex(email);
- *     </li>
+ * <li>
+ * String email = "someone@somewhere.com";
+ * </li>
+ * <li>
+ * String hash = MD5Util.md5Hex(email);
+ * </li>
  * </ol>
- *
+ * <p>
  * With the hex string that is returned, you can construct your gravatar URL.
  */
 

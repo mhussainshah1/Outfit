@@ -10,10 +10,7 @@ import com.example.demo.business.entities.repositories.RoleRepository;
 import com.example.demo.business.entities.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import java.util.Arrays;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -37,8 +34,9 @@ public class DataLoader implements CommandLineRunner {
         roleRepository.save(new Role("USER"));
         roleRepository.save(new Role("ADMIN"));
 
+
         Role adminRole = roleRepository.findByRole("ADMIN");
-        Role userRole=roleRepository.findByRole("USER");
+        Role userRole = roleRepository.findByRole("USER");
 
         invalidPasswordRepository.save(new InvalidPassword("azerty12!"));
         invalidPasswordRepository.save(new InvalidPassword("12345678!"));
@@ -47,6 +45,10 @@ public class DataLoader implements CommandLineRunner {
         User nan = new User("nhan.cog.huynh@gmail.com", "password", "Nhan", "Huynh", true, "nan");
         nan.setPassword(userService.encode(nan.getPassword()));
         userService.saveUser(nan);
+
+        User dag = new User("dag@gmail.com", "password", "Dag", "Fasil", true, "dag");
+        dag.setPassword(userService.encode(dag.getPassword()));
+        userService.saveUser(dag);
 
         User moe = new User("mhussainshah79@gmail.com", "password", "Muhammad", "Shah", true, "moe");
         moe.setPassword(userService.encode(moe.getPassword()));

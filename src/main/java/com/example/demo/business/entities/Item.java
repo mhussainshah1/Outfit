@@ -1,9 +1,9 @@
 package com.example.demo.business.entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
 public class Item {
@@ -12,35 +12,46 @@ public class Item {
     private long id;
 
     @NotNull
-    @Size(min=4)
+    @Size(min = 4)
     private String color;
 
     @NotNull
-    @Size(min=3)
-    private String fabric;
+    @Size(min = 3)
+    private String material;
 
     @NotNull
-    private boolean longShort;
+    private boolean size;
 
     //@NotNull
     //@Size(min = 4)
     private String picturePath;
 
     @NotNull
-    @Size(min=10)
+    @Size(min = 10)
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
+    @ManyToOne
+    @JoinColumn(name = "season_id", nullable = false)
+    private Season season;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
+    private Set<Temperature> temperature;
+
     public Item() {
     }
 
-    public Item(@NotNull @Size(min = 4) String color, @NotNull @Size(min = 3) String fabric, @NotNull boolean longShort, String picturePath, @NotNull @Size(min = 10) String description) {
+    public Item(@NotNull @Size(min = 4) String color, @NotNull @Size(min = 3) String material, @NotNull boolean size, String picturePath, @NotNull @Size(min = 10) String description) {
         this.color = color;
-        this.fabric = fabric;
-        this.longShort = longShort;
+        this.material = material;
+        this.size = size;
         this.picturePath = picturePath;
         this.description = description;
     }
@@ -61,20 +72,20 @@ public class Item {
         this.color = color;
     }
 
-    public String getFabric() {
-        return fabric;
+    public String getMaterial() {
+        return material;
     }
 
-    public void setFabric(String fabric) {
-        this.fabric = fabric;
+    public void setMaterial(String material) {
+        this.material = material;
     }
 
-    public boolean isLongShort() {
-        return longShort;
+    public boolean isSize() {
+        return size;
     }
 
-    public void setLongShort(boolean longShort) {
-        this.longShort = longShort;
+    public void setSize(boolean size) {
+        this.size = size;
     }
 
     public String getPicturePath() {
@@ -93,6 +104,21 @@ public class Item {
         this.description = description;
     }
 
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", color='" + color + '\'' +
+                ", material='" + material + '\'' +
+                ", size=" + size +
+                ", picturePath='" + picturePath + '\'' +
+                ", description='" + description + '\'' +
+                ", category=" + category +
+                '}';
+    }
+
+
     public Category getCategory() {
         return category;
     }
@@ -101,16 +127,27 @@ public class Item {
         this.category = category;
     }
 
-    @Override
-    public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", color='" + color + '\'' +
-                ", fabric='" + fabric + '\'' +
-                ", longShort=" + longShort +
-                ", picturePath='" + picturePath + '\'' +
-                ", description='" + description + '\'' +
-                ", category=" + category +
-                '}';
+    public Season getSeason() {
+        return season;
+    }
+
+    public void setSeason(Season season) {
+        this.season = season;
+    }
+
+    public Set<Temperature> getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(Set<Temperature> temperature) {
+        this.temperature = temperature;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
