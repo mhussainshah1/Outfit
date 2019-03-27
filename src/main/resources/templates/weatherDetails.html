@@ -15,6 +15,7 @@
             <th>City</th>
             <th>Latitude</th>
             <th>Longitude</th>
+            <th>Precipitation</th>
             <th>Temp</th>
             <th>Min Temp</th>
             <th>Max Temp</th>
@@ -24,6 +25,7 @@
             <td><span th:text="${weather.getName()}"></span></td>
             <td><span th:text="${weather.getLat()}"></span></td>
             <td><span th:text="${weather.getLon()}"></span></td>
+            <td><span th:text="${weather.getWeatherMain()}"></span></td>
             <td><span th:text="${weather.getTemp()}"></span></td>
             <td><span th:text="${weather.getTempMin()}"></span></td>
             <td><span th:text="${weather.getTempMax()}"></span></td>

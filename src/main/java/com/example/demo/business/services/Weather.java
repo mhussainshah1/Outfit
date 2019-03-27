@@ -67,8 +67,10 @@ public class Weather implements Serializable {
     @JsonPropertyOrder("description")
     private String weatherDescription;
 
-    public Weather() {
+    @JsonPropertyOrder("main")
+    private String weatherMain;
 
+    public Weather() {
     }
 
     @Bean
@@ -147,6 +149,7 @@ public class Weather implements Serializable {
         }
         Map<String, Object> weather = weatherEntries.get(0);
         setWeatherDescription((String) weather.get("description"));
+        setWeatherMain((String) weather.get("main"));
     }
 
     @JsonProperty("main")
@@ -158,5 +161,13 @@ public class Weather implements Serializable {
 
     public double getCelcius(double kelvin) {
         return kelvin - 273;
+    }
+
+    public String getWeatherMain() {
+        return weatherMain;
+    }
+
+    public void setWeatherMain(String weatherMain) {
+        this.weatherMain = weatherMain;
     }
 }

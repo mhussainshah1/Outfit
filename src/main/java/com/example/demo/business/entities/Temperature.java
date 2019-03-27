@@ -10,16 +10,11 @@ public class Temperature {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(unique = true)
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "item_id", nullable = false)
     private Item item;
 
-    @ManyToOne
-    @JoinColumn(name = "season_id", nullable = false)
-    private Season season;
 
     public Temperature() {
     }
@@ -52,11 +47,5 @@ public class Temperature {
         this.item = item;
     }
 
-    public Season getSeason() {
-        return season;
-    }
 
-    public void setSeason(Season season) {
-        this.season = season;
-    }
 }
