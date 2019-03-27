@@ -1,6 +1,8 @@
 package com.example.demo.business.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Season {
@@ -8,21 +10,16 @@ public class Season {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(unique = true)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "item_id", nullable = false)
-    private Item item;
 
-    @ManyToOne
-    @JoinColumn(name = "temperature_id", nullable = false)
-    private Temperature temperature;
 
     public Season() {
+
     }
 
     public Season(String name) {
+        this();
         this.name = name;
     }
 
@@ -42,19 +39,5 @@ public class Season {
         this.name = name;
     }
 
-    public Item getItem() {
-        return item;
-    }
 
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
-    public Temperature getTemperature() {
-        return temperature;
-    }
-
-    public void setTemperature(Temperature temperature) {
-        this.temperature = temperature;
-    }
 }

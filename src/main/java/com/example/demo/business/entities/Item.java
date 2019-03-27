@@ -1,8 +1,10 @@
 package com.example.demo.business.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -12,48 +14,45 @@ public class Item {
     private long id;
 
     @NotNull
-    @Size(min = 4)
     private String color;
 
     @NotNull
-    @Size(min = 3)
     private String material;
 
-    @NotNull
-    private boolean size;
+    @NotEmpty
+    private String size;
 
     //@NotNull
     //@Size(min = 4)
     private String picturePath;
 
     @NotNull
-    @Size(min = 10)
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @ManyToOne
-    @JoinColumn(name = "season_id", nullable = false)
-    private Season season;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
+    @OneToMany(mappedBy = "item")
     private Set<Temperature> temperature;
 
     public Item() {
+        temperature = new HashSet<>();
     }
 
-    public Item(@NotNull @Size(min = 4) String color, @NotNull @Size(min = 3) String material, @NotNull boolean size, String picturePath, @NotNull @Size(min = 10) String description) {
+    public Item(@NotNull @Size(min = 4) String color, @NotNull @Size(min = 3) String material, @NotEmpty String size, String picturePath, @NotNull @Size(min = 10) String description, User user, Category category) {
+        this();
         this.color = color;
         this.material = material;
         this.size = size;
         this.picturePath = picturePath;
         this.description = description;
+        this.user = user;
+        this.category = category;
+
     }
 
     public long getId() {
@@ -80,11 +79,11 @@ public class Item {
         this.material = material;
     }
 
-    public boolean isSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(boolean size) {
+    public void setSize(String size) {
         this.size = size;
     }
 
@@ -104,6 +103,29 @@ public class Item {
         this.description = description;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Set<Temperature> getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(Set<Temperature> temperature) {
+        this.temperature = temperature;
+    }
 
     @Override
     public String toString() {
@@ -116,38 +138,5 @@ public class Item {
                 ", description='" + description + '\'' +
                 ", category=" + category +
                 '}';
-    }
-
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public Season getSeason() {
-        return season;
-    }
-
-    public void setSeason(Season season) {
-        this.season = season;
-    }
-
-    public Set<Temperature> getTemperature() {
-        return temperature;
-    }
-
-    public void setTemperature(Set<Temperature> temperature) {
-        this.temperature = temperature;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }
