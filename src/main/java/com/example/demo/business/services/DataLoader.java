@@ -86,9 +86,9 @@ public class DataLoader implements CommandLineRunner {
         category = new Category("Jacket");
         category = new Category("Shoes");*/
 
-        seasonRepository.save(new Season("fall"));
+       /* seasonRepository.save(new Season("fall"));
         Season fall = seasonRepository.findByName("fall");
-       /* Season winter = new Season("winter");
+        Season winter = new Season("winter");
         Season spring = new Season("spring");
         Season summer = new Season("summer");*/
 
