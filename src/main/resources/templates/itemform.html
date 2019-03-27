@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base::header">
+    <title>Item Form</title>
+</head>
+
+<body>
+<div th:replace="base::nav"></div>
+<br/>
+<div align="center" class="container">
+    <h2>Item Form</h2><br/>
+    <form action="#" method="post" th:action="@{/process}" th:object="${item}">
+        <input th:field="*{id}" type="hidden"/>
+        <table class="table">
+            <tr>
+                <td>Color:</td>
+                <td><input th:field="*{color}" type="text"/></td>
+                <td><span th:errors="*{color}" th:if="${#fields.hasErrors('color')}"></span></td>
+            </tr>
+            <tr>
+                <td>Material:</td>
+                <td><input th:field="*{material}" type="text"/></td>
+                <td><span th:errors="*{material}" th:if="${#fields.hasErrors('material')}"></span></td>
+            </tr>
+            <tr>
+                <td> Description:</td>
+                <td><textarea rows="3" th:field="*{description}"></textarea></td>
+                <td><span th:errors="*{description}" th:if="${#fields.hasErrors('description')}"></span></td>
+            </tr>
+            <tr>
+                <td>Size:</td>
+                <td><input th:field="*{size}" type="number"/></td>
+                <td><span th:errors="*{size}" th:if="${#fields.hasErrors('size')}"></span></td>
+            </tr>
+            <tr>
+                <td> Category:</td>
+                <td><textarea rows="3" th:field="*{category}"></textarea></td>
+                <td><span th:errors="*{category}" th:if="${#fields.hasErrors('category')}"></span></td>
+            </tr>
+            <tr>
+                <td> Description:</td>
+                <td><textarea rows="3" th:field="*{description}"></textarea></td>
+                <td><span th:errors="*{description}" th:if="${#fields.hasErrors('description')}"></span></td>
+            </tr>
+            <tr>
+                <td> Description:</td>
+                <td><textarea rows="3" th:field="*{description}"></textarea></td>
+                <td><span th:errors="*{description}" th:if="${#fields.hasErrors('description')}"></span></td>
+            </tr>
+
+
+            <label>Image:</label><input type="file" name="file" /><br>
+
+        </table>
+        <input type="submit" value="Submit"/>
+    </form>
+</div>
+<br/>
+<div th:replace="base::footer"></div>
+</body>
+</html>

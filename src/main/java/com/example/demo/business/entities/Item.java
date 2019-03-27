@@ -22,13 +22,14 @@ public class Item {
     @NotNull
     private boolean size;
 
+    @NotNull
+    @Size(min = 10)
+    private String description;
+
     //@NotNull
     //@Size(min = 4)
     private String picturePath;
 
-    @NotNull
-    @Size(min = 10)
-    private String description;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -88,20 +89,20 @@ public class Item {
         this.size = size;
     }
 
-    public String getPicturePath() {
-        return picturePath;
-    }
-
-    public void setPicturePath(String picturePath) {
-        this.picturePath = picturePath;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPicturePath() {
+        return picturePath;
+    }
+
+    public void setPicturePath(String picturePath) {
+        this.picturePath = picturePath;
     }
 
 
