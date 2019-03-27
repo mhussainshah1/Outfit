@@ -1,6 +1,6 @@
 package com.example.demo.web.config;
 
-import com.example.demo.web.WeatherUrl;
+import com.example.demo.business.services.WeatherUrl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
