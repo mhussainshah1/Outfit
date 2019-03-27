@@ -73,7 +73,7 @@ public class Item {
         this.color = color;
     }
 
-    public String getMaterial() {
+    public String getMaterial()git  {
         return material;
     }
 
@@ -105,7 +105,6 @@ public class Item {
         this.picturePath = picturePath;
     }
 
-
     @Override
     public String toString() {
         return "Item{" +
@@ -118,7 +117,6 @@ public class Item {
                 ", category=" + category +
                 '}';
     }
-
 
     public Category getCategory() {
         return category;
