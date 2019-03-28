@@ -21,4 +21,6 @@ Each will add their data in the data loader. put local path for picture instead 
 
 My List
 -------
-//profile.html
+profile.html
+delete by checkbox
+packing list
