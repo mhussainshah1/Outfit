@@ -43,7 +43,7 @@
         <!--enhanced for loop-->
         <tr th:each="item : ${items}">
             <td sec:authorize="isAuthenticated()">
-                <input type="checkbox">
+                <input name = "check" type="checkbox" th:value="${item.id}"/>
             </td>
             <td><a th:href="@{/detail/{id}(id=${item.id})}">[[${item.name}]]</a>
             <br/>

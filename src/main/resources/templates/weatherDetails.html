@@ -21,15 +21,15 @@
             <th>Max Temp</th>
             <th>Weather</th>
         </tr>
-        <tr th:each="weather ,iterStat: ${weatherData}" }>
-            <td><span th:text="${weather.getName()}"></span></td>
-            <td><span th:text="${weather.getLat()}"></span></td>
-            <td><span th:text="${weather.getLon()}"></span></td>
-            <td><span th:text="${weather.getWeatherMain()}"></span></td>
-            <td><span th:text="${weather.getTemp()}"></span></td>
-            <td><span th:text="${weather.getTempMin()}"></span></td>
-            <td><span th:text="${weather.getTempMax()}"></span></td>
-            <td><span th:text="${weather.getWeatherDescription()}"></span></td>
+        <tr th:each="weather ,iterStat: ${weatherData}" th:object="${weather}" >
+            <td><span th:text="${weather.name}"></span></td>
+            <td><span th:text="${weather.lat}"></span></td>
+            <td><span th:text="${weather.lon}"></span></td>
+            <td><span th:text="${weather.weatherMain}"></span></td>
+            <td><span th:text="${weather.temp}"></span></td>
+            <td><span th:text="${weather.tempMin}"></span></td>
+            <td><span th:text="${weather.tempMax}"></span></td>
+            <td><span th:text="${weather.weatherDescription}"></span></td>
 
         </tr>
     </table>
