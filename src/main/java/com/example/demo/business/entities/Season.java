@@ -10,14 +10,13 @@ public class Season {
     private long id;
 
     @NotEmpty
+    @Column(unique = true)
     private String name;
 
     public Season() {
-
     }
 
     public Season(String name) {
-        this();
         this.name = name;
     }
 

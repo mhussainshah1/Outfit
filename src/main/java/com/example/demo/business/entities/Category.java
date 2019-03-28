@@ -16,13 +16,13 @@ public class Category {
     private long id;
 
     @NotEmpty
+    @Column(unique = true)
     private String name;
 
     @OneToMany(mappedBy = "category",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public Set<Item> items;
 
     public Category() {
-        items = new HashSet<>();
     }
 
     public Category(@NotEmpty String name) {

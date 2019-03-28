@@ -55,6 +55,9 @@ public class Weather implements Serializable {
     @JsonProperty("lon")
     private double lon;
 
+    @JsonPropertyOrder("main")
+    private String weatherMain;
+
     @JsonProperty("temp")
     private double temp;
 
@@ -66,9 +69,6 @@ public class Weather implements Serializable {
 
     @JsonPropertyOrder("description")
     private String weatherDescription;
-
-    @JsonPropertyOrder("main")
-    private String weatherMain;
 
     public Weather() {
     }
@@ -108,6 +108,14 @@ public class Weather implements Serializable {
 
     public void setLon(double lon) {
         this.lon = lon;
+    }
+
+    public String getWeatherMain() {
+        return weatherMain;
+    }
+
+    public void setWeatherMain(String weatherMain) {
+        this.weatherMain = weatherMain;
     }
 
     public double getTempMin() {
@@ -161,13 +169,5 @@ public class Weather implements Serializable {
 
     public double getCelcius(double kelvin) {
         return kelvin - 273;
-    }
-
-    public String getWeatherMain() {
-        return weatherMain;
-    }
-
-    public void setWeatherMain(String weatherMain) {
-        this.weatherMain = weatherMain;
     }
 }

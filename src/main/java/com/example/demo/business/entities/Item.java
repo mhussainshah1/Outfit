@@ -10,6 +10,7 @@ public class Item {
     private long id;
 
     @NotEmpty
+    @Column(unique = true)
     private String name;
 
     @NotEmpty
