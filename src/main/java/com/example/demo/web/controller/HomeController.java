@@ -48,13 +48,11 @@ public class HomeController {
 
     @RequestMapping("/")
     public String listItems(Principal principal, Model model) {
-        findAll(model);
         model.addAttribute("items", itemRepository.findAll()); //generate select * statement
-        User myuser = ((CustomerUserDetails)
-                ((UsernamePasswordAuthenticationToken) principal)
-                        .getPrincipal())
-                .getUser();
-        model.addAttribute("myuser", myuser);
+        findAll(model);
+        if (userService.getUser() != null) {	         //generate select * statement
+            model.addAttribute("user_id", userService.getUser().getId());
+        }
         return "list";
     }
 
