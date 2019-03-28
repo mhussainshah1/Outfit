@@ -2,9 +2,7 @@ package com.example.demo.web.controller;
 
 import com.example.demo.business.entities.Course;
 import com.example.demo.business.entities.User;
-import com.example.demo.business.entities.repositories.CourseRepository;
-import com.example.demo.business.entities.repositories.ItemRepository;
-import com.example.demo.business.entities.repositories.UserRepository;
+import com.example.demo.business.entities.repositories.*;
 import com.example.demo.business.services.CustomerUserDetails;
 import com.example.demo.business.services.UserService;
 import com.example.demo.business.util.MD5Util;
@@ -24,6 +22,15 @@ import java.security.Principal;
 @Controller
 public class HomeController {
     @Autowired
+    CategoryRepository categoryRepository;
+
+    @Autowired
+    OccasionRepository occasionRepository;
+
+    @Autowired
+    ClimateRepository climateRepository;
+
+    @Autowired
     CourseRepository courseRepository;
 
     @Autowired
@@ -35,9 +42,16 @@ public class HomeController {
     @Autowired
     UserService userService;
 
+    public void findAll(Model model){
+        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("climates", climateRepository.findAll());
+        model.addAttribute("occasions", occasionRepository.findAll());
+    }
+
     @RequestMapping("/")
     public String listCourses(Model model) {
         model.addAttribute("items", itemRepository.findAll()); //generate select * statement
+        findAll(model);
         if (userService.getUser() != null) {
             model.addAttribute("user_id", userService.getUser().getId());
         }
@@ -51,7 +65,7 @@ public class HomeController {
     }
 
     //AUXILLARY FUNCTION!!!
-    //Use the below code INSIDE METHOD to pass user into view
+    //Use the below code INSIDE METHOD to pass user into the view
     @RequestMapping("/secure")
     public String secure(Principal principal, Model model) {
         User myuser = ((CustomerUserDetails)
@@ -106,9 +120,9 @@ public class HomeController {
         return "profile";
     }
 
-
     @GetMapping("/about")
-    public String getAbout() {
+    public String getAbout(Model model) {
+        findAll(model);
         return "about";
     }
 }

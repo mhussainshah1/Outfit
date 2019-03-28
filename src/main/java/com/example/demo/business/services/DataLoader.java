@@ -96,20 +96,20 @@ public class DataLoader implements CommandLineRunner {
         Climate rainy = climateRepository.findByName("rainy");
 
         //Occasion
-        occasionRepository.save(new Occasion("part"));
-        Occasion party = occasionRepository.findByName("party");
+        occasionRepository.save(new Occasion("Party"));
+        Occasion party = occasionRepository.findByName("Party");
 
-        occasionRepository.save(new Occasion("meeting"));
-        Occasion meeting = occasionRepository.findByName("meeting");
+        occasionRepository.save(new Occasion("Meeting"));
+        Occasion meeting = occasionRepository.findByName("Meeting");
 
-        occasionRepository.save(new Occasion("casual"));
-        Occasion casual = occasionRepository.findByName("casual");
+        occasionRepository.save(new Occasion("Casual"));
+        Occasion casual = occasionRepository.findByName("Casual");
 
-        occasionRepository.save(new Occasion("formal"));
-        Occasion formal = occasionRepository.findByName("formal");
+        occasionRepository.save(new Occasion("Formal"));
+        Occasion formal = occasionRepository.findByName("Formal");
 
-        occasionRepository.save(new Occasion("dinner"));
-        Occasion dinner = occasionRepository.findByName("dinner");
+        occasionRepository.save(new Occasion("Dinner"));
+        Occasion dinner = occasionRepository.findByName("Dinner");
 
         //moe items
         itemRepository.save(new Item("shirt",

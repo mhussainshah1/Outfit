@@ -34,8 +34,59 @@
             <li class="nav-item" sec:authorize="isAuthenticated()">
                 <a class="nav-link" href="/updateUser">Update profile</a>
             </li>
-            <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
-                <a class="nav-link" href="/add">Add A Course</a>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <a class="nav-link" href="/addcategory">Add Category</a>
+            </li>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <a class="nav-link" href="/add">Add Item</a>
+            </li>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a aria-expanded="false" aria-haspopup="true"
+                   class="nav-link dropdown-toggle"
+                   data-toggle="dropdown"
+                   href="#"
+                   id="navbarDropdown1"
+                   role="button">View by Category
+                </a>
+                <div aria-labelledby="navbarDropdown" class="dropdown-menu">
+                        <span th:each="option: ${categories}"
+                              th:value="${option.id}">
+                             <a class="dropdown-item" th:href="@{/detailcategory/{id}(id=${option.id})}">[[${option.name}]]</a>
+                        </span>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a aria-expanded="false" aria-haspopup="true"
+                   class="nav-link dropdown-toggle"
+                   data-toggle="dropdown"
+                   href="#"
+                   id="navbarDropdown2"
+                   role="button">View by Climate
+                </a>
+                <div aria-labelledby="navbarDropdown" class="dropdown-menu">
+                        <span th:each="option: ${occasions}"
+                              th:value="${option.id}">
+                             <a class="dropdown-item" th:href="@{/detailcategory/{id}(id=${option.id})}">[[${option.name}]]</a>
+                        </span>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a aria-expanded="false" aria-haspopup="true"
+                   class="nav-link dropdown-toggle"
+                   data-toggle="dropdown"
+                   href="#"
+                   id="navbarDropdown3"
+                   role="button">View by Occasion
+                </a>
+                <div aria-labelledby="navbarDropdown" class="dropdown-menu">
+                        <span th:each="option: ${categories}"
+                              th:value="${option.id}">
+                             <a class="dropdown-item" th:href="@{/detailcategory/{id}(id=${option.id})}">[[${option.name}]]</a>
+                        </span>
+                </div>
             </li>
             <li class="nav-item" sec:authorize="!isAuthenticated()">
                 <a class="nav-link" href="/register">Register</a>
@@ -43,9 +94,7 @@
             <li class="nav-item" sec:authorize="!isAuthenticated()">
                 <a class="nav-link" href="/login">Login</a>
             </li>
-            <li class="nav-item" sec:authorize="isAuthenticated()">
-                <a class="nav-link" href="/logout">Logout</a>
-            </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="/about">About Us</a>
             </li>
