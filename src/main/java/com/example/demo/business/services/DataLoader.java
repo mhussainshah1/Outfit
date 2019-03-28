@@ -40,21 +40,12 @@ public class DataLoader implements CommandLineRunner {
         roleRepository.save(new Role("USER"));
         roleRepository.save(new Role("ADMIN"));
 
-
         Role adminRole = roleRepository.findByRole("ADMIN");
         Role userRole = roleRepository.findByRole("USER");
 
         invalidPasswordRepository.save(new InvalidPassword("azerty12!"));
         invalidPasswordRepository.save(new InvalidPassword("12345678!"));
         invalidPasswordRepository.save(new InvalidPassword("password123"));
-
-        User nan = new User("nhan.cog.huynh@gmail.com", "password", "Nhan", "Huynh", true, "nan");
-        nan.setPassword(userService.encode(nan.getPassword()));
-        userService.saveUser(nan);
-
-        User dag = new User("dag@gmail.com", "password", "Dag", "Fasil", true, "dag");
-        dag.setPassword(userService.encode(dag.getPassword()));
-        userService.saveUser(dag);
 
         User moe = new User("mhussainshah79@gmail.com", "password", "Muhammad", "Shah", true, "moe");
         moe.setPassword(userService.encode(moe.getPassword()));
@@ -63,6 +54,14 @@ public class DataLoader implements CommandLineRunner {
         User tolani = new User("tolani.oyefule@gmail.com", "password", "Tolani", "Oyefule", true, "lan");
         tolani.setPassword(userService.encode(tolani.getPassword()));
         userService.saveUser(tolani);
+
+        User nan = new User("nhan.cog.huynh@gmail.com", "password", "Nhan", "Huynh", true, "nan");
+        nan.setPassword(userService.encode(nan.getPassword()));
+        userService.saveUser(nan);
+
+        User dag = new User("dag@gmail.com", "password", "Dag", "Fasil", true, "dag");
+        dag.setPassword(userService.encode(dag.getPassword()));
+        userService.saveUser(dag);
 
         User admin = new User("admin@admin.com", "Pa$$word2019", "Admin", "User", true, "admin");
         admin.setPassword(userService.encode(admin.getPassword()));
@@ -110,49 +109,49 @@ public class DataLoader implements CommandLineRunner {
         temperatureRepository.save(new Temperature("rainy"));
         Temperature rainy = temperatureRepository.findByName("rainy");
 
-        Item shirt = new Item("shirt",
+        itemRepository.save( new Item("shirt",
                 "white",
                 "cotton",
                 "small",
-                "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553093077/java-bootcamp/nsgop8vivttqeqkkkynr.jpg",
+                "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553756502/outfit/Tops/Cold/Grey_Long_Sleeve.jpg",
                 "men",
                 moe,
                 top,
-                cold);
-        itemRepository.save(shirt);
+                cold));
+        Item shirt = itemRepository.findByName("shirt");
 
-        Item pant = new Item("pant",
+        itemRepository.save(new Item("pant",
                 "white",
                 "polyester",
                 "small",
-                "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553093077/java-bootcamp/nsgop8vivttqeqkkkynr.jpg",
+                "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553756501/outfit/Bottom/Cold/Jeans_Blue_1.jpg",
                 "men",
                 moe,
                 bottom,
-                cold);
-        itemRepository.save(pant);
+                cold));
+        Item pant = itemRepository.findByName("pant");
 
-        Item lightJacket = new Item("light jacket",
+        itemRepository.save(new Item("light jacket",
                 "white",
                 "leather",
                 "small",
-                "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553093077/java-bootcamp/nsgop8vivttqeqkkkynr.jpg",
+                "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553756501/outfit/Jackets/Warm/Black_Nike_WIndbreaker.jpg",
                 "men",
                 moe,
                 jacket,
-                mild);
-        itemRepository.save(lightJacket);
+                mild));
+        Item lightJacket = itemRepository.findByName("light jacket");
 
-        Item sandle = new Item("sandle",
+        itemRepository.save(new Item("sandle",
                 "white",
                 "leather",
                 "US 10",
-                "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553093077/java-bootcamp/nsgop8vivttqeqkkkynr.jpg",
+                "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553756502/outfit/Shoes/Warm/Warm_Midhigh_Socks.jpg",
                 "men",
                 moe,
                 shoe,
-                hot);
-        itemRepository.save(sandle);
+                hot));
+        Item sandle = itemRepository.findByName("sandle");
 
        /* Item sandles = new Item("white",
                 "leather",

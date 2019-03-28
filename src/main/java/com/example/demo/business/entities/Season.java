@@ -1,8 +1,6 @@
 package com.example.demo.business.entities;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class Season {
@@ -11,8 +9,6 @@ public class Season {
     private long id;
 
     private String name;
-
-
 
     public Season() {
 
@@ -38,6 +34,5 @@ public class Season {
     public void setName(String name) {
         this.name = name;
     }
-
 
 }

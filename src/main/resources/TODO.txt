@@ -1,0 +1,11 @@
+TODO
+Temperature.html
+Occasion.html
+
+party
+function
+meeting
+casual
+dinner
+formal
+
