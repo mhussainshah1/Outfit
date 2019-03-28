@@ -27,3 +27,4 @@ packing list
 
 itemform.html
 color popup for color
+search function

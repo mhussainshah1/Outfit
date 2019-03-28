@@ -3,30 +3,17 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
 <head th:replace="base::header">
-    <title>List</title>
+    <title>Category List</title>
 
 </head>
+
 <body>
 <div th:replace="base::nav"></div>
-
-<div align="center" class="container-float">
-
+<br/>
+<div class="container-float" align="center">
     <div class="jumbotron lead">
-        <!--<h2 th:if="${category.name != null}" align="center" th:text="${category.name}"></h2>
-        <h2 th:unless="$category.name != null}!= null" align="center"> Outfit</h2>-->
-        <h2 align="center"> Outfit</h2>
+        <h2 align="center" th:text="${category.name}"></h2>
     </div>
-
-    <div sec:authorize="isAuthenticated()">
-        <form method="post" th:action="@{/weather}">
-            <div>
-                <label for="city">Enter the city name to check the weather</label>
-                <input id="city" name="city" type="text">
-                <button type="submit">Submit</button>
-            </div>
-        </form>
-    </div>
-
     <table class="table table-striped" style="width:100%">
         <thead class="thead-light">
             <tr>
@@ -44,7 +31,6 @@
                 <th sec:authorize="isAuthenticated()">Actions</th>
             </tr>
         </thead>
-
         <!--enhanced for loop-->
         <tr th:each="item : ${items}">
             <td sec:authorize="isAuthenticated()">
