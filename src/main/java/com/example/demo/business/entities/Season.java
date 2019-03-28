@@ -1,6 +1,7 @@
 package com.example.demo.business.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Season {
@@ -8,6 +9,7 @@ public class Season {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotEmpty
     private String name;
 
     public Season() {

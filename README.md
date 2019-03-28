@@ -19,7 +19,7 @@ Each wardrobe item should have:
 - Fabric material
 - An image of that item
 
-The application should obtain the temperature for that day based on the user's entered location and suggest an outfit that suits the weather and the occasion the outfit will be worn for.
+The application should obtain the climate for that day based on the user's entered location and suggest an outfit that suits the weather and the occasion the outfit will be worn for.
 
 The application should allow new users to sign up for an account and track their wardrobe item. Users can update information regarding each of their item or remove item from their wardrobe.
 

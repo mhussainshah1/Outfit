@@ -6,9 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Component
 public class DataLoader implements CommandLineRunner {
     @Autowired
@@ -23,11 +20,11 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     ItemRepository itemRepository;
 
-    @Autowired
-    SeasonRepository seasonRepository;
+/*    @Autowired
+    SeasonRepository seasonRepository;*/
 
     @Autowired
-    TemperatureRepository temperatureRepository;
+    ClimateRepository climateRepository;
 
     @Autowired
     InvalidPasswordRepository invalidPasswordRepository;
@@ -93,21 +90,27 @@ public class DataLoader implements CommandLineRunner {
 
        /* seasonRepository.save(new Season("fall"));
         Season fall = seasonRepository.findByName("fall");
-        Season winter = new Season("winter");
-        Season spring = new Season("spring");
-        Season summer = new Season("summer");*/
 
-        temperatureRepository.save(new Temperature("cold"));
-        Temperature cold = temperatureRepository.findByName("cold");
+        seasonRepository.save(new Season("winter"));
+        Season winter = seasonRepository.findByName("winter");
 
-        temperatureRepository.save(new Temperature("hot"));
-        Temperature hot = temperatureRepository.findByName("hot");
+        seasonRepository.save(new Season("spring"));
+        Season spring = seasonRepository.findByName("spring");
 
-        temperatureRepository.save(new Temperature("mild"));
-        Temperature mild = temperatureRepository.findByName("mild");
+        seasonRepository.save(new Season("summer"));
+        Season summer = seasonRepository.findByName("summer");*/
 
-        temperatureRepository.save(new Temperature("rainy"));
-        Temperature rainy = temperatureRepository.findByName("rainy");
+        climateRepository.save(new Climate("cold"));
+        Climate cold = climateRepository.findByName("cold");
+
+        climateRepository.save(new Climate("hot"));
+        Climate hot = climateRepository.findByName("hot");
+
+        climateRepository.save(new Climate("mild"));
+        Climate mild = climateRepository.findByName("mild");
+
+        climateRepository.save(new Climate("rainy"));
+        Climate rainy = climateRepository.findByName("rainy");
 
         itemRepository.save( new Item("shirt",
                 "white",
@@ -120,10 +123,11 @@ public class DataLoader implements CommandLineRunner {
                 cold));
         Item shirt = itemRepository.findByName("shirt");
 
-        itemRepository.save(new Item("pant",
+        itemRepository.save(
+                new Item("pant",
                 "white",
                 "polyester",
-                "small",
+                "medium",
                 "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553756501/outfit/Bottom/Cold/Jeans_Blue_1.jpg",
                 "men",
                 moe,
@@ -131,10 +135,11 @@ public class DataLoader implements CommandLineRunner {
                 cold));
         Item pant = itemRepository.findByName("pant");
 
-        itemRepository.save(new Item("light jacket",
+        itemRepository.save(
+                new Item("light jacket",
                 "white",
                 "leather",
-                "small",
+                "large",
                 "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553756501/outfit/Jackets/Warm/Black_Nike_WIndbreaker.jpg",
                 "men",
                 moe,
@@ -142,7 +147,8 @@ public class DataLoader implements CommandLineRunner {
                 mild));
         Item lightJacket = itemRepository.findByName("light jacket");
 
-        itemRepository.save(new Item("sandle",
+        itemRepository.save(
+                new Item("sandle",
                 "white",
                 "leather",
                 "US 10",
@@ -160,13 +166,11 @@ public class DataLoader implements CommandLineRunner {
                 "men",
                 moe,
                 shoe);
-        temps = new HashSet<>();
-        temps.add(cold);
-        sandles.setTemperature(temps);
+        temp.getClimate.add(cold);
         itemRepository.save(sandles);
 
         cold.setItem(sandles);
-        temperatureRepository.save(cold);*/
+        climateRepository.save(cold);*/
 
        /* Car car1 = new Car("Honda","Accord",2019,"35 miles/gallon",45000.55,"https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1552081999/java-bootcamp/bo1q7fwi8qytkxi6yyus.jpg",category);
         category.getCars().add(car1);

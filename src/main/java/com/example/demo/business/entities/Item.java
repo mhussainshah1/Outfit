@@ -2,7 +2,6 @@ package com.example.demo.business.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Item {
@@ -36,12 +35,12 @@ public class Item {
     private Category category;
 
     @ManyToOne
-    private Temperature temperature;
+    private Climate climate;
 
     public Item() {
     }
 
-    public Item(@NotEmpty String name, @NotEmpty String color, @NotEmpty String material, @NotEmpty String size, String picturePath, @NotEmpty String description, User user, Category category, Temperature temperature) {
+    public Item(@NotEmpty String name, @NotEmpty String color, @NotEmpty String material, @NotEmpty String size, String picturePath, @NotEmpty String description, User user, Category category, Climate climate) {
         this.name = name;
         this.color = color;
         this.material = material;
@@ -50,7 +49,7 @@ public class Item {
         this.description = description;
         this.user = user;
         this.category = category;
-        this.temperature = temperature;
+        this.climate = climate;
     }
 
     public long getId() {
@@ -124,12 +123,12 @@ public class Item {
         this.category = category;
     }
 
-    public Temperature getTemperature() {
-        return temperature;
+    public Climate getClimate() {
+        return climate;
     }
 
-    public void setTemperature(Temperature temperature) {
-        this.temperature = temperature;
+    public void setClimate(Climate climate) {
+        this.climate = climate;
     }
 
     @Override
