@@ -6,14 +6,15 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotEmpty
+    private String name;
 
     @NotNull
     private String color;
@@ -32,36 +33,32 @@ public class Item {
     //@Size(min = 4)
     private String picturePath;
 
-
-    @NotNull
     @ManyToOne
     private User user;
 
     @ManyToOne
     private Category category;
 
-    @NotNull
-    @OneToOne
-    private String occasion;
+    @ManyToOne
+    private Temperature temperature;
 
-    @OneToMany(mappedBy = "item")
-    private Set<Temperature> temperature;
+    @ManyToOne
+    private Occasion occasion;
 
     public Item() {
-        temperature = new HashSet<>();
     }
 
-    public Item(@NotNull @Size(min = 4) String color, @NotNull @Size(min = 3) String material, @NotEmpty String size, String picturePath, @NotNull @Size(min = 10) String description, User user, Category category) {
-        this();
+    public Item(@NotEmpty String name, @NotNull String color, @NotNull String material, @NotEmpty String size, @NotNull @Size(min = 10) String description, String picturePath, User user, Category category, Temperature temperature, Occasion occasion) {
+        this.name = name;
         this.color = color;
         this.material = material;
         this.size = size;
-        this.picturePath = picturePath;
         this.description = description;
+        this.picturePath = picturePath;
         this.user = user;
         this.category = category;
+        this.temperature = temperature;
         this.occasion = occasion;
-
     }
 
     public long getId() {
@@ -80,7 +77,7 @@ public class Item {
         this.color = color;
     }
 
-    public String getMaterial()git  {
+    public String getMaterial() {
         return material;
     }
 
@@ -104,15 +101,13 @@ public class Item {
         this.description = description;
     }
 
-
-     public String getPicturePath() {
+    public String getPicturePath() {
         return picturePath;
     }
 
     public void setPicturePath(String picturePath) {
         this.picturePath = picturePath;
     }
-
 
     public User getUser() {
         return user;
@@ -122,7 +117,7 @@ public class Item {
         this.user = user;
     }
 
- public Category getCategory() {
+    public Category getCategory() {
         return category;
     }
 
@@ -130,30 +125,28 @@ public class Item {
         this.category = category;
     }
 
-    public Set<Temperature> getTemperature() {
+
+    public Temperature getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(Set<Temperature> temperature) {
+    public void setTemperature(Temperature temperature) {
         this.temperature = temperature;
     }
 
-    public Set<Occasion> getOccasion(){return occasion; }
-
-    public void setOccasion(Set<Occasion> occasion) {
-        this.occasion() = occasion;
+    public Occasion getOccasion() {
+        return occasion;
     }
 
-    @Override
-    public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", color='" + color + '\'' +
-                ", material='" + material + '\'' +
-                ", size=" + size +
-                ", picturePath='" + picturePath + '\'' +
-                ", description='" + description + '\'' +
-                ", category=" + category +
-                '}';
+    public void setOccasion(Occasion occasion) {
+        this.occasion = occasion;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

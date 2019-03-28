@@ -1,8 +1,9 @@
 package com.example.demo.business.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
-//Hot Mild Cold
+//Casual
 @Entity
 public class Occasion {
 
@@ -12,11 +13,15 @@ public class Occasion {
 
     private String name;
 
-    @OneToOne
-    private Occasion occasion;
+    @OneToMany(mappedBy = "occasion",cascade = CascadeType.ALL)
+    public Set<Item> items;
 
 
     public Occasion() {
+    }
+
+    public Occasion(String name) {
+        this.name = name;
     }
 
     public long getId() {
@@ -35,12 +40,12 @@ public class Occasion {
         this.name = name;
     }
 
-    public Occasion getOccasion() {
-        return occasion;
+
+    public Set<Item> getItems() {
+        return items;
     }
 
-    public void setOccasion(Occasion occasion) {
-        this.occasion = occasion;
+    public void setItems(Set<Item> items) {
+        this.items = items;
     }
-}
 }

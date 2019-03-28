@@ -105,27 +105,24 @@ public class DataLoader implements CommandLineRunner {
         occasionRepository.save(new Occasion("casual"));
         Occasion casual = occasionRepository.findByName("casual");
         /*Occasion formal = new Temperature("formal");
-        Occasion business_casual = new Temperature("business casual");
-        */
+        Occasion business_casual = new Temperature("business casual"); */
 
 
 
-        Item shirt = new Item("white",
-                "s",
-                "Cotton",
-                "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553093077/java-bootcamp/nsgop8vivttqeqkkkynr.jpg",
-                "men",
-               // "casual",
-                moe,
-                top);
-        Set<Temperature> temps = new HashSet<>();
-        temps.add(cold);
-        shirt.setTemperature(temps);
-        itemRepository.save(shirt);
 
-        cold.setItem(shirt);
-        temperatureRepository.save(cold);
 
+        itemRepository.save(new Item( "shirt",
+                    /*color*/        "white",
+                    /*material*/     "Cotton",
+                    /*size*/         "s",
+                    /*description*/  "              ",
+                    /*picturePath*/  "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553093077/java-bootcamp/nsgop8vivttqeqkkkynr.jpg",
+                    /*user*/          moe,
+                    /*category*/      top,
+                    /*temperature*/   cold,
+                    /*occasion*/      casual
+        ));
+        Item shirt = itemRepository.findByName("shirt");
        /* Car car1 = new Car("Honda","Accord",2019,"35 miles/gallon",45000.55,"https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1552081999/java-bootcamp/bo1q7fwi8qytkxi6yyus.jpg",category);
         category.getCars().add(car1);
         Car car2 = new Car("Toyota","Camry",2018,"35 miles/gallon",32000.02,"https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1552100700/java-bootcamp/mj2tywvdhsq0mleow3rp.png",category);
