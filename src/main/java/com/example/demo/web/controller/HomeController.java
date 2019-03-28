@@ -75,7 +75,7 @@ public class HomeController {
     }
 
     @GetMapping("/add")
-    public String courseForm(Model model) {
+    public String itemForm(Model model) {
         model.addAttribute("item", new Item());
         return "itemform";
     }
@@ -92,7 +92,7 @@ public class HomeController {
     }
 
     @RequestMapping("/detail/{id}")
-    public String showCourse(@PathVariable("id") long id, Model model) {
+    public String showItem(@PathVariable("id") long id, Model model) {
         model.addAttribute("item", itemRepository.findById(id).get());
         if (userService.getUser() != null) {
             model.addAttribute("user_id", userService.getUser().getId());
@@ -101,13 +101,13 @@ public class HomeController {
     }
 
     @RequestMapping("/update/{id}")
-    public String updateCourse(@PathVariable("id") long id, Model model) {
+    public String updateItem(@PathVariable("id") long id, Model model) {
         model.addAttribute("course", itemRepository.findById(id).get());
         return "itemform";
     }
 
     @RequestMapping("/delete/{id}")
-    public String delCourse(@PathVariable("id") long id) {
+    public String deleteItem(@PathVariable("id") long id) {
         itemRepository.deleteById(id);
         return "redirect:/";
     }
