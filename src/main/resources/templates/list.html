@@ -46,10 +46,7 @@
                 <input name="check" th:value="${item.id}" type="checkbox"/>
             </td>
             <td th:text="${item.category.name}"></td>
-            <td><a th:href="@{/detail/{id}(id=${item.id})}">[[${item.name}]]</a>
-                <br/>
-                Dag is working to link show.html
-            </td>
+            <td><a th:href="@{/detail/{id}(id=${item.id})}">[[${item.name}]]</a></td>
             <td th:text="${item.color}"></td>
             <td th:text="${item.material}"></td>
             <td th:text="${item.size}"></td>
