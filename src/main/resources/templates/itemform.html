@@ -56,18 +56,7 @@
             <td><span th:text="${item.occasion.name}"></span><br/></td>
         </tr>
     </table>
-
-    <div sec:authorize="hasAuthority('USER')">
-        <span th:if="${user_id == item.user.id}">
-            <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> - <!-- Update -->
-            <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
-        </span>
-    </div>
-
-    <div sec:authorize="hasAuthority('ADMIN')">
-        <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> - <!-- Update -->
-        <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
-    </div>
+    <a th:href="@{/delete/{id}(id=${item.id})}">Delete this car</a>
 </div>
 
 <div th:replace="base::footer"></div>

@@ -1,6 +1,7 @@
 package com.example.demo.web.controller;
 
 import com.example.demo.business.entities.Course;
+import com.example.demo.business.entities.Item;
 import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.*;
 import com.example.demo.business.services.CustomerUserDetails;
@@ -31,9 +32,6 @@ public class HomeController {
     ClimateRepository climateRepository;
 
     @Autowired
-    CourseRepository courseRepository;
-
-    @Autowired
     ItemRepository itemRepository;
 
     @Autowired
@@ -49,7 +47,7 @@ public class HomeController {
     }
 
     @RequestMapping("/")
-    public String listCourses(Model model) {
+    public String listItems(Model model) {
         model.addAttribute("items", itemRepository.findAll()); //generate select * statement
         findAll(model);
         if (userService.getUser() != null) {
@@ -78,36 +76,39 @@ public class HomeController {
 
     @GetMapping("/add")
     public String courseForm(Model model) {
-        model.addAttribute("course", new Course());
-        return "courseform";
+        model.addAttribute("item", new Item());
+        return "itemform";
     }
 
     @PostMapping("/process")
-    public String processForm(@Valid Course course, BindingResult result) {
+    public String processForm(@Valid Item item, BindingResult result) {
         if (result.hasErrors()) {
-            return "courseform";
+            return "itemform";
         }
 
-        course.setUser(userService.getUser());
-        courseRepository.save(course); //generate SQL statement and insert into database
+        item.setUser(userService.getUser());
+        itemRepository.save(item); //generate SQL statement and insert into database
         return "redirect:/";
     }
 
     @RequestMapping("/detail/{id}")
     public String showCourse(@PathVariable("id") long id, Model model) {
-        model.addAttribute("course", courseRepository.findById(id).get());
+        model.addAttribute("item", itemRepository.findById(id).get());
+        if (userService.getUser() != null) {
+            model.addAttribute("user_id", userService.getUser().getId());
+        }
         return "show";
     }
 
     @RequestMapping("/update/{id}")
     public String updateCourse(@PathVariable("id") long id, Model model) {
-        model.addAttribute("course", courseRepository.findById(id).get());
-        return "courseform";
+        model.addAttribute("course", itemRepository.findById(id).get());
+        return "itemform";
     }
 
     @RequestMapping("/delete/{id}")
     public String delCourse(@PathVariable("id") long id) {
-        courseRepository.deleteById(id);
+        itemRepository.deleteById(id);
         return "redirect:/";
     }
 
