@@ -112,6 +112,7 @@ public class DataLoader implements CommandLineRunner {
         climateRepository.save(new Climate("rainy"));
         Climate rainy = climateRepository.findByName("rainy");
 
+        //moe items
         itemRepository.save( new Item("shirt",
                 "white",
                 "cotton",
@@ -158,6 +159,12 @@ public class DataLoader implements CommandLineRunner {
                 shoe,
                 hot));
         Item sandle = itemRepository.findByName("sandle");
+
+        //tolani item
+
+        //dag item
+
+        //nan item
 
        /* Item sandles = new Item("white",
                 "leather",
