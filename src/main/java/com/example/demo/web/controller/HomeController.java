@@ -47,12 +47,14 @@ public class HomeController {
     }
 
     @RequestMapping("/")
-    public String listItems(Model model) {
-        model.addAttribute("items", itemRepository.findAll()); //generate select * statement
+    public String listItems(Principal principal, Model model) {
         findAll(model);
-        if (userService.getUser() != null) {
-            model.addAttribute("user_id", userService.getUser().getId());
-        }
+        model.addAttribute("items", itemRepository.findAll()); //generate select * statement
+        User myuser = ((CustomerUserDetails)
+                ((UsernamePasswordAuthenticationToken) principal)
+                        .getPrincipal())
+                .getUser();
+        model.addAttribute("myuser", myuser);
         return "list";
     }
 
@@ -76,6 +78,7 @@ public class HomeController {
 
     @GetMapping("/add")
     public String itemForm(Model model) {
+        findAll(model);
         model.addAttribute("item", new Item());
         return "itemform";
     }

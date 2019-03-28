@@ -24,3 +24,6 @@ My List
 profile.html
 delete by checkbox
 packing list
+
+itemform.html
+color popup for color
