@@ -1,39 +1,75 @@
 <!doctype html>
 <html lang="en"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head th:replace="base::header">
-    <title>Show</title>
+    <title>item form</title>
 </head>
+
 <body>
 <div th:replace="base::nav"></div>
-<br/>
-<div align="center" class="container">
-    <h2>Course Details</h2><br/>
+
+<div class="container" align="center">
     <table class="table">
         <tr>
-            <td>Title:</td>
-            <td><span th:text="${course.title}"></span><br/></td>
+            <td>Category:</td>
+            <td><span th:text="${item.category.name}"></span></td>
         </tr>
         <tr>
-            <td>Instructor:</td>
-            <td><span th:text="${course.instructor}"></span><br/></td>
+            <td>Item:</td>
+            <td><span th:text="${item.name}"></span></td>
+        </tr>
+        <tr>
+            <td>Color:</td>
+            <td><span th:text="${item.color}"></span></td>
+        </tr>
+        <tr>
+            <td>Material:</td>
+            <td><span th:text="${item.material}"></span></td>
+        </tr>
+        <tr>
+            <td>Size:</td>
+            <td><p th:text="${item.size}"></p></td>
+        </tr>
+
+        <tr>
+            <td>Picture:</td>
+            <td><img class ="profile-picture"
+                     th:src="${item.picturePath}"
+                     th:alt = "Picture"> <!-- th:text="${message.picturePath}" --><td>
         </tr>
         <tr>
             <td>Description:</td>
-            <td><span th:text="${course.description}"></span><br/></td>
+            <td><p th:text="${item.description}"></p></td>
         </tr>
         <tr>
-            <td>Credits:</td>
-            <td><span th:text="${course.credit}"></span><br/></td>
+            <td>User:</td>
+            <td><p th:text="${item.user.username}"></p></td>
+        </tr>
+        <tr>
+            <td>Climate:</td>
+            <td><span th:text="${item.climate.name}"></span><br/></td>
+        </tr>
+        <tr>
+            <td>Occasion:</td>
+            <td><span th:text="${item.occasion.name}"></span><br/></td>
         </tr>
     </table>
+
+    <div sec:authorize="hasAuthority('USER')">
+        <span th:if="${user_id == item.user.id}">
+            <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> - <!-- Update -->
+            <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
+        </span>
+    </div>
+
     <div sec:authorize="hasAuthority('ADMIN')">
-        <a th:href="@{/update/{id}(id=${course.id})}">Edit</a> - <!-- Update -->
-        <a th:href="@{/delete/{id}(id=${course.id})}">Delete</a>
+        <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> - <!-- Update -->
+        <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
     </div>
 </div>
-<br/>
+
 <div th:replace="base::footer"></div>
 </body>
 </html>

@@ -4,11 +4,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
+//Hot Mild Cold
 @Entity
-public class Category {
+public class Climate {
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public Set<Item> items;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -17,11 +16,13 @@ public class Category {
     @Column(unique = true)
     private String name;
 
-    public Category() {
+    @OneToMany(mappedBy = "climate", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Item> item;
+
+    public Climate() {
     }
 
-    public Category(@NotEmpty String name) {
-        this();
+    public Climate(String name) {
         this.name = name;
     }
 
@@ -41,11 +42,12 @@ public class Category {
         this.name = name;
     }
 
-    public Set<Item> getItems() {
-        return items;
+
+    public Set<Item> getItem() {
+        return item;
     }
 
-    public void setItems(Set<Item> items) {
-        this.items = items;
+    public void setItem(Set<Item> item) {
+        this.item = item;
     }
 }

@@ -1,9 +1,7 @@
 package com.example.demo.business.entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Item {
@@ -11,38 +9,52 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotNull
-    @Size(min=4)
+    @NotEmpty
+    @Column(unique = true)
+    private String name;
+
+    @NotEmpty
     private String color;
 
-    @NotNull
-    @Size(min=3)
-    private String fabric;
+    @NotEmpty
+    private String material;
 
-    @NotNull
-    private boolean longShort;
+    @NotEmpty
+    private String size;
 
     //@NotNull
     //@Size(min = 4)
     private String picturePath;
 
-    @NotNull
-    @Size(min=10)
+    @NotEmpty
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
+    private User user;
+
+    @ManyToOne
     private Category category;
+
+    @ManyToOne
+    private Climate climate;
+
+    @ManyToOne
+    private Occasion occasion;
 
     public Item() {
     }
 
-    public Item(@NotNull @Size(min = 4) String color, @NotNull @Size(min = 3) String fabric, @NotNull boolean longShort, String picturePath, @NotNull @Size(min = 10) String description) {
+    public Item(@NotEmpty String name, @NotEmpty String color, @NotEmpty String material, @NotEmpty String size, String picturePath, @NotEmpty String description, User user, Category category, Climate climate, Occasion occasion) {
+        this.name = name;
         this.color = color;
-        this.fabric = fabric;
-        this.longShort = longShort;
+        this.material = material;
+        this.size = size;
         this.picturePath = picturePath;
         this.description = description;
+        this.user = user;
+        this.category = category;
+        this.climate = climate;
+        this.occasion = occasion;
     }
 
     public long getId() {
@@ -53,6 +65,14 @@ public class Item {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getColor() {
         return color;
     }
@@ -61,20 +81,20 @@ public class Item {
         this.color = color;
     }
 
-    public String getFabric() {
-        return fabric;
+    public String getMaterial() {
+        return material;
     }
 
-    public void setFabric(String fabric) {
-        this.fabric = fabric;
+    public void setMaterial(String material) {
+        this.material = material;
     }
 
-    public boolean isLongShort() {
-        return longShort;
+    public String getSize() {
+        return size;
     }
 
-    public void setLongShort(boolean longShort) {
-        this.longShort = longShort;
+    public void setSize(String size) {
+        this.size = size;
     }
 
     public String getPicturePath() {
@@ -93,6 +113,14 @@ public class Item {
         this.description = description;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Category getCategory() {
         return category;
     }
@@ -101,13 +129,29 @@ public class Item {
         this.category = category;
     }
 
+    public Climate getClimate() {
+        return climate;
+    }
+
+    public void setClimate(Climate climate) {
+        this.climate = climate;
+    }
+
+    public Occasion getOccasion() {
+        return occasion;
+    }
+
+    public void setOccasion(Occasion occasion) {
+        this.occasion = occasion;
+    }
+
     @Override
     public String toString() {
         return "Item{" +
                 "id=" + id +
                 ", color='" + color + '\'' +
-                ", fabric='" + fabric + '\'' +
-                ", longShort=" + longShort +
+                ", material='" + material + '\'' +
+                ", size=" + size +
                 ", picturePath='" + picturePath + '\'' +
                 ", description='" + description + '\'' +
                 ", category=" + category +

@@ -1,6 +1,9 @@
 package com.example.demo.web.controller;
 
 import com.example.demo.business.entities.User;
+import com.example.demo.business.entities.repositories.CategoryRepository;
+import com.example.demo.business.entities.repositories.ClimateRepository;
+import com.example.demo.business.entities.repositories.OccasionRepository;
 import com.example.demo.business.entities.repositories.UserRepository;
 import com.example.demo.business.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +24,26 @@ public class LoginController {
     UserRepository userRepository;
 
     @Autowired
+    CategoryRepository categoryRepository;
+
+    @Autowired
+    ClimateRepository climateRepository;
+
+    @Autowired
+    OccasionRepository occasionRepository;
+
+    @Autowired
     UserService userService;
 
+    public void findAll(Model model){
+        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("climates", climateRepository.findAll());
+        model.addAttribute("occasions", occasionRepository.findAll());
+    }
+
     @RequestMapping("/login")
-    public String login() {
+    public String login(Model model) {
+        findAll(model);
         return "login";
     }
 
@@ -35,12 +54,14 @@ public class LoginController {
 
     @GetMapping("/register")
     public String showRegistrationPage(Model model) {
+        findAll(model);
         model.addAttribute("user", new User());
         return "register";
     }
 
     @GetMapping("/termsandconditions")
-    public String getTermsAndCondition() {
+    public String getTermsAndCondition(Model model) {
+        findAll(model);
         return "termsandconditions";
     }
 
@@ -48,6 +69,7 @@ public class LoginController {
     public String processRegistrationPage(@Valid @ModelAttribute("user") User user, BindingResult result, Model model, @RequestParam("password") String pw) {
         System.out.println("pw: " + pw);
         if (result.hasErrors()) {
+            findAll(model);
             model.addAttribute("user", user);
             return "register";
         } else {
@@ -62,11 +84,11 @@ public class LoginController {
                     user.getPets().add(pet);
                 }
             }*/
-            if(userService.isUser()){
+            if (userService.isUser()) {
                 user.setPassword(userService.encode(pw));
                 userService.saveUser(user);
             }
-            if(userService.isAdmin()){
+            if (userService.isAdmin()) {
                 user.setPassword(userService.encode(pw));
                 userService.saveAdmin(user);
             }
@@ -74,6 +96,7 @@ public class LoginController {
         }
         return "login";
     }
+
     @RequestMapping("/updateUser")
     public String viewUser(Model model,
                            HttpServletRequest request,

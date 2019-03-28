@@ -2,23 +2,26 @@ package com.example.demo.business.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.Set;
 
 @Entity
-public class InvalidPassword {
+public class Occasion {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-
     @NotEmpty
     @Column(unique = true)
-    private String value;
+    private String name;
 
-    public InvalidPassword() {
+    @OneToMany(mappedBy = "occasion", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Item> item;
+
+    public Occasion() {
     }
 
-    public InvalidPassword(String value) {
-        this.value = value;
+    public Occasion(String name) {
+        this.name = name;
     }
 
     public long getId() {
@@ -29,12 +32,12 @@ public class InvalidPassword {
         this.id = id;
     }
 
-    public String getValue() {
-        return value;
+    public String getName() {
+        return name;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setName(String name) {
+        this.name = name;
     }
+
 }
-

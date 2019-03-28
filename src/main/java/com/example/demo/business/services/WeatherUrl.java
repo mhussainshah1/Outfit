@@ -1,13 +1,11 @@
-package com.example.demo.web;
+package com.example.demo.business.services;
 
 
 public class WeatherUrl {
-
     private String url;
     private String apiKey;
 
     public WeatherUrl() {
-
     }
 
     public String getApiKey() {
@@ -25,6 +23,5 @@ public class WeatherUrl {
     public void setUrl(String url) {
         this.url = url;
     }
-
 
 }

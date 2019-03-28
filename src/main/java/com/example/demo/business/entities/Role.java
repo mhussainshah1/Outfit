@@ -1,6 +1,7 @@
 package com.example.demo.business.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
 
 @Entity
@@ -9,7 +10,8 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(unique=true)
+    @NotEmpty
+    @Column(unique = true)
     private String role;
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
