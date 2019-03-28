@@ -83,17 +83,17 @@ public class DataLoader implements CommandLineRunner {
         Category shoe = categoryRepository.findByName("Shoes");
 
         //Climate
-        climateRepository.save(new Climate("cold"));
-        Climate cold = climateRepository.findByName("cold");
+        climateRepository.save(new Climate("Cold"));
+        Climate cold = climateRepository.findByName("Cold");
 
-        climateRepository.save(new Climate("mild"));
-        Climate mild = climateRepository.findByName("mild");
+        climateRepository.save(new Climate("Mild"));
+        Climate mild = climateRepository.findByName("Mild");
 
-        climateRepository.save(new Climate("hot"));
-        Climate hot = climateRepository.findByName("hot");
+        climateRepository.save(new Climate("Hot"));
+        Climate hot = climateRepository.findByName("Hot");
 
-        climateRepository.save(new Climate("rainy"));
-        Climate rainy = climateRepository.findByName("rainy");
+        climateRepository.save(new Climate("Rainy"));
+        Climate rainy = climateRepository.findByName("Rainy");
 
         //Occasion
         occasionRepository.save(new Occasion("Party"));
@@ -121,7 +121,7 @@ public class DataLoader implements CommandLineRunner {
                 moe,
                 top,
                 cold,
-                casual));
+                dinner));
         Item shirt = itemRepository.findByName("shirt");
 
         itemRepository.save(
