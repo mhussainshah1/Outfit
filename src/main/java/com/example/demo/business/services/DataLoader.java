@@ -62,18 +62,6 @@ public class DataLoader implements CommandLineRunner {
         admin.setPassword(userService.encode(admin.getPassword()));
         userService.saveUser(admin);
 
-        /*Course course = new Course("Astrophysics", "Neil D Tyson", "Just a course on stars", 3);
-        course.setUser(nan);
-        courseRepository.save(course);
-
-        course = new Course("Calculus", "Carol Henley", "Rate of change of rate of change", 3);
-        course.setUser(moe);
-        courseRepository.save(course);
-
-        course = new Course("Freshman English", "Geraldine Pegram", "Learn your language chilern", 3);
-        course.setUser(tolani);
-        courseRepository.save(course);*/
-
         categoryRepository.save(new Category("Top"));
         Category top = categoryRepository.findByName("Top");
 
@@ -177,18 +165,23 @@ public class DataLoader implements CommandLineRunner {
         cold.setItem(sandles);
         climateRepository.save(cold);*/
 
-       /* Car car1 = new Car("Honda","Accord",2019,"35 miles/gallon",45000.55,"https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1552081999/java-bootcamp/bo1q7fwi8qytkxi6yyus.jpg",category);
+       /*
+        categoryRepository.save(category);
+
+        Car car1 = new Car("Honda","Accord",2019,"35 miles/gallon",45000.55,"https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1552081999/java-bootcamp/bo1q7fwi8qytkxi6yyus.jpg",category);
         category.getCars().add(car1);
+        carRepository.save(car1);
+
         Car car2 = new Car("Toyota","Camry",2018,"35 miles/gallon",32000.02,"https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1552100700/java-bootcamp/mj2tywvdhsq0mleow3rp.png",category);
         category.getCars().add(car2);
-        categoryRepository.save(category);
-        carRepository.save(car1);
         carRepository.save(car2);*/
 
 
-        /*car = new Car("Mercedez","Benz",2019,"35 miles/gallon", 50000.85,"https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1552162481/java-bootcamp/klztzsqldrhak8lvs7zu.png",category);
-        category.getCars().add(car);
+        /*
         categoryRepository.save(category);
+
+        car = new Car("Mercedez","Benz",2019,"35 miles/gallon", 50000.85,"https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1552162481/java-bootcamp/klztzsqldrhak8lvs7zu.png",category);
+        category.getCars().add(car);
         carRepository.save(car);
 */
 
