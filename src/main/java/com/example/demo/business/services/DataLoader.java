@@ -21,6 +21,9 @@ public class DataLoader implements CommandLineRunner {
     CategoryRepository categoryRepository;
 
     @Autowired
+    OccasionRepository occasionRepository;
+
+    @Autowired
     ItemRepository itemRepository;
 
     @Autowired
@@ -28,6 +31,7 @@ public class DataLoader implements CommandLineRunner {
 
     @Autowired
     TemperatureRepository temperatureRepository;
+
 
     @Autowired
     InvalidPasswordRepository invalidPasswordRepository;
@@ -98,12 +102,20 @@ public class DataLoader implements CommandLineRunner {
         Temperature mild = new Temperature("mild");
         Temperature rainy = new Temperature("rainy");*/
 
+        occasionRepository.save(new Occasion("casual"));
+        Occasion casual = occasionRepository.findByName("casual");
+        /*Occasion formal = new Temperature("formal");
+        Occasion business_casual = new Temperature("business casual");
+        */
+
+
 
         Item shirt = new Item("white",
                 "s",
                 "Cotton",
                 "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553093077/java-bootcamp/nsgop8vivttqeqkkkynr.jpg",
                 "men",
+               // "casual",
                 moe,
                 top);
         Set<Temperature> temps = new HashSet<>();

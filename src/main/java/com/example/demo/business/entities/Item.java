@@ -1,5 +1,7 @@
 package com.example.demo.business.entities;
 
+
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -30,18 +32,17 @@ public class Item {
     //@Size(min = 4)
     private String picturePath;
 
-<<<<<<< HEAD
-=======
-    @NotNull
-    private String description;
->>>>>>> 1d8062b834b839a1036044ca4de8bd0c90b43124
 
+    @NotNull
     @ManyToOne
     private User user;
 
     @ManyToOne
     private Category category;
 
+    @NotNull
+    @OneToOne
+    private String occasion;
 
     @OneToMany(mappedBy = "item")
     private Set<Temperature> temperature;
@@ -59,6 +60,7 @@ public class Item {
         this.description = description;
         this.user = user;
         this.category = category;
+        this.occasion = occasion;
 
     }
 
@@ -102,8 +104,8 @@ public class Item {
         this.description = description;
     }
 
-<<<<<<< HEAD
-    public String getPicturePath() {
+
+     public String getPicturePath() {
         return picturePath;
     }
 
@@ -111,20 +113,7 @@ public class Item {
         this.picturePath = picturePath;
     }
 
-    @Override
-    public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", color='" + color + '\'' +
-                ", material='" + material + '\'' +
-                ", size=" + size +
-                ", picturePath='" + picturePath + '\'' +
-                ", description='" + description + '\'' +
-                ", category=" + category +
-                '}';
-    }
 
-=======
     public User getUser() {
         return user;
     }
@@ -133,8 +122,7 @@ public class Item {
         this.user = user;
     }
 
->>>>>>> 1d8062b834b839a1036044ca4de8bd0c90b43124
-    public Category getCategory() {
+ public Category getCategory() {
         return category;
     }
 
@@ -148,6 +136,12 @@ public class Item {
 
     public void setTemperature(Set<Temperature> temperature) {
         this.temperature = temperature;
+    }
+
+    public Set<Occasion> getOccasion(){return occasion; }
+
+    public void setOccasion(Set<Occasion> occasion) {
+        this.occasion() = occasion;
     }
 
     @Override
