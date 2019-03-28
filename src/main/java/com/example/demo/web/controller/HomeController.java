@@ -3,6 +3,7 @@ package com.example.demo.web.controller;
 import com.example.demo.business.entities.Course;
 import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.CourseRepository;
+import com.example.demo.business.entities.repositories.ItemRepository;
 import com.example.demo.business.entities.repositories.UserRepository;
 import com.example.demo.business.services.CustomerUserDetails;
 import com.example.demo.business.services.UserService;
@@ -26,6 +27,9 @@ public class HomeController {
     CourseRepository courseRepository;
 
     @Autowired
+    ItemRepository itemRepository;
+
+    @Autowired
     UserRepository userRepository;
 
     @Autowired
@@ -33,7 +37,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String listCourses(Model model) {
-        model.addAttribute("courses", courseRepository.findAll()); //generate select * statement
+        model.addAttribute("items", itemRepository.findAll()); //generate select * statement
         if (userService.getUser() != null) {
             model.addAttribute("user_id", userService.getUser().getId());
         }

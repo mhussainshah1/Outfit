@@ -5,7 +5,7 @@ import java.util.Set;
 
 //Hot Mild Cold
 @Entity
-public class Temperature {
+public class Climate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,13 +13,13 @@ public class Temperature {
 
     private String name;
 
-    @OneToMany(mappedBy = "temperature",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "climate",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Item> item;
 
-    public Temperature() {
+    public Climate() {
     }
 
-    public Temperature(String name) {
+    public Climate(String name) {
         this.name = name;
     }
 

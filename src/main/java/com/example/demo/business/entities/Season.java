@@ -1,8 +1,7 @@
 package com.example.demo.business.entities;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Season {
@@ -10,9 +9,8 @@ public class Season {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotEmpty
     private String name;
-
-
 
     public Season() {
 
@@ -38,6 +36,5 @@ public class Season {
     public void setName(String name) {
         this.name = name;
     }
-
 
 }

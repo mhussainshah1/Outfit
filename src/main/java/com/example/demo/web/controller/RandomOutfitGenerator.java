@@ -49,7 +49,6 @@ public class RandomOutfitGenerator {
 
 
 // }
-
         for (int i = 1; i < 8; i++) {
             // int j = i + 1;
             System.out.println();
@@ -63,7 +62,6 @@ public class RandomOutfitGenerator {
 //                System.out.println();
             /* Tried to print an Array of Arrays, didn't like that one, next I'd attempt an array list of arrays, but the above code will do*/
             // System.out.println("Burrito "+ i + ": "+ rice[rx] +" "+ meat[mx]+"," + beans[bx]);
-
         }
     }
 }

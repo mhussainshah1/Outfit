@@ -9,7 +9,11 @@
 <body>
 <div th:replace="base::nav"></div>
 
-<div align="center" class="container">
+<div align="center" class="container-float">
+
+    <div class="jumbotron lead">
+        <h2 align="center"> Outfit</h2>
+    </div>
 
     <div sec:authorize="isAuthenticated()">
         <form method="post" th:action="@{/weather}">
@@ -18,41 +22,53 @@
                 <input id="city" name="city" type="text">
                 <button type="submit">Submit</button>
             </div>
-
         </form>
     </div>
 
-    <!--All CRUD operations in one form-->
-    <h2 align="center">Course List</h2><br/>
-    <br/>
-    <table class="table" style="width:100%">
-        <tr>
-            <th sec:authorize="hasAuthority('ADMIN')">Select</th>
+    <table class="table table-striped" style="width:100%">
+        <tr class="thead-light">
+            <th sec:authorize="isAuthenticated()">Select</th>
             <th>Title</th>
-            <th>Instructor</th>
-            <th>Credits</th>
-            <th sec:authorize="hasAuthority('ADMIN')">Actions</th>
+            <th>Color</th>
+            <th>Material</th>
+            <th>Size</th>
+            <th>Picture</th>
+            <th>Discription</th>
+            <th>User</th>
+            <th>Category</th>
+            <th>Climate</th>
+            <th>Occasion</th>
+            <th sec:authorize="isAuthenticated()">Actions</th>
         </tr>
         <!--enhanced for loop-->
-        <tr th:each="course : ${courses}">
-            <td sec:authorize="hasAuthority('ADMIN')">
+        <tr th:each="item : ${items}">
+            <td sec:authorize="isAuthenticated()">
                 <input type="checkbox">
             </td>
-            <td>
-                <a th:href="@{/detail/{id}(id=${course.id})}">[[${course.title}]]</a><!-- Read -->
+            <td><a th:href="@{/detail/{id}(id=${item.id})}">[[${item.name}]]</a>
+            <br/>
+                Dag is working to link show.html
             </td>
-            <td th:text="${course.instructor}"></td>
-            <td th:text="${course.credit}"></td>
+            <td th:text="${item.color}"></td>
+            <td th:text="${item.material}"></td>
+            <td th:text="${item.size}"></td>
+            <td><img th:src="${item.picturePath}" alt="Picture"></td>
+            <td th:text="${item.description}"></td>
+            <td th:text="${item.user.username}"></td>
+            <td th:text="${item.category.name}"></td>
+            <td th:text="${item.climate.name}"></td>
+            <!--<td th:text="${item.ocassion.name}"></td>-->
+            <td>Tolani is working as per my group message</td>
+            <td th:if="${user_id == item.user.id}">
+                <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> -
+                <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
+            </td>
             <td sec:authorize="hasAuthority('ADMIN')">
-                <!--<span th:if="${user_id == course.user.id}">
-
-                    </span>-->
-                <a th:href="@{/update/{id}(id=${course.id})}">Edit</a>-<!-- Update -->
-                <a th:href="@{/delete/{id}(id=${course.id})}">Delete</a><!-- Delete -->
+                <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> -<!-- Update -->
+                <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a><!-- Delete -->
             </td>
         </tr>
     </table>
-
 </div>
 <br/>
 <div th:replace="base::footer"></div>
