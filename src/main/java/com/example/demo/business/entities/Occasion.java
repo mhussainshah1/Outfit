@@ -2,6 +2,7 @@ package com.example.demo.business.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.Set;
 
 @Entity
 public class Occasion {
@@ -12,6 +13,9 @@ public class Occasion {
     @NotEmpty
     @Column(unique = true)
     private String name;
+
+    @OneToMany(mappedBy = "occasion", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Item> item;
 
     public Occasion() {
     }

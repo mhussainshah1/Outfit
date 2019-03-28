@@ -9,8 +9,9 @@ public class InvalidPassword {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(unique = true)
+
     @NotEmpty
+    @Column(unique = true)
     private String value;
 
     public InvalidPassword() {

@@ -65,7 +65,7 @@ public class DataLoader implements CommandLineRunner {
         dag.setPassword(userService.encode(dag.getPassword()));
         userService.saveUser(dag);
 
-        User admin = new User("admin@admin.com", "Pa$$word2019", "Admin", "User", true, "admin");
+        User admin = new User("admin@admin.com", "password", "Admin", "User", true, "admin");
         admin.setPassword(userService.encode(admin.getPassword()));
         userService.saveUser(admin);
 

@@ -1,6 +1,7 @@
 package com.example.demo.business.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 //Hot Mild Cold
@@ -11,6 +12,7 @@ public class Climate {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotEmpty
     @Column(unique = true)
     private String name;
 
