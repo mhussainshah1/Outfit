@@ -38,10 +38,13 @@ public class Item {
     @ManyToOne
     private Climate climate;
 
+    @ManyToOne
+    private Occasion occasion;
+
     public Item() {
     }
 
-    public Item(@NotEmpty String name, @NotEmpty String color, @NotEmpty String material, @NotEmpty String size, String picturePath, @NotEmpty String description, User user, Category category, Climate climate) {
+    public Item(@NotEmpty String name, @NotEmpty String color, @NotEmpty String material, @NotEmpty String size, String picturePath, @NotEmpty String description, User user, Category category, Climate climate, Occasion occasion) {
         this.name = name;
         this.color = color;
         this.material = material;
@@ -51,6 +54,7 @@ public class Item {
         this.user = user;
         this.category = category;
         this.climate = climate;
+        this.occasion = occasion;
     }
 
     public long getId() {
@@ -68,6 +72,7 @@ public class Item {
     public void setName(String name) {
         this.name = name;
     }
+
     public String getColor() {
         return color;
     }
@@ -132,6 +137,14 @@ public class Item {
         this.climate = climate;
     }
 
+    public Occasion getOccasion() {
+        return occasion;
+    }
+
+    public void setOccasion(Occasion occasion) {
+        this.occasion = occasion;
+    }
+
     @Override
     public String toString() {
         return "Item{" +
@@ -144,6 +157,4 @@ public class Item {
                 ", category=" + category +
                 '}';
     }
-
-
 }

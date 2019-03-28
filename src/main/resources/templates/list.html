@@ -28,6 +28,7 @@
     <table class="table table-striped" style="width:100%">
         <tr class="thead-light">
             <th sec:authorize="isAuthenticated()">Select</th>
+            <th>Category</th>
             <th>Title</th>
             <th>Color</th>
             <th>Material</th>
@@ -35,7 +36,6 @@
             <th>Picture</th>
             <th>Discription</th>
             <th>User</th>
-            <th>Category</th>
             <th>Climate</th>
             <th>Occasion</th>
             <th sec:authorize="isAuthenticated()">Actions</th>
@@ -43,22 +43,21 @@
         <!--enhanced for loop-->
         <tr th:each="item : ${items}">
             <td sec:authorize="isAuthenticated()">
-                <input name = "check" type="checkbox" th:value="${item.id}"/>
+                <input name="check" th:value="${item.id}" type="checkbox"/>
             </td>
+            <td th:text="${item.category.name}"></td>
             <td><a th:href="@{/detail/{id}(id=${item.id})}">[[${item.name}]]</a>
-            <br/>
+                <br/>
                 Dag is working to link show.html
             </td>
             <td th:text="${item.color}"></td>
             <td th:text="${item.material}"></td>
             <td th:text="${item.size}"></td>
-            <td><img th:src="${item.picturePath}" alt="Picture"></td>
+            <td><img alt="Picture" th:src="${item.picturePath}"></td>
             <td th:text="${item.description}"></td>
             <td th:text="${item.user.username}"></td>
-            <td th:text="${item.category.name}"></td>
             <td th:text="${item.climate.name}"></td>
-            <!--<td th:text="${item.ocassion.name}"></td>-->
-            <td>Tolani is working as per my group message</td>
+            <td th:text="${item.occasion.name}"></td>
             <td th:if="${user_id == item.user.id}">
                 <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> -
                 <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>

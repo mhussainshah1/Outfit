@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-public class Season {
+public class Occasion {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -13,10 +13,10 @@ public class Season {
     @Column(unique = true)
     private String name;
 
-    public Season() {
+    public Occasion() {
     }
 
-    public Season(String name) {
+    public Occasion(String name) {
         this.name = name;
     }
 
