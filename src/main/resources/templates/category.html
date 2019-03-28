@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="base :: head-source">
+</head>
+
+
+<body>
+<nav th:replace="base :: nav"></nav>
+
+<div class="container">
+
+    <div class="mainDiv"></div>
+
+    <div class="bg-light form-background">
+        <div class="row">
+
+            <div class="col-2">&nbsp;</div>
+            <div class="col-8">
+                <br/><br/>
+                <h3 class="text-center text-light"> Add an item category</h3>
+
+                <form method="POST" action="/addCategory" th:object="${category}">
+
+                    <div class="form-group">
+                        <input type="hidden" th:field="*{id}" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categoryInput">Item Category</label>
+
+                        <input type="text" th:field="*{name}" class="form-control input-md" id="categoryInput" required=""/>
+                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br/>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-default btn-lg">Submit</button>
+                    <br/><br/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div th:replace="base :: footer"></div>
+</body>
+</html>

@@ -48,6 +48,7 @@ public class DataLoader implements CommandLineRunner {
         invalidPasswordRepository.save(new InvalidPassword("12345678!"));
         invalidPasswordRepository.save(new InvalidPassword("password123"));
 
+
         User nan = new User("nhan.cog.huynh@gmail.com", "password", "Nhan", "Huynh", true, "nan");
         nan.setPassword(userService.encode(nan.getPassword()));
         userService.saveUser(nan);
@@ -67,6 +68,7 @@ public class DataLoader implements CommandLineRunner {
         User admin = new User("admin@admin.com", "Pa$$word2019", "Admin", "User", true, "admin");
         admin.setPassword(userService.encode(admin.getPassword()));
         userService.saveUser(admin);
+
 
         /*Course course = new Course("Astrophysics", "Neil D Tyson", "Just a course on stars", 3);
         course.setUser(nan);
