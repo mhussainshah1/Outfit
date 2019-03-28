@@ -103,11 +103,11 @@ public class DataLoader implements CommandLineRunner {
         climateRepository.save(new Climate("cold"));
         Climate cold = climateRepository.findByName("cold");
 
-        climateRepository.save(new Climate("hot"));
-        Climate hot = climateRepository.findByName("hot");
-
         climateRepository.save(new Climate("mild"));
         Climate mild = climateRepository.findByName("mild");
+
+        climateRepository.save(new Climate("hot"));
+        Climate hot = climateRepository.findByName("hot");
 
         climateRepository.save(new Climate("rainy"));
         Climate rainy = climateRepository.findByName("rainy");

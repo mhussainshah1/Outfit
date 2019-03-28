@@ -11,6 +11,7 @@ public class Climate {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column(unique = true)
     private String name;
 
     @OneToMany(mappedBy = "climate",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
