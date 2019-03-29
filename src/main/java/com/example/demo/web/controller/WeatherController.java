@@ -65,7 +65,7 @@ public class WeatherController {
         System.out.println(climate + " " + weather.getTemp() );
 
         //outfit.add(itemRepository.findAllByClimate(climate));
-        model.addAttribute("items", itemRepository.findAllByClimate(climate));
+       // model.addAttribute("items", itemRepository.findAllByClimate(climate));
         model.addAttribute("weatherData", weather);
         return "weatherDetails";
     }
