@@ -1,5 +1,7 @@
 package com.example.demo.web.controller;
 
+import com.example.demo.business.entities.Category;
+import com.example.demo.business.entities.Climate;
 import com.example.demo.business.entities.Item;
 import com.example.demo.business.entities.repositories.CategoryRepository;
 import com.example.demo.business.entities.repositories.ClimateRepository;
@@ -17,9 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class WeatherController {
@@ -62,10 +62,27 @@ public class WeatherController {
 
         Weather weather = weatherService.getWeather(formAttributes);
         String climate = getClimate(weather.getTemp());
+//        long id = climateRepository.findByName(climate).getId();
+
         System.out.println(climate + " " + weather.getTemp() );
 
-        //outfit.add(itemRepository.findAllByClimate(climate));
-       // model.addAttribute("items", itemRepository.findAllByClimate(climate));
+        Iterable<Category> categories =categoryRepository.findAll();
+        HashSet<Item> outfit = new HashSet<>();
+        Climate climateobj =climateRepository.findByName(climate);
+
+        for(Category category : categories){
+            //pick one item from the below list
+            List<Item> list = itemRepository.findAllByCategoryAndClimate(category,climateobj);
+            System.out.println(list);
+            if(!list.isEmpty()){
+                int randomid = (int) (Math.random()*list.size());
+                outfit.add(list.get(randomid));
+            }
+        }
+        System.out.println(outfit);
+
+//        Iterable<Item> i = itemRepository.findAllByCategoryAndClimate(,);
+        model.addAttribute("items", outfit);
         model.addAttribute("weatherData", weather);
         return "weatherDetails";
     }
