@@ -84,7 +84,7 @@
                 <div aria-labelledby="navbarDropdown" class="dropdown-menu">
                         <span th:each="option: ${climates}"
                               th:value="${option.id}">
-                             <a class="dropdown-item" th:href="@{/detailcategory/{id}(id=${option.id})}">[[${option.name}]]</a>
+                             <a class="dropdown-item" th:href="@{/detailclimate/{id}(id=${option.id})}">[[${option.name}]]</a>
                         </span>
                 </div>
             </li>
@@ -99,7 +99,7 @@
                 <div aria-labelledby="navbarDropdown" class="dropdown-menu">
                         <span th:each="option: ${occasions}"
                               th:value="${option.id}">
-                             <a class="dropdown-item" th:href="@{/detailcategory/{id}(id=${option.id})}">[[${option.name}]]</a>
+                             <a class="dropdown-item" th:href="@{/detailoccasion/{id}(id=${option.id})}">[[${option.name}]]</a>
                         </span>
                 </div>
             </li>

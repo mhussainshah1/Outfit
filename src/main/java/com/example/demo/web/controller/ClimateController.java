@@ -6,6 +6,7 @@ import com.example.demo.business.entities.repositories.CategoryRepository;
 import com.example.demo.business.entities.repositories.ItemRepository;
 import com.example.demo.business.entities.repositories.ClimateRepository;
 import com.example.demo.business.entities.repositories.OccasionRepository;
+import com.example.demo.business.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,10 +30,14 @@ public class ClimateController {
     CategoryRepository categoryRepository;
 
     @Autowired
+    ClimateRepository climateRepository;
+
+    @Autowired
     OccasionRepository occasionRepository;
 
     @Autowired
-    ClimateRepository climateRepository;
+    UserService userService;
+
 
     public void findAll(Model model){
         model.addAttribute("categories", categoryRepository.findAll());
@@ -67,7 +72,10 @@ public class ClimateController {
     }
 
     @RequestMapping("/detailclimate/{id}")
-    public String showCarsByClimate(@PathVariable("id") long id, Model model){
+    public String showOutfitsByClimate(@PathVariable("id") long id, Model model){
+        if (userService.getUser() != null) {
+            model.addAttribute("user_id", userService.getUser().getId());
+        }
         findAll(model);
         model.addAttribute("items", itemRepository.findAllByClimate_Id(id));
         model.addAttribute("climate", climateRepository.findById(id).get());

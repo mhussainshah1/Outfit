@@ -170,4 +170,15 @@ public class Weather implements Serializable {
     public double getCelcius(double kelvin) {
         return kelvin - 273;
     }
+
+    public String getFahrenheitTemperature(double kelvin) {
+        double fahrenheitTemp = (kelvin * 1.8) - 459.67;
+        return String.format("%4.2f", fahrenheitTemp);
+    }
+
+    public String getCelsiusTemperature(double kelvin) {
+        double celsiusTemp = kelvin - 273.15;
+        return String.format("%4.2f", celsiusTemp);
+    }
+
 }

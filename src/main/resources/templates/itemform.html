@@ -5,7 +5,6 @@
 </head>
 <body>
 <div th:replace="base::nav"></div>
-<br/>
 <div class="container-float" align="center">
     <div class="jumbotron lead">
         <h2 align="center">Add Item</h2>
@@ -29,19 +28,19 @@
             </tr>
             <tr>
                 <td><label for="make">Item's Name:</label></td>
-                <td><input class="form-control"  id="make" th:field="*{name}" type="text"/></td>
+                <td><input class="form-control" placeholder="Item's Name" id="make" th:field="*{name}" type="text"/></td>
                 <td><span th:errors="*{name}"
                           th:if="${#fields.hasErrors('name')}"></span></td>
             </tr>
             <tr>
                 <td><label for="model">Color:</label></td>
-                <td><input class="form-control" id="model" th:field="*{color}" type="text"/></td>
+                <td><input class="form-control" id="model" placeholder="Color" th:field="*{color}" type="text"/></td>
                 <td><span th:errors="*{color}"
                           th:if="${#fields.hasErrors('color')}"></span></td>
             </tr>
             <tr>
                 <td><label for="material">Material :</label></td>
-                <td><input class="form-control" id="material" th:field="*{material}" type="text"/></td>
+                <td><input class="form-control" id="material" placeholder="Material" th:field="*{material}" type="text"/></td>
                 <td><span th:errors="*{material}"
                           th:if="${#fields.hasErrors('material')}"></span></td>
             </tr>
@@ -62,13 +61,13 @@
             </tr>
             <tr>
                 <td><label for="size">Size :</label></td>
-                <td><input class="form-control"  id="size" th:field="*{size}" type="text"/></td>
+                <td><input class="form-control" placeholder="Size"  id="size" th:field="*{size}" type="text"/></td>
                 <td><span th:errors="*{size}"
                           th:if="${#fields.hasErrors('size')}"></span></td>
             </tr>
             <tr>
                 <td><label for="description">Description :</label></td>
-                <td><textarea class="form-control" id="description" rows="3" th:field="*{description}"></textarea></td>
+                <td><textarea class="form-control" placeholder="Description" id="description" rows="3" th:field="*{description}"></textarea></td>
                 <td><span th:errors="*{description}"
                           th:if="${#fields.hasErrors('description')}"></span></td>
             </tr>
@@ -102,7 +101,9 @@
                     <span th:errors="*{user}" th:if="${#fields.hasErrors('user')}"></span></td>
             </tr>
             <tr>
-                <td align="center" colspan="3"><input type="submit" value="Submit"/></td>
+                <td align="center" colspan="3">
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </td>
             </tr>
         </table>
     </form>

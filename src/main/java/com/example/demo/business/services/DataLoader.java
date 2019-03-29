@@ -185,15 +185,15 @@ public class DataLoader implements CommandLineRunner {
         Item Homeboyshirt = itemRepository.findByName("Homeboyshirt");
 
         itemRepository.save(new Item("cargo pants",
-                        "khaki",
-                        "polyester",
-                        "medium",
-                        "https://res.cloudinary.com/toyefule/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553802838/Outfit/Cargo_khaki_1.jpg",
-                        "men's wear",
-                        moe,
-                        bottom,
-                        cold,
-                        casual));
+                "khaki",
+                "polyester",
+                "medium",
+                "https://res.cloudinary.com/toyefule/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553802838/Outfit/Cargo_khaki_1.jpg",
+                "men's wear",
+                moe,
+                bottom,
+                cold,
+                casual));
         Item pant = itemRepository.findByName("cargo pant");
 
         itemRepository.save(
@@ -210,15 +210,15 @@ public class DataLoader implements CommandLineRunner {
         Item lightJacket = itemRepository.findByName("light jacket");
 
         itemRepository.save(new Item("socks",
-                        "grey",
-                        "cotton",
-                        "US 10",
-                        "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553756502/outfit/Shoes/Warm/Warm_Midhigh_Socks.jpg",
-                        "men's wear",
-                        moe,
-                        shoe,
-                        hot,
-                        casual));
+                "grey",
+                "cotton",
+                "US 10",
+                "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553756502/outfit/Shoes/Warm/Warm_Midhigh_Socks.jpg",
+                "men's wear",
+                moe,
+                shoe,
+                hot,
+                casual));
         Item sandle = itemRepository.findByName("socks");
 
         //tolani item
@@ -235,15 +235,15 @@ public class DataLoader implements CommandLineRunner {
         Item shirt = itemRepository.findByName("long Sleeve shirt");
 
         itemRepository.save(new Item("jeans",
-                        "blue",
-                        "cotton",
-                        "medium",
-                        "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553756501/outfit/Bottom/Cold/Jeans_Blue_1.jpg",
-                        "men's wear",
-                        tolani,
-                        bottom,
-                        cold,
-                        casual));
+                "blue",
+                "cotton",
+                "medium",
+                "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553756501/outfit/Bottom/Cold/Jeans_Blue_1.jpg",
+                "men's wear",
+                tolani,
+                bottom,
+                cold,
+                casual));
         Item jeans = itemRepository.findByName("jeans");
 
         itemRepository.save(
