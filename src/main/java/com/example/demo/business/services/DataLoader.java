@@ -20,12 +20,16 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     ItemRepository itemRepository;
 
-
     @Autowired
     ClimateRepository climateRepository;
 
     @Autowired
     OccasionRepository occasionRepository;
+
+
+    @Autowired
+    WindRepository  windRepository;
+
 
     @Autowired
     InvalidPasswordRepository invalidPasswordRepository;
@@ -110,6 +114,21 @@ public class DataLoader implements CommandLineRunner {
 
         occasionRepository.save(new Occasion("Dinner"));
         Occasion dinner = occasionRepository.findByName("Dinner");
+
+        //Wind
+        windRepository.save(new Wind("light"));
+        Wind light = windRepository.findByName("light");
+
+        windRepository.save(new Wind("moderate "));
+        Wind moderate = windRepository.findByName("moderate");
+
+        windRepository.save(new Wind("heavy"));
+        Wind heavy = windRepository.findByName("heavy");
+
+        windRepository.save(new Wind("Periodic"));
+        Wind periodic = windRepository.findByName("Periodic");
+
+
 
         //moe items
         itemRepository.save(new Item("shirt",

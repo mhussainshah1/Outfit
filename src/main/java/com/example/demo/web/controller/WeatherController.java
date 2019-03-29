@@ -3,6 +3,7 @@ package com.example.demo.web.controller;
 import com.example.demo.business.entities.repositories.CategoryRepository;
 import com.example.demo.business.entities.repositories.ClimateRepository;
 import com.example.demo.business.entities.repositories.OccasionRepository;
+import com.example.demo.business.entities.repositories.WindRepository;
 import com.example.demo.business.services.FormAttributes;
 import com.example.demo.business.services.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +34,15 @@ public class WeatherController {
     @Autowired
     ClimateRepository climateRepository;
 
+    @Autowired
+    WindRepository windRepository;
+
 
     public void findAll(Model model){
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("climates", climateRepository.findAll());
         model.addAttribute("occasions", occasionRepository.findAll());
+        model.addAttribute("wind", windRepository.findAll());
     }
 
     @GetMapping("/weather")

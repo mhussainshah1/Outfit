@@ -15,22 +15,26 @@
             <th>City</th>
             <th>Latitude</th>
             <th>Longitude</th>
+            <th>Wind Speed</th>
+            <th>Wind Direction</th>
             <th>Precipitation</th>
             <th>Temp</th>
             <th>Min Temp</th>
             <th>Max Temp</th>
             <th>Weather</th>
+
         </tr>
         <tr th:each="weather ,iterStat: ${weatherData}" >
             <td><span th:text="${weather.name}"></span></td>
             <td><span th:text="${weather.lat}"></span></td>
             <td><span th:text="${weather.lon}"></span></td>
+            <td><span th:text="${weather.speed}"></span></td>
+            <td><span th:text="${weather.degree}"></span></td>
             <td><span th:text="${weather.weatherMain}"></span></td>
             <td><span th:text="${#numbers.formatDecimal(weather.temp,2,1)}"></span></td>
             <td><span th:text="${#numbers.formatDecimal(weather.tempMin,2,1)}"></span></td>
             <td><span th:text="${#numbers.formatDecimal(weather.tempMax,2,1)}"></span></td>
             <td><span th:text="${weather.weatherDescription}"></span></td>
-
         </tr>
 
 

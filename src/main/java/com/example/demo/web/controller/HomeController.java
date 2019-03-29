@@ -34,6 +34,9 @@ public class HomeController {
     ClimateRepository climateRepository;
 
     @Autowired
+    WindRepository windRepository;
+
+    @Autowired
     ItemRepository itemRepository;
 
     @Autowired
@@ -49,6 +52,7 @@ public class HomeController {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("climates", climateRepository.findAll());
         model.addAttribute("occasions", occasionRepository.findAll());
+        model.addAttribute("wind", windRepository.findAll());
     }
 
     @RequestMapping("/")
