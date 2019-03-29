@@ -2,7 +2,9 @@ package com.example.demo.web.controller;
 
 import com.example.demo.business.entities.Category;
 import com.example.demo.business.entities.repositories.CategoryRepository;
+import com.example.demo.business.entities.repositories.ClimateRepository;
 import com.example.demo.business.entities.repositories.ItemRepository;
+import com.example.demo.business.entities.repositories.OccasionRepository;
 import com.example.demo.business.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,11 +29,22 @@ public class CategoryController {
     CategoryRepository categoryRepository;
 
     @Autowired
+    ClimateRepository climateRepository;
+
+    @Autowired
+    OccasionRepository occasionRepository;
+
+    @Autowired
     UserService userService;
 
+    public void findAll(Model model){
+        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("climates", climateRepository.findAll());
+        model.addAttribute("occasions", occasionRepository.findAll());
+    }
     @GetMapping("/addcategory")
     public String categoryForm(Model model){
-        model.addAttribute("categories", categoryRepository.findAll());
+        findAll(model);
         model.addAttribute("category", new Category());
         return "category";
     }
@@ -60,9 +73,9 @@ public class CategoryController {
         if (userService.getUser() != null) {
             model.addAttribute("user_id", userService.getUser().getId());
         }
+        findAll(model);
         model.addAttribute("items", itemRepository.findAllByCategory_Id(id));
         model.addAttribute("category", categoryRepository.findById(id).get());
-        model.addAttribute("categories", categoryRepository.findAll());
         return "categorylist";
     }
 

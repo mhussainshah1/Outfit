@@ -29,10 +29,10 @@ public class ClimateController {
     CategoryRepository categoryRepository;
 
     @Autowired
-    OccasionRepository occasionRepository;
+    ClimateRepository climateRepository;
 
     @Autowired
-    ClimateRepository climateRepository;
+    OccasionRepository occasionRepository;
 
     public void findAll(Model model){
         model.addAttribute("categories", categoryRepository.findAll());
