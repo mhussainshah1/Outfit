@@ -4,9 +4,11 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
+
 @Entity
 public class Wind {
     @Id
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
@@ -21,7 +23,7 @@ public class Wind {
     }
 
     public Wind(String name) {
-        this.name = name;
+
     }
 
     public long getId() {
@@ -40,4 +42,11 @@ public class Wind {
         this.name = name;
     }
 
+    public Set<Item> getItem() {
+        return item;
+    }
+
+    public void setItem(Set<Item> item) {
+        this.item = item;
+    }
 }
