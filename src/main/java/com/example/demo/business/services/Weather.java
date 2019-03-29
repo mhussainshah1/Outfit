@@ -55,6 +55,12 @@ public class Weather implements Serializable {
     @JsonProperty("lon")
     private double lon;
 
+    @JsonProperty("speed")
+    private double speed;
+
+    @JsonProperty("degree")
+    private int degree;
+
     @JsonPropertyOrder("main")
     private String weatherMain;
 
@@ -110,6 +116,22 @@ public class Weather implements Serializable {
         this.lon = lon;
     }
 
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public int getDegree() {
+        return degree;
+    }
+
+    public void setDegree(int degree) {
+        this.degree = degree;
+    }
+
     public String getWeatherMain() {
         return weatherMain;
     }
@@ -142,10 +164,18 @@ public class Weather implements Serializable {
         this.temp = temp;
     }
 
+
+    // Custom methods
     @JsonProperty("coord")
     public void setCoord(Map<String, Object> coord) {
         setLon((double) coord.get("lon"));
         setLat((double) coord.get("lat"));
+    }
+
+    @JsonProperty("wind")
+    public void setWind(Map<String, Object> wind) {
+        setSpeed((double) wind.get("speed"));
+        setDegree((int)wind.get("deg"));
     }
 
     @JsonProperty("weather")

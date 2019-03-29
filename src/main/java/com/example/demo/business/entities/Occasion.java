@@ -1,21 +1,21 @@
 package com.example.demo.business.entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
+//Casual
 @Entity
 public class Occasion {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotEmpty
-    @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "occasion", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Item> item;
+    @OneToMany(mappedBy = "occasion",cascade = CascadeType.ALL)
+    public Set<Item> items;
+
 
     public Occasion() {
     }
@@ -40,4 +40,12 @@ public class Occasion {
         this.name = name;
     }
 
+
+    public Set<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Item> items) {
+        this.items = items;
+    }
 }

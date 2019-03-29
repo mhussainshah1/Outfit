@@ -41,6 +41,9 @@ public class Item {
     @ManyToOne
     private Occasion occasion;
 
+    @ManyToOne
+    private Wind wind;
+
     public Item() {
     }
 
@@ -55,6 +58,7 @@ public class Item {
         this.category = category;
         this.climate = climate;
         this.occasion = occasion;
+        this.wind = wind;
     }
 
     public long getId() {
@@ -143,6 +147,14 @@ public class Item {
 
     public void setOccasion(Occasion occasion) {
         this.occasion = occasion;
+    }
+
+    public Wind getWind() {
+        return wind;
+    }
+
+    public void setWind(Wind wind) {
+        this.wind = wind;
     }
 
     @Override

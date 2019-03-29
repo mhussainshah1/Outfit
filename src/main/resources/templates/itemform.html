@@ -1,8 +1,13 @@
+<<<<<<< HEAD
+<!doctype html>
+=======
 <!DOCTYPE html>
+>>>>>>> dc86bc62d3c015ca4901829c442aad821484968d
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="base::header">
     <title>Item Form</title>
 </head>
+
 <body>
 <div th:replace="base::nav"></div>
 <div class="container-float" align="center">
@@ -83,6 +88,17 @@
                           th:if="${#fields.hasErrors('occasion')}"></span></td>
             </tr>
             <tr>
+                <td><label for="occasion">Windy:</label></td>
+                <td><select class="form-control input-md" id="wind" th:field="*{wind}">
+                    <option th:each="option: ${wind}"
+                            th:value="${option.id}">[[${option.name}]]
+                    </option>
+                </select>
+                </td>
+                <td><span th:errors="*{occasion}"
+                          th:if="${#fields.hasErrors('occasion')}"></span></td>
+            </tr>
+            <tr>
                 <td><label for="climate">Climate:</label></td>
                 <td>
                     <select class="form-control input-md" id="climate" th:field="*{climate}">
@@ -106,6 +122,7 @@
                 </td>
             </tr>
         </table>
+>>>>>>> dc86bc62d3c015ca4901829c442aad821484968d
     </form>
 </div>
 <br/>

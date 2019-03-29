@@ -18,14 +18,17 @@ public class DataLoader implements CommandLineRunner {
     CategoryRepository categoryRepository;
 
     @Autowired
-    ItemRepository itemRepository;
+    OccasionRepository occasionRepository;
 
+    @Autowired
+    ItemRepository itemRepository;
 
     @Autowired
     ClimateRepository climateRepository;
 
     @Autowired
-    OccasionRepository occasionRepository;
+    WindRepository  windRepository;
+
 
     @Autowired
     InvalidPasswordRepository invalidPasswordRepository;
@@ -65,14 +68,18 @@ public class DataLoader implements CommandLineRunner {
         dag.setPassword(userService.encode(dag.getPassword()));
         userService.saveUser(dag);
 
+        User mel = new User("melissaAfung@gmail.com", "password", "Melissa", "Fung", true, "mel");
+        mel.setPassword(userService.encode(mel.getPassword()));
+        userService.saveUser(mel);
+
         User admin = new User("admin@admin.com", "password", "Admin", "User", true, "admin");
         admin.setPassword(userService.encode(admin.getPassword()));
         userService.saveUser(admin);
 
+        //Category
         categoryRepository.save(new Category("Top"));
         Category top = categoryRepository.findByName("Top");
 
-        //Category
         categoryRepository.save(new Category("Bottom"));
         Category bottom = categoryRepository.findByName("Bottom");
 
@@ -84,6 +91,10 @@ public class DataLoader implements CommandLineRunner {
 
         categoryRepository.save(new Category("Accessories"));
         Category accessories = categoryRepository.findByName("Accessories");
+
+       /* categoryRepository.save(new Category("Socks"));
+        Category socks = categoryRepository.findByName("Socks");*/
+
 
         //Climate
         climateRepository.save(new Climate("Cold"));
@@ -97,6 +108,8 @@ public class DataLoader implements CommandLineRunner {
 
         climateRepository.save(new Climate("Rainy"));
         Climate rainy = climateRepository.findByName("Rainy");
+
+
 
         //Occasion
         occasionRepository.save(new Occasion("Party"));
@@ -338,8 +351,38 @@ public class DataLoader implements CommandLineRunner {
                 shoe);
         temp.getClimate.add(cold);
         itemRepository.save(sandles);
-
         cold.setItem(sandles);
         climateRepository.save(cold);*/
+
+
+        //Wind
+        windRepository.save(new Wind("light"));
+        Wind light = windRepository.findByName("light");
+
+        windRepository.save(new Wind("moderate "));
+        Wind moderate = windRepository.findByName("moderate");
+
+        windRepository.save(new Wind("heavy"));
+        Wind heavy = windRepository.findByName("heavy");
+
+        windRepository.save(new Wind("Periodic"));
+        Wind periodic = windRepository.findByName("Periodic");
+
+        // Item Format
+
+        /*
+        this.name = name;
+        this.color = color;
+        this.material = material;
+        this.size = size;
+        this.picturePath = picturePath;
+        this.description = description;
+        this.user = user;
+        this.category = category;
+        this.climate = climate;
+        this.occasion = occasion;
+        this.wind = wind;
+    }
+        */
     }
 }

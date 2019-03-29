@@ -50,6 +50,10 @@
             <td>Climate:</td>
             <td><span th:text="${item.climate.name}"></span><br/></td>
         </tr>
+        <tr>
+            <td>Wind:</td>
+            <td><span th:text="${item.wind.name}"></span><br/></td>
+        </tr>
         <tr sec:authorize="isAuthenticated()">
             <td>User:</td>
             <td><p th:text="${item.user.firstName} +' ' +${item.user.lastName}"></p></td>

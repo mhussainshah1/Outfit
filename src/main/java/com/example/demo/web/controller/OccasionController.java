@@ -2,11 +2,15 @@ package com.example.demo.web.controller;
 
 import com.example.demo.business.entities.Category;
 import com.example.demo.business.entities.Occasion;
+
 import com.example.demo.business.entities.repositories.CategoryRepository;
 import com.example.demo.business.entities.repositories.ClimateRepository;
 import com.example.demo.business.entities.repositories.ItemRepository;
 import com.example.demo.business.entities.repositories.OccasionRepository;
 import com.example.demo.business.services.UserService;
+
+import com.example.demo.business.entities.repositories.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,10 +37,14 @@ public class OccasionController {
     ClimateRepository climateRepository;
 
     @Autowired
+
     OccasionRepository occasionRepository;
 
     @Autowired
     UserService userService;
+
+    WindRepository windRepository;
+
 
     public void findAll(Model model){
         model.addAttribute("categories", categoryRepository.findAll());

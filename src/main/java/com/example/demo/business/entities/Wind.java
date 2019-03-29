@@ -1,32 +1,29 @@
 package com.example.demo.business.entities;
 
 import javax.persistence.*;
+//import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
-//Hot Mild Cold
-@Entity
-public class Climate {
 
+@Entity
+public class Wind {
     @Id
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
 
     @Column(unique = true)
     private String name;
 
-
-    @OneToMany(mappedBy = "climate",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public Set<Item> items;
-
-    @OneToMany(mappedBy = "", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "wind", cascade = CascadeType.ALL)
     private Set<Item> item;
 
-
-    public Climate() {
+    public Wind() {
     }
 
-    public Climate(String name) {
-        this.name = name;
+    public Wind(String name) {
+
     }
 
     public long getId() {
@@ -45,4 +42,11 @@ public class Climate {
         this.name = name;
     }
 
+    public Set<Item> getItem() {
+        return item;
+    }
+
+    public void setItem(Set<Item> item) {
+        this.item = item;
+    }
 }

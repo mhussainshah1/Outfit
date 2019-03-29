@@ -7,6 +7,7 @@ import com.example.demo.business.entities.repositories.CategoryRepository;
 import com.example.demo.business.entities.repositories.ClimateRepository;
 import com.example.demo.business.entities.repositories.ItemRepository;
 import com.example.demo.business.entities.repositories.OccasionRepository;
+import com.example.demo.business.entities.repositories.WindRepository;
 import com.example.demo.business.services.FormAttributes;
 import com.example.demo.business.services.Weather;
 import com.example.demo.business.services.WeatherService;
@@ -42,11 +43,15 @@ public class WeatherController {
     @Autowired
     ClimateRepository climateRepository;
 
+    @Autowired
+    WindRepository windRepository;
+
 
     public void findAll(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("climates", climateRepository.findAll());
         model.addAttribute("occasions", occasionRepository.findAll());
+        model.addAttribute("wind", windRepository.findAll());
     }
 
     @GetMapping("/weather")
@@ -61,14 +66,15 @@ public class WeatherController {
         findAll(model);
 
         Weather weather = weatherService.getWeather(formAttributes);
-        String climate = getClimate(weather.getTemp());
-//        long id = climateRepository.findByName(climate).getId();
 
-        System.out.println(climate + " " + weather.getTemp() );
+        //System.out.println(climate + " " + weather.getTemp() );
 
-        Iterable<Category> categories =categoryRepository.findAll();
-        HashSet<Item> outfit = new HashSet<>();
-        Climate climateobj =climateRepository.findByName(climate);
+        Iterable<Category> categories = categoryRepository.findAll();
+
+        String climate = this.getClimate(weather.getTemp());
+        Climate climateobj = climateRepository.findByName(climate);
+
+        Set<Item> outfit = new HashSet<>();
 
         for(Category category : categories){
             //pick one item from the below list
@@ -80,7 +86,6 @@ public class WeatherController {
             }
         }
         System.out.println(outfit);
-
 //        Iterable<Item> i = itemRepository.findAllByCategoryAndClimate(,);
         model.addAttribute("items", outfit);
         model.addAttribute("weatherData", weather);
