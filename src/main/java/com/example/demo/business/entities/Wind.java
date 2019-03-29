@@ -1,7 +1,7 @@
 package com.example.demo.business.entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+//import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 
@@ -12,7 +12,7 @@ public class Wind {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotEmpty
+
     @Column(unique = true)
     private String name;
 

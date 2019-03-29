@@ -76,10 +76,10 @@ public class DataLoader implements CommandLineRunner {
         admin.setPassword(userService.encode(admin.getPassword()));
         userService.saveUser(admin);
 
+        //Category
         categoryRepository.save(new Category("Top"));
         Category top = categoryRepository.findByName("Top");
 
-        //Category
         categoryRepository.save(new Category("Bottom"));
         Category bottom = categoryRepository.findByName("Bottom");
 
