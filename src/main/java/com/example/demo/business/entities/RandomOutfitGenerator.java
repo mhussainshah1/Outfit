@@ -28,9 +28,9 @@ public class RandomOutfitGenerator {
         String[] bottoms = {"Cargo khaki, ", "Jeans Blue, ", "Khaki Brown, ", "Snow Gray, ", "Shorts Blue, ", "Shorts Grey,", "Shorts Khaki"};
         String[] shoes = {"Black Tan Timberland", "Grey long Socks", "Nike-Green-Winter-Shoes", "Winter-Socks-Grey-White", "Winter-Socks-Grey-Yellow", "Nhan's All-weather Sandals", "Warm Midhigh Socks"};
         String[] jackets = {"Black Dark-Grey Jacket", "Black Grey Jacket", "Black Light-Grey Jacket", "Black Jacket", "Green Grey Jacket", "Northface Black Jacket", "Black Nike Windbreaker", "White Navy-Blue Windbreaker Columbia"};
-        String[] accessories = {"Winter", "Spring", "Summer", "Fall"};
+        String[] accessories = {"Glasses", "Headphones", "iWatch", "Jesus-Piece", };
 
-        // Int list of bounds equal to the length of the attribute list to burrito options
+        // Int list of bounds equal to the length of the attribute list to outfit options
 
         int alength = accessories.length;
         int blength = bottoms.length;
@@ -38,7 +38,7 @@ public class RandomOutfitGenerator {
         int slength = shoes.length;
         int tlength = tops.length;
 
-        // Int list of random variables specific to burrito options
+        // Int list of random variables specific to outfit options
         int ax = a.nextInt(alength + 2);
         int bx = b.nextInt(blength + 3);
         int jx = j.nextInt(jlength + 2);
