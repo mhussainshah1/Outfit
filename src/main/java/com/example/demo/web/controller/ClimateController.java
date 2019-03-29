@@ -1,11 +1,11 @@
 package com.example.demo.web.controller;
 
-import com.example.demo.business.entities.Category;
 import com.example.demo.business.entities.Climate;
 import com.example.demo.business.entities.repositories.CategoryRepository;
-import com.example.demo.business.entities.repositories.ItemRepository;
 import com.example.demo.business.entities.repositories.ClimateRepository;
+import com.example.demo.business.entities.repositories.ItemRepository;
 import com.example.demo.business.entities.repositories.OccasionRepository;
+import com.example.demo.business.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +34,9 @@ public class ClimateController {
     @Autowired
     ClimateRepository climateRepository;
 
+    @Autowired
+    UserService userService;
+
     public void findAll(Model model){
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("climates", climateRepository.findAll());
@@ -42,7 +45,9 @@ public class ClimateController {
 
     @GetMapping("/addclimate")
     public String climateForm(Model model){
-        findAll(model);
+
+        //modifying according to category controller
+        model.addAttribute("climates", climateRepository.findAll());
         model.addAttribute("climate", new Climate());
         return "climate";
     }
@@ -69,6 +74,9 @@ public class ClimateController {
     @RequestMapping("/detailclimate/{id}")
     public String showCarsByClimate(@PathVariable("id") long id, Model model){
         findAll(model);
+        if (userService.getUser() != null) {
+            model.addAttribute("user_id", userService.getUser().getId());
+        }
         model.addAttribute("items", itemRepository.findAllByClimate_Id(id));
         model.addAttribute("climate", climateRepository.findById(id).get());
         return "climatelist";

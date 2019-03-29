@@ -19,6 +19,13 @@ Each will add their data in the data loader. put local path for picture instead 
 
 //nan item
 
+about.html
+---------
+
+
+
+
+
 My List
 -------
 profile.html

@@ -111,6 +111,8 @@ public class DataLoader implements CommandLineRunner {
         occasionRepository.save(new Occasion("Dinner"));
         Occasion dinner = occasionRepository.findByName("Dinner");
 
+        // light moderate heavy
+
         //moe items
         itemRepository.save(new Item("shirt",
                 "white",
@@ -121,7 +123,8 @@ public class DataLoader implements CommandLineRunner {
                 moe,
                 top,
                 cold,
-                dinner));
+                dinner
+        ));
         Item shirt = itemRepository.findByName("shirt");
 
         itemRepository.save(

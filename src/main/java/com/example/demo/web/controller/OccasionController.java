@@ -1,11 +1,11 @@
 package com.example.demo.web.controller;
 
-import com.example.demo.business.entities.Category;
 import com.example.demo.business.entities.Occasion;
 import com.example.demo.business.entities.repositories.CategoryRepository;
 import com.example.demo.business.entities.repositories.ClimateRepository;
 import com.example.demo.business.entities.repositories.ItemRepository;
 import com.example.demo.business.entities.repositories.OccasionRepository;
+import com.example.demo.business.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +34,9 @@ public class OccasionController {
     @Autowired
     ClimateRepository climateRepository;
 
+    @Autowired
+    UserService userService;
+
     public void findAll(Model model){
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("climates", climateRepository.findAll());
@@ -42,7 +45,10 @@ public class OccasionController {
 
     @GetMapping("/addoccasion")
     public String occasionForm(Model model){
-        findAll(model);
+//        findAll(model);
+
+        //Modifying occasion according to category controller
+        model.addAttribute("occasions", occasionRepository.findAll());
         model.addAttribute("occasion", new Occasion());
         return "occasion";
     }
@@ -67,9 +73,12 @@ public class OccasionController {
     }
 
     @RequestMapping("/detailoccasion/{id}")
-    public String showCarsByOccasion(@PathVariable("id") long id, Model model){
+    public String showItemsByOccasion(@PathVariable("id") long id, Model model){
         findAll(model);
-        model.addAttribute("cars", itemRepository.findAllByOccasion_Id(id));
+        if (userService.getUser() != null) {
+            model.addAttribute("user_id", userService.getUser().getId());
+        }
+        model.addAttribute("items", itemRepository.findAllByOccasion_Id(id));
         model.addAttribute("occasion", occasionRepository.findById(id).get());
         return "occasionlist";
     }

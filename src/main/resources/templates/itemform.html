@@ -102,7 +102,9 @@
                     <span th:errors="*{user}" th:if="${#fields.hasErrors('user')}"></span></td>
             </tr>
             <tr>
-                <td align="center" colspan="3"><input type="submit" value="Submit"/></td>
+                <td  align="center" colspan="3">
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </td>
             </tr>
         </table>
     </form>
