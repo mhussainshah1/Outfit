@@ -4,14 +4,6 @@ Occasion.html
 
 DataLoader.java
 ---------------
-Occasion objects in the data loader
-party
-function
-meeting
-casual
-dinner
-formal
-
 Each will add their data in the data loader. put local path for picture instead of cloudinary.
 //tolani item
 
@@ -21,9 +13,9 @@ Each will add their data in the data loader. put local path for picture instead 
 
 My List
 -------
-profile.html
 delete by checkbox
 packing list
 
 itemform.html
 color popup for color
+search function

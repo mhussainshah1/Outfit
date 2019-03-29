@@ -3,29 +3,24 @@ package com.example.demo.business.entities;
 import javax.persistence.*;
 import java.util.Set;
 
-//Hot Mild Cold
+//Casual
 @Entity
-public class Climate {
+public class Occasion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(unique = true)
     private String name;
 
-
-    @OneToMany(mappedBy = "temperature",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "occasion",cascade = CascadeType.ALL)
     public Set<Item> items;
 
-    @OneToMany(mappedBy = "climate", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Item> item;
 
-
-    public Climate() {
+    public Occasion() {
     }
 
-    public Climate(String name) {
+    public Occasion(String name) {
         this.name = name;
     }
 
@@ -45,4 +40,12 @@ public class Climate {
         this.name = name;
     }
 
+
+    public Set<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Item> items) {
+        this.items = items;
+    }
 }

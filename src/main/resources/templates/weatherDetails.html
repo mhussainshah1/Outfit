@@ -21,14 +21,14 @@
             <th>Max Temp</th>
             <th>Weather</th>
         </tr>
-        <tr th:each="weather ,iterStat: ${weatherData}" th:object="${weather}">
+        <tr th:each="weather ,iterStat: ${weatherData}" >
             <td><span th:text="${weather.name}"></span></td>
             <td><span th:text="${weather.lat}"></span></td>
             <td><span th:text="${weather.lon}"></span></td>
             <td><span th:text="${weather.weatherMain}"></span></td>
-            <td><span th:text="${weather.temp}"></span></td>
-            <td><span th:text="${weather.tempMin}"></span></td>
-            <td><span th:text="${weather.tempMax}"></span></td>
+            <td><span th:text="${#numbers.formatDecimal(weather.temp,2,1)}"></span></td>
+            <td><span th:text="${#numbers.formatDecimal(weather.tempMin,2,1)}"></span></td>
+            <td><span th:text="${#numbers.formatDecimal(weather.tempMax,2,1)}"></span></td>
             <td><span th:text="${weather.weatherDescription}"></span></td>
 
         </tr>

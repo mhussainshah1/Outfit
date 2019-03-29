@@ -3,6 +3,7 @@ package com.example.demo.web.controller;
 import com.example.demo.business.entities.Category;
 import com.example.demo.business.entities.repositories.CategoryRepository;
 import com.example.demo.business.entities.repositories.ItemRepository;
+import com.example.demo.business.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,9 @@ public class CategoryController {
 
     @Autowired
     CategoryRepository categoryRepository;
+
+    @Autowired
+    UserService userService;
 
     @GetMapping("/addcategory")
     public String categoryForm(Model model){
@@ -53,7 +57,10 @@ public class CategoryController {
 
     @RequestMapping("/detailcategory/{id}")
     public String showCarsByCategory(@PathVariable("id") long id, Model model){
-        model.addAttribute("cars", itemRepository.findAllByCategory_Id(id));
+        if (userService.getUser() != null) {
+            model.addAttribute("user_id", userService.getUser().getId());
+        }
+        model.addAttribute("items", itemRepository.findAllByCategory_Id(id));
         model.addAttribute("category", categoryRepository.findById(id).get());
         model.addAttribute("categories", categoryRepository.findAll());
         return "categorylist";

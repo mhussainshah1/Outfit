@@ -29,31 +29,30 @@
             <td><span th:text="${item.material}"></span></td>
         </tr>
         <tr>
-            <td>Size:</td>
-            <td><p th:text="${item.size}"></p></td>
-        </tr>
-
-        <tr>
             <td>Picture:</td>
             <td><img class ="profile-picture"
                      th:src="${item.picturePath}"
                      th:alt = "Picture"> <!-- th:text="${message.picturePath}" --><td>
         </tr>
         <tr>
+            <td>Size:</td>
+            <td><p th:text="${item.size}"></p></td>
+        </tr>
+        <tr>
             <td>Description:</td>
             <td><p th:text="${item.description}"></p></td>
         </tr>
         <tr>
-            <td>User:</td>
-            <td><p th:text="${item.user.username}"></p></td>
+            <td>Occasion:</td>
+            <td><span th:text="${item.occasion.name}"></span><br/></td>
         </tr>
         <tr>
             <td>Climate:</td>
             <td><span th:text="${item.climate.name}"></span><br/></td>
         </tr>
-        <tr>
-            <td>Occasion:</td>
-            <td><span th:text="${item.occasion.name}"></span><br/></td>
+        <tr sec:authorize="isAuthenticated()">
+            <td>User:</td>
+            <td><p th:text="${item.user.firstName} +' ' +${item.user.lastName}"></p></td>
         </tr>
     </table>
 

@@ -9,7 +9,6 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-@PropertySource("classpath:application.properties")
 public class WeatherConfigurations {
 
     @Value("${weather.url}")
