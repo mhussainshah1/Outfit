@@ -8,7 +8,7 @@ import java.util.Set;
 @Entity
 public class Wind {
 
-    @Id
+   /* @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
@@ -40,6 +40,6 @@ public class Wind {
 
     public void setName(String name) {
         this.name = name;
-    }
+    }*/
 
 }

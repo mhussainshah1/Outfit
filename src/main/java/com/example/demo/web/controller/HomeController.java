@@ -1,7 +1,6 @@
 package com.example.demo.web.controller;
 
 import com.cloudinary.utils.ObjectUtils;
-import com.example.demo.business.entities.Item;
 import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.*;
 import com.example.demo.web.config.CloudinaryConfig;

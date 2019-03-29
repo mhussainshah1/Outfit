@@ -26,9 +26,6 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     ClimateRepository climateRepository;
 
-    @Autowired
-    OccasionRepository occasionRepository;
-
 
     @Autowired
     InvalidPasswordRepository invalidPasswordRepository;
@@ -86,48 +83,6 @@ public class DataLoader implements CommandLineRunner {
         categoryRepository.save(new Category("Jacket"));
         Category jacket = categoryRepository.findByName("Jacket");
 
-<<<<<<< HEAD
-        categoryRepository.save(new Category("Top"));
-        Category top = categoryRepository.findByName("Top");
-     /*   category = new Category("Bottom");
-        category = new Category("Jacket");
-        category = new Category("Shoes");*/
-
-       /* seasonRepository.save(new Season("fall"));
-        Season fall = seasonRepository.findByName("fall");
-        Season winter = new Season("winter");
-        Season spring = new Season("spring");
-        Season summer = new Season("summer");*/
-
-        temperatureRepository.save(new Temperature("cold"));
-        Temperature cold = temperatureRepository.findByName("cold");
-        /*Temperature hot = new Temperature("hot");
-        Temperature mild = new Temperature("mild");
-        Temperature rainy = new Temperature("rainy");*/
-
-        occasionRepository.save(new Occasion("casual"));
-        Occasion casual = occasionRepository.findByName("casual");
-        /*Occasion formal = new Temperature("formal");
-        Occasion business_casual = new Temperature("business casual"); */
-
-
-
-
-
-        itemRepository.save(new Item( "shirt",
-                    /*color*/        "white",
-                    /*material*/     "Cotton",
-                    /*size*/         "s",
-                    /*description*/  "              ",
-                    /*picturePath*/  "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553093077/java-bootcamp/nsgop8vivttqeqkkkynr.jpg",
-                    /*user*/          moe,
-                    /*category*/      top,
-                    /*temperature*/   cold,
-                    /*occasion*/      casual
-        ));
-        Item shirt = itemRepository.findByName("shirt");
-       /* Car car1 = new Car("Honda","Accord",2019,"35 miles/gallon",45000.55,"https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1552081999/java-bootcamp/bo1q7fwi8qytkxi6yyus.jpg",category);
-=======
         categoryRepository.save(new Category("Shoes"));
         Category shoe = categoryRepository.findByName("Shoes");
 
