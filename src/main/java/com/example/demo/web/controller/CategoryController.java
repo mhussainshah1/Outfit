@@ -42,6 +42,7 @@ public class CategoryController {
         model.addAttribute("climates", climateRepository.findAll());
         model.addAttribute("occasions", occasionRepository.findAll());
     }
+
     @GetMapping("/addcategory")
     public String categoryForm(Model model){
         findAll(model);
@@ -69,7 +70,8 @@ public class CategoryController {
     }
 
     @RequestMapping("/detailcategory/{id}")
-    public String showCarsByCategory(@PathVariable("id") long id, Model model){
+    public String showOutfitsByCategory(@PathVariable("id") long id, Model model){
+        //This function is accesible without user
         if (userService.getUser() != null) {
             model.addAttribute("user_id", userService.getUser().getId());
         }

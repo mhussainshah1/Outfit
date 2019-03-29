@@ -6,6 +6,7 @@ import com.example.demo.business.entities.repositories.CategoryRepository;
 import com.example.demo.business.entities.repositories.ClimateRepository;
 import com.example.demo.business.entities.repositories.ItemRepository;
 import com.example.demo.business.entities.repositories.OccasionRepository;
+import com.example.demo.business.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,13 +27,16 @@ public class OccasionController {
     ItemRepository itemRepository;
 
     @Autowired
-    OccasionRepository occasionRepository;
-
-    @Autowired
     CategoryRepository categoryRepository;
 
     @Autowired
     ClimateRepository climateRepository;
+
+    @Autowired
+    OccasionRepository occasionRepository;
+
+    @Autowired
+    UserService userService;
 
     public void findAll(Model model){
         model.addAttribute("categories", categoryRepository.findAll());
@@ -67,9 +71,13 @@ public class OccasionController {
     }
 
     @RequestMapping("/detailoccasion/{id}")
-    public String showCarsByOccasion(@PathVariable("id") long id, Model model){
+    public String showOutfitsByOccasion(@PathVariable("id") long id, Model model){
+        //This function is accesible without user
+        if (userService.getUser() != null) {
+            model.addAttribute("user_id", userService.getUser().getId());
+        }
         findAll(model);
-        model.addAttribute("cars", itemRepository.findAllByOccasion_Id(id));
+        model.addAttribute("items", itemRepository.findAllByOccasion_Id(id));
         model.addAttribute("occasion", occasionRepository.findById(id).get());
         return "occasionlist";
     }
