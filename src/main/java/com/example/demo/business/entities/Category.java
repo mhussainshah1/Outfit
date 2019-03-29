@@ -2,27 +2,22 @@ package com.example.demo.business.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
-import java.util.HashSet;
 import java.util.Set;
-
-import static javax.persistence.CascadeType.ALL;
 
 @Entity
 public class Category {
 
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    public Set<Item> items;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @NotEmpty
+    @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public Set<Item> items;
-
     public Category() {
-        items = new HashSet<>();
     }
 
     public Category(@NotEmpty String name) {

@@ -1,24 +1,31 @@
 package com.example.demo.business.entities;
 
 import javax.persistence.*;
-//import java.util.HashSet;
-//import java.util.Set;
+import java.util.Set;
 
+//Hot Mild Cold
 @Entity
-public class Season {
+public class Climate {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column(unique = true)
     private String name;
 
 
-    public Season() {
+    @OneToMany(mappedBy = "temperature",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    public Set<Item> items;
 
+    @OneToMany(mappedBy = "climate", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Item> item;
+
+
+    public Climate() {
     }
 
-    public Season(String name) {
-        this();
+    public Climate(String name) {
         this.name = name;
     }
 

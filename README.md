@@ -24,3 +24,6 @@ The application should obtain the temperature for that day based on the user's e
 The application should allow new users to sign up for an account and track their wardrobe item. Users can update information regarding each of their item or remove item from their wardrobe.
 
 Users should also be able to create packing lists for upcoming trips using item from their wardrobe.
+
+--------------------------------
+**Change Request: Add an option to specify the occasion for the outfit suggestion.**

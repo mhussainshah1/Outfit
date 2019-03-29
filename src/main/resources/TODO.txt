@@ -1,0 +1,21 @@
+TODO
+Climate.html
+Occasion.html
+
+DataLoader.java
+---------------
+Each will add their data in the data loader. put local path for picture instead of cloudinary.
+//tolani item
+
+//dag item
+
+//nan item
+
+My List
+-------
+delete by checkbox
+packing list
+
+itemform.html
+color popup for color
+search function
