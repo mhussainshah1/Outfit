@@ -1,6 +1,7 @@
 package com.example.demo.web.controller;
 
 import com.cloudinary.utils.ObjectUtils;
+import com.example.demo.business.entities.Category;
 import com.example.demo.business.entities.Item;
 import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.*;
@@ -24,8 +25,18 @@ import java.util.Map;
 
 @Controller
 public class HomeController {
+
+    /********************** INSTANTIATED REPO'S BY ME ********************************************** */
+    //
     @Autowired
     CategoryRepository categoryRepository;
+
+
+    @Autowired
+    ItemRepository itemRepository;
+
+    /***********************        END       ******************************************/
+
 
     @Autowired
     OccasionRepository occasionRepository;
@@ -33,8 +44,7 @@ public class HomeController {
     @Autowired
     ClimateRepository climateRepository;
 
-    @Autowired
-    ItemRepository itemRepository;
+
 
     @Autowired
     UserRepository userRepository;
@@ -44,6 +54,7 @@ public class HomeController {
 
     @Autowired
     UserService userService;
+
 
     public void findAll(Model model){
         model.addAttribute("categories", categoryRepository.findAll());
@@ -60,6 +71,40 @@ public class HomeController {
         }
         return "list";
     }
+
+    /************************     MAPPING FOR CATEGORY BY ME   ***************************************/
+
+
+    @GetMapping("/addCategory")
+    public String newCategory(Model model) {
+        model.addAttribute("type", new Category());
+        return "category";
+    }
+
+    @PostMapping("/addCategory")
+    public String processCategory(@Valid @ModelAttribute("category") Category category) {
+        categoryRepository.save(category);
+        return "redirect:/";
+    }
+
+    @RequestMapping("/")
+    public String listItems(Model model) {
+        model.addAttribute("items", itemRepository.findAll());
+        model.addAttribute("categories", categoryRepository.findAll());
+        return "list";
+    }
+
+
+    /************************   END CATEGORY MAPPING     *******************************/
+
+//    @RequestMapping("/")
+//    public String listCourses(Model model) {
+//        model.addAttribute("courses", courseRepository.findAll()); //generate select * statement
+//        if (userService.getUser() != null) {
+//            model.addAttribute("user_id", userService.getUser().getId());
+//        }
+//        return "list";
+//    }
 
     //Users with Admin role can view this page
     @RequestMapping("/admin")
