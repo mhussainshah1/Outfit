@@ -4,7 +4,7 @@ import com.cloudinary.utils.ObjectUtils;
 import com.example.demo.business.entities.Item;
 import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.*;
-import com.example.demo.business.services.CloudinaryConfig;
+import com.example.demo.web.config.CloudinaryConfig;
 import com.example.demo.business.services.CustomerUserDetails;
 import com.example.demo.business.services.UserService;
 import com.example.demo.business.util.MD5Util;
