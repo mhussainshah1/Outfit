@@ -1,6 +1,6 @@
 package com.example.demo.web.controller;
-
 import com.cloudinary.utils.ObjectUtils;
+import com.example.demo.business.entities.Category;
 import com.example.demo.business.entities.Item;
 import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.*;
@@ -16,7 +16,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
@@ -24,17 +23,20 @@ import java.util.Map;
 
 @Controller
 public class HomeController {
+
+    //
     @Autowired
     CategoryRepository categoryRepository;
+
+    @Autowired
+    ItemRepository itemRepository;
+
 
     @Autowired
     OccasionRepository occasionRepository;
 
     @Autowired
     ClimateRepository climateRepository;
-
-    @Autowired
-    ItemRepository itemRepository;
 
     @Autowired
     UserRepository userRepository;
@@ -60,6 +62,29 @@ public class HomeController {
         }
         return "list";
     }
+
+    @GetMapping("/addCategory")
+    public String newCategory(Model model) {
+        model.addAttribute("type", new Category());
+        return "category";
+    }
+
+    @PostMapping("/addCategory")
+    public String processCategory(@Valid @ModelAttribute("category") Category category) {
+        categoryRepository.save(category);
+        return "redirect:/";
+    }
+
+     /************************   END CATEGORY MAPPING     *******************************/
+
+//    @RequestMapping("/")
+//    public String listCourses(Model model) {
+//        model.addAttribute("courses", courseRepository.findAll()); //generate select * statement
+//        if (userService.getUser() != null) {
+//            model.addAttribute("user_id", userService.getUser().getId());
+//        }
+//        return "list";
+//    }
 
     //Users with Admin role can view this page
     @RequestMapping("/admin")

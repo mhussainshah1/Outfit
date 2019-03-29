@@ -48,7 +48,9 @@ public class DataLoader implements CommandLineRunner {
         invalidPasswordRepository.save(new InvalidPassword("12345678!"));
         invalidPasswordRepository.save(new InvalidPassword("password123"));
 
+
         //User
+
         User moe = new User("mhussainshah79@gmail.com", "password", "Muhammad", "Shah", true, "moe");
         moe.setPassword(userService.encode(moe.getPassword()));
         userService.saveUser(moe);
@@ -69,8 +71,10 @@ public class DataLoader implements CommandLineRunner {
         admin.setPassword(userService.encode(admin.getPassword()));
         userService.saveUser(admin);
 
+
         categoryRepository.save(new Category("Top"));
         Category top = categoryRepository.findByName("Top");
+
 
         //Category
         categoryRepository.save(new Category("Bottom"));
@@ -115,6 +119,10 @@ public class DataLoader implements CommandLineRunner {
         Occasion dinner = occasionRepository.findByName("Dinner");
 
        /* //moe items
+
+        // light moderate heavy
+
+        //moe items
         itemRepository.save(new Item("shirt",
                 "white",
                 "cotton",
@@ -124,7 +132,8 @@ public class DataLoader implements CommandLineRunner {
                 moe,
                 top,
                 cold,
-                dinner));
+                dinner
+        ));
         Item shirt = itemRepository.findByName("shirt");
 
         itemRepository.save(

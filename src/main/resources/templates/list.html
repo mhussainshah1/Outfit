@@ -60,6 +60,7 @@
             <td th:text="${item.user.username}"></td>
             <td th:text="${item.climate.name}"></td>
             <td th:text="${item.occasion.name}"></td>
+
             <td th:if="${user_id == item.user.id}">
                 <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> -
                 <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>

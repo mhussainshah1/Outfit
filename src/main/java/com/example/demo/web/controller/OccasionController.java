@@ -1,6 +1,5 @@
 package com.example.demo.web.controller;
 
-import com.example.demo.business.entities.Category;
 import com.example.demo.business.entities.Occasion;
 import com.example.demo.business.entities.repositories.CategoryRepository;
 import com.example.demo.business.entities.repositories.ClimateRepository;
@@ -46,7 +45,10 @@ public class OccasionController {
 
     @GetMapping("/addoccasion")
     public String occasionForm(Model model){
-        findAll(model);
+//        findAll(model);
+
+        //Modifying occasion according to category controller
+        model.addAttribute("occasions", occasionRepository.findAll());
         model.addAttribute("occasion", new Occasion());
         return "occasion";
     }

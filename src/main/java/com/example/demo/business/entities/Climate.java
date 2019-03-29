@@ -20,6 +20,7 @@ public class Climate {
     private Set<Item> item;
 
     public Climate() {
+
     }
 
     public Climate(String name) {

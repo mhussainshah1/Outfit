@@ -29,10 +29,10 @@ public class CategoryController {
     CategoryRepository categoryRepository;
 
     @Autowired
-    ClimateRepository climateRepository;
+    OccasionRepository occasionRepository;
 
     @Autowired
-    OccasionRepository occasionRepository;
+    ClimateRepository climateRepository;
 
     @Autowired
     UserService userService;
@@ -70,8 +70,8 @@ public class CategoryController {
     }
 
     @RequestMapping("/detailcategory/{id}")
-    public String showOutfitsByCategory(@PathVariable("id") long id, Model model){
-        //This function is accesible without user
+    public String showItemsByCategory(@PathVariable("id") long id, Model model){
+        findAll(model);
         if (userService.getUser() != null) {
             model.addAttribute("user_id", userService.getUser().getId());
         }

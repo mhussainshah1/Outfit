@@ -70,6 +70,7 @@ public class Weather implements Serializable {
     @JsonPropertyOrder("description")
     private String weatherDescription;
 
+    //create two new fields speed and degree
     public Weather() {
     }
 
@@ -141,6 +142,16 @@ public class Weather implements Serializable {
     public void setTemp(double temp) {
         this.temp = temp;
     }
+
+    //custom methods
+
+    /*
+    @JsonProperty("wind")
+    public void setWind(Map<String, Object> coord)){
+        setSpeed( coord.get("speed"));
+        setDegree( coord.get("deg"));
+    }
+     */
 
     @JsonProperty("coord")
     public void setCoord(Map<String, Object> coord) {

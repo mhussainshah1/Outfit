@@ -31,10 +31,9 @@
             <td><span th:text="${#numbers.formatDecimal(weather.temp,2,1)}"></span></td>
             <td><span th:text="${#numbers.formatDecimal(weather.tempMin,2,1)}"></span></td>
             <td><span th:text="${#numbers.formatDecimal(weather.tempMax,2,1)}"></span></td>
+
             <td><span th:text="${weather.weatherDescription}"></span></td>
         </tr>
-
-
     </table>
 
     <table class="table table-striped" style="width:100%">
