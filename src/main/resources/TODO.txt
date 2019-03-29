@@ -22,6 +22,6 @@ search function
 
 ASK DAVE or Melisa!!!!!
 -----------------------
-Can user need to delete own category?
+Can user need to delete own category? YES
 
 Can user need only to see his own data? YES
