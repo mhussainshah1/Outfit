@@ -1,9 +1,12 @@
 package com.example.demo.web.controller;
 
+import com.example.demo.business.entities.Item;
 import com.example.demo.business.entities.repositories.CategoryRepository;
 import com.example.demo.business.entities.repositories.ClimateRepository;
+import com.example.demo.business.entities.repositories.ItemRepository;
 import com.example.demo.business.entities.repositories.OccasionRepository;
 import com.example.demo.business.services.FormAttributes;
+import com.example.demo.business.services.Weather;
 import com.example.demo.business.services.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 @Controller
 public class WeatherController {
@@ -26,6 +31,9 @@ public class WeatherController {
     WeatherService weatherService;
 
     @Autowired
+    ItemRepository itemRepository;
+
+    @Autowired
     CategoryRepository categoryRepository;
 
     @Autowired
@@ -35,7 +43,7 @@ public class WeatherController {
     ClimateRepository climateRepository;
 
 
-    public void findAll(Model model){
+    public void findAll(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("climates", climateRepository.findAll());
         model.addAttribute("occasions", occasionRepository.findAll());
@@ -51,12 +59,36 @@ public class WeatherController {
     public String getWeather(Model model, @ModelAttribute FormAttributes formAttributes)
             throws IOException {
         findAll(model);
-        model.addAttribute("weatherData", weatherService.getWeather(formAttributes));
 
+        Weather weather = weatherService.getWeather(formAttributes);
+        String climate = getClimate(weather.getTemp());
+        System.out.println(climate + " " + weather.getTemp() );
+
+        //outfit.add(itemRepository.findAllByClimate(climate));
+        model.addAttribute("items", itemRepository.findAllByClimate(climate));
+        model.addAttribute("weatherData", weather);
         return "weatherDetails";
     }
 
-    public void randomGenerator() {
+    private String getClimate(double temperature){
+        String climate;
+        long temp = Math.round(temperature);
+        if (temp < 25) {
+            climate = "Cold";
+        } else if (temp >= 25 && temp < 32) {
+            climate = "Moderate";
+        } else {
+            climate = "Hot";
+        }
+        return climate;
+    }
+    public Set<Item> getOutfit() {
+        HashSet<Item> outfit = new HashSet<>();
+        outfit.add(itemRepository.findByName(""));
+        outfit.add(itemRepository.findByName(""));
+        outfit.add(itemRepository.findByName(""));
+        outfit.add(itemRepository.findByName(""));
+
         // Initialization of random numbers specific to burrito options
 
         Random a = new Random();
@@ -105,5 +137,7 @@ public class WeatherController {
             /* Tried to print an Array of Arrays, didn't like that one, next I'd attempt an array list of arrays, but the above code will do*/
             // System.out.println("Burrito "+ i + ": "+ rice[rx] +" "+ meat[mx]+"," + beans[bx]);
         }
+
+        return outfit;
     }
 }

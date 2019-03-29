@@ -20,4 +20,8 @@ itemform.html
 color popup for color
 search function
 
-Can user need to delete category?
+ASK DAVE or Melisa!!!!!
+-----------------------
+Can user need to delete own category?
+
+Can user need only to see his own data?
