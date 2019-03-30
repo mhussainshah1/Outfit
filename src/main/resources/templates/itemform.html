@@ -95,6 +95,18 @@
                           th:if="${#fields.hasErrors('climate')}"></span></td>
             </tr>
             <tr>
+                <td><label for="climate">Wind:</label></td>
+                <td>
+                    <select class="form-control input-md" id="wind" th:field="*{wind}">
+                        <option th:each="option: ${winds}"
+                                th:value="${option.id}">[[${option.name}]]
+                        </option>
+                    </select>
+                </td>
+                <td><span th:errors="*{wind}"
+                          th:if="${#fields.hasErrors('wind')}"></span></td>
+            </tr>
+            <tr>
                 <td>User :</td>
                 <td><label th:text="${myuser.firstName} +' ' +${myuser.lastName}"></label></td>
                 <td><input th:field="*{user}"  th:value="${myuser}"  type="hidden">

@@ -47,7 +47,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(@NotEmpty String name, @NotEmpty String color, @NotEmpty String material, @NotEmpty String size, String picturePath, @NotEmpty String description, User user, Category category, Climate climate, Occasion occasion) {
+    public Item(@NotEmpty String name, @NotEmpty String color, @NotEmpty String material, @NotEmpty String size, String picturePath, @NotEmpty String description, User user, Category category, Climate climate, Occasion occasion, Wind wind) {
         this.name = name;
         this.color = color;
         this.material = material;
@@ -58,7 +58,9 @@ public class Item {
         this.category = category;
         this.climate = climate;
         this.occasion = occasion;
+        this.wind = wind;
     }
+
 
     public long getId() {
         return id;

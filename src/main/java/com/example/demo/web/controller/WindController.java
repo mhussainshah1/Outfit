@@ -59,9 +59,10 @@ public class WindController {
             for (ObjectError e : result.getAllErrors()){
                 System.out.println(e);
             }
+            findAll(model);
             return "wind";
         }
-        if(windRepository.findByName(wind.getName()) != null){
+        if(windRepository.findByName(wind.getName().toLowerCase()) != null){
             model.addAttribute("message", "You already have a wind called " +
                     wind.getName() + "!" + " Try something else.");
             return "wind";
