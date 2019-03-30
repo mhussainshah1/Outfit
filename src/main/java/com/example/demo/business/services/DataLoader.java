@@ -28,6 +28,9 @@ public class DataLoader implements CommandLineRunner {
     OccasionRepository occasionRepository;
 
     @Autowired
+    WindRepository  windRepository;
+
+    @Autowired
     InvalidPasswordRepository invalidPasswordRepository;
 
     @Autowired
@@ -69,10 +72,10 @@ public class DataLoader implements CommandLineRunner {
         admin.setPassword(userService.encode(admin.getPassword()));
         userService.saveUser(admin);
 
+        //Category
         categoryRepository.save(new Category("Top"));
         Category top = categoryRepository.findByName("Top");
 
-        //Category
         categoryRepository.save(new Category("Bottom"));
         Category bottom = categoryRepository.findByName("Bottom");
 
@@ -113,6 +116,19 @@ public class DataLoader implements CommandLineRunner {
 
         occasionRepository.save(new Occasion("Dinner"));
         Occasion dinner = occasionRepository.findByName("Dinner");
+
+        //Wind
+        windRepository.save(new Wind("Light"));
+        Wind light = windRepository.findByName("Light");
+
+        windRepository.save(new Wind("Moderate "));
+        Wind moderate = windRepository.findByName("Moderate");
+
+        windRepository.save(new Wind("Heavy"));
+        Wind heavy = windRepository.findByName("Heavy");
+
+        windRepository.save(new Wind("Periodic"));
+        Wind periodic = windRepository.findByName("Periodic");
 
        /* //moe items
         itemRepository.save(new Item("shirt",
@@ -164,15 +180,10 @@ public class DataLoader implements CommandLineRunner {
                         shoe,
                         hot,
                         casual));
-        Item sandle = itemRepository.findByName("sandle");
+        Item sandle = itemRepository.findByName("sandle");*/
 
-        //tolani item
-
-        //dag item
-
-        //nan item*/
         //moe items
-        itemRepository.save(new Item("shirt",
+        itemRepository.save(new Item("Homeboy shirt",
                 "grey",
                 "cotton",
                 "small",
@@ -182,7 +193,7 @@ public class DataLoader implements CommandLineRunner {
                 top,
                 cold,
                 dinner));
-        Item Homeboyshirt = itemRepository.findByName("Homeboyshirt");
+        Item Homeboyshirt = itemRepository.findByName("Homeboy shirt");
 
         itemRepository.save(new Item("cargo pants",
                 "khaki",
@@ -257,10 +268,10 @@ public class DataLoader implements CommandLineRunner {
                         jacket,
                         mild,
                         casual));
-        Item bluewhiteJacket = itemRepository.findByName("Blue & White jacket");
+        Item bluewhiteJacket = itemRepository.findByName("White and Blue Windbreaker jacket");
 
         itemRepository.save(
-                new Item("NikeSneakers",
+                new Item("Nike Sneakers",
                         "Black and Green",
                         "leather",
                         "US 10",
@@ -270,7 +281,7 @@ public class DataLoader implements CommandLineRunner {
                         shoe,
                         hot,
                         casual));
-        Item sneakers = itemRepository.findByName("Nike_Sneakers");
+        Item sneakers = itemRepository.findByName("Nike Sneakers");
 
         //nan item
         itemRepository.save(
@@ -284,7 +295,7 @@ public class DataLoader implements CommandLineRunner {
                         top,
                         cold,
                         dinner));
-        Item pishirt = itemRepository.findByName("shirt");
+        Item pishirt = itemRepository.findByName("short sleeve Shirt");
 
         itemRepository.save(
                 new Item("khaki shorts",
@@ -297,7 +308,7 @@ public class DataLoader implements CommandLineRunner {
                         bottom,
                         cold,
                         casual));
-        Item khakishorts = itemRepository.findByName("jeans");
+        Item khakishorts = itemRepository.findByName("khaki shorts");
 
         itemRepository.save(
                 new Item("Green and Grey Windbreaker jacket",
@@ -310,7 +321,7 @@ public class DataLoader implements CommandLineRunner {
                         jacket,
                         mild,
                         casual));
-        Item greengreyJacket = itemRepository.findByName("Green & Grey jacket");
+        Item greengreyJacket = itemRepository.findByName("Green and Grey Windbreaker jacket");
 
         itemRepository.save(
                 new Item("All weather sandles",

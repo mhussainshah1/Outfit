@@ -1,19 +1,16 @@
 package com.example.demo.business.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
-
-//import javax.validation.constraints.NotEmpty;
-
 
 @Entity
 public class Wind {
     @Id
-
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-
+    @NotEmpty
     @Column(unique = true)
     private String name;
 
@@ -23,8 +20,8 @@ public class Wind {
     public Wind() {
     }
 
-    public Wind(String name) {
-
+    public Wind(@NotEmpty String name) {
+        this.name = name;
     }
 
     public long getId() {
