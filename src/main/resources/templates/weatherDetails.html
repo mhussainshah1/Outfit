@@ -17,16 +17,21 @@
             <th>City</th>
             <th>Latitude</th>
             <th>Longitude</th>
+            <th>Wind Speed</th>
+            <th>Wind Direction</th>
             <th>Precipitation</th>
             <th>Temp</th>
             <th>Min Temp</th>
             <th>Max Temp</th>
             <th>Weather</th>
+
         </tr>
         <tr th:each="weather ,iterStat: ${weatherData}" >
             <td><span th:text="${weather.name}"></span></td>
             <td><span th:text="${weather.lat}"></span></td>
             <td><span th:text="${weather.lon}"></span></td>
+            <td><span th:text="${weather.speed}"></span></td>
+            <td><span th:text="${weather.degree}"></span></td>
             <td><span th:text="${weather.weatherMain}"></span></td>
             <td><span th:text="${#numbers.formatDecimal(weather.temp,2,1)}"></span></td>
             <td><span th:text="${#numbers.formatDecimal(weather.tempMin,2,1)}"></span></td>
@@ -53,7 +58,6 @@
             <th sec:authorize="isAuthenticated()">Actions</th>
         </tr>
         </thead>
-
         <!--enhanced for loop-->
         <tr th:each="item : ${items}">
             <td sec:authorize="isAuthenticated()">
@@ -74,7 +78,6 @@
                 <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> -
                 <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
             </td>
-
             <td sec:authorize="hasAuthority('ADMIN')">
                 <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> -<!-- Update -->
                 <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a><!-- Delete -->

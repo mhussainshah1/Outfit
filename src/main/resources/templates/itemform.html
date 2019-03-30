@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="base::header">
     <title>Item Form</title>
 </head>
+
 <body>
 <div th:replace="base::nav"></div>
 <div class="container-float" align="center">
@@ -75,6 +76,17 @@
                 <td><label for="occasion">Occasion:</label></td>
                 <td><select class="form-control input-md" id="occasion" th:field="*{occasion}">
                     <option th:each="option: ${occasions}"
+                            th:value="${option.id}">[[${option.name}]]
+                    </option>
+                </select>
+                </td>
+                <td><span th:errors="*{occasion}"
+                          th:if="${#fields.hasErrors('occasion')}"></span></td>
+            </tr>
+            <tr>
+                <td><label for="occasion">Windy:</label></td>
+                <td><select class="form-control input-md" id="wind" th:field="*{wind}">
+                    <option th:each="option: ${wind}"
                             th:value="${option.id}">[[${option.name}]]
                     </option>
                 </select>

@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"
-      xmlns:th="https://www.thymeleaf.org"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="base::header">
@@ -50,6 +50,10 @@
         <tr>
             <td>Climate:</td>
             <td><span th:text="${item.climate.name}"></span><br/></td>
+        </tr>
+        <tr>
+            <td>Wind:</td>
+            <td><span th:text="${item.wind.name}"></span><br/></td>
         </tr>
         <tr sec:authorize="isAuthenticated()">
             <td>User:</td>
