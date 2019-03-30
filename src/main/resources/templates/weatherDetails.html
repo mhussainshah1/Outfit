@@ -6,7 +6,7 @@
 <head th:replace="base::header">
     <title>Weather Data</title>
 </head>
-<body background="https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/SZMXphYEipbdr8zi/beautiful-clouds-close-up-weather-background_skp3rq4r__F0000.png">
+<body>
 <div th:replace="base::nav"></div>
 
 <div align="center" class="div1">
@@ -28,8 +28,8 @@
             <td><span th:text="${weather.name}"></span></td>
             <td><span th:text="${weather.lat}"></span></td>
             <td><span th:text="${weather.lon}"></span></td>
-            <td><span th:text="${weather.speed}"></span></td>
-            <td><span th:text="${weather.degree}"></span></td>
+            <td><span th:text="${weather.windSpeed}"></span></td>
+            <td><span th:text="${weather.windDirection}"></span></td>
             <td><span th:text="${weather.weatherMain}"></span></td>
             <td><span th:text="${#numbers.formatDecimal(weather.temp,2,1)}"></span></td>
             <td><span th:text="${#numbers.formatDecimal(weather.tempMin,2,1)}"></span></td>

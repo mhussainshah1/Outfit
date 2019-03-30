@@ -3,10 +3,8 @@ package com.example.demo.web.controller;
 import com.example.demo.business.entities.Category;
 import com.example.demo.business.entities.Climate;
 import com.example.demo.business.entities.Item;
-import com.example.demo.business.entities.repositories.CategoryRepository;
-import com.example.demo.business.entities.repositories.ClimateRepository;
-import com.example.demo.business.entities.repositories.ItemRepository;
-import com.example.demo.business.entities.repositories.OccasionRepository;
+import com.example.demo.business.entities.Wind;
+import com.example.demo.business.entities.repositories.*;
 import com.example.demo.business.services.FormAttributes;
 import com.example.demo.business.services.Weather;
 import com.example.demo.business.services.WeatherService;
@@ -40,6 +38,9 @@ public class WeatherController {
     OccasionRepository occasionRepository;
 
     @Autowired
+    WindRepository windRepository;
+
+    @Autowired
     ClimateRepository climateRepository;
 
 
@@ -47,6 +48,7 @@ public class WeatherController {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("climates", climateRepository.findAll());
         model.addAttribute("occasions", occasionRepository.findAll());
+        model.addAttribute("winds", windRepository.findAll());
     }
 
     @GetMapping("/weather")
@@ -59,30 +61,8 @@ public class WeatherController {
     public String getWeather(Model model, @ModelAttribute FormAttributes formAttributes)
             throws IOException {
         findAll(model);
-
         Weather weather = weatherService.getWeather(formAttributes);
-        String climate = getClimate(weather.getTemp());
-//        long id = climateRepository.findByName(climate).getId();
-
-        System.out.println(climate + " " + weather.getTemp() );
-
-        Iterable<Category> categories =categoryRepository.findAll();
-        HashSet<Item> outfit = new HashSet<>();
-        Climate climateobj =climateRepository.findByName(climate);
-
-        for(Category category : categories){
-            //pick one item from the below list
-            List<Item> list = itemRepository.findAllByCategoryAndClimate(category,climateobj);
-            System.out.println(list);
-            if(!list.isEmpty()){
-                int randomid = (int) (Math.random()*list.size());
-                outfit.add(list.get(randomid));
-            }
-        }
-        System.out.println(outfit);
-
-//        Iterable<Item> i = itemRepository.findAllByCategoryAndClimate(,);
-        model.addAttribute("items", outfit);
+        model.addAttribute("items", getOutfit(weather));
         model.addAttribute("weatherData", weather);
         return "weatherDetails";
     }
@@ -99,62 +79,42 @@ public class WeatherController {
         }
         return climate;
     }
-    public Set<Item> getOutfit() {
-        HashSet<Item> outfit = new HashSet<>();
-        outfit.add(itemRepository.findByName(""));
-        outfit.add(itemRepository.findByName(""));
-        outfit.add(itemRepository.findByName(""));
-        outfit.add(itemRepository.findByName(""));
 
-        // Initialization of random numbers specific to burrito options
-
-        Random a = new Random();
-        Random b = new Random();
-        Random j = new Random();
-        Random s = new Random();
-        Random t = new Random();
-
-        //String array of Options
-        String[] tops = {"White Short-sleeve T-Shirt, ", "Grey Short-sleeve Sports Shirt, ", "Blue T-Shirt, ", "Blue long Sleeve T-shirt, ", "Blue Short-sleeve Science Shirt, ", "Grey Long Sleeve, "};
-        String[] bottoms = {"Cargo khaki, ", "Jeans Blue, ", "Khaki Brown, ", "Snow Gray, ", "Shorts Blue, ", "Shorts Grey,", "Shorts Khaki"};
-        String[] shoes = {"Black Tan Timberland", "Grey long Socks", "Nike-Green-Winter-Shoes", "Winter-Socks-Grey-White", "Winter-Socks-Grey-Yellow", "Nhan's All-weather Sandals", "Warm Midhigh Socks"};
-        String[] jackets = {"Black Dark-Grey Jacket", "Black Grey Jacket", "Black Light-Grey Jacket", "Black Jacket", "Green Grey Jacket", "Northface Black Jacket", "Black Nike Windbreaker", "White Navy-Blue Windbreaker Columbia"};
-        String[] accessories = {"Winter", "Spring", "Summer", "Fall"};
-
-        // Int list of bounds equal to the length of the attribute list to burrito options
-
-        int alength = accessories.length;
-        int blength = bottoms.length;
-        int jlength = jackets.length;
-        int slength = shoes.length;
-        int tlength = tops.length;
-
-        // Int list of random variables specific to burrito options
-        int ax = a.nextInt(alength + 2);
-        int bx = b.nextInt(blength + 3);
-        int jx = j.nextInt(jlength + 2);
-        int sx = s.nextInt(slength + 2);
-        int tx = t.nextInt(tlength + 2);
-
-// if (item.temp = hot){
-
-
-// }
-        for (int i = 1; i < 8; i++) {
-            // int j = i + 1;
-            System.out.println();
-            System.out.print("Outfit " + i + ": ");
-            System.out.print(tops[t.nextInt(6)]);
-            System.out.print(bottoms[b.nextInt(7)] + " ");
-            System.out.print(shoes[s.nextInt(3)] + ", ");
-            System.out.print(jackets[j.nextInt(8)] + ", ");
-            System.out.print(accessories[a.nextInt(4)] + " ");
-            System.out.println();
-//                System.out.println();
-            /* Tried to print an Array of Arrays, didn't like that one, next I'd attempt an array list of arrays, but the above code will do*/
-            // System.out.println("Burrito "+ i + ": "+ rice[rx] +" "+ meat[mx]+"," + beans[bx]);
+    private String getWind(double windSpeed){
+        String wind;
+        long speed = Math.round(windSpeed);
+        if(speed < 10 ){
+            wind = "Light";
+        } else if(speed >= 10 && speed < 38){
+            wind = "Moderate";
+        } else {
+            wind = "High";
         }
+        return wind;
+    }
 
+    public Set<Item> getOutfit(Weather weather) {
+
+        Iterable<Category> categories =categoryRepository.findAll();
+
+        String climate = getClimate(weather.getTemp());
+        Climate climateobj = climateRepository.findByName(climate);
+
+        String wind = getWind(weather.getWindSpeed());
+        Wind windobj = windRepository.findByName(wind);
+
+        System.out.println(climate + " " + weather.getTemp());
+        System.out.println(wind + " " + weather.getWindSpeed());
+
+        Set<Item> outfit = new HashSet<>();
+        for(Category category : categories){
+            //pick one item from the below list
+            List<Item> list = itemRepository.findAllByCategoryAndClimate(category,climateobj);
+            if(!list.isEmpty()){
+                int randomid = (int) (Math.random()*list.size());
+                outfit.add(list.get(randomid));
+            }
+        }
         return outfit;
     }
 }

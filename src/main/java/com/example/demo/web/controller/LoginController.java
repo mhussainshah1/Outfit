@@ -1,10 +1,7 @@
 package com.example.demo.web.controller;
 
 import com.example.demo.business.entities.User;
-import com.example.demo.business.entities.repositories.CategoryRepository;
-import com.example.demo.business.entities.repositories.ClimateRepository;
-import com.example.demo.business.entities.repositories.OccasionRepository;
-import com.example.demo.business.entities.repositories.UserRepository;
+import com.example.demo.business.entities.repositories.*;
 import com.example.demo.business.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -31,6 +28,8 @@ public class LoginController {
 
     @Autowired
     OccasionRepository occasionRepository;
+    @Autowired
+    WindRepository windRepository;
 
     @Autowired
     UserService userService;
@@ -39,6 +38,7 @@ public class LoginController {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("climates", climateRepository.findAll());
         model.addAttribute("occasions", occasionRepository.findAll());
+        model.addAttribute("winds", windRepository.findAll());
     }
 
     @RequestMapping("/login")

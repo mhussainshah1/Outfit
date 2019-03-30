@@ -20,7 +20,6 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     ItemRepository itemRepository;
 
-
     @Autowired
     ClimateRepository climateRepository;
 
