@@ -40,7 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/css/**", "/js/**", "/img/**",
                         "/detail/{id}", "/detailcategory/{id}",
                         "/detailclimate/{id}","/detailoccasion/{id}",
-                        "/about").permitAll()
+                        "/detailwind/{id}","/about").permitAll()
 //                .access("hasAnyAuthority('USER','ADMIN')")
                 .antMatchers("/admin").access("hasAuthority('ADMIN')")
                 .anyRequest().authenticated()
