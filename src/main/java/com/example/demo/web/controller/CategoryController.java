@@ -59,13 +59,18 @@ public class CategoryController {
             for (ObjectError e : result.getAllErrors()){
                 System.out.println(e);
             }
+            findAll(model);
             return "category";
         }
         if(categoryRepository.findByName(category.getName()) != null){
+            //String namedb = categoryRepository.findByName(category.getName()).getName();
+
             model.addAttribute("message", "You already have a category called " +
                     category.getName() + "!" + " Try something else.");
+            findAll(model);
             return "category";
         }
+        //category.setName(category.getName().toLowerCase());
         categoryRepository.save(category);
         return "redirect:/";
     }

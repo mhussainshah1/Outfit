@@ -95,11 +95,14 @@ public class HomeController {
     @PostMapping("/process")
     public String processForm(@Valid @ModelAttribute("item") Item item,
                               BindingResult result,
-                              @RequestParam("file") MultipartFile file) {
+                              @RequestParam("file") MultipartFile file,
+                              Model model) {
         if (result.hasErrors()) {
             for (ObjectError e : result.getAllErrors()) {
                 System.out.println(e);
             }
+            findAll(model);
+            model.addAttribute("myuser", userService.getUser());
             return "itemform";
         }
 
@@ -110,6 +113,8 @@ public class HomeController {
         }
 
         if (file.isEmpty()) {
+            findAll(model);
+            model.addAttribute("myuser", userService.getUser());
             return "itemform";
         }
         Map uploadResult;
@@ -118,6 +123,8 @@ public class HomeController {
                     file.getBytes(), ObjectUtils.asMap("resourcetype", "auto"));
         } catch (IOException e) {
             e.printStackTrace();
+            findAll(model);
+            model.addAttribute("myuser", userService.getUser());
             return "redirect:/itemform";
         }
         String url = uploadResult.get("url").toString();

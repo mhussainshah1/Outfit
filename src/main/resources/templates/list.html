@@ -59,13 +59,18 @@
             <td th:text="${item.user.username}"></td>
             <td th:text="${item.climate.name}"></td>
             <td th:text="${item.occasion.name}"></td>
-            <td th:if="${user_id == item.user.id}">
-                <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
-                <a th:href="@{/delete/{id}(id=${item.id})}">delete</a>
-            </td>
-            <td sec:authorize="hasAuthority('ADMIN')">
-                <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -<!-- Update -->
-                <a th:href="@{/delete/{id}(id=${item.id})}">delete</a><!-- Delete -->
+
+            <td sec:authorize="isAuthenticated()">
+                <div sec:authorize="hasAuthority('USER')">
+                    <span th:if="${user_id == item.user.id}">
+                        <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
+                        <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
+                    </span>
+                </div>
+                <div sec:authorize="hasAuthority('ADMIN')">
+                    <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
+                    <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
+                </div>
             </td>
         </tr>
     </table>
