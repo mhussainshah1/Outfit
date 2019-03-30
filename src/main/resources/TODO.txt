@@ -19,3 +19,9 @@ packing list
 itemform.html
 color popup for color
 search function
+
+ASK DAVE or Melisa!!!!!
+-----------------------
+Can user need to delete own category? YES
+
+Can user need only to see his own data? YES

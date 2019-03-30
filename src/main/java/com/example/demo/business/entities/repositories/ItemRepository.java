@@ -14,5 +14,4 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
     Item findByName(String name);
     Iterable<Item> findAllByWind_Id(Long id);
     List<Item> findAllByCategoryAndClimate(Category category, Climate climate);
-
 }

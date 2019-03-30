@@ -6,9 +6,6 @@ import java.util.Set;
 
 @Entity
 public class Category {
-
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public Set<Item> items;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -16,6 +13,9 @@ public class Category {
     @NotEmpty
     @Column(unique = true)
     private String name;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    public Set<Item> items;
 
     public Category() {
     }

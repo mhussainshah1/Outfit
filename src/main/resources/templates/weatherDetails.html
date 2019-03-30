@@ -9,10 +9,9 @@
 <body background="https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/SZMXphYEipbdr8zi/beautiful-clouds-close-up-weather-background_skp3rq4r__F0000.png">
 <div th:replace="base::nav"></div>
 
-
 <div align="center" class="div1">
     <h2>Weather Data</h2>
-    <table id="table" style="width:100%">
+    <table class="table table-striped" style="width:100%" id="table">
         <tr>
             <th>City</th>
             <th>Latitude</th>
@@ -36,7 +35,54 @@
             <td><span th:text="${#numbers.formatDecimal(weather.tempMin,2,1)}"></span></td>
             <td><span th:text="${#numbers.formatDecimal(weather.tempMax,2,1)}"></span></td>
             <td><span th:text="${weather.weatherDescription}"></span></td>
+        </tr>
 
+
+    </table>
+
+    <table class="table table-striped" style="width:100%">
+        <thead class="thead-light">
+        <tr>
+            <th sec:authorize="isAuthenticated()">Select</th>
+            <th>Category</th>
+            <th>Title</th>
+            <th>Color</th>
+            <th>Material</th>
+            <th>Size</th>
+            <th>Picture</th>
+            <th>Discription</th>
+            <th>User</th>
+            <th>Climate</th>
+            <th>Occasion</th>
+            <th sec:authorize="isAuthenticated()">Actions</th>
+        </tr>
+        </thead>
+
+        <!--enhanced for loop-->
+        <tr th:each="item : ${items}">
+            <td sec:authorize="isAuthenticated()">
+                <input name="check" th:value="${item.id}" type="checkbox"/>
+            </td>
+            <td th:text="${item.category.name}"></td>
+            <td><a th:href="@{/detail/{id}(id=${item.id})}">[[${item.name}]]</a></td>
+            <td th:text="${item.color}"></td>
+            <td th:text="${item.material}"></td>
+            <td th:text="${item.size}"></td>
+            <td><img alt="Picture" th:src="${item.picturePath}"></td>
+            <td th:text="${item.description}"></td>
+            <td th:text="${item.user.username}"></td>
+            <td th:text="${item.climate.name}"></td>
+            <td th:text="${item.occasion.name}"></td>
+
+            <td th:if="${user_id == item.user.id}">
+                <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> -
+                <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
+            </td>
+
+            <td sec:authorize="hasAuthority('ADMIN')">
+                <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> -<!-- Update -->
+                <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a><!-- Delete -->
+            </td>
         </tr>
     </table>
     <table class="table table-striped" style="width:100%">
