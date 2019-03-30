@@ -40,6 +40,7 @@ public class WindController {
     public void findAll(Model model){
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("climates", climateRepository.findAll());
+        model.addAttribute("occasions", occasionRepository.findAll());
         model.addAttribute("winds", windRepository.findAll());
     }
 

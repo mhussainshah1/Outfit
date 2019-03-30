@@ -65,9 +65,10 @@ public class HomeController {
         return "list";
     }
 
-    //Users with Admin role can view this page
     @RequestMapping("/admin")
-    public String admin() {
+    public String admin(Model model) {
+        findAll(model);
+        model.addAttribute("users",userRepository.findAll());
         return "admin";
     }
 

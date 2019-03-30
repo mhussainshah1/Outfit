@@ -17,3 +17,21 @@
     color: red;
     font-style: Italic;
 }
+
+/*
+!* makes main-menu open on hover *!
+.menu-item:hover > .dropdown-menu {
+    display: block;
+}
+
+!* makes sub-menu S open on hover *!
+.submenu-item:hover > .dropdown-menu {
+    display: block;
+}
+
+.nav-item:hover > .dropdown-menu {
+    display: block;
+}
+.dropdown-menu:hover > .dropdown-menu {
+    display: block;
+}*/

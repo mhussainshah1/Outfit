@@ -44,7 +44,6 @@
                 <th sec:authorize="isAuthenticated()">Actions</th>
             </tr>
         </thead>
-
         <!--enhanced for loop-->
         <tr th:each="item : ${items}">
             <td sec:authorize="isAuthenticated()">
@@ -61,12 +60,12 @@
             <td th:text="${item.climate.name}"></td>
             <td th:text="${item.occasion.name}"></td>
             <td th:if="${user_id == item.user.id}">
-                <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> -
-                <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
+                <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
+                <a th:href="@{/delete/{id}(id=${item.id})}">delete</a>
             </td>
             <td sec:authorize="hasAuthority('ADMIN')">
-                <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> -<!-- Update -->
-                <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a><!-- Delete -->
+                <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -<!-- Update -->
+                <a th:href="@{/delete/{id}(id=${item.id})}">delete</a><!-- Delete -->
             </td>
         </tr>
     </table>

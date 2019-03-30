@@ -11,6 +11,34 @@
 <body>
 <div th:replace="base::nav"></div>
 
+<nav class="navbar-expand-lg bg-dark navbar-dark" id="navbarResponsive">
+    <ul class="navbar-nav ml-auto">
+
+        <li class="menu-item nav-item">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                main menu
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">P</a>
+                <a class="dropdown-item" href="#">Q</a>
+                <a class="dropdown-item" href="#">R</a>
+                <div class="submenu-item dropright">
+                    <a class="dropdown-item dropdown-toggle dropright" href="#" id="navbarDropdownSubMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        S
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownSubMenuLink">
+                        <a class="dropdown-item" href="#">T</a>
+                        <a class="dropdown-item" href="#">U</a>
+                        <a class="dropdown-item" href="#">V</a>
+                        <a class="dropdown-item" href="#">W</a>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        <button type="submit" onclick="location.href='/M';" class="btn btn-default">R</button>
+    </ul>
+</nav>
 <div class="container">
     <!--insert webpage content here-->
 

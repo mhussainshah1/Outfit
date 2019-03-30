@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="base::header">
+
     <title>admin</title>
 </head>
+
 <body>
-<h2>Admin Page</h2>
+<div th:replace="base::nav"></div>
+
+<div class="container">
+    <div class="jumbotron lead">
+        <h2 align="center">Admin</h2>
+    </div>
+    <table class="table table-striped" style="width:100%">
+        <thead class="thead-light">
+            <tr>
+                <th>User</th>
+                <th>User Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tr th:each="user :${users}">
+            <td th:text="${user.firstName} + ' ' + ${user.lastName}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text = "${user.email}"></td>
+        </tr>
+    </table>
+</div>
+
+<div th:replace="base::footer"></div>
 </body>
 </html>

@@ -69,7 +69,7 @@ public class DataLoader implements CommandLineRunner {
 
         User admin = new User("admin@admin.com", "password", "Admin", "User", true, "admin");
         admin.setPassword(userService.encode(admin.getPassword()));
-        userService.saveUser(admin);
+        userService.saveAdmin(admin);
 
         //Category
         categoryRepository.save(new Category("Top"));
@@ -310,7 +310,7 @@ public class DataLoader implements CommandLineRunner {
         Item khakishorts = itemRepository.findByName("khaki shorts");
 
         itemRepository.save(
-                new Item("Green and Grey Windbreaker jacket",
+                new Item("Green and Grey Wind breaker jacket",
                         "Green Grey",
                         "nylon",
                         "large",
@@ -320,7 +320,7 @@ public class DataLoader implements CommandLineRunner {
                         jacket,
                         mild,
                         casual));
-        Item greengreyJacket = itemRepository.findByName("Green and Grey Windbreaker jacket");
+        Item greengreyJacket = itemRepository.findByName("Green and Grey Wind breaker jacket");
 
         itemRepository.save(
                 new Item("All weather sandles",
