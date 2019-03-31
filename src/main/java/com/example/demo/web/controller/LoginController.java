@@ -1,5 +1,6 @@
 package com.example.demo.web.controller;
 
+import com.example.demo.business.entities.Item;
 import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.*;
 import com.example.demo.business.services.UserService;
@@ -23,6 +24,9 @@ public class LoginController {
 
     @Autowired
     CategoryRepository categoryRepository;
+
+    @Autowired
+    ItemRepository itemRepository;
 
     @Autowired
     ClimateRepository climateRepository;
@@ -88,7 +92,12 @@ public class LoginController {
             return "register";
         } else {
             boolean isUser = userRepository.findById(user.getId()).isPresent();
-            System.out.println(isUser);
+            System.out.println(isUser + "if comes false MEANS NEW USER");
+            if(!isUser){
+                user.setPassword(userService.encode(pw));
+                userService.saveUser(user);
+            }
+
            /* if (isUser) {//For Update Registration
                 Iterable<Pet> pets = petRepository.findAllByUsers(user);
                 for (Pet pet : pets) {
@@ -97,6 +106,11 @@ public class LoginController {
                 }
             }*/
             if (userService.isUser()) {
+                Iterable<Item> items = itemRepository.findAllByUser(user);
+                for (Item item : items) {
+                    itemRepository.save(item);
+                    user.getItems().add(item);
+                }
                 user.setPassword(userService.encode(pw));
                 userService.saveUser(user);
             }
