@@ -14,7 +14,7 @@ public class Wind {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "wind", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "wind")
     private Set<Item> item;
 
     public Wind() {

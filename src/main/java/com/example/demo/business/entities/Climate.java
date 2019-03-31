@@ -16,7 +16,7 @@ public class Climate {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "climate", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "climate")
     private Set<Item> item;
 
     public Climate() {

@@ -3,6 +3,7 @@ package com.example.demo.web.controller;
 import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.*;
 import com.example.demo.business.services.UserService;
+import com.example.demo.business.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -47,6 +48,16 @@ public class LoginController {
         return "login";
     }
 
+    @RequestMapping("/profile")
+    public String getProfile(Principal principal, Model model) {
+        findAll(model);
+        if (userService.getUser() != null) {
+            model.addAttribute("user", userService.getUser());
+            model.addAttribute("HASH", MD5Util.md5Hex(userService.getUser().getEmail()));
+        }
+        return "profile";
+    }
+
     @PostMapping("/forgot-password")
     public String forgetPassword() {
         return "/";
@@ -66,8 +77,10 @@ public class LoginController {
     }
 
     @PostMapping("/register")
-    public String processRegistrationPage(@Valid @ModelAttribute("user") User user, BindingResult result, Model model, @RequestParam("password") String pw) {
-        System.out.println("pw: " + pw);
+    public String processRegistrationPage(@Valid @ModelAttribute("user") User user,
+                                          BindingResult result, Model model,
+                                          @RequestParam("password") String pw) {
+        System.out.println("password: " + pw);
         if (result.hasErrors()) {
             findAll(model);
             model.addAttribute("user", user);

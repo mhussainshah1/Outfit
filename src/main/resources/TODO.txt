@@ -1,7 +1,4 @@
 TODO
-Climate.html
-Occasion.html
-
 DataLoader.java
 ---------------
 Each will add their data in the data loader. put local path for picture instead of cloudinary.
@@ -17,11 +14,41 @@ delete by checkbox
 packing list
 
 itemform.html
+------------
 color popup for color
 search function
 
 ASK DAVE or Melisa!!!!!
 -----------------------
 Can user need to delete own category? YES
-
 Can user need only to see his own data? YES
+
+
+download new css and javascript from getbootstrap.com
+
+PROBLEMS:
+-------
+ADD
+---
+saving same name with different ignore case.
+
+
+READ
+-----
+user need to see only their own data.
+email and password comparion on form through javascript before submission.
+implement search function
+
+UPDATE
+------
+add another user instead to update.
+forget password not implemented
+
+
+DELETE
+------
+need to implement delete all
+
+
+
+

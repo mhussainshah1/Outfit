@@ -72,18 +72,6 @@ public class HomeController {
         return "admin";
     }
 
-    //AUXILLARY FUNCTION!!!
-    //Use the below code INSIDE METHOD to pass user into the view
-    @RequestMapping("/secure")
-    public String secure(Principal principal, Model model) {
-        User myuser = ((CustomerUserDetails)
-                ((UsernamePasswordAuthenticationToken) principal)
-                        .getPrincipal())
-                .getUser();
-        model.addAttribute("myuser", myuser);
-        return "secure";
-    }
-
     @GetMapping("/add")
     public String itemForm(Model model) {
         findAll(model);
@@ -161,19 +149,21 @@ public class HomeController {
         return "redirect:/";
     }
 
-    @RequestMapping("/profile")
-    public String getProfile(Principal principal, Model model) {
-        findAll(model);
-        if (userService.getUser() != null) {
-            model.addAttribute("user", userService.getUser());
-            model.addAttribute("HASH", MD5Util.md5Hex(userService.getUser().getEmail()));
-        }
-        return "profile";
-    }
-
     @GetMapping("/about")
     public String getAbout(Model model) {
         findAll(model);
         return "about";
+    }
+
+    //AUXILLARY FUNCTION!!!
+    //Use the below code INSIDE METHOD to pass user into the view
+    @RequestMapping("/secure")
+    public String secure(Principal principal, Model model) {
+        User myuser = ((CustomerUserDetails)
+                ((UsernamePasswordAuthenticationToken) principal)
+                        .getPrincipal())
+                .getUser();
+        model.addAttribute("myuser", myuser);
+        return "secure";
     }
 }

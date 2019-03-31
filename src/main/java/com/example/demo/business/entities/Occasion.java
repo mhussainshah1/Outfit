@@ -14,7 +14,7 @@ public class Occasion {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "occasion", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "occasion")
     private Set<Item> item;
 
     public Occasion() {
