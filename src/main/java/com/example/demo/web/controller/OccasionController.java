@@ -2,6 +2,7 @@ package com.example.demo.web.controller;
 
 import com.example.demo.business.entities.Category;
 import com.example.demo.business.entities.Occasion;
+import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.*;
 import com.example.demo.business.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,13 +73,20 @@ public class OccasionController {
 
     @RequestMapping("/detailoccasion/{id}")
     public String showOutfitsByOccasion(@PathVariable("id") long id, Model model){
-        //This function is accesible without user
-        if (userService.getUser() != null) {
-            model.addAttribute("user_id", userService.getUser().getId());
-        }
         findAll(model);
-        model.addAttribute("items", itemRepository.findAllByOccasion_Id(id));
+        User user = userService.getUser();
         model.addAttribute("occasion", occasionRepository.findById(id).get());
+
+        if( user!= null){//This is true with user
+            if(userService.isUser()){
+                model.addAttribute("items",itemRepository.findAllByOccasion_IdAndUser(id,user));
+            }
+            if(userService.isAdmin()){
+                model.addAttribute("items", itemRepository.findAllByOccasion_Id(id));
+            }
+        } else {
+            model.addAttribute("items", itemRepository.findAllByOccasion_Id(id));
+        }
         return "occasionlist";
     }
 

@@ -25,6 +25,7 @@
             <th>Picture</th>
             <th>Discription</th>
             <th>User</th>
+            <th>Wind</th>
             <th>Category</th>
             <th>Occasion</th>
             <th sec:authorize="isAuthenticated()">Actions</th>
@@ -43,15 +44,13 @@
             <td><img alt="Picture" th:src="${item.picturePath}"></td>
             <td th:text="${item.description}"></td>
             <td th:text="${item.user.username}"></td>
+            <td th:text="${item.wind.name}"></td>
             <td th:text="${item.category.name}"></td>
             <td th:text="${item.occasion.name}"></td>
-            <td th:if="${user_id == item.user.id}">
-                <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> -
+
+            <td sec:authorize="isAuthenticated()">
+                <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
                 <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
-            </td>
-            <td sec:authorize="hasAuthority('ADMIN')">
-                <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> -<!-- Update -->
-                <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a><!-- Delete -->
             </td>
         </tr>
     </table>

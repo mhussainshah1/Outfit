@@ -1,5 +1,7 @@
 package com.example.demo.business.entities;
 
+import com.example.demo.business.util.ValidPassword;
+
 import javax.persistence.*;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
@@ -20,7 +22,7 @@ public class User {
     private String email;
 
     @NotEmpty
-    //@ValidPassword
+    @ValidPassword
     @Column(name = "password")
     private String password;
 
@@ -43,7 +45,7 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Collection<Role> roles;
+    private Set<Role> roles;
 
     @OneToMany(mappedBy = "user")
     private Set<Item> items;
@@ -121,11 +123,11 @@ public class User {
         this.username = username;
     }
 
-    public Collection<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Collection<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 

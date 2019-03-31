@@ -3,6 +3,7 @@ package com.example.demo.business.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name = "ROLE_DATA")
@@ -16,7 +17,7 @@ public class Role {
     private String role;
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-    private Collection<User> user;
+    private Set<User> user;
 
     public Role() {
     }
@@ -41,11 +42,11 @@ public class Role {
         this.role = role;
     }
 
-    public Collection<User> getUser() {
+    public Set<User> getUser() {
         return user;
     }
 
-    public void setUser(Collection<User> user) {
+    public void setUser(Set<User> user) {
         this.user = user;
     }
 }

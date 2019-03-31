@@ -78,7 +78,8 @@ public class LoginController {
 
     @PostMapping("/register")
     public String processRegistrationPage(@Valid @ModelAttribute("user") User user,
-                                          BindingResult result, Model model,
+                                          BindingResult result,
+                                          Model model,
                                           @RequestParam("password") String pw) {
         System.out.println("password: " + pw);
         if (result.hasErrors()) {
@@ -86,10 +87,8 @@ public class LoginController {
             model.addAttribute("user", user);
             return "register";
         } else {
-            user.setPassword(userService.encode(pw));
-            userService.saveUser(user);
-
             boolean isUser = userRepository.findById(user.getId()).isPresent();
+            System.out.println(isUser);
            /* if (isUser) {//For Update Registration
                 Iterable<Pet> pets = petRepository.findAllByUsers(user);
                 for (Pet pet : pets) {

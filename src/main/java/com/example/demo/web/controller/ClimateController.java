@@ -2,6 +2,7 @@ package com.example.demo.web.controller;
 
 import com.example.demo.business.entities.Category;
 import com.example.demo.business.entities.Climate;
+import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.*;
 import com.example.demo.business.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,12 +75,20 @@ public class ClimateController {
 
     @RequestMapping("/detailclimate/{id}")
     public String showOutfitsByClimate(@PathVariable("id") long id, Model model){
-        if (userService.getUser() != null) {
-            model.addAttribute("user_id", userService.getUser().getId());
-        }
         findAll(model);
-        model.addAttribute("items", itemRepository.findAllByClimate_Id(id));
+        User user = userService.getUser();
         model.addAttribute("climate", climateRepository.findById(id).get());
+
+        if( user!= null){//This is true with user
+            if(userService.isUser()){
+                model.addAttribute("items",itemRepository.findAllByClimate_IdAndUser(id,user));
+            }
+            if(userService.isAdmin()){
+                model.addAttribute("items", itemRepository.findAllByClimate_Id(id));
+            }
+        } else {
+            model.addAttribute("items", itemRepository.findAllByClimate_Id(id));
+        }
         return "climatelist";
     }
 

@@ -75,11 +75,11 @@ public class DataLoader implements CommandLineRunner {
         categoryRepository.save(new Category("Top"));
         Category top = categoryRepository.findByName("Top");
 
-        categoryRepository.save(new Category("Bottom"));
-        Category bottom = categoryRepository.findByName("Bottom");
-
         categoryRepository.save(new Category("Jacket"));
         Category jacket = categoryRepository.findByName("Jacket");
+
+        categoryRepository.save(new Category("Bottom"));
+        Category bottom = categoryRepository.findByName("Bottom");
 
         categoryRepository.save(new Category("Shoes"));
         Category shoe = categoryRepository.findByName("Shoes");
@@ -128,58 +128,6 @@ public class DataLoader implements CommandLineRunner {
 
         windRepository.save(new Wind("Periodic"));
         Wind periodic = windRepository.findByName("Periodic");
-
-       /* //moe items
-        itemRepository.save(new Item("shirt",
-                "white",
-                "cotton",
-                "small",
-                "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553756502/outfit/Tops/Cold/Grey_Long_Sleeve.jpg",
-                "men's wear",
-                moe,
-                top,
-                cold,
-                dinner));
-        Item shirt = itemRepository.findByName("shirt");
-
-        itemRepository.save(
-                new Item("pant",
-                        "white",
-                        "polyester",
-                        "medium",
-                        "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553756501/outfit/Bottom/Cold/Jeans_Blue_1.jpg",
-                        "men's wear",
-                        moe,
-                        bottom,
-                        cold,
-                        casual));
-        Item pant = itemRepository.findByName("pant");
-
-        itemRepository.save(
-                new Item("light jacket",
-                        "white",
-                        "leather",
-                        "large",
-                        "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553756501/outfit/Jackets/Warm/Black_Nike_WIndbreaker.jpg",
-                        "men's wear",
-                        moe,
-                        jacket,
-                        mild,
-                        casual));
-        Item lightJacket = itemRepository.findByName("light jacket");
-
-        itemRepository.save(
-                new Item("sandle",
-                        "white",
-                        "leather",
-                        "US 10",
-                        "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553756502/outfit/Shoes/Warm/Warm_Midhigh_Socks.jpg",
-                        "men's wear",
-                        moe,
-                        shoe,
-                        hot,
-                        casual));
-        Item sandle = itemRepository.findByName("sandle");*/
 
         //moe items
         itemRepository.save(new Item("Homeboy shirt",
@@ -351,7 +299,7 @@ public class DataLoader implements CommandLineRunner {
 
         //mel item
 
-       /* Item sandles = new Item("white",
+/*        Item sandles = new Item("white",
                 "leather",
                 "L",
                 "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553093077/java-bootcamp/nsgop8vivttqeqkkkynr.jpg",
@@ -363,5 +311,59 @@ public class DataLoader implements CommandLineRunner {
 
         cold.setItem(sandles);
         climateRepository.save(cold);*/
+
+
+/*//moe items
+        itemRepository.save(new Item("shirt",
+                "white",
+                "cotton",
+                "small",
+                "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553756502/outfit/Tops/Cold/Grey_Long_Sleeve.jpg",
+                "men's wear",
+                moe,
+                top,
+                cold,
+                dinner));
+        Item shirt = itemRepository.findByName("shirt");
+
+        itemRepository.save(
+                new Item("pant",
+                        "white",
+                        "polyester",
+                        "medium",
+                        "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553756501/outfit/Bottom/Cold/Jeans_Blue_1.jpg",
+                        "men's wear",
+                        moe,
+                        bottom,
+                        cold,
+                        casual));
+        Item pant = itemRepository.findByName("pant");
+
+        itemRepository.save(
+                new Item("light jacket",
+                        "white",
+                        "leather",
+                        "large",
+                        "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553756501/outfit/Jackets/Warm/Black_Nike_WIndbreaker.jpg",
+                        "men's wear",
+                        moe,
+                        jacket,
+                        mild,
+                        casual));
+        Item lightJacket = itemRepository.findByName("light jacket");
+
+        itemRepository.save(
+                new Item("sandle",
+                        "white",
+                        "leather",
+                        "US 10",
+                        "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553756502/outfit/Shoes/Warm/Warm_Midhigh_Socks.jpg",
+                        "men's wear",
+                        moe,
+                        shoe,
+                        hot,
+                        casual));
+        Item sandle = itemRepository.findByName("sandle");
+*/
     }
 }

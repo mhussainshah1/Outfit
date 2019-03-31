@@ -36,9 +36,8 @@
             <td><span th:text="${#numbers.formatDecimal(weather.tempMax,2,1)}"></span></td>
             <td><span th:text="${weather.weatherDescription}"></span></td>
         </tr>
-
-
     </table>
+
     <table class="table table-striped" style="width:100%">
         <thead class="thead-light">
         <tr>
@@ -73,15 +72,11 @@
             <td th:text="${item.climate.name}"></td>
             <td th:text="${item.occasion.name}"></td>
 
-            <td th:if="${user_id == item.user.id}">
-                <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> -
+            <td sec:authorize="isAuthenticated()">
+                <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
                 <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
             </td>
 
-            <td sec:authorize="hasAuthority('ADMIN')">
-                <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> -<!-- Update -->
-                <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a><!-- Delete -->
-            </td>
         </tr>
     </table>
 </div>

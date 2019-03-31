@@ -1,5 +1,6 @@
 package com.example.demo.web.controller;
 
+import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.Wind;
 import com.example.demo.business.entities.repositories.*;
 import com.example.demo.business.services.UserService;
@@ -73,13 +74,22 @@ public class WindController {
 
     @RequestMapping("/detailwind/{id}")
     public String showItemsByWind(@PathVariable("id") long id, Model model){
-        //This function is accesible without user
-        if (userService.getUser() != null) {
-            model.addAttribute("user_id", userService.getUser().getId());
-        }
         findAll(model);
-        model.addAttribute("items", itemRepository.findAllByWind_Id(id));
+        User user = userService.getUser();
         model.addAttribute("wind", windRepository.findById(id).get());
+
+        if( user!= null){//This is true with user
+            if(userService.isUser()){
+                model.addAttribute("items",itemRepository.findAllByWind_IdAndUser(id,user));
+            }
+            if(userService.isAdmin()){
+                model.addAttribute("items", itemRepository.findAllByWind_Id(id));
+            }
+        } else {
+            model.addAttribute("items", itemRepository.findAllByWind_Id(id));
+        }
+
+
         return "windlist";
     }
 

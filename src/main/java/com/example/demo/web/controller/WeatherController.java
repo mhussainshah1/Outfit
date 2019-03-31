@@ -1,11 +1,9 @@
 package com.example.demo.web.controller;
 
-import com.example.demo.business.entities.Category;
-import com.example.demo.business.entities.Climate;
-import com.example.demo.business.entities.Item;
-import com.example.demo.business.entities.Wind;
+import com.example.demo.business.entities.*;
 import com.example.demo.business.entities.repositories.*;
 import com.example.demo.business.services.FormAttributes;
+import com.example.demo.business.services.UserService;
 import com.example.demo.business.services.Weather;
 import com.example.demo.business.services.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +41,8 @@ public class WeatherController {
     @Autowired
     ClimateRepository climateRepository;
 
+    @Autowired
+    UserService userService;
 
     public void findAll(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
@@ -64,7 +64,7 @@ public class WeatherController {
         Weather weather = weatherService.getWeather(formAttributes);
         model.addAttribute("items", getOutfit(weather));
         model.addAttribute("weatherData", weather);
-        return "weatherDetails";
+        return "weatherlist";
     }
 
     private String getClimate(double temperature){
@@ -93,23 +93,33 @@ public class WeatherController {
         return wind;
     }
 
-    public Set<Item> getOutfit(Weather weather) {
+    private Set<Item> getOutfit(Weather weather) {
 
         Iterable<Category> categories =categoryRepository.findAll();
 
-        String climate = getClimate(weather.getTemp());
-        Climate climateobj = climateRepository.findByName(climate);
+        String climateString = getClimate(weather.getTemp());
+        Climate climate = climateRepository.findByName(climateString);
 
-        String wind = getWind(weather.getWindSpeed());
-        Wind windobj = windRepository.findByName(wind);
+        String windString = getWind(weather.getWindSpeed());
+        Wind wind = windRepository.findByName(windString);
 
-        System.out.println(climate + " " + weather.getTemp());
-        System.out.println(wind + " " + weather.getWindSpeed());
+        User user = userService.getUser();
+
+        System.out.println(climateString + " " + weather.getTemp());
+        System.out.println(windString + " " + weather.getWindSpeed());
 
         Set<Item> outfit = new HashSet<>();
         for(Category category : categories){
             //pick one item from the below list
-            List<Item> list = itemRepository.findAllByCategoryAndClimate(category,climateobj);
+
+            List<Item> list = new ArrayList<>();
+            if(userService.isUser()){
+                list = itemRepository.findAllByCategoryAndClimateAndUser(category,climate,user);
+            }
+            if(userService.isAdmin()){
+                list = itemRepository.findAllByCategoryAndClimate(category,climate);
+            }
+
             if(!list.isEmpty()){
                 int randomid = (int) (Math.random()*list.size());
                 outfit.add(list.get(randomid));

@@ -74,7 +74,7 @@ public class Weather implements Serializable {
     private double windSpeed;
 
     @JsonProperty("deg")
-    private int windDirection;
+    private Number windDirection;
 
     public Weather() {
     }
@@ -156,11 +156,11 @@ public class Weather implements Serializable {
         this.windSpeed = windSpeed;
     }
 
-    public int getWindDirection() {
+    public Number getWindDirection() {
         return windDirection;
     }
 
-    public void setWindDirection(int windDirection) {
+    public void setWindDirection(Number windDirection) {
         this.windDirection = windDirection;
     }
     @JsonProperty("coord")
@@ -191,7 +191,7 @@ public class Weather implements Serializable {
     @JsonProperty("wind")
     public void setWind(Map<String, Object> wind) {
         setWindSpeed((double) wind.get("speed"));
-        setWindDirection((int)wind.get("deg"));
+        setWindDirection((Number)wind.get("deg"));
     }
 
     public double getCelcius(double kelvin) {

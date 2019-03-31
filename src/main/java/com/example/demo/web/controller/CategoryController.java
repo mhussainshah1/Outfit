@@ -1,6 +1,7 @@
 package com.example.demo.web.controller;
 
 import com.example.demo.business.entities.Category;
+import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.*;
 import com.example.demo.business.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,13 +78,20 @@ public class CategoryController {
 
     @RequestMapping("/detailcategory/{id}")
     public String showOutfitsByCategory(@PathVariable("id") long id, Model model){
-        //This function is accesible without user
-        if (userService.getUser() != null) {
-            model.addAttribute("user_id", userService.getUser().getId());
-        }
         findAll(model);
-        model.addAttribute("items", itemRepository.findAllByCategory_Id(id));
-        model.addAttribute("category", categoryRepository.findById(id).get());
+        User user = userService.getUser();
+        model.addAttribute("category",categoryRepository.findById(id).get());
+
+        if( user!= null){//This is true with user
+            if(userService.isUser()){
+                model.addAttribute("items",itemRepository.findAllByCategory_IdAndUser(id,user));
+            }
+            if(userService.isAdmin()){
+                model.addAttribute("items",itemRepository.findAllByCategory_Id(id));
+            }
+        } else {
+            model.addAttribute("items",itemRepository.findAllByCategory_Id(id));
+        }
         return "categorylist";
     }
 

@@ -35,7 +35,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/profile">My Profile</a>
-                    <a class="dropdown-item" href="/updateUser">Update profile</a>
+                   <!-- <a class="dropdown-item" href="/updateUser">Update profile</a>-->
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/logout">Logout</a>
                 </div>
@@ -44,11 +44,15 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/">Home</a>
             </li>
-
+            <li class="nav-item" sec:authorize="!isAuthenticated()">
+                <a class="nav-link" href="/register">Register</a>
+            </li>
+            <li class="nav-item" sec:authorize="!isAuthenticated()">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
             <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
                 <a class="nav-link" href="/admin">Admin</a>
             </li>
-
             <li class="nav-item" sec:authorize="isAuthenticated()">
                 <a class="nav-link dropdown-toggle"
                    href="#"
@@ -130,13 +134,6 @@
                         </span>
                 </div>
             </li>
-            <li class="nav-item" sec:authorize="!isAuthenticated()">
-                <a class="nav-link" href="/register">Register</a>
-            </li>
-            <li class="nav-item" sec:authorize="!isAuthenticated()">
-                <a class="nav-link" href="/login">Login</a>
-            </li>
-
             <li class="nav-item">
                 <a class="nav-link" href="/about">About Us</a>
             </li>

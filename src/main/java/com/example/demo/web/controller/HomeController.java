@@ -62,7 +62,7 @@ public class HomeController {
         if (userService.getUser() != null) {
             model.addAttribute("user_id", userService.getUser().getId());
         }
-        return "list";
+        return "list2";
     }
 
     @RequestMapping("/admin")

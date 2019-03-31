@@ -38,6 +38,7 @@ READ
 user need to see only their own data.
 email and password comparion on form through javascript before submission.
 implement search function
+Password Validation (done)
 
 UPDATE
 ------
