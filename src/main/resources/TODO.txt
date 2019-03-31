@@ -21,7 +21,6 @@ search function
 ASK DAVE or Melisa!!!!!
 -----------------------
 Can user need to delete own category? YES
-Can user need only to see his own data? YES
 
 
 download new css and javascript from getbootstrap.com
@@ -31,14 +30,12 @@ PROBLEMS:
 ADD
 ---
 saving same name with different ignore case.
-
+user is not creating
 
 READ
 -----
-user need to see only their own data.
 email and password comparion on form through javascript before submission.
-implement search function
-Password Validation (done)
+implement search functionality
 
 UPDATE
 ------

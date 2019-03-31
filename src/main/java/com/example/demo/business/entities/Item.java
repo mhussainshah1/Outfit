@@ -2,6 +2,7 @@ package com.example.demo.business.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Item {
@@ -11,6 +12,7 @@ public class Item {
 
     @NotEmpty
     @Column(unique = true)
+    @Size(max = 100)
     private String name;
 
     @NotEmpty

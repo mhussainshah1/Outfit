@@ -2,6 +2,7 @@ package com.example.demo.business.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 //Hot Mild Cold
@@ -14,6 +15,7 @@ public class Climate {
 
     @NotEmpty
     @Column(unique = true)
+    @Size(max = 32)
     private String name;
 
     @OneToMany(mappedBy = "climate")

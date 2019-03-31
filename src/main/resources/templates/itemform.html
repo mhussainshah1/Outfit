@@ -49,13 +49,13 @@
                 <td><label for="file">Upload Image:</label> </td>
                 <td>
                     <!--<span th:if="*{picturePath} == null">-->
-                    <input class="form-control-file" id= "file" name="file" type="file"/>
+                    <input id="file" type="file" class="form-control-file border" name="file">
                     (Update or add new image)
                     <!--</span>-->
                 </td>
                 <td></td>
             </tr>
-            <tr th:if="*{picturePath} != null">
+            <tr th:if="(*{picturePath} != null)">
                 <td><input th:field="*{picturePath}" type="hidden"></td>
                 <td><img alt="Picture" class="profile-picture" th:src="*{picturePath}"/> <!--[[${item.picturePath}]]--></td>
                 <td><span th:errors="*{picturePath}" th:if="${#fields.hasErrors('picturePath')}"></span></td>

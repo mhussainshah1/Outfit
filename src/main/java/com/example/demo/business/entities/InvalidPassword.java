@@ -2,6 +2,7 @@ package com.example.demo.business.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 public class InvalidPassword {
@@ -12,6 +13,7 @@ public class InvalidPassword {
 
     @NotEmpty
     @Column(unique = true)
+    @Size(max = 32)
     private String value;
 
     public InvalidPassword() {
