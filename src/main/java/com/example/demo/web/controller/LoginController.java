@@ -97,7 +97,6 @@ public class LoginController {
                 user.setPassword(userService.encode(pw));
                 userService.saveUser(user);
             }
-
            /* if (isUser) {//For Update Registration
                 Iterable<Pet> pets = petRepository.findAllByUsers(user);
                 for (Pet pet : pets) {
