@@ -5,6 +5,7 @@ import com.example.demo.business.entities.Climate;
 import com.example.demo.business.entities.Item;
 import com.example.demo.business.entities.User;
 import org.springframework.data.repository.CrudRepository;
+import sun.plugin.viewer.context.IExplorerAppletContext;
 
 import java.util.List;
 
@@ -34,5 +35,9 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
 
     List<Item> findAllByCategoryAndClimateAndUser(Category category, Climate climate, User user);
 
+    //Search by Name and Description
+    List<Item> findAllByNameContainingOrDescriptionContainingAllIgnoreCase(String title, String description);
+
+    Iterable<Item> findAllByNameContainingOrDescriptionContainingAndUserAllIgnoreCase(String title, String description,User user);
 
 }

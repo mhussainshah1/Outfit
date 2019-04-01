@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
@@ -61,12 +62,16 @@ public class WeatherController {
     }
 
     @PostMapping("/weather")
-    public String getWeather(Model model, @ModelAttribute FormAttributes formAttributes)
+    public String getWeather(Model model,
+                             @RequestParam("city") String city,
+                             @ModelAttribute FormAttributes formAttributes)
             throws IOException {
         findAll(model);
+        model.addAttribute("page_title",city);
         Weather weather = weatherService.getWeather(formAttributes);
-        model.addAttribute("items", getOutfit(weather));
         model.addAttribute("weatherData", weather);
+        model.addAttribute("items", getOutfit(weather));
+
         return "weatherlist";
     }
 

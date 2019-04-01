@@ -9,8 +9,10 @@
 <body>
 <div th:replace="base::nav"></div>
 
-<div align="center" class="div1">
-    <h2>Weather Data</h2>
+<div class="container-float">
+    <div class="jumbotron lead">
+        <h2 align="center" th:text="${page_title}"></h2>
+    </div>
     <table class="table table-striped" id="table" style="width:100%">
         <tr>
             <th>City</th>
@@ -38,47 +40,54 @@
         </tr>
     </table>
 
-    <table class="table table-striped" style="width:100%">
-        <thead class="thead-light">
-        <tr>
-            <th sec:authorize="isAuthenticated()">Select</th>
-            <th>Category</th>
-            <th>Title</th>
-            <th>Color</th>
-            <th>Material</th>
-            <th>Size</th>
-            <th>Picture</th>
-            <th>Discription</th>
-            <th>User</th>
-            <th>Climate</th>
-            <th>Occasion</th>
-            <th sec:authorize="isAuthenticated()">Actions</th>
-        </tr>
-        </thead>
+    <form action="#" method="post" th:action="@{/delete}">
+        <div sec:authorize="isAuthenticated()">
+            <input class="btn btn-link" type="submit" value="delete">
+        </div>
 
-        <!--enhanced for loop-->
-        <tr th:each="item : ${items}">
-            <td sec:authorize="isAuthenticated()">
-                <input name="check" th:value="${item.id}" type="checkbox"/>
-            </td>
-            <td th:text="${item.category.name}"></td>
-            <td><a th:href="@{/detail/{id}(id=${item.id})}">[[${item.name}]]</a></td>
-            <td th:text="${item.color}"></td>
-            <td th:text="${item.material}"></td>
-            <td th:text="${item.size}"></td>
-            <td><img alt="Picture" th:src="${item.picturePath}"></td>
-            <td th:text="${item.description}"></td>
-            <td th:text="${item.user.username}"></td>
-            <td th:text="${item.climate.name}"></td>
-            <td th:text="${item.occasion.name}"></td>
+        <table class="table table-striped" style="width:100%">
 
-            <td sec:authorize="isAuthenticated()">
-                <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
-                <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
-            </td>
+            <thead class="thead-light">
+            <tr>
+                <th sec:authorize="isAuthenticated()">Select</th>
+                <th>Category</th>
+                <th>Title</th>
+                <th>Color</th>
+                <th>Material</th>
+                <th>Size</th>
+                <th>Picture</th>
+                <th>Discription</th>
+                <th>User</th>
+                <th>Climate</th>
+                <th>Occasion</th>
+                <th sec:authorize="isAuthenticated()">Actions</th>
+            </tr>
+            </thead>
 
-        </tr>
-    </table>
+            <!--enhanced for loop-->
+            <tr th:each="item : ${items}">
+                <td sec:authorize="isAuthenticated()">
+                    <input name="check" th:value="${item.id}" type="checkbox"/>
+                </td>
+                <td th:text="${item.category.name}"></td>
+                <td><a th:href="@{/detail/{id}(id=${item.id})}">[[${item.name}]]</a></td>
+                <td th:text="${item.color}"></td>
+                <td th:text="${item.material}"></td>
+                <td th:text="${item.size}"></td>
+                <td><img alt="Picture" th:src="${item.picturePath}"></td>
+                <td th:text="${item.description}"></td>
+                <td th:text="${item.user.username}"></td>
+                <td th:text="${item.climate.name}"></td>
+                <td th:text="${item.occasion.name}"></td>
+
+                <td sec:authorize="isAuthenticated()">
+                    <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
+                    <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
+                </td>
+
+            </tr>
+        </table>
+    </form>
 </div>
 <div th:replace="base::footer"></div>
 </body>

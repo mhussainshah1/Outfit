@@ -11,27 +11,26 @@
 
 <div class="container-float">
 
-        <div class="jumbotron lead">
-            <!--<h2 th:if="${category.name != null}" align="center" th:text="${category.name}"></h2>
-            <h2 th:unless="$category.name != null}!= null" align="center"> Outfit</h2>-->
-            <h2 align="center"> Outfit</h2>
-        </div>
+    <div class="jumbotron lead">
+        <h2 align="center"> Outfit</h2>
+        <small>Our website will help you to choose an outfit for location according to the weather
+            conditions. Create an account. Add all you outfits in the website then enter city name and see your
+            outfit for the day</small>
+    </div>
 
-        <div sec:authorize="isAuthenticated()">
-            <form method="post" th:action="@{/weather}">
-                <div class="container">
-                    <label for="city">Enter the city name to check the weather</label>
-                    <input id="city" name="city" type="text">
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
-        </div>
+    <div align="center" sec:authorize="isAuthenticated()">
+        <form method="post" th:action="@{/weather}">
+                <label for="city">Enter city name to select outfit as per weather:
+                <input id="city" name="city" type="text"></label>
+                <button type="submit">Submit</button>
+        </form>
+    </div>
 
-    <form action="#" th:action= "@{/delete}" method="post">
+    <form action="#" method="post" th:action="@{/delete}">
 
-        <div sec:authorize="isAuthenticated()">
-            <input type="submit" class="btn btn-link" value="delete">
-        </div>
+        <span sec:authorize="isAuthenticated()">
+            <button class="btn btn-link" type="submit">delete</button>
+        </span>
 
         <table class="table table-striped" style="width:100%">
             <thead class="thead-light">
@@ -77,7 +76,6 @@
             </tr>
         </table>
     </form>
-
 </div>
 <br/>
 <div th:replace="base::footer"></div>

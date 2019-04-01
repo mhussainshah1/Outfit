@@ -4,11 +4,9 @@ import com.cloudinary.utils.ObjectUtils;
 import com.example.demo.business.entities.Item;
 import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.*;
-import com.example.demo.business.services.CustomerUserDetails;
 import com.example.demo.business.services.UserService;
 import com.example.demo.web.config.CloudinaryConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -76,6 +76,28 @@ public class HomeController {
             }
         } else {
             model.addAttribute("items", itemRepository.findAll());
+        }
+        return "list";
+    }
+
+    @PostMapping("/search")
+    public String searchword(Model model, @RequestParam String search) {
+        findAll(model);
+        User user = userService.getUser();
+        List<Item> results =
+                itemRepository
+                        .findAllByNameContainingOrDescriptionContainingAllIgnoreCase(search,search);
+        if (user != null) {
+            if (userService.isUser()) {
+                model.addAttribute("items",
+                        itemRepository
+                                .findAllByNameContainingOrDescriptionContainingAndUserAllIgnoreCase(search,search,user));
+            }
+            if (userService.isAdmin()) {
+                model.addAttribute("items", results);
+            }
+        } else {
+            model.addAttribute("items", results);
         }
         return "list";
     }
@@ -165,12 +187,14 @@ public class HomeController {
     }
 
     @PostMapping("/delete")
-    public String deleteBooks(@RequestParam("check") long[] ids){
-        for(long id : ids){
+    public String deleteBooks(@RequestParam("check") long[] ids) {
+        for (long id : ids) {
             itemRepository.deleteById(id);
         }
         return "redirect:/";
     }
+
+
 
     @GetMapping("/about")
     public String getAbout(Model model) {
