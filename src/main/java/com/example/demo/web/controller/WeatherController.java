@@ -67,7 +67,7 @@ public class WeatherController {
                              @ModelAttribute FormAttributes formAttributes)
             throws IOException {
         findAll(model);
-        model.addAttribute("page_title",city);
+        model.addAttribute("page_title", city);
         Weather weather = weatherService.getWeather(formAttributes);
         model.addAttribute("weatherData", weather);
         model.addAttribute("items", getOutfit(weather));

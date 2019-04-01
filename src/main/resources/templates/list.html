@@ -15,14 +15,15 @@
         <h2 align="center"> Outfit</h2>
         <small>Our website will help you to choose an outfit for location according to the weather
             conditions. Create an account. Add all you outfits in the website then enter city name and see your
-            outfit for the day</small>
+            outfit for the day
+        </small>
     </div>
 
     <div align="center" sec:authorize="isAuthenticated()">
         <form method="post" th:action="@{/weather}">
-                <label for="city">Enter city name to select outfit as per weather:
+            <label for="city">Enter city name to select outfit as per weather:
                 <input id="city" name="city" type="text"></label>
-                <button type="submit">Submit</button>
+            <button type="submit">Submit</button>
         </form>
     </div>
 
@@ -30,11 +31,11 @@
         <span sec:authorize="isAuthenticated()">
             <button class="btn btn-link" type="submit">Packing List</button>
         </span>
-<!--    <form action="#" method="post" th:action="@{/delete}">
-        <div sec:authorize="isAuthenticated()">
-            <input class="btn btn-link" type="submit" value="delete">
-        </div>
-    </form>-->
+        <!--    <form action="#" method="post" th:action="@{/delete}">
+                <div sec:authorize="isAuthenticated()">
+                    <input class="btn btn-link" type="submit" value="delete">
+                </div>
+            </form>-->
         <table class="table table-striped" style="width:100%">
             <thead class="thead-light">
             <tr>

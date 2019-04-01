@@ -57,19 +57,12 @@
         </tr>
     </table>
 
-    <div sec:authorize="hasAuthority('USER')">
-        <span th:if="${user_id == item.user.id}">
-            <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> - <!-- Update -->
-            <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
-        </span>
-    </div>
+    <td sec:authorize="isAuthenticated()">
+        <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
+        <a th:href="@{/delete/{id}(id=${item.id})}">delete</a>
+    </td>
 
-    <div sec:authorize="hasAuthority('ADMIN')">
-        <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> - <!-- Update -->
-        <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
-    </div>
 </div>
-
 <div th:replace="base::footer"></div>
 </body>
 </html>

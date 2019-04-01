@@ -17,7 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class HomeController {
@@ -82,14 +84,14 @@ public class HomeController {
     public String searchword(Model model, @RequestParam String search) {
         findAll(model);
         User user = userService.getUser();
-        List<Item> results =
+        Iterable<Item> results =
                 itemRepository
-                        .findAllByNameOrDescription(search,search);
+                        .findAllByNameContainingOrDescriptionContainingAllIgnoreCase(search, search);
         if (user != null) {
             if (userService.isUser()) {
                 model.addAttribute("items",
                         itemRepository
-                                .findAllByNameOrDescriptionAndUser(search,search,user));
+                                .findAllByNameContainingOrDescriptionContainingAndUserAllIgnoreCase(search, search, user));
             }
             if (userService.isAdmin()) {
                 model.addAttribute("items", results);
@@ -164,9 +166,6 @@ public class HomeController {
     public String showItem(@PathVariable("id") long id, Model model) {
         findAll(model);
         model.addAttribute("item", itemRepository.findById(id).get());
-        if (userService.getUser() != null) {
-            model.addAttribute("user_id", userService.getUser().getId());
-        }
         return "show";
     }
 
@@ -186,23 +185,23 @@ public class HomeController {
 
     @PostMapping("/check")
     public String check(@RequestParam("check") long[] ids,
-                      @RequestParam("name") String name,
-                        Model model){
-        if(name.equals("delete")){
+                        @RequestParam("name") String name,
+                        Model model) {
+        if (name.equals("delete")) {
             for (long id : ids) {
                 itemRepository.deleteById(id);
             }
             return "redirect:/";
         }
 
-        if(name.equals("packing")){
+        if (name.equals("packing")) {
             Set<Item> items = new HashSet<>();
             for (long id : ids) {
                 items.add(itemRepository.findById(id).get());
                 System.out.println(id);
             }
             model.addAttribute("page_title", "Packing List");
-            model.addAttribute("items",items);
+            model.addAttribute("items", items);
             return "detaillist";
         }
         return "list";
@@ -227,7 +226,7 @@ public class HomeController {
             System.out.println(id);
         }
         model.addAttribute("page_title", "Packing List");
-        model.addAttribute("items",items);
+        model.addAttribute("items", items);
         return "detaillist";
     }
 
