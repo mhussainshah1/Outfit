@@ -31,9 +31,22 @@
             <td><span th:text="${weather.windSpeed}"></span></td>
             <td><span th:text="${weather.windDirection}"></span></td>
             <td><span th:text="${weather.weatherMain}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(weather.temp,2,1)}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(weather.tempMin,2,1)}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(weather.tempMax,2,1)}"></span></td>
+
+
+            <td>
+<!--                <span th:text="${#numbers.formatDecimal(weather.temp,2,1)}"></span>-->
+                <span th:text="${weather.temp}"></span>
+
+            </td>
+            <td>
+<!--                <span th:text="${#numbers.formatDecimal(weather.tempMin,2,1)}"></span>-->
+                <span th:text="${weather.tempMin}"></span>
+            </td>
+            <td>
+<!--                <span th:text="${#numbers.formatDecimal(weather.tempMax,2,1)}"></span>-->
+                <span th:text="${weather.tempMax}"></span>
+            </td>
+
             <td><span th:text="${weather.weatherDescription}"></span></td>
         </tr>
     </table>

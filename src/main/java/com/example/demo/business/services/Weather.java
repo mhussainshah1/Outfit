@@ -79,17 +79,8 @@ public class Weather implements Serializable {
     public Weather() {
     }
 
-    @Bean
-    public Weather weather() {
-        return new Weather();
-    }
-
-    public double getLat() {
-        return lat;
-    }
-
-    public void setLat(double lat) {
-        this.lat = lat;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public String getName() {
@@ -100,12 +91,12 @@ public class Weather implements Serializable {
         this.name = name;
     }
 
-    public String getWeatherDescription() {
-        return weatherDescription;
+    public double getLat() {
+        return lat;
     }
 
-    public void setWeatherDescription(String weatherDescription) {
-        this.weatherDescription = weatherDescription;
+    public void setLat(double lat) {
+        this.lat = lat;
     }
 
     public double getLon() {
@@ -124,8 +115,24 @@ public class Weather implements Serializable {
         this.weatherMain = weatherMain;
     }
 
+    public String getWeatherDescription() {
+        return weatherDescription;
+    }
+
+    public void setWeatherDescription(String weatherDescription) {
+        this.weatherDescription = weatherDescription;
+    }
+
+    public double getTemp() {
+        return temp;
+    }
+
+    public void setTemp(double temp) {
+        this.temp = temp;
+    }
+
     public double getTempMin() {
-        return getCelcius(tempMin);
+        return tempMin;
     }
 
     public void setTempMin(double tempMin) {
@@ -133,19 +140,11 @@ public class Weather implements Serializable {
     }
 
     public double getTempMax() {
-        return getCelcius(tempMax);
+        return tempMax;
     }
 
     public void setTempMax(double tempMax) {
         this.tempMax = tempMax;
-    }
-
-    public double getTemp() {
-        return getCelcius(temp);
-    }
-
-    public void setTemp(double temp) {
-        this.temp = temp;
     }
 
     public double getWindSpeed() {
@@ -163,6 +162,31 @@ public class Weather implements Serializable {
     public void setWindDirection(Number windDirection) {
         this.windDirection = windDirection;
     }
+
+    @Bean
+    public Weather weather() {
+        return new Weather();
+    }
+
+
+
+//    public double getTempMin() {
+//        return getCelcius(tempMin);
+//    }
+
+
+
+//    public double getTempMax() {
+//        return getCelcius(tempMax);
+//    }
+
+
+
+//    public double getTemp() {
+//        return getCelcius(temp);
+//    }
+
+
 
     @JsonProperty("coord")
     public void setCoord(Map<String, Object> coord) {
@@ -195,9 +219,11 @@ public class Weather implements Serializable {
         setWindDirection((Number) wind.get("deg"));
     }
 
+/*
     public double getCelcius(double kelvin) {
         return kelvin - 273;
     }
+*/
 
     public String getFahrenheitTemperature(double kelvin) {
         double fahrenheitTemp = (kelvin * 1.8) - 459.67;
@@ -206,6 +232,7 @@ public class Weather implements Serializable {
 
     public String getCelsiusTemperature(double kelvin) {
         double celsiusTemp = kelvin - 273.15;
+        System.out.println(String.format("%4.2f", celsiusTemp));
         return String.format("%4.2f", celsiusTemp);
     }
 
