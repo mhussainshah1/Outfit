@@ -26,12 +26,15 @@
         </form>
     </div>
 
-    <form action="#" method="post" th:action="@{/delete}">
-
+    <form action="#" method="post" th:action="@{/packinglist}">
         <span sec:authorize="isAuthenticated()">
-            <button class="btn btn-link" type="submit">delete</button>
+            <button class="btn btn-link" type="submit">Packing List</button>
         </span>
-
+<!--    <form action="#" method="post" th:action="@{/delete}">
+        <div sec:authorize="isAuthenticated()">
+            <input class="btn btn-link" type="submit" value="delete">
+        </div>
+    </form>-->
         <table class="table table-striped" style="width:100%">
             <thead class="thead-light">
             <tr>
