@@ -506,51 +506,8 @@ Item sneakers = itemRepository.findByName("Ball Shorts Blue");
         Item sandle = itemRepository.findByName("sandle");
 */
 
-/*        Item cream_scarf = new Item("Cream Scarf",
-                "cream ",
-                "cotton",
-                "L",
-                "https://res.cloudinary.com/##########",
-                "women's wear",
-                mel,
-                accessories,
-                cold,
-                casual);
-        temp.getClimate.add(cold);
-        itemRepository.save(sandles);
-        cold.setItem(sandles);
-        climateRepository.save(cold);*/
-
-        /*        Item red_scarf = new Item("Red Scarf",
-        "red",
-        "cotton",
-        "L",
-        "https://res.cloudinary.com/##########",
-        "women's wear",
-        mel,
-        accessories,
-        cold,
-        casual);
-                temp.getClimate.add(cold);
-                itemRepository.save(sandles);
-                cold.setItem(sandles);
-                climateRepository.save(cold);*/
 
 
-        /*        Item periwinkle = new Item("Periwinkle Scarf",
-        "periwinkle",
-        "cotton",
-        "L",
-        "https://res.cloudinary.com/##########",
-        "women's wear",
-        mel,
-        accessories,
-        cold,
-        casual);
-                temp.getClimate.add(cold);
-                itemRepository.save(sandles);
-                cold.setItem(sandles);
-                climateRepository.save(cold);*/
         }
     }
 }

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="base::header">
+
+    <title>Title</title>
+</head>
+
+<body>
+<div th:replace="base::nav"></div>
+
+
+<div class="container-float">
+
+    <div class="jumbotron lead">
+        <h2 align="center"> Page not found</h2>
+    </div>
+
+    <span th:text="${param.error}"></span>
+</div>
+
+<div th:replace="base::footer"></div>
+</body>
+</html>

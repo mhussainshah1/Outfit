@@ -310,8 +310,6 @@ public class DataLoader implements CommandLineRunner {
             sneakers = itemRepository.findByName("Ball Shorts Black");
 
 
-
-
             //nan item
             itemRepository.save(
                     new Item("short sleeve Shirt",
@@ -439,23 +437,58 @@ public class DataLoader implements CommandLineRunner {
                             light));
             sneakers = itemRepository.findByName("Ball Shorts Blue");
 
-
-
             //mel item
+            itemRepository.save(new Item("Cream Scarf",
+                    "cream ",
+                    "cotton",
+                    "L",
+                    "https://res.cloudinary.com/toyefule/image/upload/c_fill,g_face,h_150,r_50,w_150/v1554135255/Outfit/Accessories/Cream_Scarf.jpg",
+                    "women's wear",
+                    mel,
+                    accessories,
+                    cold,
+                    casual, moderate));
+            Item cream_scarf = itemRepository.findByName("Cream Scarf");
 
-/*        Item sandles = new Item("white",
-                "leather",
-                "L",
-                "https://res.cloudinary.com/mhussainshah1/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553093077/java-bootcamp/nsgop8vivttqeqkkkynr.jpg",
-                "men",
-                moe,
-                shoe);
-        temp.getClimate.add(cold);
-        itemRepository.save(sandles);
+            itemRepository.save(new Item("Red Scarf",
+                    "red",
+                    "cotton",
+                    "L",
+                    "https://res.cloudinary.com/toyefule/image/upload/c_fill,g_face,h_150,r_50,w_150/v1554135264/Outfit/Accessories/Red_Scarf.jpg",
+                    "women's wear",
+                    mel,
+                    accessories,
+                    cold,
+                    casual,
+                    moderate));
 
-        cold.setItem(sandles);
-        climateRepository.save(cold);*/
+            Item red_scarf = itemRepository.findByName("Red Scarf");
 
+            itemRepository.save(new Item("Periwinkle Scarf",
+                    "periwinkle",
+                    "cotton",
+                    "L",
+                    "https://res.cloudinary.com/toyefule/image/upload/c_fill,g_face,h_150,r_50,w_150/v1554135255/Outfit/Accessories/Periwinkle_Scarf.jpg",
+                    "women's wear",
+                    mel,
+                    accessories,
+                    cold,
+                    casual,
+                    moderate));
+            Item periwinkle = itemRepository.findByName("Periwinkle Scarf");
+
+            itemRepository.save(new Item("Burberry Scarf",
+                    "Burberry",
+                    "cotton",
+                    "L",
+                    "https://res.cloudinary.com/toyefule/image/upload/c_fill,g_face,h_150,r_50,w_150/v1554135255/Outfit/Accessories/Burberry_Scarf.jpg",
+                    "women's wear",
+                    mel,
+                    accessories,
+                    cold,
+                    casual,
+                    moderate));
+            Item burberryscarf = itemRepository.findByName("Burberry Scarf");
 
 /*//moe items
         itemRepository.save(new Item("shirt",
