@@ -21,9 +21,9 @@
             <th>Wind Speed</th>
             <th>Wind Direction</th>
             <th>Precipitation</th>
-            <th>Temp (C)</th>
-            <th>Min Temp (C)</th>
-            <th>Max Temp (C)</th>
+            <th>Temp (°C)</th>
+            <th>Min Temp (°C)</th>
+            <th>Max Temp (°C)</th>
             <th>Weather</th>
         </tr>
         <tr th:each="weather ,iterStat: ${weatherData}">
@@ -33,17 +33,23 @@
             <td><span th:text="${weather.windSpeed}"></span></td>
             <td><span th:text="${weather.windDirection}"></span></td>
             <td><span th:text="${weather.weatherMain}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(weather.temp,2,1)}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(weather.tempMin,2,1)}"></span></td>
-            <td><span th:text="${#numbers.formatDecimal(weather.tempMax,2,1)}"></span></td>
+            <td>
+                <span th:text="${#numbers.formatDecimal(weather.temp,2,1)}"></span>
+            </td>
+            <td>
+                <span th:text="${#numbers.formatDecimal(weather.tempMin,2,1)}"></span>
+            </td>
+            <td>
+                <span th:text="${#numbers.formatDecimal(weather.tempMax,2,1)}"></span>
+            </td>
             <td><span th:text="${weather.weatherDescription}"></span></td>
         </tr>
     </table>
 
-    <form action="#" method="post" th:action="@{/delete}">
+    <!--<form action="#" method="post" th:action="@{/delete}">
         <div sec:authorize="isAuthenticated()">
             <input class="btn btn-link" type="submit" value="delete">
-        </div>
+        </div>-->
 
         <table class="table table-striped" style="width:100%">
 
@@ -87,7 +93,7 @@
 
             </tr>
         </table>
-    </form>
+<!--    </form>-->
 </div>
 <div th:replace="base::footer"></div>
 </body>

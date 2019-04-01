@@ -4,7 +4,6 @@
       xmlns:th="http://www.thymeleaf.org">
 <head th:replace="base::header">
     <title>Category List</title>
-
 </head>
 
 <body>
@@ -14,11 +13,11 @@
         <h2 align="center" th:text="${page_title}"></h2>
     </div>
 
-    <form action="#" method="post" th:action="@{/delete}">
+<!--    <form action="#" method="post" th:action="@{/delete}">
 
         <div sec:authorize="isAuthenticated()">
             <input class="btn btn-link" type="submit" value="delete">
-        </div>
+        </div>-->
 
         <table class="table table-striped" style="width:100%">
             <thead class="thead-light">
@@ -61,7 +60,7 @@
                 </td>
             </tr>
         </table>
-    </form>
+<!--    </form>-->
 </div>
 <br/>
 <div th:replace="base::footer"></div>

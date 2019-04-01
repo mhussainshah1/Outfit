@@ -19,11 +19,26 @@
         </small>
     </div>
 
-    <div align="center" sec:authorize="isAuthenticated()">
-        <form method="post" th:action="@{/weather}">
-            <label for="city">Enter city name to select outfit as per weather:
-                <input id="city" name="city" type="text"></label>
-            <button type="submit">Submit</button>
+    <div class="container" sec:authorize="isAuthenticated()">
+
+        <form class="form-inline" method="post"
+              th:action="@{/weather}"
+              th:object="${formAttributes}"
+
+        >
+            <div class="form-group mb-2">
+                <label for="city"> Enter city name to select outfit as per weather: </label>
+                <input placeholder="City" class="form-control" id="city" th:field= "*{city}" type="text">
+            </div>
+                <div class="form-group mx-sm-3 mb-2">
+                    <strong>
+                         <span class="error-message"
+                               th:errors="*{city}"
+                               th:if="${#fields.hasErrors('city')}">
+                        </span>
+                    </strong>
+                </div>
+            <button class="btn btn-primary mb-2" type="submit">Submit</button>
         </form>
     </div>
 

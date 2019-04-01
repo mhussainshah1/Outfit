@@ -4,6 +4,7 @@ import com.cloudinary.utils.ObjectUtils;
 import com.example.demo.business.entities.Item;
 import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.*;
+import com.example.demo.business.services.FormAttributes;
 import com.example.demo.business.services.UserService;
 import com.example.demo.web.config.CloudinaryConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +69,7 @@ public class HomeController {
          *                 .getUser();
          */
         if (user != null) {
+            model.addAttribute("formAttributes", new FormAttributes());
             if (userService.isUser()) {
                 model.addAttribute("items", itemRepository.findAllByUser(user));
             }
@@ -88,6 +90,7 @@ public class HomeController {
                 itemRepository
                         .findAllByNameContainingOrDescriptionContainingAllIgnoreCase(search, search);
         if (user != null) {
+            model.addAttribute("formAttributes", new FormAttributes());
             if (userService.isUser()) {
                 model.addAttribute("items",
                         itemRepository
@@ -122,11 +125,11 @@ public class HomeController {
                               BindingResult result,
                               @RequestParam("file") MultipartFile file,
                               Model model) {
+        findAll(model);
         if (result.hasErrors()) {
             for (ObjectError e : result.getAllErrors()) {
                 System.out.println(e);
             }
-            findAll(model);
             model.addAttribute("myuser", userService.getUser());
             return "itemform";
         }
@@ -138,7 +141,6 @@ public class HomeController {
         }
 
         if (file.isEmpty()) {
-            findAll(model);
             model.addAttribute("myuser", userService.getUser());
             return "itemform";
         }
