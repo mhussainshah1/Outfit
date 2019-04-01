@@ -183,7 +183,6 @@ public class Weather implements Serializable {
 //        return getCelcius(temp);
 //    }
 
-
     @JsonProperty("coord")
     public void setCoord(Map<String, Object> coord) {
         setLon((double) coord.get("lon"));
@@ -225,6 +224,5 @@ public class Weather implements Serializable {
         System.out.println(String.format("%4.2f", celsiusTemp));
         return String.format("%4.1f", celsiusTemp);
     }
-
 
 }

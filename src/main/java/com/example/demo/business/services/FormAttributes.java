@@ -1,8 +1,11 @@
 package com.example.demo.business.services;
 
+import org.springframework.context.annotation.Bean;
+
 import javax.validation.constraints.NotEmpty;
 
 //@Service
+
 public class FormAttributes {
 
     @NotEmpty
@@ -11,7 +14,12 @@ public class FormAttributes {
     public FormAttributes() {
     }
 
-    public FormAttributes(String city) {
+    @Bean
+    public FormAttributes formAttributes(){
+        return new FormAttributes();
+    }
+
+    public FormAttributes(@NotEmpty String city) {
         this.city = city;
     }
 
