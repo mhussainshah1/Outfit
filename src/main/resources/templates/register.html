@@ -1,10 +1,8 @@
 <!doctype html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
->
+      xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="base::header">
-
     <title>Registration</title>
 </head>
 
@@ -12,14 +10,19 @@
 <div th:replace="base::nav"></div>
 
 <div align="center" class="container col-md-6 col-md-offset-3">
-    <h2>New User Registration</h2>
+
+    <div class="jumbotron lead">
+        <h2>New User Registration</h2>
+    </div>
+
+    <div th:text="${message}"></div>
+
     <form action="#" autocomplete="off" method="post" th:action="@{/register}" th:object="${user}">
 
         <p class="error-message"
            th:each="error : ${#fields.errors('global')}"
            th:if="${#fields.hasGlobalErrors()}"
            th:text="${error}">Validation error</p>
-
         <div class="text-left">
 
             <div class="form-group row">
@@ -31,7 +34,6 @@
                         <span class="error-message"
                               th:errors="*{firstName}"
                               th:if="${#fields.hasErrors('firstName')}">
-                            First Name Error
                         </span>
                     </strong>
                 </div>
@@ -45,7 +47,7 @@
                     <strong>
                         <span class="error-message"
                               th:errors="*{lastName}"
-                              th:if="${#fields.hasErrors('lastName')}">Last Name Error
+                              th:if="${#fields.hasErrors('lastName')}">
                         </span>
                     </strong>
 
@@ -59,7 +61,7 @@
                     <strong>
                         <span class="error-message"
                               th:errors="*{email}"
-                              th:if="${#fields.hasErrors('email')}">Email Error
+                              th:if="${#fields.hasErrors('email')}">
                         </span>
                     </strong>
                 </div>
@@ -73,7 +75,7 @@
                     <strong>
                         <span class="error-message"
                               th:errors="*{username}"
-                              th:if="${#fields.hasErrors('username')}">Username Error
+                              th:if="${#fields.hasErrors('username')}">
                         </span>
                     </strong>
                 </div>
@@ -94,7 +96,6 @@
                     </ul>
                 </div>
             </div>
-
         </div>
 
         <div class="form-group form-check">
@@ -109,11 +110,8 @@
                       th:if="${#fields.hasErrors('enabled')}">Term Error</span>
             </strong>
         </div>
-
         <button class="btn btn-primary" type="submit">Register</button>
-
     </form>
-
     <div class="row text-left">
         <div class="col-md-12">
             Already registered? <a href="/" th:href="@{/login}">Login</a>
@@ -122,10 +120,7 @@
             Forgot password? <a href="/" th:href="@{/forgot-password}">Reset password</a>
         </div>-->
     </div>
-
 </div>
-
 <div th:replace="base::footer"></div>
-
 </body>
 </html>

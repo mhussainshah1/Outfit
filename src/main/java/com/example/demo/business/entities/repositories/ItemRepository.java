@@ -20,7 +20,7 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
     Iterable<Item> findAllByClimate_IdAndUser(Long id, User user);
     Iterable<Item> findAllByOccasion_IdAndUser(Long id, User user);
     Iterable<Item> findAllByWind_IdAndUser(Long id, User user);
-    List<Item> findAllByCategoryAndClimate(Category category, Climate climate);
+    List<Item> findAllByCategoryAndClimate(Category category, Climate climate); //for admin
     List<Item> findAllByCategoryAndClimateAndUser(Category category, Climate climate, User user);
 
 

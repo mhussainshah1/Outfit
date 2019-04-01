@@ -24,7 +24,7 @@
             <th>Size</th>
             <th>Picture</th>
             <th>Discription</th>
-            <th>User</th>
+            <th sec:authorize="hasAuthority('ADMIN')">User</th>
             <th>Wind</th>
             <th>Climate</th>
             <th>Occasion</th>
@@ -43,7 +43,7 @@
             <td th:text="${item.size}"></td>
             <td><img alt="Picture" th:src="${item.picturePath}"></td>
             <td th:text="${item.description}"></td>
-            <td th:text="${item.user.username}"></td>
+            <td sec:authorize="hasAuthority('ADMIN')" th:text="${item.user.username}"></td>
             <td th:text="${item.wind.name}"></td>
             <td th:text="${item.climate.name}"></td>
             <td th:text="${item.occasion.name}"></td>

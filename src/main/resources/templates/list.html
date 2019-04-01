@@ -38,7 +38,7 @@
                 <th>Size</th>
                 <th>Picture</th>
                 <th>Discription</th>
-                <th>User</th>
+                <th sec:authorize="hasAuthority('ADMIN')">User</th>
                 <th>Climate</th>
                 <th>Occasion</th>
                 <th sec:authorize="isAuthenticated()">Actions</th>
@@ -46,9 +46,11 @@
         </thead>
         <!--enhanced for loop-->
         <tr th:each="item : ${items}">
+
             <td sec:authorize="isAuthenticated()">
                 <input name="check" th:value="${item.id}" type="checkbox"/>
             </td>
+
             <td th:text="${item.category.name}"></td>
             <td><a th:href="@{/detail/{id}(id=${item.id})}">[[${item.name}]]</a></td>
             <td th:text="${item.color}"></td>
@@ -56,21 +58,15 @@
             <td th:text="${item.size}"></td>
             <td><img alt="Picture" th:src="${item.picturePath}"></td>
             <td th:text="${item.description}"></td>
-            <td th:text="${item.user.username}"></td>
+
+            <td sec:authorize="hasAuthority('ADMIN')" th:text="${item.user.username}"></td>
+
             <td th:text="${item.climate.name}"></td>
             <td th:text="${item.occasion.name}"></td>
 
             <td sec:authorize="isAuthenticated()">
-                <div sec:authorize="hasAuthority('USER')">
-                    <span th:if="${user_id == item.user.id}">
-                        <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
-                        <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
-                    </span>
-                </div>
-                <div sec:authorize="hasAuthority('ADMIN')">
-                    <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
-                    <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
-                </div>
+                <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
+                <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
             </td>
         </tr>
     </table>

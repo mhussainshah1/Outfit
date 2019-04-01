@@ -86,11 +86,18 @@ public class LoginController {
                                           Model model,
                                           @RequestParam("password") String pw) {
         System.out.println("password: " + pw);
+
         if (result.hasErrors()) {
             findAll(model);
-            model.addAttribute("user", user);
             return "register";
         } else {
+            if(userRepository.findByUsername(user.getUsername()) != null){
+                model.addAttribute("message", "We already have a username called " +
+                        user.getUsername() + "!" + " Try something else.");
+                findAll(model);
+                return "register";
+            }
+
             boolean isUser = userRepository.findById(user.getId()).isPresent();
             System.out.println(isUser + "if comes false MEANS NEW USER");
             if(!isUser){

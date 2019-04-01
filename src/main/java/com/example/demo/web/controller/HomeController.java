@@ -57,12 +57,19 @@ public class HomeController {
 
     @RequestMapping("/")
     public String listItems(Principal principal, Model model) {
-        model.addAttribute("items", itemRepository.findAll()); //generate select * statement
         findAll(model);
-        if (userService.getUser() != null) {
-            model.addAttribute("user_id", userService.getUser().getId());
+        User user = userService.getUser();
+        if (user != null) {
+            if(userService.isUser()){
+                model.addAttribute("items", itemRepository.findAllByUser(user));
+            }
+            if (userService.isAdmin()){
+                model.addAttribute("items", itemRepository.findAll());
+            }
+        } else {
+            model.addAttribute("items", itemRepository.findAll());
         }
-        return "list2";
+        return "list";
     }
 
     @RequestMapping("/admin")
