@@ -10,13 +10,11 @@ Each will add their data in the data loader. put local path for picture instead 
 
 My List
 -------
-delete by checkbox
-packing list
 
 itemform.html
 ------------
 color popup for color
-search function
+
 
 ASK DAVE or Melisa!!!!!
 -----------------------
