@@ -5,31 +5,34 @@
 </head>
 <body>
 <div th:replace="base::nav"></div>
-<div align="center" class="container-float">
+<div align="center" class="container">
     <div class="jumbotron lead">
-        <h2 align="center">Add Category</h2>
+        <h2>Add Category</h2>
     </div>
     <form action="#"
           method="post"
           th:action="@{/processcategory}"
           th:object="${category}">
-        <table class="table" th:align="center">
-            <input th:field="*{id}" type="hidden"/>
-            <tr>
-                <td><label for="name">Name :</label></td>
-                <td><input class="form-control" id="name" th:field="*{name}" type="text"/></td>
-                <td><span th:errors="*{name}"
-                          th:if="${#fields.hasErrors('name')}"></span><br/></td>
-            </tr>
-            <tr>
-                <td colspan="3"><span class="error-message" th:text="${message}"></span><br/></td>
-            </tr>
-            <tr>
-                <td align="center" colspan="3">
-                    <button class="btn btn-primary" type="submit">Submit</button>
-                </td>
-            </tr>
-        </table>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="name">Name :</label>
+            <div class="col-sm-10 text-left">
+                <input class="form-control" id="name" placeholder="Category" th:field="*{name}" type="text">
+                <strong>
+                     <span class="error-message"
+                           th:errors="*{name}"
+                           th:if="${#fields.hasErrors('name')}">
+                     </span>
+                </strong>
+            </div>
+        </div>
+
+        <div class="form-control-row">
+            <span class="error-message" th:text="${message}"></span>
+        </div>
+
+        <br/>
+        <button class="btn btn-primary" type="submit">Submit</button>
     </form>
 </div>
 <br/>

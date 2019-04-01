@@ -4,14 +4,13 @@
 >
 
 <head th:replace="base::header">
-
     <title>Occasion</title>
 </head>
 
 <body>
 <div th:replace="base::nav"></div>
 
-<div align="center" class="container col-md-6 col-md-offset-3">
+<div align="center" class="container">
 
     <div class="jumbotron lead">
         <h2>Add Occasion</h2>
@@ -22,18 +21,25 @@
           th:object="${occasion}">
         <input th:field="*{id}" type="hidden"/>
 
-            <div class="form-control-row">
-                <label class="col-sm-2 col-form-label" for="name">Name :</label>
-                <div class="col-sm-10">
-                    <input class="form-control" id="name" placeholder="Occasion" th:field="*{name}" type="text"/>
-                    <span th:errors="*{name}"
-                          th:if="${#fields.hasErrors('name')}"></span><br/>
-                </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="name">Name :</label>
+            <div class="col-sm-10 text-left">
+                <input class="form-control" id="name" placeholder="Occasion" th:field="*{name}" type="text">
+                <strong>
+                     <span class="error-message"
+                           th:errors="*{name}"
+                           th:if="${#fields.hasErrors('name')}">
+                     </span>
+                </strong>
             </div>
-            <div class="form-control-row">
-                <span class="error-message" th:text="${message}"></span>
-            </div>
-            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+
+        <div class="form-control-row">
+            <span class="error-message" th:text="${message}"></span>
+        </div>
+
+        <br/>
+        <button class="btn btn-primary" type="submit">Submit</button>
 
     </form>
 </div>
