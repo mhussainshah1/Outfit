@@ -36,8 +36,8 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
     List<Item> findAllByCategoryAndClimateAndUser(Category category, Climate climate, User user);
 
     //Search by Name and Description
-    List<Item> findAllByNameContainingOrDescriptionContainingAllIgnoreCase(String title, String description);
+    List<Item> findAllByNameOrDescription(String title, String description);
 
-    Iterable<Item> findAllByNameContainingOrDescriptionContainingAndUserAllIgnoreCase(String title, String description,User user);
+    Iterable<Item> findAllByNameOrDescriptionAndUser(String title, String description,User user);
 
 }

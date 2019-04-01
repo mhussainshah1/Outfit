@@ -84,12 +84,12 @@ public class HomeController {
         User user = userService.getUser();
         List<Item> results =
                 itemRepository
-                        .findAllByNameContainingOrDescriptionContainingAllIgnoreCase(search,search);
+                        .findAllByNameOrDescription(search,search);
         if (user != null) {
             if (userService.isUser()) {
                 model.addAttribute("items",
                         itemRepository
-                                .findAllByNameContainingOrDescriptionContainingAndUserAllIgnoreCase(search,search,user));
+                                .findAllByNameOrDescriptionAndUser(search,search,user));
             }
             if (userService.isAdmin()) {
                 model.addAttribute("items", results);
