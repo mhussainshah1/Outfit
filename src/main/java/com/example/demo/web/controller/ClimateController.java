@@ -76,7 +76,7 @@ public class ClimateController {
     public String showOutfitsByClimate(@PathVariable("id") long id, Model model) {
         findAll(model);
         User user = userService.getUser();
-        model.addAttribute("climate", climateRepository.findById(id).get());
+        model.addAttribute("page_title", climateRepository.findById(id).get().getName());
 
         if (user != null) {//This is true with user
             if (userService.isUser()) {
@@ -88,7 +88,7 @@ public class ClimateController {
         } else {
             model.addAttribute("items", itemRepository.findAllByClimate_Id(id));
         }
-        return "climatelist";
+        return "detaillist";
     }
 
     @PostConstruct

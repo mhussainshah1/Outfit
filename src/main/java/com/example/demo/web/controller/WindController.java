@@ -76,7 +76,7 @@ public class WindController {
     public String showItemsByWind(@PathVariable("id") long id, Model model) {
         findAll(model);
         User user = userService.getUser();
-        model.addAttribute("wind", windRepository.findById(id).get());
+        model.addAttribute("page_title", windRepository.findById(id).get().getName());
 
         if (user != null) {//This is true with user
             if (userService.isUser()) {
@@ -90,7 +90,7 @@ public class WindController {
         }
 
 
-        return "windlist";
+        return "detaillist";
     }
 
     @PostConstruct

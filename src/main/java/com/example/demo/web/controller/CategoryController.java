@@ -73,7 +73,7 @@ public class CategoryController {
     public String showOutfitsByCategory(@PathVariable("id") long id, Model model) {
         findAll(model);
         User user = userService.getUser();
-        model.addAttribute("category", categoryRepository.findById(id).get());
+        model.addAttribute("page_title", categoryRepository.findById(id).get().getName());
 
         if (user != null) {//This is true with user
             if (userService.isUser()) {
@@ -85,7 +85,7 @@ public class CategoryController {
         } else {
             model.addAttribute("items", itemRepository.findAllByCategory_Id(id));
         }
-        return "categorylist";
+        return "detaillist";
     }
 
     @PostConstruct

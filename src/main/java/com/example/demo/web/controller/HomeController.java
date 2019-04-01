@@ -58,6 +58,15 @@ public class HomeController {
     public String listItems(Principal principal, Model model) {
         findAll(model);
         User user = userService.getUser();
+
+        /**
+         * Alternative way to get user
+         *-----------------------------
+         *  User myuser = ((CustomerUserDetails)
+         *                 ((UsernamePasswordAuthenticationToken) principal)
+         *                         .getPrincipal())
+         *                 .getUser();
+         */
         if (user != null) {
             if (userService.isUser()) {
                 model.addAttribute("items", itemRepository.findAllByUser(user));
@@ -155,21 +164,17 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @PostMapping("/delete")
+    public String deleteBooks(@RequestParam("check") long[] ids){
+        for(long id : ids){
+            itemRepository.deleteById(id);
+        }
+        return "redirect:/";
+    }
+
     @GetMapping("/about")
     public String getAbout(Model model) {
         findAll(model);
         return "about";
-    }
-
-    //AUXILLARY FUNCTION!!!
-    //Use the below code INSIDE METHOD to pass user into the view
-    @RequestMapping("/secure")
-    public String secure(Principal principal, Model model) {
-        User myuser = ((CustomerUserDetails)
-                ((UsernamePasswordAuthenticationToken) principal)
-                        .getPrincipal())
-                .getUser();
-        model.addAttribute("myuser", myuser);
-        return "secure";
     }
 }
