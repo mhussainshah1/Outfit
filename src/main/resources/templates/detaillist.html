@@ -3,54 +3,22 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
 <head th:replace="base::header">
-    <title>List</title>
-
+    <title>Category List</title>
 </head>
+
 <body>
 <div th:replace="base::nav"></div>
-
 <div class="container-float">
-
     <div class="jumbotron lead">
-        <h2 align="center"> Outfit</h2>
-        <small>Our website will help you to choose an outfit for location according to the weather
-            conditions. Create an account. Add all you outfits in the website then enter city name and see your
-            outfit for the day
-        </small>
+        <h2 align="center" th:text="${page_title}"></h2>
     </div>
 
-    <div class="container" sec:authorize="isAuthenticated()">
+<!--    <form action="#" method="post" th:action="@{/delete}">
 
-        <form class="form-inline" method="post"
-              th:action="@{/weather}"
-              th:object="${formAttributes}"
+        <div sec:authorize="isAuthenticated()">
+            <input class="btn btn-link" type="submit" value="delete">
+        </div>-->
 
-        >
-            <div class="form-group mb-2">
-                <label for="city"> Enter city name to select outfit as per weather: </label>
-                <input placeholder="City" class="form-control" id="city" th:field= "*{city}" type="text">
-            </div>
-                <div class="form-group mx-sm-3 mb-2">
-                    <strong>
-                         <span class="error-message"
-                               th:errors="*{city}"
-                               th:if="${#fields.hasErrors('city')}">
-                        </span>
-                    </strong>
-                </div>
-            <button class="btn btn-primary mb-2" type="submit">Submit</button>
-        </form>
-    </div>
-
-    <form action="#" method="post" th:action="@{/packinglist}">
-        <span sec:authorize="isAuthenticated()">
-            <button class="btn btn-link" type="submit">Packing List</button>
-        </span>
-        <!--    <form action="#" method="post" th:action="@{/delete}">
-                <div sec:authorize="isAuthenticated()">
-                    <input class="btn btn-link" type="submit" value="delete">
-                </div>
-            </form>-->
         <table class="table table-striped" style="width:100%">
             <thead class="thead-light">
             <tr>
@@ -63,6 +31,7 @@
                 <th>Picture</th>
                 <th>Discription</th>
                 <th sec:authorize="hasAuthority('ADMIN')">User</th>
+                <th>Wind</th>
                 <th>Climate</th>
                 <th>Occasion</th>
                 <th sec:authorize="isAuthenticated()">Actions</th>
@@ -70,11 +39,9 @@
             </thead>
             <!--enhanced for loop-->
             <tr th:each="item : ${items}">
-
                 <td sec:authorize="isAuthenticated()">
                     <input name="check" th:value="${item.id}" type="checkbox"/>
                 </td>
-
                 <td th:text="${item.category.name}"></td>
                 <td><a th:href="@{/detail/{id}(id=${item.id})}">[[${item.name}]]</a></td>
                 <td th:text="${item.color}"></td>
@@ -82,19 +49,18 @@
                 <td th:text="${item.size}"></td>
                 <td><img alt="Picture" th:src="${item.picturePath}"></td>
                 <td th:text="${item.description}"></td>
-
                 <td sec:authorize="hasAuthority('ADMIN')" th:text="${item.user.username}"></td>
-
+                <td th:text="${item.wind.name}"></td>
                 <td th:text="${item.climate.name}"></td>
                 <td th:text="${item.occasion.name}"></td>
 
                 <td sec:authorize="isAuthenticated()">
                     <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
-                    <a th:href="@{/delete/{id}(id=${item.id})}">delete</a>
+                    <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
                 </td>
             </tr>
         </table>
-    </form>
+<!--    </form>-->
 </div>
 <br/>
 <div th:replace="base::footer"></div>

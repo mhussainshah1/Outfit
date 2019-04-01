@@ -74,7 +74,7 @@ public class OccasionController {
     public String showOutfitsByOccasion(@PathVariable("id") long id, Model model) {
         findAll(model);
         User user = userService.getUser();
-        model.addAttribute("occasion", occasionRepository.findById(id).get());
+        model.addAttribute("page_title", occasionRepository.findById(id).get().getName());
 
         if (user != null) {//This is true with user
             if (userService.isUser()) {
@@ -86,7 +86,7 @@ public class OccasionController {
         } else {
             model.addAttribute("items", itemRepository.findAllByOccasion_Id(id));
         }
-        return "occasionlist";
+        return "detaillist";
     }
 
     @PostConstruct

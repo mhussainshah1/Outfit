@@ -2,9 +2,12 @@ package com.example.demo.business.services;
 
 import org.springframework.stereotype.Service;
 
-@Service
+import javax.validation.constraints.NotEmpty;
+
+//@Service
 public class FormAttributes {
 
+    @NotEmpty
     private String city;
 
     public FormAttributes() {

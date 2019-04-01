@@ -41,7 +41,11 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
         if (rundataloader) {
+            //if you want to run dataloader then change it to true.
+            // it will help you to not comment out whole class
+
             //Role
             roleRepository.save(new Role("USER"));
             roleRepository.save(new Role("ADMIN"));

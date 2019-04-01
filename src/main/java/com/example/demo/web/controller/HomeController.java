@@ -4,11 +4,10 @@ import com.cloudinary.utils.ObjectUtils;
 import com.example.demo.business.entities.Item;
 import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.*;
-import com.example.demo.business.services.CustomerUserDetails;
+import com.example.demo.business.services.FormAttributes;
 import com.example.demo.business.services.UserService;
 import com.example.demo.web.config.CloudinaryConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,7 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class HomeController {
@@ -58,7 +59,17 @@ public class HomeController {
     public String listItems(Principal principal, Model model) {
         findAll(model);
         User user = userService.getUser();
+
+        /**
+         * Alternative way to get user
+         *-----------------------------
+         *  User myuser = ((CustomerUserDetails)
+         *                 ((UsernamePasswordAuthenticationToken) principal)
+         *                         .getPrincipal())
+         *                 .getUser();
+         */
         if (user != null) {
+            model.addAttribute("formAttributes", new FormAttributes());
             if (userService.isUser()) {
                 model.addAttribute("items", itemRepository.findAllByUser(user));
             }
@@ -67,6 +78,29 @@ public class HomeController {
             }
         } else {
             model.addAttribute("items", itemRepository.findAll());
+        }
+        return "list";
+    }
+
+    @PostMapping("/search")
+    public String searchword(Model model, @RequestParam String search) {
+        findAll(model);
+        User user = userService.getUser();
+        Iterable<Item> results =
+                itemRepository
+                        .findAllByNameContainingOrDescriptionContainingAllIgnoreCase(search, search);
+        if (user != null) {
+            model.addAttribute("formAttributes", new FormAttributes());
+            if (userService.isUser()) {
+                model.addAttribute("items",
+                        itemRepository
+                                .findAllByNameContainingOrDescriptionContainingAndUserAllIgnoreCase(search, search, user));
+            }
+            if (userService.isAdmin()) {
+                model.addAttribute("items", results);
+            }
+        } else {
+            model.addAttribute("items", results);
         }
         return "list";
     }
@@ -91,11 +125,11 @@ public class HomeController {
                               BindingResult result,
                               @RequestParam("file") MultipartFile file,
                               Model model) {
+        findAll(model);
         if (result.hasErrors()) {
             for (ObjectError e : result.getAllErrors()) {
                 System.out.println(e);
             }
-            findAll(model);
             model.addAttribute("myuser", userService.getUser());
             return "itemform";
         }
@@ -107,7 +141,6 @@ public class HomeController {
         }
 
         if (file.isEmpty()) {
-            findAll(model);
             model.addAttribute("myuser", userService.getUser());
             return "itemform";
         }
@@ -135,9 +168,6 @@ public class HomeController {
     public String showItem(@PathVariable("id") long id, Model model) {
         findAll(model);
         model.addAttribute("item", itemRepository.findById(id).get());
-        if (userService.getUser() != null) {
-            model.addAttribute("user_id", userService.getUser().getId());
-        }
         return "show";
     }
 
@@ -155,21 +185,57 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @PostMapping("/check")
+    public String check(@RequestParam("check") long[] ids,
+                        @RequestParam("name") String name,
+                        Model model) {
+        if (name.equals("delete")) {
+            for (long id : ids) {
+                itemRepository.deleteById(id);
+            }
+            return "redirect:/";
+        }
+
+        if (name.equals("packing")) {
+            Set<Item> items = new HashSet<>();
+            for (long id : ids) {
+                items.add(itemRepository.findById(id).get());
+                System.out.println(id);
+            }
+            model.addAttribute("page_title", "Packing List");
+            model.addAttribute("items", items);
+            return "detaillist";
+        }
+        return "list";
+    }
+
+    @PostMapping("/delete")
+    public String deleteBooks(@RequestParam("check") long[] ids) {
+        for (long id : ids) {
+            itemRepository.deleteById(id);
+        }
+        return "redirect:/";
+    }
+
+
+    @PostMapping("/packinglist")
+    public String getPackingList(@RequestParam("check") long[] ids,
+                                 Model model) {
+        findAll(model);
+        Set<Item> items = new HashSet<>();
+        for (long id : ids) {
+            items.add(itemRepository.findById(id).get());
+            System.out.println(id);
+        }
+        model.addAttribute("page_title", "Packing List");
+        model.addAttribute("items", items);
+        return "detaillist";
+    }
+
+
     @GetMapping("/about")
     public String getAbout(Model model) {
         findAll(model);
         return "about";
-    }
-
-    //AUXILLARY FUNCTION!!!
-    //Use the below code INSIDE METHOD to pass user into the view
-    @RequestMapping("/secure")
-    public String secure(Principal principal, Model model) {
-        User myuser = ((CustomerUserDetails)
-                ((UsernamePasswordAuthenticationToken) principal)
-                        .getPrincipal())
-                .getUser();
-        model.addAttribute("myuser", myuser);
-        return "secure";
     }
 }

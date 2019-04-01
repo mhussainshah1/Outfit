@@ -7,13 +7,18 @@ import com.example.demo.business.services.UserService;
 import com.example.demo.business.services.Weather;
 import com.example.demo.business.services.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -61,12 +66,23 @@ public class WeatherController {
     }
 
     @PostMapping("/weather")
-    public String getWeather(Model model, @ModelAttribute FormAttributes formAttributes)
+    public String getWeather(@Valid @ModelAttribute ("city") FormAttributes formAttributes,
+                             BindingResult result,
+                             //@RequestParam("city") String city,
+                             Model model)
             throws IOException {
         findAll(model);
+        if (result.hasErrors()) {
+            for (ObjectError e : result.getAllErrors()) {
+                System.out.println(e);
+            }
+            return "list";
+        }
+        model.addAttribute("page_title", formAttributes.getCity());
+
         Weather weather = weatherService.getWeather(formAttributes);
-        model.addAttribute("items", getOutfit(weather));
         model.addAttribute("weatherData", weather);
+        model.addAttribute("items", getOutfit(weather));
         return "weatherlist";
     }
 
