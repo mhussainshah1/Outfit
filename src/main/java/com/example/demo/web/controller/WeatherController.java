@@ -7,7 +7,6 @@ import com.example.demo.business.services.UserService;
 import com.example.demo.business.services.Weather;
 import com.example.demo.business.services.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,7 +14,6 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
@@ -66,7 +64,7 @@ public class WeatherController {
     }
 
     @PostMapping("/weather")
-    public String getWeather(@Valid @ModelAttribute ("city") FormAttributes formAttributes,
+    public String getWeather(@Valid @ModelAttribute("city") FormAttributes formAttributes,
                              BindingResult result,
                              //@RequestParam("city") String city,
                              Model model)

@@ -28,16 +28,16 @@
         >
             <div class="form-group mb-2">
                 <label for="city"> Enter city name to select outfit as per weather: </label>
-                <input placeholder="City" class="form-control" id="city" th:field= "*{city}" type="text">
+                <input class="form-control" id="city" placeholder="City" th:field="*{city}" type="text">
             </div>
-                <div class="form-group mx-sm-3 mb-2">
-                    <strong>
+            <div class="form-group mx-sm-3 mb-2">
+                <strong>
                          <span class="error-message"
                                th:errors="*{city}"
                                th:if="${#fields.hasErrors('city')}">
                         </span>
-                    </strong>
-                </div>
+                </strong>
+            </div>
             <button class="btn btn-primary mb-2" type="submit">Submit</button>
         </form>
     </div>

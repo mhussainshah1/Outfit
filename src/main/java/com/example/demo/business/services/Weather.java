@@ -169,11 +169,9 @@ public class Weather implements Serializable {
     }
 
 
-
 //    public double getTempMin() {
 //        return getCelcius(tempMin);
 //    }
-
 
 
 //    public double getTempMax() {
@@ -181,11 +179,9 @@ public class Weather implements Serializable {
 //    }
 
 
-
 //    public double getTemp() {
 //        return getCelcius(temp);
 //    }
-
 
 
     @JsonProperty("coord")
