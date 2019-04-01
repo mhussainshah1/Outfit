@@ -20,20 +20,18 @@ ASK DAVE or Melisa!!!!!
 -----------------------
 Can user need to delete own category? YES
 
-
 download new css and javascript from getbootstrap.com
 
 PROBLEMS:
 -------
 ADD
 ---
-saving same name with different ignore case.
-user is not creating
+saving same title with different ignore case from each form.
 
 READ
 -----
 email and password comparion on form through javascript before submission.
-implement search functionality
+
 
 UPDATE
 ------
@@ -43,7 +41,7 @@ forget password not implemented
 
 DELETE
 ------
-need to implement delete all
+
 
 
 
