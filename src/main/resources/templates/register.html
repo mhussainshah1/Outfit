@@ -15,7 +15,7 @@
         <h2>New User Registration</h2>
     </div>
 
-    <div th:text="${message}"></div>
+    <div class="error-message" th:text="${message}"></div>
 
     <form action="#" autocomplete="off" method="post" th:action="@{/register}" th:object="${user}">
 
@@ -116,9 +116,9 @@
         <div class="col-md-12">
             Already registered? <a href="/" th:href="@{/login}">Login</a>
         </div>
-       <!-- <div class="col-md-12">
-            Forgot password? <a href="/" th:href="@{/forgot-password}">Reset password</a>
-        </div>-->
+        <!-- <div class="col-md-12">
+             Forgot password? <a href="/" th:href="@{/forgot-password}">Reset password</a>
+         </div>-->
     </div>
 </div>
 <div th:replace="base::footer"></div>

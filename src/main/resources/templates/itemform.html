@@ -5,7 +5,7 @@
 </head>
 <body>
 <div th:replace="base::nav"></div>
-<div class="container-float" align="center">
+<div align="center" class="container-float">
     <div class="jumbotron lead">
         <h2 align="center">Add Item</h2>
     </div>
@@ -28,7 +28,8 @@
             </tr>
             <tr>
                 <td><label for="make">Item's Name:</label></td>
-                <td><input class="form-control" placeholder="Item's Name" id="make" th:field="*{name}" type="text"/></td>
+                <td><input class="form-control" id="make" placeholder="Item's Name" th:field="*{name}" type="text"/>
+                </td>
                 <td><span th:errors="*{name}"
                           th:if="${#fields.hasErrors('name')}"></span></td>
             </tr>
@@ -40,16 +41,17 @@
             </tr>
             <tr>
                 <td><label for="material">Material :</label></td>
-                <td><input class="form-control" id="material" placeholder="Material" th:field="*{material}" type="text"/></td>
+                <td><input class="form-control" id="material" placeholder="Material" th:field="*{material}"
+                           type="text"/></td>
                 <td><span th:errors="*{material}"
                           th:if="${#fields.hasErrors('material')}"></span></td>
             </tr>
 
             <tr>
-                <td><label for="file">Upload Image:</label> </td>
+                <td><label for="file">Upload Image:</label></td>
                 <td>
                     <!--<span th:if="*{picturePath} == null">-->
-                    <input id="file" type="file" class="form-control-file border" name="file">
+                    <input class="form-control-file border" id="file" name="file" type="file">
                     (Update or add new image)
                     <!--</span>-->
                 </td>
@@ -57,18 +59,20 @@
             </tr>
             <tr th:if="(*{picturePath} != null)">
                 <td><input th:field="*{picturePath}" type="hidden"></td>
-                <td><img alt="Picture" class="profile-picture" th:src="*{picturePath}"/> <!--[[${item.picturePath}]]--></td>
+                <td><img alt="Picture" class="profile-picture" th:src="*{picturePath}"/> <!--[[${item.picturePath}]]-->
+                </td>
                 <td><span th:errors="*{picturePath}" th:if="${#fields.hasErrors('picturePath')}"></span></td>
             </tr>
             <tr>
                 <td><label for="size">Size :</label></td>
-                <td><input class="form-control" placeholder="Size"  id="size" th:field="*{size}" type="text"/></td>
+                <td><input class="form-control" id="size" placeholder="Size" th:field="*{size}" type="text"/></td>
                 <td><span th:errors="*{size}"
                           th:if="${#fields.hasErrors('size')}"></span></td>
             </tr>
             <tr>
                 <td><label for="description">Description :</label></td>
-                <td><textarea class="form-control" placeholder="Description" id="description" rows="3" th:field="*{description}"></textarea></td>
+                <td><textarea class="form-control" id="description" placeholder="Description" rows="3"
+                              th:field="*{description}"></textarea></td>
                 <td><span th:errors="*{description}"
                           th:if="${#fields.hasErrors('description')}"></span></td>
             </tr>
@@ -110,7 +114,7 @@
             <tr>
                 <td>User :</td>
                 <td><label th:text="${myuser.firstName} +' ' +${myuser.lastName}"></label></td>
-                <td><input th:field="*{user}"  th:value="${myuser}"  type="hidden">
+                <td><input th:field="*{user}" th:value="${myuser}" type="hidden">
                     <span th:errors="*{user}" th:if="${#fields.hasErrors('user')}"></span></td>
             </tr>
             <tr>

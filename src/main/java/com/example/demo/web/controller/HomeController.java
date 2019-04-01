@@ -4,10 +4,9 @@ import com.cloudinary.utils.ObjectUtils;
 import com.example.demo.business.entities.Item;
 import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.*;
-import com.example.demo.web.config.CloudinaryConfig;
 import com.example.demo.business.services.CustomerUserDetails;
 import com.example.demo.business.services.UserService;
-import com.example.demo.business.util.MD5Util;
+import com.example.demo.web.config.CloudinaryConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
@@ -34,7 +33,7 @@ public class HomeController {
     ClimateRepository climateRepository;
 
     @Autowired
-    WindRepository  windRepository;
+    WindRepository windRepository;
 
     @Autowired
     ItemRepository itemRepository;
@@ -48,7 +47,7 @@ public class HomeController {
     @Autowired
     UserService userService;
 
-    public void findAll(Model model){
+    public void findAll(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("climates", climateRepository.findAll());
         model.addAttribute("occasions", occasionRepository.findAll());
@@ -60,10 +59,10 @@ public class HomeController {
         findAll(model);
         User user = userService.getUser();
         if (user != null) {
-            if(userService.isUser()){
+            if (userService.isUser()) {
                 model.addAttribute("items", itemRepository.findAllByUser(user));
             }
-            if (userService.isAdmin()){
+            if (userService.isAdmin()) {
                 model.addAttribute("items", itemRepository.findAll());
             }
         } else {
@@ -75,7 +74,7 @@ public class HomeController {
     @RequestMapping("/admin")
     public String admin(Model model) {
         findAll(model);
-        model.addAttribute("users",userRepository.findAll());
+        model.addAttribute("users", userRepository.findAll());
         return "admin";
     }
 
@@ -124,7 +123,7 @@ public class HomeController {
         }
         String url = uploadResult.get("url").toString();
         String uploadedName = uploadResult.get("public_id").toString();
-        String transformedImage = cloudc.createUrl(uploadedName,150,150);
+        String transformedImage = cloudc.createUrl(uploadedName, 150, 150);
 
         item.setPicturePath(transformedImage);
         item.setUser(userService.getUser());

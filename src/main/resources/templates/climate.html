@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>
 
 <head th:replace="base::header">
 
@@ -10,27 +10,27 @@
 
 <body>
 <div th:replace="base::nav"></div>
-<div class="container-float" align="center">
+<div align="center" class="container-float">
     <div class="jumbotron lead">
         <h2 align="center">Add Climate</h2>
     </div>
     <form action="#"
+          method="post"
           th:action="@{/processclimate}"
-          th:object="${climate}"
-          method="post">
-        <table th:align="center" class="table">
-            <input type="hidden" th:field="*{id}" />
+          th:object="${climate}">
+        <table class="table" th:align="center">
+            <input th:field="*{id}" type="hidden"/>
             <tr>
                 <td><label for="name">Name :</label></td>
-                <td><input id="name" class="form-control" type="text" th:field="*{name}"/></td>
-                <td><span th:if="${#fields.hasErrors('name')}"
-                          th:errors="*{name}"></span><br /></td>
+                <td><input class="form-control" id="name" th:field="*{name}" type="text"/></td>
+                <td><span th:errors="*{name}"
+                          th:if="${#fields.hasErrors('name')}"></span><br/></td>
             </tr>
             <tr>
-                <td colspan="3"><span th:text="${message}"></span><br/></td>
+                <td colspan="3"><span class="error-message" th:text="${message}"></span><br/></td>
             </tr>
             <tr>
-                <td  align="center" colspan="3">
+                <td align="center" colspan="3">
                     <button class="btn btn-primary" type="submit">Submit</button>
                 </td>
             </tr>

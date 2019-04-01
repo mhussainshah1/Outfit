@@ -11,9 +11,12 @@
 <div th:replace="base:: nav"></div>
 
 <div align="center" class="container col-md-6 col-md-offset-3">
-    <h2>Login</h2>
 
-    <div th:if="${param.error}">
+    <div class="jumbotron lead">
+        <h2>Login</h2>
+    </div>
+
+    <div class="error-message" th:if="${param.error}">
         Invalid username or password
     </div>
 
@@ -21,9 +24,7 @@
         You have been logged out
     </div>
 
-    <div th:text="${message}">
-
-    </div>
+    <div th:text="${message}"></div>
 
     <form method="post" th:action="@{/login}">
 

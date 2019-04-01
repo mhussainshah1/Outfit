@@ -1,20 +1,20 @@
-1,2,3,4,5,6,7,8,9,10
-Dag,Muhammad,Tolani,Nhan,John,Melissa,Elizabeth,James,Ben,Kenny
-fasil,Shah,Oyefule,Huynh,Smith,Fung,Taylor,Bond,Afflick,Benneth
-dag,moe,lan,nan,jon,mel,liz,jam,ben,ken
-password,password,password,password,password,password,password,password,password,password
-a@a.com,a@a.com,a@a.com,a@a.com,a@a.com,a@a.com,a@a.com,a@a.com,a@a.com,a@a.com
-1,1,1,1,1,1,1,1,1,1
-admin,admin,admin,admin,user,user,user,user,user,user
-Fall,Summer,Spring,Winter,Summer,Fall,Spring,Summer,Fall,Spring
-N,S,N,S,N,S,N,S,N,S
-cold,rain,cold,cold,hot,medium,hot,hot,medium,cold
-Shirt,tank tops,sweater,shirt,tank tops,sweater,shirt,tank tops,shirt,tank tops
-pants,skirts,shorts,pants,shorts,pants,shorts,shorts,Pants,Pants
-Light jackets,Rain jackets,Light jackets,Heavy coat,Light jackets,Light jackets,Light jackets,Rain jackets,Light jackets,Light jackets
-Sandals,Sandals,Sneakers,Sneakers,Dress shoes,Sandals,Dress shoes,Sandals,Sneakers,Dress shoes
-White,Black,Red,Brown,Navy,Green,White,Black,Burgundy,Grey
-S,M,L,XS,XL,XXL,S,M,L,XS
-Cotton,Wool,Polyester,Silk,Satin,Denim,Cotton,Stretch fabric,Silk,Wool
-/img,/img,/img,/img,/img,/img,/img,/img,/img,/img
-men,men,men,men,men,women,women,men,men,men
+1            ,2           ,3            ,4         ,5            ,6            ,7            ,8             ,9            ,10
+Dag          ,Muhammad    ,Tolani       ,Nhan      ,John         ,Melissa      ,Elizabeth    ,James         ,Ben          ,Kenny
+fasil        ,Shah        ,Oyefule      ,Huynh     ,Smith        ,Fung         ,Taylor       ,Bond          ,Afflick      ,Benneth
+dag          ,moe         ,lan          ,nan       ,jon          ,mel          ,liz          ,jam           ,ben          ,ken
+password     ,password    ,password     ,password  ,password     ,password     ,password     ,password      ,password     ,password
+a@a.com      ,a@a.com     ,a@a.com      ,a@a.com   ,a@a.com      ,a@a.com      ,a@a.com      ,a@a.com       ,a@a.com      ,a@a.com
+1            ,1           ,1            ,1         ,1            ,1            ,1            ,1             ,1            ,1
+admin        ,admin       ,admin        ,admin     ,user         ,user         ,user         ,user          ,user         ,user
+Fall         ,Summer      ,Spring       ,Winter    ,Summer       ,Fall         ,Spring       ,Summer        ,Fall         ,Spring
+N            ,S           ,N            ,S         ,N            ,S            ,N            ,S             ,N            ,S
+cold         ,rain        ,cold         ,cold      ,hot          ,medium       ,hot          ,hot           ,medium       ,cold
+Shirt        ,tank tops   ,sweater      ,shirt     ,tank tops    ,sweater      ,shirt        ,tank tops     ,shirt        ,tank tops
+pants        ,skirts      ,shorts       ,pants     ,shorts       ,pants        ,shorts       ,shorts        ,Pants        ,Pants
+Light jackets,Rain jackets,Light jackets,Heavy coat,Light jackets,Light jackets,Light jackets,Rain jackets  ,Light jackets,Light jackets
+Sandals      ,Sandals     ,Sneakers     ,Sneakers  ,Dress shoes  ,Sandals      ,Dress shoes  ,Sandals       ,Sneakers     ,Dress shoes
+White        ,Black       ,Red          ,Brown     ,Navy         ,Green        ,White        ,Black         ,Burgundy     ,Grey
+S            ,M           ,L            ,XS        ,XL           ,XXL          ,S            ,M             ,L            ,XS
+Cotton       ,Wool        ,Polyester    ,Silk      ,Satin        ,Denim        ,Cotton       ,Stretch fabric,Silk         ,Wool
+/img         ,/img        ,/img         ,/img      ,/img         ,/img         ,/img         ,/img          ,/img         ,/img
+men          ,men         ,men          ,men       ,men          ,women        ,women        ,men           ,men          ,men

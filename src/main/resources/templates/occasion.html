@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>
 
 <head th:replace="base::header">
 
@@ -10,31 +10,31 @@
 
 <body>
 <div th:replace="base::nav"></div>
-<div class="container-float" align="center">
+
+<div align="center" class="container col-md-6 col-md-offset-3">
+
     <div class="jumbotron lead">
-        <h2 align="center">Add Occasion</h2>
+        <h2>Add Occasion</h2>
     </div>
     <form action="#"
+          method="post"
           th:action="@{/processoccasion}"
-          th:object="${occasion}"
-          method="post">
-        <table th:align="center" class="table">
-            <input type="hidden" th:field="*{id}" />
-            <tr>
-                <td><label for="name">Name :</label></td>
-                <td><input id="name" class="form-control" type="text" th:field="*{name}"/></td>
-                <td><span th:if="${#fields.hasErrors('name')}"
-                          th:errors="*{name}"></span><br /></td>
-            </tr>
-            <tr>
-                <td colspan="3"><span th:text="${message}"></span><br/></td>
-            </tr>
-            <tr>
-                <td  align="center" colspan="3">
-                    <button class="btn btn-primary" type="submit">Submit</button>
-                </td>
-            </tr>
-        </table>
+          th:object="${occasion}">
+        <input th:field="*{id}" type="hidden"/>
+
+            <div class="form-control-row">
+                <label class="col-sm-2 col-form-label" for="name">Name :</label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="name" placeholder="Occasion" th:field="*{name}" type="text"/>
+                    <span th:errors="*{name}"
+                          th:if="${#fields.hasErrors('name')}"></span><br/>
+                </div>
+            </div>
+            <div class="form-control-row">
+                <span class="error-message" th:text="${message}"></span>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+
     </form>
 </div>
 <br/>

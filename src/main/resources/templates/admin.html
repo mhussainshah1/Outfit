@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>
 
 <head th:replace="base::header">
 
@@ -17,16 +17,16 @@
     </div>
     <table class="table table-striped" style="width:100%">
         <thead class="thead-light">
-            <tr>
-                <th>Registered User</th>
-                <th>User Name</th>
-                <th>Email</th>
-            </tr>
+        <tr>
+            <th>Registered User</th>
+            <th>User Name</th>
+            <th>Email</th>
+        </tr>
         </thead>
         <tr th:each="user :${users}">
             <td th:text="${user.firstName} + ' ' + ${user.lastName}"></td>
             <td th:text="${user.username}"></td>
-            <td th:text = "${user.email}"></td>
+            <td th:text="${user.email}"></td>
         </tr>
     </table>
 </div>

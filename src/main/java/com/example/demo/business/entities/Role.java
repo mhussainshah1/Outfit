@@ -3,7 +3,6 @@ package com.example.demo.business.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.Collection;
 import java.util.Set;
 
 @Entity

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="base::header">
     <title>Weather Data</title>
@@ -11,7 +11,7 @@
 
 <div align="center" class="div1">
     <h2>Weather Data</h2>
-    <table class="table table-striped" style="width:100%" id="table">
+    <table class="table table-striped" id="table" style="width:100%">
         <tr>
             <th>City</th>
             <th>Latitude</th>
@@ -24,7 +24,7 @@
             <th>Max Temp</th>
             <th>Weather</th>
         </tr>
-        <tr th:each="weather ,iterStat: ${weatherData}" >
+        <tr th:each="weather ,iterStat: ${weatherData}">
             <td><span th:text="${weather.name}"></span></td>
             <td><span th:text="${weather.lat}"></span></td>
             <td><span th:text="${weather.lon}"></span></td>

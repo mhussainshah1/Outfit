@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="base::header">
     <title>item form</title>
@@ -10,7 +10,7 @@
 <body>
 <div th:replace="base::nav"></div>
 
-<div class="container" align="center">
+<div align="center" class="container">
     <table class="table">
         <tr>
             <td>Category:</td>
@@ -30,9 +30,10 @@
         </tr>
         <tr>
             <td>Picture:</td>
-            <td><img class ="profile-picture"
-                     th:src="${item.picturePath}"
-                     th:alt = "Picture"> <!-- th:text="${message.picturePath}" --><td>
+            <td><img class="profile-picture"
+                     th:alt="Picture"
+                     th:src="${item.picturePath}"> <!-- th:text="${message.picturePath}" -->
+            <td>
         </tr>
         <tr>
             <td>Size:</td>

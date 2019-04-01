@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>
 
 <head th:replace="base::header">
     <title>profile</title>
@@ -22,8 +22,8 @@
         <br/>
         <br/>
         <img id="gravatar"
-             th:src="@{'http://gravatar.com/avatar/' + ${HASH} + '?s=200'}"
-             th:alt="|${user.firstName}  ${user.lastName}|" >
+             th:alt="|${user.firstName}  ${user.lastName}|"
+             th:src="@{'http://gravatar.com/avatar/' + ${HASH} + '?s=200'}">
     </div>
 </div>
 

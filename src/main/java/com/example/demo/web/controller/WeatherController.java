@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Controller
 public class WeatherController {
@@ -67,7 +70,7 @@ public class WeatherController {
         return "weatherlist";
     }
 
-    private String getClimate(double temperature){
+    private String getClimate(double temperature) {
         String climate;
         long temp = Math.round(temperature);
         if (temp < 25) {
@@ -80,12 +83,12 @@ public class WeatherController {
         return climate;
     }
 
-    private String getWind(double windSpeed){
+    private String getWind(double windSpeed) {
         String wind;
         long speed = Math.round(windSpeed);
-        if(speed < 10 ){
+        if (speed < 10) {
             wind = "Light";
-        } else if(speed >= 10 && speed < 38){
+        } else if (speed >= 10 && speed < 38) {
             wind = "Moderate";
         } else {
             wind = "High";
@@ -95,7 +98,7 @@ public class WeatherController {
 
     private Set<Item> getOutfit(Weather weather) {
 
-        Iterable<Category> categories =categoryRepository.findAll();
+        Iterable<Category> categories = categoryRepository.findAll();
 
         String climateString = getClimate(weather.getTemp());
         Climate climate = climateRepository.findByName(climateString);
@@ -109,19 +112,19 @@ public class WeatherController {
         System.out.println(windString + " " + weather.getWindSpeed());
 
         Set<Item> outfit = new HashSet<>();
-        for(Category category : categories){
+        for (Category category : categories) {
             //pick one item from the below list
 
             List<Item> list = new ArrayList<>();
-            if(userService.isUser()){
-                list = itemRepository.findAllByCategoryAndClimateAndUser(category,climate,user);
+            if (userService.isUser()) {
+                list = itemRepository.findAllByCategoryAndClimateAndUser(category, climate, user);
             }
-            if(userService.isAdmin()){
-                list = itemRepository.findAllByCategoryAndClimate(category,climate);
+            if (userService.isAdmin()) {
+                list = itemRepository.findAllByCategoryAndClimate(category, climate);
             }
 
-            if(!list.isEmpty()){
-                int randomid = (int) (Math.random()*list.size());
+            if (!list.isEmpty()) {
+                int randomid = (int) (Math.random() * list.size());
                 outfit.add(list.get(randomid));
             }
         }

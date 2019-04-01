@@ -39,7 +39,7 @@ public class LoginController {
     @Autowired
     UserService userService;
 
-    public void findAll(Model model){
+    public void findAll(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("climates", climateRepository.findAll());
         model.addAttribute("occasions", occasionRepository.findAll());
@@ -91,7 +91,7 @@ public class LoginController {
             findAll(model);
             return "register";
         } else {
-            if(userRepository.findByUsername(user.getUsername()) != null){
+            if (userRepository.findByUsername(user.getUsername()) != null) {
                 model.addAttribute("message", "We already have a username called " +
                         user.getUsername() + "!" + " Try something else.");
                 findAll(model);
@@ -100,7 +100,7 @@ public class LoginController {
 
             boolean isUser = userRepository.findById(user.getId()).isPresent();
             System.out.println(isUser + "if comes false MEANS NEW USER");
-            if(!isUser){
+            if (!isUser) {
                 user.setPassword(userService.encode(pw));
                 userService.saveUser(user);
             }

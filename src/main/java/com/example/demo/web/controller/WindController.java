@@ -38,7 +38,7 @@ public class WindController {
     @Autowired
     UserService userService;
 
-    public void findAll(Model model){
+    public void findAll(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("climates", climateRepository.findAll());
         model.addAttribute("occasions", occasionRepository.findAll());
@@ -46,7 +46,7 @@ public class WindController {
     }
 
     @GetMapping("/addwind")
-    public String windForm(Model model){
+    public String windForm(Model model) {
         findAll(model);
         model.addAttribute("wind", new Wind());
         return "wind";
@@ -55,15 +55,15 @@ public class WindController {
     @PostMapping("/processwind")
     public String processSubject(@Valid Wind wind,
                                  BindingResult result,
-                                 Model model){
-        if(result.hasErrors()){
-            for (ObjectError e : result.getAllErrors()){
+                                 Model model) {
+        if (result.hasErrors()) {
+            for (ObjectError e : result.getAllErrors()) {
                 System.out.println(e);
             }
             findAll(model);
             return "wind";
         }
-        if(windRepository.findByName(wind.getName()) != null){
+        if (windRepository.findByName(wind.getName()) != null) {
             model.addAttribute("message", "You already have a wind called " +
                     wind.getName() + "!" + " Try something else.");
             return "wind";
@@ -73,16 +73,16 @@ public class WindController {
     }
 
     @RequestMapping("/detailwind/{id}")
-    public String showItemsByWind(@PathVariable("id") long id, Model model){
+    public String showItemsByWind(@PathVariable("id") long id, Model model) {
         findAll(model);
         User user = userService.getUser();
         model.addAttribute("wind", windRepository.findById(id).get());
 
-        if( user!= null){//This is true with user
-            if(userService.isUser()){
-                model.addAttribute("items",itemRepository.findAllByWind_IdAndUser(id,user));
+        if (user != null) {//This is true with user
+            if (userService.isUser()) {
+                model.addAttribute("items", itemRepository.findAllByWind_IdAndUser(id, user));
             }
-            if(userService.isAdmin()){
+            if (userService.isAdmin()) {
                 model.addAttribute("items", itemRepository.findAllByWind_Id(id));
             }
         } else {
@@ -94,7 +94,7 @@ public class WindController {
     }
 
     @PostConstruct
-    public void fillTables(){
+    public void fillTables() {
        /* Wind wind = new Wind();
         wind.setTitle("Light");
         windRepository.save(wind);

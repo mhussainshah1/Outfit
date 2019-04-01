@@ -1,6 +1,5 @@
 package com.example.demo.web.controller;
 
-import com.example.demo.business.entities.Category;
 import com.example.demo.business.entities.Occasion;
 import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.*;
@@ -38,7 +37,7 @@ public class OccasionController {
     @Autowired
     UserService userService;
 
-    public void findAll(Model model){
+    public void findAll(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("climates", climateRepository.findAll());
         model.addAttribute("occasions", occasionRepository.findAll());
@@ -46,7 +45,7 @@ public class OccasionController {
     }
 
     @GetMapping("/addoccasion")
-    public String occasionForm(Model model){
+    public String occasionForm(Model model) {
         findAll(model);
         model.addAttribute("occasion", new Occasion());
         return "occasion";
@@ -55,14 +54,14 @@ public class OccasionController {
     @PostMapping("/processoccasion")
     public String processSubject(@Valid Occasion occasion,
                                  BindingResult result,
-                                 Model model){
-        if(result.hasErrors()){
-            for (ObjectError e : result.getAllErrors()){
+                                 Model model) {
+        if (result.hasErrors()) {
+            for (ObjectError e : result.getAllErrors()) {
                 System.out.println(e);
             }
             return "occasion";
         }
-        if(occasionRepository.findByName(occasion.getName()) != null){
+        if (occasionRepository.findByName(occasion.getName()) != null) {
             model.addAttribute("message", "You already have a occasion called " +
                     occasion.getName() + "!" + " Try something else.");
             return "occasion";
@@ -72,16 +71,16 @@ public class OccasionController {
     }
 
     @RequestMapping("/detailoccasion/{id}")
-    public String showOutfitsByOccasion(@PathVariable("id") long id, Model model){
+    public String showOutfitsByOccasion(@PathVariable("id") long id, Model model) {
         findAll(model);
         User user = userService.getUser();
         model.addAttribute("occasion", occasionRepository.findById(id).get());
 
-        if( user!= null){//This is true with user
-            if(userService.isUser()){
-                model.addAttribute("items",itemRepository.findAllByOccasion_IdAndUser(id,user));
+        if (user != null) {//This is true with user
+            if (userService.isUser()) {
+                model.addAttribute("items", itemRepository.findAllByOccasion_IdAndUser(id, user));
             }
-            if(userService.isAdmin()){
+            if (userService.isAdmin()) {
                 model.addAttribute("items", itemRepository.findAllByOccasion_Id(id));
             }
         } else {
@@ -91,7 +90,7 @@ public class OccasionController {
     }
 
     @PostConstruct
-    public void fillTables(){
+    public void fillTables() {
        /* Occasion occasion = new Occasion();
         occasion.setTitle("Party");
         occasionRepository.save(occasion);

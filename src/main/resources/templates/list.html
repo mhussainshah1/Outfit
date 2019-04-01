@@ -29,20 +29,20 @@
 
     <table class="table table-striped" style="width:100%">
         <thead class="thead-light">
-            <tr>
-                <th sec:authorize="isAuthenticated()">Select</th>
-                <th>Category</th>
-                <th>Title</th>
-                <th>Color</th>
-                <th>Material</th>
-                <th>Size</th>
-                <th>Picture</th>
-                <th>Discription</th>
-                <th sec:authorize="hasAuthority('ADMIN')">User</th>
-                <th>Climate</th>
-                <th>Occasion</th>
-                <th sec:authorize="isAuthenticated()">Actions</th>
-            </tr>
+        <tr>
+            <th sec:authorize="isAuthenticated()">Select</th>
+            <th>Category</th>
+            <th>Title</th>
+            <th>Color</th>
+            <th>Material</th>
+            <th>Size</th>
+            <th>Picture</th>
+            <th>Discription</th>
+            <th sec:authorize="hasAuthority('ADMIN')">User</th>
+            <th>Climate</th>
+            <th>Occasion</th>
+            <th sec:authorize="isAuthenticated()">Actions</th>
+        </tr>
         </thead>
         <!--enhanced for loop-->
         <tr th:each="item : ${items}">
