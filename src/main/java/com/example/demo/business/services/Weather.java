@@ -219,21 +219,15 @@ public class Weather implements Serializable {
         setWindDirection((Number) wind.get("deg"));
     }
 
-/*
-    public double getCelcius(double kelvin) {
-        return kelvin - 273;
-    }
-*/
-
     public String getFahrenheitTemperature(double kelvin) {
         double fahrenheitTemp = (kelvin * 1.8) - 459.67;
-        return String.format("%4.2f", fahrenheitTemp);
+        return String.format("%4.1f", fahrenheitTemp);
     }
 
     public String getCelsiusTemperature(double kelvin) {
         double celsiusTemp = kelvin - 273.15;
         System.out.println(String.format("%4.2f", celsiusTemp));
-        return String.format("%4.2f", celsiusTemp);
+        return String.format("%4.1f", celsiusTemp);
     }
 
 

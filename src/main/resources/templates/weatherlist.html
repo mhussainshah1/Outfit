@@ -19,9 +19,9 @@
             <th>Wind Speed</th>
             <th>Wind Direction</th>
             <th>Precipitation</th>
-            <th>Temp</th>
-            <th>Min Temp</th>
-            <th>Max Temp</th>
+            <th>Temp<br/>(°C / °F)</th>
+            <th>Min Temp<br/>(°C / °F)</th>
+            <th>Max Temp<br/>(°C / °F)</th>
             <th>Weather</th>
         </tr>
         <tr th:each="weather ,iterStat: ${weatherData}">
@@ -34,17 +34,20 @@
 
 
             <td>
-                <!--                <span th:text="${#numbers.formatDecimal(weather.temp,2,1)}"></span>-->
-                <span th:text="${weather.temp}"></span>
+                <!--<span th:text="${#numbers.formatDecimal(weather.temp,2,1)}"></span>-->
+                <span th:text="${weather.getCelsiusTemperature(weather.temp)}"></span> /
+                <span th:text="${weather.getFahrenheitTemperature(weather.temp)}"></span>
 
             </td>
             <td>
-                <!--                <span th:text="${#numbers.formatDecimal(weather.tempMin,2,1)}"></span>-->
-                <span th:text="${weather.tempMin}"></span>
+                <!--<span th:text="${#numbers.formatDecimal(weather.tempMin,2,1)}"></span>-->
+                <span th:text="${weather.getCelsiusTemperature(weather.tempMin)}"></span> /
+                <span th:text="${weather.getFahrenheitTemperature(weather.tempMin)}"></span>
             </td>
             <td>
                 <!--                <span th:text="${#numbers.formatDecimal(weather.tempMax,2,1)}"></span>-->
-                <span th:text="${weather.tempMax}"></span>
+                <span th:text="${weather.getCelsiusTemperature(weather.tempMax)}"></span> /
+                <span th:text="${weather.getFahrenheitTemperature(weather.tempMin)}"></span>
             </td>
 
             <td><span th:text="${weather.weatherDescription}"></span></td>
