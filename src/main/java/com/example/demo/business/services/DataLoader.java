@@ -41,7 +41,8 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if (rundataloader) {
+
+        if (rundataloader) { //this if help you to not comment out database everytime you dont want to run
             //Role
             roleRepository.save(new Role("USER"));
             roleRepository.save(new Role("ADMIN"));
