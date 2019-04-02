@@ -114,7 +114,7 @@ public class WeatherController {
 
         Iterable<Category> categories = categoryRepository.findAll();
 
-        String climateString = getClimate(weather.getTemp());
+        String climateString = getClimate(Double.valueOf(weather.getCelsiusTemperature(weather.getTemp())));
         Climate climate = climateRepository.findByName(climateString);
 
         String windString = getWind(weather.getWindSpeed());

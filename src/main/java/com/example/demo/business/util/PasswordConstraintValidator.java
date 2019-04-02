@@ -1,5 +1,6 @@
 package com.example.demo.business.util;
 
+import com.example.demo.business.entities.InvalidPassword;
 import com.example.demo.business.entities.repositories.InvalidPasswordRepository;
 import org.passay.*;
 import org.passay.dictionary.ArrayWordList;
@@ -15,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
+//@Service
 public class PasswordConstraintValidator implements ConstraintValidator<ValidPassword, String> {
 
     @Autowired
@@ -45,15 +46,16 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
             throw new RuntimeException("could not load word list", e);
         }*/
 
+
         //Option 2 : Through Database
         List<String> passwordlist = new ArrayList<>();
-        /*for (InvalidPassword password : invalidPasswordRepository.findAll()) {
+        for (InvalidPassword password : invalidPasswordRepository.findAll()) {
             System.out.println("invalid password = " + password.getValue());
             passwordlist.add(password.getValue());
-        }*/
-        passwordlist.add("azerty12!");
-        passwordlist.add("12345678!");
-        passwordlist.add("password123");
+        }
+//        passwordlist.add("azerty12!");
+//        passwordlist.add("12345678!");
+//        passwordlist.add("password123");
 
         Collections.sort(passwordlist);
         dictionaryRule = new DictionaryRule(
