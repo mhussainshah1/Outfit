@@ -391,10 +391,10 @@ public class DataLoader implements CommandLineRunner {
                     cold,
                     casual,
                     moderate));
-            shirt = itemRepository.findByName("Flat Front Chino");
+            shirt = itemRepository.findByName("Grey Sperry Loafer"); //
 
             itemRepository.save(
-                    new Item("pant",
+                    new Item("Khaki Brown pants",
                             "brown",
                             "cotton",
                             "medium",
@@ -486,6 +486,46 @@ public class DataLoader implements CommandLineRunner {
                     casual,
                     moderate));
             Item burberryscarf = itemRepository.findByName("Burberry Scarf");
+
+            itemRepository.save(
+                    new Item("Grey Sperry Loafer2",
+                    "Grey",
+                    "leather",
+                    "10",
+                    "https://res.cloudinary.com/toyefule/image/upload/c_fill,g_face,h_150,r_50,w_150/v1554132719/Outfit/Shoes/Grey_Sperry_Loafer.jpg",
+                    "men's wear",
+                    dag,
+                    shoe,
+                    cold,
+                    casual,
+                            moderate));
+            shirt = itemRepository.findByName("Grey Sperry Loafer2");
+
+            itemRepository.save(
+                    new Item("Flat Front Chino",
+                            "brown",
+                            "cotton",
+                            "medium",
+                            "https://res.cloudinary.com/toyefule/image/upload/c_fill,g_face,h_150,r_50,w_150/v1554134318/Outfit/Bottom/dag_flat_chino.jpg",
+                            "men's wear",
+                            dag,
+                            bottom,
+                            cold,
+                            casual,moderate));
+            pant = itemRepository.findByName("Flat Front Chino");
+
+            itemRepository.save(
+                    new Item("Winter Hoodie Vest2",
+                            "Black",
+                            "cotton",
+                            "large",
+                            "https://res.cloudinary.com/toyefule/image/upload/c_fill,g_face,h_150,r_50,w_150/v1553797632/Outfit/Black_Light-Grey_2.jpg",
+                            "men's wear",
+                            dag,
+                            jacket,
+                            cold,
+                            casual,moderate));
+            lightJacket = itemRepository.findByName("Winter hoodie Vest2");
 
     /*//moe items
         itemRepository.save(new Item("shirt",
