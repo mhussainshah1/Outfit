@@ -490,7 +490,7 @@ public class DataLoader implements CommandLineRunner {
                     moderate));
             Item burberryscarf = itemRepository.findByName("Burberry Scarf");
 
-/*//moe items
+    /*//moe items
         itemRepository.save(new Item("shirt",
                 "white",
                 "cotton",
