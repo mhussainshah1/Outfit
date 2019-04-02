@@ -23,9 +23,8 @@
 
         <form class="form-inline" method="post"
               th:action="@{/weather}"
-              th:object="${formAttributes}"
+              th:object="${formAttributes}">
 
-        >
             <div class="form-group mb-2">
                 <label for="city"> Enter city name to select outfit as per weather: </label>
                 <input class="form-control" id="city" placeholder="City" th:field="*{city}" type="text">

@@ -67,7 +67,7 @@ public class WeatherController {
     @PostMapping("/weather")
     public String getWeather(@Valid @ModelAttribute("formAttributes") FormAttributes formAttributes,
                              BindingResult result,
-                             @RequestParam("city") String city,
+                             //@RequestParam("city") String city,
                              Model model)
             throws IOException {
         findAll(model);
@@ -75,6 +75,8 @@ public class WeatherController {
             for (ObjectError e : result.getAllErrors()) {
                 System.out.println(e);
             }
+            User user = userService.getUser();
+            model.addAttribute("items", itemRepository.findAllByUser(user));
             return "list";
         }
         model.addAttribute("page_title", formAttributes.getCity());
@@ -88,9 +90,9 @@ public class WeatherController {
     private String getClimate(double temperature) {
         String climate;
         long temp = Math.round(temperature);
-        if (temp < 25) {
+        if (temp < 20) {
             climate = "Cold";
-        } else if (temp >= 25 && temp < 32) {
+        } else if (temp >= 20 && temp < 32) {
             climate = "Moderate";
         } else {
             climate = "Hot";
@@ -114,8 +116,8 @@ public class WeatherController {
     private Set<Item> getOutfit(Weather weather) {
 
         Iterable<Category> categories = categoryRepository.findAll();
-
-        String climateString = getClimate(Double.valueOf(weather.getCelsiusTemperature(weather.getTemp())));
+        double temperature = Double.valueOf(weather.getCelsiusTemperature(weather.getTemp()));
+        String climateString = getClimate(temperature);
         Climate climate = climateRepository.findByName(climateString);
 
         String windString = getWind(weather.getWindSpeed());

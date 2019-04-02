@@ -27,3 +27,7 @@ HELP.md
 
 ### VS Code ###
 .vscode/
+
+
+#Make sure comment it if there are changes on heroku
+#application.properties
