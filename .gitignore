@@ -29,5 +29,5 @@ HELP.md
 .vscode/
 
 
-#Make sure comment it if there are changes on heroku
-#application.properties
+#Make sure comment it if there are changes in the database before deploying to heroku
+application.properties
