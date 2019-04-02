@@ -14,6 +14,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
@@ -64,9 +65,9 @@ public class WeatherController {
     }
 
     @PostMapping("/weather")
-    public String getWeather(@Valid @ModelAttribute("city") FormAttributes formAttributes,
+    public String getWeather(@Valid @ModelAttribute("formAttributes") FormAttributes formAttributes,
                              BindingResult result,
-                             //@RequestParam("city") String city,
+                             @RequestParam("city") String city,
                              Model model)
             throws IOException {
         findAll(model);

@@ -49,13 +49,13 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
 
         //Option 2 : Through Database
         List<String> passwordlist = new ArrayList<>();
-        for (InvalidPassword password : invalidPasswordRepository.findAll()) {
+  /*      for (InvalidPassword password : invalidPasswordRepository.findAll()) {
             System.out.println("invalid password = " + password.getValue());
             passwordlist.add(password.getValue());
-        }
-//        passwordlist.add("azerty12!");
-//        passwordlist.add("12345678!");
-//        passwordlist.add("password123");
+        }*/
+        passwordlist.add("azerty12!");
+        passwordlist.add("12345678!");
+        passwordlist.add("password123");
 
         Collections.sort(passwordlist);
         dictionaryRule = new DictionaryRule(

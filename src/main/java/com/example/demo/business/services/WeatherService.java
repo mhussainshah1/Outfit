@@ -16,6 +16,7 @@ public class WeatherService {
 
     @Autowired
     RestTemplate restTemp;
+
     @Autowired
     private WeatherUrl weatherData;
 

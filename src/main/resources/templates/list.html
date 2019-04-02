@@ -31,12 +31,10 @@
                 <input class="form-control" id="city" placeholder="City" th:field="*{city}" type="text">
             </div>
             <div class="form-group mx-sm-3 mb-2">
-                <strong>
-                         <span class="error-message"
-                               th:errors="*{city}"
-                               th:if="${#fields.hasErrors('city')}">
-                        </span>
-                </strong>
+                <span class="error-message"
+                      th:errors="*{city}"
+                      th:if="${#fields.hasErrors('city')}">
+                </span>
             </div>
             <button class="btn btn-primary mb-2" type="submit">Submit</button>
         </form>
@@ -46,7 +44,7 @@
         <span sec:authorize="isAuthenticated()">
             <button class="btn btn-link" type="submit">Packing List</button>
         </span>
-        <!--    <form action="#" method="post" th:action="@{/delete}">
+        <!--<form action="#" method="post" th:action="@{/delete}">
                 <div sec:authorize="isAuthenticated()">
                     <input class="btn btn-link" type="submit" value="delete">
                 </div>

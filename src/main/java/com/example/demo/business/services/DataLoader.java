@@ -59,6 +59,10 @@ public class DataLoader implements CommandLineRunner {
             invalidPasswordRepository.save(new InvalidPassword("password123"));
 
             //User
+            User admin = new User("admin@admin.com", "password", "Admin", "User", true, "admin");
+            admin.setPassword(userService.encode(admin.getPassword()));
+            userService.saveAdmin(admin);
+
             User moe = new User("mhussainshah79@gmail.com", "password", "Muhammad", "Shah", true, "moe");
             moe.setPassword(userService.encode(moe.getPassword()));
             userService.saveUser(moe);
@@ -82,10 +86,6 @@ public class DataLoader implements CommandLineRunner {
             User jen = new User("jen@gmail.com", "password", "Jennifer", "You", true, "jen");
             jen.setPassword(userService.encode(jen.getPassword()));
             userService.saveUser(jen);
-
-            User admin = new User("admin@admin.com", "password", "Admin", "User", true, "admin");
-            admin.setPassword(userService.encode(admin.getPassword()));
-            userService.saveAdmin(admin);
 
             //Category
             categoryRepository.save(new Category("Top"));
@@ -225,7 +225,6 @@ public class DataLoader implements CommandLineRunner {
                             light));
             Item sneakers = itemRepository.findByName("Ball Shorts White");
 
-
             //tolani item
             itemRepository.save(new Item("long Sleeve Shirt",
                     "grey",
@@ -308,7 +307,6 @@ public class DataLoader implements CommandLineRunner {
                             active,
                             light));
             sneakers = itemRepository.findByName("Ball Shorts Black");
-
 
             //nan item
             itemRepository.save(
@@ -461,7 +459,6 @@ public class DataLoader implements CommandLineRunner {
                     cold,
                     casual,
                     moderate));
-
             Item red_scarf = itemRepository.findByName("Red Scarf");
 
             itemRepository.save(new Item("Periwinkle Scarf",
