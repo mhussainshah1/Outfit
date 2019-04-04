@@ -18,13 +18,14 @@
     <div class="error-message" th:text="${message}"></div>
 
     <form action="#" autocomplete="off" method="post" th:action="@{/register}" th:object="${user}">
-
+        <input type="hidden" th:field="*{id}"/>
         <p class="error-message"
            th:each="error : ${#fields.errors('global')}"
            th:if="${#fields.hasGlobalErrors()}"
-           th:text="${error}">Validation error</p>
-        <div class="text-left">
+           th:text="${error}">Validation error>
+        </p>
 
+        <div class="text-left">
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="firstName">First Name</label>
                 <div class="col-sm-10 text-left">

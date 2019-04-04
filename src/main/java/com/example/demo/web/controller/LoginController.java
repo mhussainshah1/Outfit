@@ -74,12 +74,6 @@ public class LoginController {
         return "register";
     }
 
-    @GetMapping("/termsandconditions")
-    public String getTermsAndCondition(Model model) {
-        findAll(model);
-        return "termsandconditions";
-    }
-
     @PostMapping("/register")
     public String processRegistrationPage(@Valid @ModelAttribute("user") User user,
                                           BindingResult result,
@@ -91,43 +85,51 @@ public class LoginController {
             findAll(model);
             return "register";
         } else {
-            if (userRepository.findByUsername(user.getUsername()) != null) {
-                model.addAttribute("message", "We already have a username called " +
-                        user.getUsername() + "!" + " Try something else.");
-                findAll(model);
-                return "register";
-            }
-
+            System.out.println(user);
+            //Update User and Admin
             boolean isUser = userRepository.findById(user.getId()).isPresent();
-            System.out.println(isUser + "if comes false MEANS NEW USER");
-            if (!isUser) {
-                user.setPassword(userService.encode(pw));
-                userService.saveUser(user);
-            }
-           /* if (isUser) {//For Update Registration
-                Iterable<Pet> pets = petRepository.findAllByUsers(user);
-                for (Pet pet : pets) {
-                    petRepository.save(pet);
-                    user.getPets().add(pet);
-                }
-            }*/
-            if (userService.isUser()) {
+            if(isUser){
+
                 Iterable<Item> items = itemRepository.findAllByUser(user);
                 for (Item item : items) {
                     itemRepository.save(item);
                     user.getItems().add(item);
                 }
-                user.setPassword(userService.encode(pw));
-                userService.saveUser(user);
+                if (userService.isUser()) {
+                    user.setPassword(userService.encode(pw));
+                    userService.saveUser(user);
+                }
+                if (userService.isAdmin()) {
+                    user.setPassword(userService.encode(pw));
+                    userService.saveAdmin(user);
+                }
+                model.addAttribute("message", "User Account Successfully Updated");
             }
-            if (userService.isAdmin()) {
-                user.setPassword(userService.encode(pw));
-                userService.saveAdmin(user);
+            //New User
+            else {
+                //Registering with existed username
+//                todo: inserting existed username in update profile
+                if (userRepository.findByUsername(user.getUsername())!= null && user.getId() == 0) {
+                    model.addAttribute("message", "We already have a username called " +
+                            user.getUsername() + "!" + " Try something else.");
+                    findAll(model);
+                    return "register";
+                } else {
+                    user.setPassword(userService.encode(pw));
+                    userService.saveUser(user);
+                    model.addAttribute("message", "User Account Successfully Created");
+                }
             }
-            model.addAttribute("message", "User Account Successfully Created");
         }
         return "login";
     }
+
+    @GetMapping("/termsandconditions")
+    public String getTermsAndCondition(Model model) {
+        findAll(model);
+        return "termsandconditions";
+    }
+
 
     @RequestMapping("/updateUser")
     public String viewUser(Model model,
@@ -137,8 +139,10 @@ public class LoginController {
        /* Boolean isAdmin = request.isUserInRole("ADMIN");
         Boolean isUser = request.isUserInRole("USER");
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();*/
-        String username = principal.getName();
-        model.addAttribute("user", userRepository.findByUsername(username));
+//        String username = principal.getName();
+        model.addAttribute("user", userService.getUser());
         return "register";
     }
+
+
 }

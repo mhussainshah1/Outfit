@@ -17,7 +17,7 @@ public class Wind {
     private String name;
 
     @OneToMany(mappedBy = "wind")
-    private Set<Item> item;
+    private Set<Item> items;
 
     public Wind() {
     }
@@ -42,11 +42,11 @@ public class Wind {
         this.name = name;
     }
 
-    public Set<Item> getItem() {
-        return item;
+    public Set<Item> getItems() {
+        return items;
     }
 
-    public void setItem(Set<Item> item) {
-        this.item = item;
+    public void setItems(Set<Item> items) {
+        this.items = items;
     }
 }

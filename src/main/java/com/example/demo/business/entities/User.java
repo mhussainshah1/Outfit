@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -50,6 +51,8 @@ public class User {
     private Set<Item> items;
 
     public User() {
+        roles = new HashSet<>();
+        items = new HashSet<>();
     }
 
     public User(@NotEmpty @Email String email,
@@ -58,6 +61,7 @@ public class User {
                 @NotEmpty String lastName,
                 @AssertTrue boolean enabled,
                 @NotEmpty String username) {
+        this();
         this.email = email;
         this.password = password;
         this.firstName = firstName;
@@ -136,5 +140,31 @@ public class User {
 
     public void setItems(Set<Item> items) {
         this.items = items;
+    }
+
+    @Override
+    public String toString() {
+        String string = "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", enabled=" + enabled +
+                ", username='" + username + '\''+
+                ", roles= [";
+             /*   for(Role role : roles){
+                    string += role.getRole();
+                }*/
+
+                string += "], items=[";
+
+                /*for(Item item : items){
+                    string += item.getName();
+                }*/
+
+                string += "]}";
+
+                return string;
     }
 }

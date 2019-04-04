@@ -13,8 +13,8 @@
           method="post"
           th:action="@{/process}"
           th:object="${item}">
+        <input th:field="*{id}" type="hidden"/>
         <table class="table">
-            <input th:field="*{id}" type="hidden"/>
             <tr>
                 <td><label for="category">Category:</label></td>
                 <td><select class="form-control input-md" id="category" th:field="*{category}">

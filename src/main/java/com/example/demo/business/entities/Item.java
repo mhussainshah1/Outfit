@@ -24,8 +24,7 @@ public class Item {
     @NotEmpty
     private String size;
 
-    //@NotNull
-    //@Size(min = 4)
+    //@NotEmpty
     private String picturePath;
 
     @NotEmpty
@@ -47,6 +46,11 @@ public class Item {
     private Wind wind;
 
     public Item() {
+        user = new User();
+        category = new Category();
+        climate = new Climate();
+        occasion = new Occasion();
+        wind = new Wind();
     }
 
     public Item(@NotEmpty String name, @NotEmpty String color, @NotEmpty String material, @NotEmpty String size, String picturePath, @NotEmpty String description, User user, Category category, Climate climate, Occasion occasion, Wind wind) {
@@ -160,16 +164,22 @@ public class Item {
         this.wind = wind;
     }
 
+
     @Override
     public String toString() {
         return "Item{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
                 ", color='" + color + '\'' +
                 ", material='" + material + '\'' +
-                ", size=" + size +
+                ", size='" + size + '\'' +
                 ", picturePath='" + picturePath + '\'' +
                 ", description='" + description + '\'' +
-                ", category=" + category +
+                ", user=" + user.getUsername() +
+                ", category=" + category.getName() +
+                ", climate=" + climate.getName() +
+                ", occasion=" + occasion.getName() +
+                ", wind=" + wind.getName() +
                 '}';
     }
 }

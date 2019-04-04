@@ -5,7 +5,7 @@ dag          ,moe         ,lan          ,nan       ,jon          ,mel          ,
 password     ,password    ,password     ,password  ,password     ,password     ,password     ,password      ,password     ,password
 a@a.com      ,a@a.com     ,a@a.com      ,a@a.com   ,a@a.com      ,a@a.com      ,a@a.com      ,a@a.com       ,a@a.com      ,a@a.com
 1            ,1           ,1            ,1         ,1            ,1            ,1            ,1             ,1            ,1
-admin        ,admin       ,admin        ,admin     ,user         ,user         ,user         ,user          ,user         ,user
+admin        ,admin       ,admin        ,admin     ,users         ,users         ,users         ,users          ,users         ,users
 Fall         ,Summer      ,Spring       ,Winter    ,Summer       ,Fall         ,Spring       ,Summer        ,Fall         ,Spring
 N            ,S           ,N            ,S         ,N            ,S            ,N            ,S             ,N            ,S
 cold         ,rain        ,cold         ,cold      ,hot          ,medium       ,hot          ,hot           ,medium       ,cold

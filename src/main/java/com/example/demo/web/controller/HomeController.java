@@ -59,14 +59,14 @@ public class HomeController {
     public String listItems(Principal principal, Model model) {
         findAll(model);
         User user = userService.getUser();
-
+        System.out.println(user);
         /**
          * Alternative way to get user
          *-----------------------------
          *  User myuser = ((CustomerUserDetails)
          *                 ((UsernamePasswordAuthenticationToken) principal)
          *                         .getPrincipal())
-         *                 .getUser();
+         *                 .getUsers();
          */
         if (user != null) {
             model.addAttribute("formAttributes", new FormAttributes());

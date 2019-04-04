@@ -17,7 +17,7 @@ public class Occasion {
     private String name;
 
     @OneToMany(mappedBy = "occasion")
-    private Set<Item> item;
+    private Set<Item> items;
 
     public Occasion() {
     }
@@ -42,4 +42,11 @@ public class Occasion {
         this.name = name;
     }
 
+    public Set<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Item> items) {
+        this.items = items;
+    }
 }

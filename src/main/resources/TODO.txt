@@ -18,7 +18,7 @@ color popup for color
 
 ASK DAVE or Melisa!!!!!
 -----------------------
-Can user need to delete own category? YES
+Can users need to delete own category? YES
 
 download new css and javascript from getbootstrap.com
 
@@ -35,7 +35,7 @@ email and password comparion on form through javascript before submission.
 
 UPDATE
 ------
-add another user instead to update.
+add another users instead to update.
 forget password not implemented
 
 

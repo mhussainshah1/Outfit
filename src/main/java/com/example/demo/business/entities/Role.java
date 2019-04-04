@@ -3,6 +3,7 @@ package com.example.demo.business.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,9 +19,10 @@ public class Role {
     private String role;
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-    private Set<User> user;
+    private Set<User> users;
 
     public Role() {
+        users = new HashSet<>();
     }
 
     public Role(String role) {
@@ -43,11 +45,25 @@ public class Role {
         this.role = role;
     }
 
-    public Set<User> getUser() {
-        return user;
+    public Set<User> getUsers() {
+        return users;
     }
 
-    public void setUser(Set<User> user) {
-        this.user = user;
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        String string = "Role{" +
+                "id=" + id +
+                ", role='" + role + '\''+
+                ", users=[";
+
+        for(User user: users){
+               string += user;
+        }
+               string += "]}";
+        return string;
     }
 }

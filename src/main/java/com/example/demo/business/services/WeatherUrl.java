@@ -1,7 +1,7 @@
 package com.example.demo.business.services;
 
-
 public class WeatherUrl {
+
     private String url;
     private String apiKey;
 

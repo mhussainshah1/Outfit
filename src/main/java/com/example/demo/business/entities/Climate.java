@@ -19,7 +19,7 @@ public class Climate {
     private String name;
 
     @OneToMany(mappedBy = "climate")
-    private Set<Item> item;
+    private Set<Item> items;
 
     public Climate() {
     }
@@ -44,12 +44,11 @@ public class Climate {
         this.name = name;
     }
 
-
-    public Set<Item> getItem() {
-        return item;
+    public Set<Item> getItems() {
+        return items;
     }
 
-    public void setItem(Set<Item> item) {
-        this.item = item;
+    public void setItems(Set<Item> items) {
+        this.items = items;
     }
 }

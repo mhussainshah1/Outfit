@@ -168,21 +168,6 @@ public class Weather implements Serializable {
         return new Weather();
     }
 
-
-//    public double getTempMin() {
-//        return getCelcius(tempMin);
-//    }
-
-
-//    public double getTempMax() {
-//        return getCelcius(tempMax);
-//    }
-
-
-//    public double getTemp() {
-//        return getCelcius(temp);
-//    }
-
     @JsonProperty("coord")
     public void setCoord(Map<String, Object> coord) {
         setLon((double) coord.get("lon"));

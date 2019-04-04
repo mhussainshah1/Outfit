@@ -38,7 +38,6 @@ public class ClimateController {
     @Autowired
     UserService userService;
 
-
     public void findAll(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("climates", climateRepository.findAll());
