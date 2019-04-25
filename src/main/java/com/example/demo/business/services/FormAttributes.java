@@ -14,13 +14,13 @@ public class FormAttributes {
     public FormAttributes() {
     }
 
-    @Bean
-    public FormAttributes formAttributes(){
-        return new FormAttributes();
-    }
-
     public FormAttributes(@NotEmpty String city) {
         this.city = city;
+    }
+
+    @Bean
+    public FormAttributes formAttributes() {
+        return new FormAttributes();
     }
 
     public String getCity() {

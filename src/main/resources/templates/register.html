@@ -18,7 +18,7 @@
     <div class="error-message" th:text="${message}"></div>
 
     <form action="#" autocomplete="off" method="post" th:action="@{/register}" th:object="${user}">
-        <input type="hidden" th:field="*{id}"/>
+        <input th:field="*{id}" type="hidden"/>
         <p class="error-message"
            th:each="error : ${#fields.errors('global')}"
            th:if="${#fields.hasGlobalErrors()}"

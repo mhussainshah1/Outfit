@@ -1,12 +1,7 @@
 TODO
 DataLoader.java
 ---------------
-Each will add their data in the data loader. put local path for picture instead of cloudinary.
-//tolani item
 
-//dag item
-
-//nan item
 
 My List
 -------
@@ -35,8 +30,7 @@ email and password comparion on form through javascript before submission.
 
 UPDATE
 ------
-add another users instead to update.
-forget password not implemented
+forget password functionality has not implemented
 
 
 DELETE

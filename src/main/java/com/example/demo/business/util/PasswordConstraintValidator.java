@@ -1,12 +1,11 @@
 package com.example.demo.business.util;
 
-import com.example.demo.business.entities.InvalidPassword;
 import com.example.demo.business.entities.repositories.InvalidPasswordRepository;
 import org.passay.*;
 import org.passay.dictionary.ArrayWordList;
 import org.passay.dictionary.WordListDictionary;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Configuration;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -16,11 +15,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//@Service
+@Configuration
 public class PasswordConstraintValidator implements ConstraintValidator<ValidPassword, String> {
 
     @Autowired
-    InvalidPasswordRepository invalidPasswordRepository;
+    private InvalidPasswordRepository invalidPasswordRepository;
 
     private DictionaryRule dictionaryRule;
 
@@ -28,8 +27,7 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
     public void initialize(ValidPassword constraintAnnotation) {
 
         //Option 1 : Through File
-/*
-        try {
+        /*try {
             String invalidPasswordList = this.getClass().getResource("/invalid-password-list.txt").getFile();
             dictionaryRule = new DictionaryRule(
                     new WordListDictionary(WordLists.createFromReader(
@@ -46,28 +44,28 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
             throw new RuntimeException("could not load word list", e);
         }*/
 
-
         //Option 2 : Through Database
-        List<String> passwordlist = new ArrayList<>();
-  /*      for (InvalidPassword password : invalidPasswordRepository.findAll()) {
-            System.out.println("invalid password = " + password.getValue());
-            passwordlist.add(password.getValue());
-        }*/
-        passwordlist.add("azerty12!");
-        passwordlist.add("12345678!");
-        passwordlist.add("password123");
+        List<String> passwords = new ArrayList<>();
+//        invalidPasswordRepository.findAll().forEach(p -> passwords.add(p.getValue()));
 
-        Collections.sort(passwordlist);
+        /*for (InvalidPassword password : invalidPasswordRepository.findAll()) {
+            System.out.println("invalid password = " + password.getValue());
+            passwords.add(password.getValue());
+        }*/
+        passwords.add("azerty12!");
+        passwords.add("12345678!");
+        passwords.add("password123");
+
+        Collections.sort(passwords);
         dictionaryRule = new DictionaryRule(
                 new WordListDictionary(
-                        new ArrayWordList(passwordlist.stream().toArray(String[]::new))));
+                        new ArrayWordList(passwords.stream().toArray(String[]::new))));
 
     }
 
     @Override
     public boolean isValid(String password, ConstraintValidatorContext context) {
         PasswordValidator validator = new PasswordValidator(Arrays.asList(
-
                 // at least 8 characters
                 new LengthRule(8, 60),
 

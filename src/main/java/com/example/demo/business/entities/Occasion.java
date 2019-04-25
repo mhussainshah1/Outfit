@@ -3,10 +3,15 @@ package com.example.demo.business.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Occasion {
+public class Occasion implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -20,9 +25,11 @@ public class Occasion {
     private Set<Item> items;
 
     public Occasion() {
+        items = new HashSet<>();
     }
 
     public Occasion(String name) {
+        this();
         this.name = name;
     }
 

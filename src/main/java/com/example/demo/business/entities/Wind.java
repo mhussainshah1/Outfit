@@ -3,10 +3,14 @@ package com.example.demo.business.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Wind {
+public class Wind implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -20,9 +24,11 @@ public class Wind {
     private Set<Item> items;
 
     public Wind() {
+        items = new HashSet<>();
     }
 
     public Wind(@NotEmpty String name) {
+        this();
         this.name = name;
     }
 

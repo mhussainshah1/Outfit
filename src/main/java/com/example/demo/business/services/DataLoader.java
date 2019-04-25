@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Component
 public class DataLoader implements CommandLineRunner {
     @Autowired
@@ -46,17 +49,19 @@ public class DataLoader implements CommandLineRunner {
             //if you want to run dataloader then change it to true.
             // it will help you to not comment out whole class
 
+            //Password
+            Set<InvalidPassword> passwords = new HashSet<>();
+            passwords.add(new InvalidPassword("azerty12!"));
+            passwords.add(new InvalidPassword("12345678!"));
+            passwords.add(new InvalidPassword("password123"));
+            invalidPasswordRepository.saveAll(passwords);
+
             //Role
             roleRepository.save(new Role("USER"));
             roleRepository.save(new Role("ADMIN"));
 
             Role adminRole = roleRepository.findByRole("ADMIN");
             Role userRole = roleRepository.findByRole("USER");
-
-            //Password
-            invalidPasswordRepository.save(new InvalidPassword("azerty12!"));
-            invalidPasswordRepository.save(new InvalidPassword("12345678!"));
-            invalidPasswordRepository.save(new InvalidPassword("password123"));
 
             //User
             User admin = new User("admin@admin.com", "password", "Admin", "User", true, "admin");
@@ -489,15 +494,15 @@ public class DataLoader implements CommandLineRunner {
 
             itemRepository.save(
                     new Item("Grey Sperry Loafer2",
-                    "Grey",
-                    "leather",
-                    "10",
-                    "https://res.cloudinary.com/toyefule/image/upload/c_fill,g_face,h_150,r_50,w_150/v1554132719/Outfit/Shoes/Grey_Sperry_Loafer.jpg",
-                    "men's wear",
-                    dag,
-                    shoe,
-                    cold,
-                    casual,
+                            "Grey",
+                            "leather",
+                            "10",
+                            "https://res.cloudinary.com/toyefule/image/upload/c_fill,g_face,h_150,r_50,w_150/v1554132719/Outfit/Shoes/Grey_Sperry_Loafer.jpg",
+                            "men's wear",
+                            dag,
+                            shoe,
+                            cold,
+                            casual,
                             moderate));
             shirt = itemRepository.findByName("Grey Sperry Loafer2");
 
@@ -511,7 +516,7 @@ public class DataLoader implements CommandLineRunner {
                             dag,
                             bottom,
                             cold,
-                            casual,moderate));
+                            casual, moderate));
             pant = itemRepository.findByName("Flat Front Chino");
 
             itemRepository.save(
@@ -524,7 +529,7 @@ public class DataLoader implements CommandLineRunner {
                             dag,
                             jacket,
                             cold,
-                            casual,moderate));
+                            casual, moderate));
             lightJacket = itemRepository.findByName("Winter hoodie Vest2");
 
     /*//moe items

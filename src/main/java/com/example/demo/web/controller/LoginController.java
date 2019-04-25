@@ -88,7 +88,7 @@ public class LoginController {
             System.out.println(user);
             //Update User and Admin
             boolean isUser = userRepository.findById(user.getId()).isPresent();
-            if(isUser){
+            if (isUser) {
 
                 Iterable<Item> items = itemRepository.findAllByUser(user);
                 for (Item item : items) {
@@ -109,7 +109,7 @@ public class LoginController {
             else {
                 //Registering with existed username
 //                todo: inserting existed username in update profile
-                if (userRepository.findByUsername(user.getUsername())!= null && user.getId() == 0) {
+                if (userRepository.findByUsername(user.getUsername()) != null && user.getId() == 0) {
                     model.addAttribute("message", "We already have a username called " +
                             user.getUsername() + "!" + " Try something else.");
                     findAll(model);

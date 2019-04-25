@@ -6,12 +6,15 @@ import javax.persistence.*;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "USER_DATA")
-public class User {
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -151,20 +154,20 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", enabled=" + enabled +
-                ", username='" + username + '\''+
+                ", username='" + username + '\'' +
                 ", roles= [";
              /*   for(Role role : roles){
                     string += role.getRole();
                 }*/
 
-                string += "], items=[";
+        string += "], items=[";
 
                 /*for(Item item : items){
                     string += item.getName();
                 }*/
 
-                string += "]}";
+        string += "]}";
 
-                return string;
+        return string;
     }
 }

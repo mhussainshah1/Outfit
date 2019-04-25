@@ -3,12 +3,16 @@ package com.example.demo.business.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "ROLE_DATA")
-public class Role {
+public class Role implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -26,6 +30,7 @@ public class Role {
     }
 
     public Role(String role) {
+        this();
         this.role = role;
     }
 
@@ -57,13 +62,13 @@ public class Role {
     public String toString() {
         String string = "Role{" +
                 "id=" + id +
-                ", role='" + role + '\''+
+                ", role='" + role + '\'' +
                 ", users=[";
 
-        for(User user: users){
-               string += user;
+        for (User user : users) {
+            string += user;
         }
-               string += "]}";
+        string += "]}";
         return string;
     }
 }
