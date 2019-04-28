@@ -1,8 +1,4 @@
 TODO
-DataLoader.java
----------------
-
-
 My List
 -------
 
@@ -11,32 +7,21 @@ itemform.html
 color popup for color
 
 
-ASK DAVE or Melisa!!!!!
------------------------
-Can users need to delete own category? YES
-
-download new css and javascript from getbootstrap.com
-
 PROBLEMS:
 -------
 ADD
 ---
-saving same title with different ignore case from each form.
+adding same title with different letter case in each form.
 
 READ
------
-email and password comparion on form through javascript before submission.
-
+----
+email and password comparsion on form through javascript before submission is not implemented.
 
 UPDATE
 ------
 forget password functionality has not implemented
-
+User can't update its own created category
 
 DELETE
 ------
-
-
-
-
-
+User can't delete its own created category

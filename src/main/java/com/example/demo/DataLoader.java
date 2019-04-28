@@ -1,7 +1,8 @@
-package com.example.demo.business.services;
+package com.example.demo;
 
 import com.example.demo.business.entities.*;
 import com.example.demo.business.entities.repositories.*;
+import com.example.demo.business.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -46,7 +47,7 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         if (rundataloader) {
-            //if you want to run dataloader then change it to true.
+            //if you want to run dataloader once then change run.dataloader = true in application.properties.
             // it will help you to not comment out whole class
 
             //Password
