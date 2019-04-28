@@ -33,6 +33,7 @@ public class LoginController {
 
     @Autowired
     OccasionRepository occasionRepository;
+
     @Autowired
     WindRepository windRepository;
 
@@ -89,11 +90,20 @@ public class LoginController {
             //Update User and Admin
             boolean isUser = userRepository.findById(user.getId()).isPresent();
             if (isUser) {
-
                 Iterable<Item> items = itemRepository.findAllByUser(user);
                 for (Item item : items) {
                     itemRepository.save(item);
                     user.getItems().add(item);
+                }
+                //updating with existed username
+                if (userRepository.findByUsername(user.getUsername())!= null &&
+                        //current user
+                        !userRepository.findByUsername(user.getUsername()).equals(user)) {
+                    model.addAttribute("message",
+                            "We already have a username called " +
+                                    user.getUsername() + "!" + " Try something else.");
+                    findAll(model);
+                    return "register";
                 }
                 if (userService.isUser()) {
                     user.setPassword(userService.encode(pw));
@@ -103,21 +113,24 @@ public class LoginController {
                     user.setPassword(userService.encode(pw));
                     userService.saveAdmin(user);
                 }
-                model.addAttribute("message", "User Account Successfully Updated");
+                model.addAttribute("message",
+                        "User Account Successfully Updated");
             }
             //New User
             else {
                 //Registering with existed username
 //                todo: inserting existed username in update profile
-                if (userRepository.findByUsername(user.getUsername()) != null && user.getId() == 0) {
-                    model.addAttribute("message", "We already have a username called " +
-                            user.getUsername() + "!" + " Try something else.");
+                if (userRepository.findByUsername(user.getUsername()) != null) {
+                    model.addAttribute("message",
+                            "We already have a username called " +
+                                    user.getUsername() + "!" + " Try something else.");
                     findAll(model);
                     return "register";
                 } else {
                     user.setPassword(userService.encode(pw));
                     userService.saveUser(user);
-                    model.addAttribute("message", "User Account Successfully Created");
+                    model.addAttribute("message",
+                            "User Account Successfully Created");
                 }
             }
         }

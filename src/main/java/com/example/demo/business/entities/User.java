@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -42,7 +43,8 @@ public class User implements Serializable {
     private boolean enabled;
 
     @NotEmpty
-    @Column(name = "username")
+    @Size(max = 32)
+    @Column(name = "username", unique = true)
     private String username;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -169,5 +171,22 @@ public class User implements Serializable {
         string += "]}";
 
         return string;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+
+        User user = (User) o;
+        if (id != user.id) return false;
+        return username.equals(user.username);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + username.hashCode();
+        return result;
     }
 }

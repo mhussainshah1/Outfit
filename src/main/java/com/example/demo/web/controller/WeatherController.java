@@ -50,6 +50,9 @@ public class WeatherController {
     @Autowired
     UserService userService;
 
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+
     public void findAll(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("climates", climateRepository.findAll());
@@ -71,9 +74,6 @@ public class WeatherController {
             throws IOException {
         findAll(model);
         if (result.hasErrors()) {
-            for (ObjectError e : result.getAllErrors()) {
-                System.out.println(e);
-            }
             User user = userService.getUser();
             model.addAttribute("items", itemRepository.findAllByUser(user));
             return "list";
@@ -124,8 +124,8 @@ public class WeatherController {
 
         User user = userService.getUser();
 
-        System.out.println(climateString + " " + weather.getTemp());
-        System.out.println(windString + " " + weather.getWindSpeed());
+        System.out.println(ANSI_RED + climateString + " " + weather.getTemp());
+        System.out.println(windString + " " + weather.getWindSpeed() +ANSI_BLACK);
 
         Set<Item> outfit = new HashSet<>();
         for (Category category : categories) {
@@ -138,7 +138,6 @@ public class WeatherController {
             if (userService.isAdmin()) {
                 list = itemRepository.findAllByCategoryAndClimate(category, climate);
             }
-
             if (!list.isEmpty()) {
                 int randomid = (int) (Math.random() * list.size());
                 outfit.add(list.get(randomid));
