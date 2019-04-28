@@ -20,7 +20,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private SSUserDetailsService userDetailService;
 
     @Autowired
-    private UserRepository appUserRepository;
+    private UserRepository userRepository;
 
     @Bean
     public static BCryptPasswordEncoder passwordEncoder() {
@@ -29,7 +29,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public UserDetailsService userDetailsServiceBean() throws Exception {
-        return new SSUserDetailsService(appUserRepository);
+        return new SSUserDetailsService(userRepository);
     }
 
     @Override
