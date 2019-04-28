@@ -19,10 +19,10 @@ email and password comparsion on form through javascript before submission is no
 
 UPDATE
 ------
-forget password functionality has not implemented
+forget password functionality is not implemented
 User can't update its own created category
 
 DELETE
 ------
 User can't delete its own created category
-Admin can only update and delete its own data.
+Admin should only update and delete its own data.
