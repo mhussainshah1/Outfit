@@ -119,7 +119,6 @@ public class LoginController {
             //New User
             else {
                 //Registering with existed username
-//                todo: inserting existed username in update profile
                 if (userRepository.findByUsername(user.getUsername()) != null) {
                     model.addAttribute("message",
                             "We already have a username called " +

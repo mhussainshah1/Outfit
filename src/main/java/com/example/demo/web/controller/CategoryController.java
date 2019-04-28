@@ -55,14 +55,14 @@ public class CategoryController {
     public String processSubject(@Valid Category category,
                                  BindingResult result,
                                  Model model) {
+        findAll(model);
         if (result.hasErrors()) {
-            findAll(model);
             return "category";
         }
+        category.setName(category.getName().toLowerCase());
         if (categoryRepository.findByName(category.getName()) != null) {
             model.addAttribute("message", "You already have a category called " +
                     category.getName() + "!" + " Try something else.");
-            findAll(model);
             return "category";
         }
         categoryRepository.save(category);

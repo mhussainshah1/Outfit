@@ -11,7 +11,7 @@ PROBLEMS:
 -------
 ADD
 ---
-adding same title with different letter case in each form.
+
 
 READ
 ----
@@ -25,3 +25,4 @@ User can't update its own created category
 DELETE
 ------
 User can't delete its own created category
+Admin can only update and delete its own data.

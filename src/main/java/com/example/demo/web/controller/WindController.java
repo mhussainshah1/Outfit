@@ -56,13 +56,11 @@ public class WindController {
     public String processSubject(@Valid Wind wind,
                                  BindingResult result,
                                  Model model) {
+        findAll(model);
         if (result.hasErrors()) {
-            for (ObjectError e : result.getAllErrors()) {
-                System.out.println(e);
-            }
-            findAll(model);
             return "wind";
         }
+        wind.setName(wind.getName().toLowerCase());
         if (windRepository.findByName(wind.getName()) != null) {
             model.addAttribute("message", "You already have a wind called " +
                     wind.getName() + "!" + " Try something else.");

@@ -56,12 +56,11 @@ public class ClimateController {
     public String processSubject(@Valid Climate climate,
                                  BindingResult result,
                                  Model model) {
+        findAll(model);
         if (result.hasErrors()) {
-            for (ObjectError e : result.getAllErrors()) {
-                System.out.println(e);
-            }
             return "climate";
         }
+        climate.setName(climate.getName().toLowerCase());
         if (climateRepository.findByName(climate.getName()) != null) {
             model.addAttribute("message", "You already have a climate called " +
                     climate.getName() + "!" + " Try something else.");

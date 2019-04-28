@@ -55,12 +55,11 @@ public class OccasionController {
     public String processSubject(@Valid Occasion occasion,
                                  BindingResult result,
                                  Model model) {
+        findAll(model);
         if (result.hasErrors()) {
-            for (ObjectError e : result.getAllErrors()) {
-                System.out.println(e);
-            }
             return "occasion";
         }
+        occasion.setName(occasion.getName().toLowerCase());
         if (occasionRepository.findByName(occasion.getName()) != null) {
             model.addAttribute("message", "You already have a occasion called " +
                     occasion.getName() + "!" + " Try something else.");
