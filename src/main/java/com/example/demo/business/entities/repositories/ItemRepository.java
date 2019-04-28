@@ -39,4 +39,6 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
 
     Iterable<Item> findAllByNameContainingOrDescriptionContainingAndUserAllIgnoreCase(String title, String description, User user);
 
+    Iterable<Item> findAllByUserAndNameContainingOrDescriptionContainingAllIgnoreCase(User user, String title, String description);
+
 }

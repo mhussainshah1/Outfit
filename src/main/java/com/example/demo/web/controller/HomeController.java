@@ -94,7 +94,8 @@ public class HomeController {
             if (userService.isUser()) {
                 model.addAttribute("items",
                         itemRepository
-                                .findAllByNameContainingOrDescriptionContainingAndUserAllIgnoreCase(search, search, userService.getUser()));
+//                                .findAllByNameContainingOrDescriptionContainingAndUserAllIgnoreCase(search, search, user));
+                                .findAllByUserAndNameContainingOrDescriptionContainingAllIgnoreCase(user,search,search));
             }
             if (userService.isAdmin()) {
                 model.addAttribute("items", results);
