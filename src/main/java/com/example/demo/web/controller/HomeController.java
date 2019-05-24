@@ -125,9 +125,30 @@ public class HomeController {
     public String processForm(@Valid @ModelAttribute("item") Item item,
                               BindingResult result,
                               @RequestParam("file") MultipartFile file,
+                              @RequestParam("hiddenImgURL") String ImgURL,
                               Model model) {
         findAll(model);
-        if (result.hasErrors()) {
+        if (!file.isEmpty()) {
+            try {
+                Map uploadResult = cloudc.upload(file.getBytes(),
+                        ObjectUtils.asMap("resourcetype", "auto"));
+                item.setPicturePath(uploadResult.get("url").toString());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "redirect:/itemform";
+            }
+        } else {
+            if (!ImgURL.isEmpty()) {
+                item.setPicturePath(ImgURL);
+            } else {
+                item.setPicturePath("");
+            }
+        }
+
+        itemRepository.save(item);
+        return "redirect:/";
+       /* if (result.hasErrors()) {
             for (ObjectError e : result.getAllErrors()) {
                 System.out.println(e);
             }
@@ -162,7 +183,7 @@ public class HomeController {
         item.setPicturePath(transformedImage);
         item.setUser(userService.getUser());
         itemRepository.save(item); //generate SQL statement and insert into database
-        return "redirect:/";
+        return "redirect:/";*/
     }
 
     @RequestMapping("/detail/{id}")
@@ -173,10 +194,20 @@ public class HomeController {
     }
 
     @RequestMapping("/update/{id}")
-    public String updateItem(@PathVariable("id") long id, Model model) {
+    public String updateItem(@PathVariable("id") long id,
+                             @ModelAttribute Item item,
+                             Model model) {
         findAll(model);
+        item = itemRepository.findById(id).get();
         model.addAttribute("myuser", userService.getUser());
         model.addAttribute("item", itemRepository.findById(id).get());
+        model.addAttribute("imageURL", item.getPicturePath());
+
+        if (item.getPicturePath().isEmpty()) {
+            model.addAttribute("imageLabel", "Upload Image");
+        } else {
+            model.addAttribute("imageLabel", "Upload New Image");
+        }
         return "itemform";
     }
 

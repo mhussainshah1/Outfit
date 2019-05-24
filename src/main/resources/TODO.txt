@@ -15,7 +15,8 @@ ADD
 
 READ
 ----
-email and password comparsion on form through javascript before submission is not implemented.
+email and password comparsion on registration form through javascript before submission
+is not implemented.
 
 UPDATE
 ------

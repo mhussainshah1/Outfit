@@ -9,120 +9,145 @@
     <div class="jumbotron lead">
         <h2 align="center">Add Item</h2>
     </div>
-    <form action="#" enctype="multipart/form-data"
+    <form action="#" th:action="@{/process}"
+          enctype="multipart/form-data"
           method="post"
-          th:action="@{/process}"
           th:object="${item}">
         <input th:field="*{id}" type="hidden"/>
-        <table class="table">
-            <tr>
-                <td><label for="category">Category:</label></td>
-                <td><select class="form-control input-md" id="category" th:field="*{category}">
-                    <option th:each="option: ${categories}"
-                            th:value="${option.id}">[[${option.name}]]
-                    </option>
-                </select>
-                </td>
-                <td><span th:errors="*{category}"
-                          th:if="${#fields.hasErrors('category')}"></span></td>
-            </tr>
-            <tr>
-                <td><label for="make">Item's Name:</label></td>
-                <td><input class="form-control" id="make" placeholder="Item's Name" th:field="*{name}" type="text"/>
-                </td>
-                <td><span th:errors="*{name}"
-                          th:if="${#fields.hasErrors('name')}"></span></td>
-            </tr>
-            <tr>
-                <td><label for="model">Color:</label></td>
-                <td><input class="form-control" id="model" placeholder="Color" th:field="*{color}" type="text"/></td>
-                <td><span th:errors="*{color}"
-                          th:if="${#fields.hasErrors('color')}"></span></td>
-            </tr>
-            <tr>
-                <td><label for="material">Material :</label></td>
-                <td><input class="form-control" id="material" placeholder="Material" th:field="*{material}"
-                           type="text"/></td>
-                <td><span th:errors="*{material}"
-                          th:if="${#fields.hasErrors('material')}"></span></td>
-            </tr>
 
-            <tr>
-                <td><label for="file">Upload Image:</label></td>
-                <td>
-                    <!--<span th:if="*{picturePath} == null">-->
-                    <input class="form-control-file border" id="file" name="file" type="file">
-                    (Update or add new image)
-                    <!--</span>-->
-                </td>
-                <td></td>
-            </tr>
-            <tr th:if="(*{picturePath} != null)">
-                <td><input th:field="*{picturePath}" type="hidden"></td>
-                <td><img alt="Picture" class="profile-picture" th:src="*{picturePath}"/> <!--[[${item.picturePath}]]-->
-                </td>
-                <td><span th:errors="*{picturePath}" th:if="${#fields.hasErrors('picturePath')}"></span></td>
-            </tr>
-            <tr>
-                <td><label for="size">Size :</label></td>
-                <td><input class="form-control" id="size" placeholder="Size" th:field="*{size}" type="text"/></td>
-                <td><span th:errors="*{size}"
-                          th:if="${#fields.hasErrors('size')}"></span></td>
-            </tr>
-            <tr>
-                <td><label for="description">Description :</label></td>
-                <td><textarea class="form-control" id="description" placeholder="Description" rows="3"
-                              th:field="*{description}"></textarea></td>
-                <td><span th:errors="*{description}"
-                          th:if="${#fields.hasErrors('description')}"></span></td>
-            </tr>
-            <tr>
-                <td><label for="occasion">Occasion:</label></td>
-                <td><select class="form-control input-md" id="occasion" th:field="*{occasion}">
-                    <option th:each="option: ${occasions}"
-                            th:value="${option.id}">[[${option.name}]]
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="category">Category:</label>
+            <div class="col-sm-10">
+                <select class="custom-select" id="category" th:field="*{category}">
+                    <option th:each="option: ${categories}"
+                            th:utext="${option.name}"
+                            th:value="${option.id}">
                     </option>
                 </select>
-                </td>
-                <td><span th:errors="*{occasion}"
-                          th:if="${#fields.hasErrors('occasion')}"></span></td>
-            </tr>
-            <tr>
-                <td><label for="climate">Climate:</label></td>
-                <td>
-                    <select class="form-control input-md" id="climate" th:field="*{climate}">
-                        <option th:each="option: ${climates}"
-                                th:value="${option.id}">[[${option.name}]]
-                        </option>
-                    </select>
-                </td>
-                <td><span th:errors="*{climate}"
-                          th:if="${#fields.hasErrors('climate')}"></span></td>
-            </tr>
-            <tr>
-                <td><label for="climate">Wind:</label></td>
-                <td>
-                    <select class="form-control input-md" id="wind" th:field="*{wind}">
-                        <option th:each="option: ${winds}"
-                                th:value="${option.id}">[[${option.name}]]
-                        </option>
-                    </select>
-                </td>
-                <td><span th:errors="*{wind}"
-                          th:if="${#fields.hasErrors('wind')}"></span></td>
-            </tr>
-            <tr>
-                <td>User :</td>
-                <td><label th:text="${myuser.firstName} +' ' +${myuser.lastName}"></label></td>
-                <td><input th:field="*{user}" th:value="${myuser}" type="hidden">
-                    <span th:errors="*{user}" th:if="${#fields.hasErrors('user')}"></span></td>
-            </tr>
-            <tr>
-                <td align="center" colspan="3">
-                    <button class="btn btn-primary" type="submit">Submit</button>
-                </td>
-            </tr>
-        </table>
+            </div>
+            <span th:errors="*{category}"
+                  th:if="${#fields.hasErrors('category')}"></span>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="name">Item's Name:</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="name" placeholder="Item's Name" th:field="*{name}" type="text"/>
+            </div>
+            <span th:errors="*{name}"
+                  th:if="${#fields.hasErrors('name')}"></span>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="color">Color:</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="color" placeholder="Color" th:field="*{color}" type="text"/>
+            </div>
+            <span th:errors="*{color}"
+                  th:if="${#fields.hasErrors('color')}"></span>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="material">Material :</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="material" placeholder="Material" th:field="*{material}" type="text"/>
+            </div>
+            <span th:errors="*{material}"
+                  th:if="${#fields.hasErrors('material')}"></span>
+        </div>
+
+        <div th:if="${imageURL != null}">
+            <input name="hiddenImgURL" th:value="${imageURL}" type="hidden"/>
+            <img alt="meme image" class="profile-picture" th:src="${imageURL}"/>
+        </div>
+
+        <!--       <div th:if="(*{picturePath} != null)">
+                   <input th:field="*{picturePath}" type="hidden">
+                   <img alt="Picture" class="profile-picture" th:src="*{picturePath}"/> &lt;!&ndash;[[${item.picturePath}]]&ndash;&gt;
+                   <span th:errors="*{picturePath}" th:if="${#fields.hasErrors('picturePath')}"></span>
+               </div>-->
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="file">Upload Image:</label>
+            <div class="col-sm-10">
+                <span th:inline="text">[[${imageLabel}]]</span>:
+                <input class="form-control-file border" id="file" name="file" type="file">
+                (Update or add new image)
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="size">Size :</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="size" placeholder="Size" th:field="*{size}" type="text"/>
+            </div>
+            <span th:errors="*{size}" th:if="${#fields.hasErrors('size')}"></span>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="description">Description :</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" id="description"
+                          placeholder="Description" rows="3" th:field="*{description}"></textarea>
+            </div>
+            <span th:errors="*{description}"
+                  th:if="${#fields.hasErrors('description')}"></span>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="occasion">Occasion:</label>
+            <div class="col-sm-10">
+                <select class="custom-select" id="occasion" th:field="*{occasion}">
+                    <option th:each="option: ${occasions}"
+                            th:utext="${option.name}"
+                            th:value="${option.id}">
+                    </option>
+                </select>
+            </div>
+            <span th:errors="*{occasion}"
+                  th:if="${#fields.hasErrors('occasion')}"></span>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="climate">Climate:</label>
+            <div class="col-sm-10">
+                <select class="custom-select" id="climate" th:field="*{climate}">
+                    <option th:each="option: ${climates}"
+                            th:utext="${option.name}"
+                            th:value="${option.id}">
+                    </option>
+                </select>
+            </div>
+            <span th:errors="*{climate}"
+                  th:if="${#fields.hasErrors('climate')}"></span>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="wind">Wind:</label>
+            <div class="col-sm-10">
+                <select class="custom-select" id="wind" th:field="*{wind}">
+                    <option th:each="option: ${winds}"
+                            th:utext="${option.name}"
+                            th:value="${option.id}">
+                    </option>
+                </select>
+            </div>
+            <span th:errors="*{wind}"
+                  th:if="${#fields.hasErrors('wind')}"></span>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">User :</label>
+            <div align="left" class="col-sm-10">
+                <label th:text="${myuser.firstName} +' ' +${myuser.lastName}"></label>
+            </div>
+            <input th:field="*{user}" th:value="${myuser}" type="hidden">
+            <span th:errors="*{user}"
+                  th:if="${#fields.hasErrors('user')}"></span>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+
     </form>
 </div>
 <br/>
