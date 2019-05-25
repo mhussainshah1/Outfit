@@ -147,7 +147,7 @@ public class HomeController {
 
             } catch (IOException e) {
                 e.printStackTrace();
-                return "redirect:/itemform";
+                return "redirect:/add";
             }
         } else {
             if (!ImgURL.isEmpty()) {
