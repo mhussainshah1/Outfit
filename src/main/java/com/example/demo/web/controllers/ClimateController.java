@@ -1,4 +1,4 @@
-package com.example.demo.web.controller;
+package com.example.demo.web.controllers;
 
 import com.example.demo.business.entities.Climate;
 import com.example.demo.business.entities.User;
@@ -8,11 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
@@ -43,28 +39,31 @@ public class ClimateController {
         model.addAttribute("climates", climateRepository.findAll());
         model.addAttribute("occasions", occasionRepository.findAll());
         model.addAttribute("winds", windRepository.findAll());
+
+        model.addAttribute("page_title","Add Climate");
+        model.addAttribute("process","processclimate");
     }
 
     @GetMapping("/addclimate")
     public String climateForm(Model model) {
         findAll(model);
-        model.addAttribute("climate", new Climate());
-        return "climate";
+        model.addAttribute("object", new Climate());
+        return "type";
     }
 
     @PostMapping("/processclimate")
-    public String processSubject(@Valid Climate climate,
+    public String processSubject(@Valid @ModelAttribute("object") Climate climate,
                                  BindingResult result,
                                  Model model) {
         findAll(model);
         if (result.hasErrors()) {
-            return "climate";
+            return "type";
         }
         climate.setName(climate.getName().toLowerCase());
         if (climateRepository.findByName(climate.getName()) != null) {
             model.addAttribute("message", "You already have a climate called " +
                     climate.getName() + "!" + " Try something else.");
-            return "climate";
+            return "type";
         }
         climateRepository.save(climate);
         return "redirect:/";

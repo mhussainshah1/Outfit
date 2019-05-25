@@ -1,4 +1,4 @@
-package com.example.demo.web.controller;
+package com.example.demo.web.controllers;
 
 import com.example.demo.business.entities.Item;
 import com.example.demo.business.entities.User;
@@ -71,19 +71,24 @@ public class LoginController {
     @GetMapping("/register")
     public String showRegistrationPage(Model model) {
         findAll(model);
+        model.addAttribute("page_title","New User Registration");
         model.addAttribute("user", new User());
         return "register";
     }
 
     @PostMapping("/register")
     public String processRegistrationPage(@Valid @ModelAttribute("user") User user,
+                                          //@ModelAttribute("user") is not neccesary here.
+                                          // We always use if the name of object on form is different than Class
+                                          //e.g. if the User class object on form is user1 instead of user then
+                                          // we have to use thi annotation
                                           BindingResult result,
                                           Model model,
                                           @RequestParam("password") String pw) {
         System.out.println("password: " + pw);
-
+        findAll(model);
+        model.addAttribute("page_title","Update Profile");
         if (result.hasErrors()) {
-            findAll(model);
             return "register";
         } else {
             System.out.println(user);
@@ -100,9 +105,7 @@ public class LoginController {
                         //current user
                         !userRepository.findByUsername(user.getUsername()).equals(user)) {
                     model.addAttribute("message",
-                            "We already have a username called " +
-                                    user.getUsername() + "!" + " Try something else.");
-                    findAll(model);
+                            "We already have a username called " + user.getUsername() + "!" + " Try something else.");
                     return "register";
                 }
                 if (userService.isUser()) {
@@ -113,23 +116,19 @@ public class LoginController {
                     user.setPassword(userService.encode(pw));
                     userService.saveAdmin(user);
                 }
-                model.addAttribute("message",
-                        "User Account Successfully Updated");
+                model.addAttribute("message","User Account Successfully Updated");
             }
             //New User
             else {
                 //Registering with existed username
                 if (userRepository.findByUsername(user.getUsername()) != null) {
                     model.addAttribute("message",
-                            "We already have a username called " +
-                                    user.getUsername() + "!" + " Try something else.");
-                    findAll(model);
+                            "We already have a username called " + user.getUsername() + "!" + " Try something else.");
                     return "register";
                 } else {
                     user.setPassword(userService.encode(pw));
                     userService.saveUser(user);
-                    model.addAttribute("message",
-                            "User Account Successfully Created");
+                    model.addAttribute("message","User Account Successfully Created");
                 }
             }
         }
@@ -142,7 +141,6 @@ public class LoginController {
         return "termsandconditions";
     }
 
-
     @RequestMapping("/updateUser")
     public String viewUser(Model model,
                            HttpServletRequest request,
@@ -152,6 +150,7 @@ public class LoginController {
         Boolean isUser = request.isUserInRole("USER");
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();*/
 //        String username = principal.getName();
+        model.addAttribute("page_title","Update Profile");
         model.addAttribute("user", userService.getUser());
         return "register";
     }

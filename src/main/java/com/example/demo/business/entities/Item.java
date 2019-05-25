@@ -2,6 +2,7 @@ package com.example.demo.business.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
@@ -28,7 +29,7 @@ public class Item implements Serializable {
     @NotEmpty
     private String size;
 
-    //@NotEmpty
+    @NotNull
     private String picturePath;
 
     @NotEmpty
@@ -50,6 +51,7 @@ public class Item implements Serializable {
     private Wind wind;
 
     public Item() {
+        picturePath = "";
         user = new User();
         category = new Category();
         climate = new Climate();
@@ -57,7 +59,7 @@ public class Item implements Serializable {
         wind = new Wind();
     }
 
-    public Item(@NotEmpty String name, @NotEmpty String color, @NotEmpty String material, @NotEmpty String size, String picturePath, @NotEmpty String description, User user, Category category, Climate climate, Occasion occasion, Wind wind) {
+    public Item(@NotEmpty String name, @NotEmpty String color, @NotEmpty String material, @NotEmpty String size, @NotNull String picturePath, @NotEmpty String description, User user, Category category, Climate climate, Occasion occasion, Wind wind) {
         this.name = name;
         this.color = color;
         this.material = material;

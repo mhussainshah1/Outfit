@@ -1,4 +1,4 @@
-package com.example.demo.web.controller;
+package com.example.demo.web.controllers;
 
 import com.cloudinary.utils.ObjectUtils;
 import com.example.demo.business.entities.Item;
@@ -126,69 +126,37 @@ public class HomeController {
     public String processForm(@Valid @ModelAttribute("item") Item item,
                               BindingResult result,
                               @RequestParam("file") MultipartFile file,
-                              @RequestParam("hiddenImgURL") String ImgURL,
                               Model model) {
         findAll(model);
         model.addAttribute("imageLabel", "Upload Image");
         model.addAttribute("myuser", userService.getUser());
         if (result.hasErrors()) {
+            for(ObjectError e: result.getAllErrors()){
+                System.err.println(e);
+            }
             return "itemform";
         }
-
         if (!file.isEmpty()) {
             try {
-                Map uploadResult = cloudc.upload(file.getBytes(),
-                        ObjectUtils.asMap("resourcetype", "auto"));
-                item.setPicturePath(uploadResult.get("url").toString());
-
+                Map uploadResult = cloudc.upload(
+                        file.getBytes(), ObjectUtils.asMap("resourcetype", "auto"));
+                String url = uploadResult.get("url").toString();
                 String uploadedName = uploadResult.get("public_id").toString();
                 String transformedImage = cloudc.createUrl(uploadedName, 150, 150);
                 item.setPicturePath(transformedImage);
-
+                item.setUser(userService.getUser());
             } catch (IOException e) {
                 e.printStackTrace();
                 return "redirect:/add";
             }
         } else {
-            if (!ImgURL.isEmpty()) {
-                item.setPicturePath(ImgURL);
-            } else {
-                //item.setPicturePath("");
+            //if file is empty and there is a picture path then save item
+            if (item.getPicturePath().isEmpty()) {
                 return "itemform";
             }
         }
-        item.setUser(userService.getUser());
         itemRepository.save(item); //generate SQL statement and insert into database
         return "redirect:/";
-       /*
-        //if there is a picture path and file is empty then save message
-        if (item.getPicturePath() != null && file.isEmpty()) {
-            itemRepository.save(item);
-            return "redirect:/";
-        }
-
-        if (file.isEmpty()) {
-            model.addAttribute("myuser", userService.getUser());
-            return "itemform";
-        }
-        Map uploadResult;
-        try {
-            uploadResult = cloudc.upload(
-                    file.getBytes(), ObjectUtils.asMap("resourcetype", "auto"));
-        } catch (IOException e) {
-            e.printStackTrace();
-            findAll(model);
-            model.addAttribute("myuser", userService.getUser());
-            return "redirect:/itemform";
-        }
-        String url = uploadResult.get("url").toString();
-        String uploadedName = uploadResult.get("public_id").toString();
-        String transformedImage = cloudc.createUrl(uploadedName, 150, 150);
-
-        item.setPicturePath(transformedImage);
-        item.setUser(userService.getUser());
-        itemRepository.save(item); //generate SQL statement and insert into database
-        return "redirect:/";*/
     }
 
     @RequestMapping("/detail/{id}")
@@ -206,7 +174,7 @@ public class HomeController {
         item = itemRepository.findById(id).get();
         model.addAttribute("myuser", userService.getUser());
         model.addAttribute("item", itemRepository.findById(id).get());
-        model.addAttribute("imageURL", item.getPicturePath());
+        //model.addAttribute("imageURL", item.getPicturePath());
 
         if (item.getPicturePath().isEmpty()) {
             model.addAttribute("imageLabel", "Upload Image");

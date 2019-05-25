@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="base::header">
-    <title>Add Category</title>
+    <title th:text="${page_title}">Add Category</title>
 </head>
 <body>
 <div th:replace="base::nav"></div>
-<div align="center" class="container">
+<div class="container text-center">
     <div class="jumbotron lead">
-        <h2>Add Category</h2>
+        <h2 th:text="${page_title}">Add Category</h2>
     </div>
-    <form action="#"
+    <form action="#" th:action="@{'/'+ ${process}}"
           method="post"
-          th:action="@{/processcategory}"
-          th:object="${category}">
-
+          th:object="${object}">
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="name">Name :</label>
             <div class="col-sm-10 text-left">
-                <input class="form-control" id="name" placeholder="Category" th:field="*{name}" type="text">
+                <input class="form-control" th:placeholder="${page_title}" th:field="*{name}" type="text">
                 <strong>
                      <span class="error-message"
                            th:errors="*{name}"

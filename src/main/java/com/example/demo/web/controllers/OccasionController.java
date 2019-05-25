@@ -1,4 +1,4 @@
-package com.example.demo.web.controller;
+package com.example.demo.web.controllers;
 
 import com.example.demo.business.entities.Occasion;
 import com.example.demo.business.entities.User;
@@ -8,11 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
@@ -42,28 +38,31 @@ public class OccasionController {
         model.addAttribute("climates", climateRepository.findAll());
         model.addAttribute("occasions", occasionRepository.findAll());
         model.addAttribute("winds", windRepository.findAll());
+
+        model.addAttribute("page_title","Add Occasion");
+        model.addAttribute("process","processoccasion");
     }
 
     @GetMapping("/addoccasion")
     public String occasionForm(Model model) {
         findAll(model);
-        model.addAttribute("occasion", new Occasion());
-        return "occasion";
+        model.addAttribute("object", new Occasion());
+        return "type";
     }
 
     @PostMapping("/processoccasion")
-    public String processSubject(@Valid Occasion occasion,
+    public String processSubject(@Valid @ModelAttribute("object") Occasion occasion,
                                  BindingResult result,
                                  Model model) {
         findAll(model);
         if (result.hasErrors()) {
-            return "occasion";
+            return "type";
         }
         occasion.setName(occasion.getName().toLowerCase());
         if (occasionRepository.findByName(occasion.getName()) != null) {
             model.addAttribute("message", "You already have a occasion called " +
                     occasion.getName() + "!" + " Try something else.");
-            return "occasion";
+            return "type";
         }
         occasionRepository.save(occasion);
         return "redirect:/";

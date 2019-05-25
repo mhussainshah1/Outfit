@@ -1,4 +1,4 @@
-package com.example.demo.web.controller;
+package com.example.demo.web.controllers;
 
 import com.example.demo.business.entities.Category;
 import com.example.demo.business.entities.User;
@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
@@ -42,28 +39,31 @@ public class CategoryController {
         model.addAttribute("climates", climateRepository.findAll());
         model.addAttribute("occasions", occasionRepository.findAll());
         model.addAttribute("winds", windRepository.findAll());
+
+        model.addAttribute("page_title","Add Category");
+        model.addAttribute("process","processcategory");
     }
 
     @GetMapping("/addcategory")
     public String categoryForm(Model model) {
         findAll(model);
-        model.addAttribute("category", new Category());
-        return "category";
+        model.addAttribute("object", new Category());
+        return "type";
     }
 
     @PostMapping("/processcategory")
-    public String processSubject(@Valid Category category,
+    public String processCategory(@Valid @ModelAttribute("object") Category category,
                                  BindingResult result,
                                  Model model) {
         findAll(model);
         if (result.hasErrors()) {
-            return "category";
+            return "type";
         }
         category.setName(category.getName().toLowerCase());
         if (categoryRepository.findByName(category.getName()) != null) {
             model.addAttribute("message", "You already have a category called " +
                     category.getName() + "!" + " Try something else.");
-            return "category";
+            return "type";
         }
         categoryRepository.save(category);
         return "redirect:/";

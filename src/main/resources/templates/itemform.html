@@ -74,18 +74,16 @@
             </div>
         </div>
 
-        <div th:if="${imageURL != null}">
-            <img alt="meme image" class="profile-picture" th:src="${imageURL}"/>
-        </div>
-        <input name="hiddenImgURL" th:value="${imageURL}" type="hidden"/>
+        <!-- <div th:if="${imageURL != null}">
+             <img alt="meme image" class="profile-picture" th:src="${imageURL}"/>
+         </div>
+         <input name="hiddenImgURL" th:value="${imageURL}" type="hidden"/>-->
 
-        <!--
-        <div th:if="(*{picturePath} != null)">
-                   <input th:field="*{picturePath}" type="hidden">
-                   <img alt="Picture" class="profile-picture" th:src="*{picturePath}"/> &lt;!&ndash;[[${item.picturePath}]]&ndash;&gt;
-                   <span th:errors="*{picturePath}" th:if="${#fields.hasErrors('picturePath')}"></span>
-               </div>
-               -->
+        <div th:unless="*{picturePath.isEmpty()}"><!-- if picture path is not empty-->
+            <input th:field="*{picturePath}" type="hidden">
+            <img alt="Picture" class="profile-picture" th:src="*{picturePath}"/> <!--[[${item.picturePath}]]-->
+            <span th:errors="*{picturePath}" th:if="${#fields.hasErrors('picturePath')}"></span>
+        </div>
 
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="file">[[${imageLabel}]]:</label>
@@ -97,7 +95,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="size">Size :</label>
             <div class="col-sm-10 text-left">
-                <input class="form-control" id="size" placeholder="Size" th:field="*{size}" type="text"/>
+                <input class="form-control" placeholder="Size" th:field="*{size}" type="text"/>
                 <strong>
                     <span class="error-message"
                           th:errors="*{size}"
@@ -110,8 +108,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="description">Description :</label>
             <div class="col-sm-10 text-left">
-                <textarea class="form-control" id="description"
-                          placeholder="Description" rows="3" th:field="*{description}"></textarea>
+                <textarea class="form-control" placeholder="Description" rows="3" th:field="*{description}"></textarea>
                 <strong>
                      <span class="error-message"
                            th:errors="*{description}"
@@ -124,7 +121,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="occasion">Occasion:</label>
             <div class="col-sm-10 text-left">
-                <select class="custom-select" id="occasion" th:field="*{occasion}">
+                <select class="custom-select" th:field="*{occasion}">
                     <option th:each="option: ${occasions}"
                             th:utext="${option.name}"
                             th:value="${option.id}">
@@ -142,7 +139,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="climate">Climate:</label>
             <div class="col-sm-10 text-left">
-                <select class="custom-select" id="climate" th:field="*{climate}">
+                <select class="custom-select" th:field="*{climate}">
                     <option th:each="option: ${climates}"
                             th:utext="${option.name}"
                             th:value="${option.id}">
@@ -160,7 +157,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="wind">Wind:</label>
             <div class="col-sm-10 text-left">
-                <select class="custom-select" id="wind" th:field="*{wind}">
+                <select class="custom-select" th:field="*{wind}">
                     <option th:each="option: ${winds}"
                             th:utext="${option.name}"
                             th:value="${option.id}">
