@@ -6,9 +6,11 @@
 <body>
 <div th:replace="base::nav"></div>
 <div class="container text-center">
+
     <div class="jumbotron lead">
         <h2 th:text="${page_title}">Add Category</h2>
     </div>
+
     <form action="#" th:action="@{'/'+ ${process}}"
           method="post"
           th:object="${object}">

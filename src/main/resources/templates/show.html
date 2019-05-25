@@ -10,59 +10,104 @@
 <body>
 <div th:replace="base::nav"></div>
 
-<div align="center" class="container">
-    <table class="table">
-        <tr>
-            <td>Category:</td>
-            <td><span th:text="${item.category.name}"></span></td>
-        </tr>
-        <tr>
-            <td>Item:</td>
-            <td><span th:text="${item.name}"></span></td>
-        </tr>
-        <tr>
-            <td>Color:</td>
-            <td><span th:text="${item.color}"></span></td>
-        </tr>
-        <tr>
-            <td>Material:</td>
-            <td><span th:text="${item.material}"></span></td>
-        </tr>
-        <tr>
-            <td>Picture:</td>
-            <td><img class="profile-picture"
-                     th:alt="Picture"
-                     th:src="${item.picturePath}"> <!-- th:text="${message.picturePath}" -->
-            <td>
-        </tr>
-        <tr>
-            <td>Size:</td>
-            <td><p th:text="${item.size}"></p></td>
-        </tr>
-        <tr>
-            <td>Description:</td>
-            <td><p th:text="${item.description}"></p></td>
-        </tr>
-        <tr>
-            <td>Occasion:</td>
-            <td><span th:text="${item.occasion.name}"></span><br/></td>
-        </tr>
-        <tr>
-            <td>Climate:</td>
-            <td><span th:text="${item.climate.name}"></span><br/></td>
-        </tr>
-        <tr sec:authorize="isAuthenticated()">
-            <td>User:</td>
-            <td><p th:text="${item.user.firstName} +' ' +${item.user.lastName}"></p></td>
-        </tr>
-    </table>
+<div class="container text-left">
+    <div class="row">
+        <div class="col">
+            <p>Category:</p>
+        </div>
+        <div class="col">
+            <p th:text="${item.category.name}"></p>
+        </div>
+    </div>
 
-    <td sec:authorize="isAuthenticated()">
-        <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
-        <a th:href="@{/delete/{id}(id=${item.id})}">delete</a>
-    </td>
+    <div class="row">
+        <div class="col">
+            <p>Item:</p>
+        </div>
+        <div class="col">
+            <p th:text="${item.name}"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <p>Color:</p>
+        </div>
+        <div class="col">
+            <p th:text="${item.color}"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <p>Material:</p>
+        </div>
+        <div class="col">
+            <p th:text="${item.material}"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <p>Picture:</p>
+        </div>
+        <div class="col">
+            <img class="profile-picture"
+                 th:alt="Picture"
+                 th:src="${item.picturePath}"> <!-- th:text="${message.picturePath}" -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <p>Size:</p>
+        </div>
+        <div class="col">
+            <p th:text="${item.size}"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <p>Description:</p>
+        </div>
+        <div class="col">
+            <p th:text="${item.description}"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <p>Occasion:</p>
+        </div>
+        <div class="col">
+            <p th:text="${item.occasion.name}"></p><br/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <span>Climate:</span>
+        </div>
+        <div class="col">
+            <p th:text="${item.climate.name}"></p>
+        </div>
+    </div>
+    <div class="row" sec:authorize="isAuthenticated()">
+        <div class="col">
+            <p>User:</p>
+        </div>
+        <div class="col">
+            <p th:text="${item.user.firstName} +' ' +${item.user.lastName}"></p>
+        </div>
+    </div>
 
 </div>
+
+<div align="center" sec:authorize="isAuthenticated()">
+    <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
+    <a th:href="@{/delete/{id}(id=${item.id})}">delete</a>
+</div>
+
 <div th:replace="base::footer"></div>
 </body>
 </html>
