@@ -116,6 +116,7 @@ public class HomeController {
     @GetMapping("/add")
     public String itemForm(Model model) {
         findAll(model);
+        model.addAttribute("imageLabel", "Upload Image");
         model.addAttribute("myuser", userService.getUser());
         model.addAttribute("item", new Item());
         return "itemform";
@@ -128,11 +129,21 @@ public class HomeController {
                               @RequestParam("hiddenImgURL") String ImgURL,
                               Model model) {
         findAll(model);
+        model.addAttribute("imageLabel", "Upload Image");
+        model.addAttribute("myuser", userService.getUser());
+        if (result.hasErrors()) {
+            return "itemform";
+        }
+
         if (!file.isEmpty()) {
             try {
                 Map uploadResult = cloudc.upload(file.getBytes(),
                         ObjectUtils.asMap("resourcetype", "auto"));
                 item.setPicturePath(uploadResult.get("url").toString());
+
+                String uploadedName = uploadResult.get("public_id").toString();
+                String transformedImage = cloudc.createUrl(uploadedName, 150, 150);
+                item.setPicturePath(transformedImage);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -142,20 +153,14 @@ public class HomeController {
             if (!ImgURL.isEmpty()) {
                 item.setPicturePath(ImgURL);
             } else {
-                item.setPicturePath("");
+                //item.setPicturePath("");
+                return "itemform";
             }
         }
-
-        itemRepository.save(item);
+        item.setUser(userService.getUser());
+        itemRepository.save(item); //generate SQL statement and insert into database
         return "redirect:/";
-       /* if (result.hasErrors()) {
-            for (ObjectError e : result.getAllErrors()) {
-                System.out.println(e);
-            }
-            model.addAttribute("myuser", userService.getUser());
-            return "itemform";
-        }
-
+       /*
         //if there is a picture path and file is empty then save message
         if (item.getPicturePath() != null && file.isEmpty()) {
             itemRepository.save(item);

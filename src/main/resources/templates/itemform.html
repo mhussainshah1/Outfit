@@ -5,13 +5,15 @@
 </head>
 <body>
 <div th:replace="base::nav"></div>
-<div align="center" class="container-float">
+<div align="center" class="container col-md-8 col-md-offset-3">
+
     <div class="jumbotron lead">
         <h2 align="center">Add Item</h2>
     </div>
-    <form action="#" th:action="@{/process}"
-          enctype="multipart/form-data"
+
+    <form action="#" enctype="multipart/form-data"
           method="post"
+          th:action="@{/process}"
           th:object="${item}">
         <input th:field="*{id}" type="hidden"/>
 
@@ -24,42 +26,58 @@
                             th:value="${option.id}">
                     </option>
                 </select>
+                <strong>
+                    <span class="error-message"
+                          th:errors="*{category}"
+                          th:if="${#fields.hasErrors('category')}">
+                    </span>
+                </strong>
             </div>
-            <span th:errors="*{category}"
-                  th:if="${#fields.hasErrors('category')}"></span>
+
         </div>
 
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="name">Item's Name:</label>
             <div class="col-sm-10">
                 <input class="form-control" id="name" placeholder="Item's Name" th:field="*{name}" type="text"/>
+                <strong>
+                <span class="error-message"
+                      th:errors="*{name}"
+                      th:if="${#fields.hasErrors('name')}"></span>
+                </strong>
             </div>
-            <span th:errors="*{name}"
-                  th:if="${#fields.hasErrors('name')}"></span>
         </div>
 
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="color">Color:</label>
             <div class="col-sm-10">
                 <input class="form-control" id="color" placeholder="Color" th:field="*{color}" type="text"/>
+                <strong>
+                 <span class="error-message"
+                       th:errors="*{color}"
+                       th:if="${#fields.hasErrors('color')}">
+                 </span>
+                </strong>
             </div>
-            <span th:errors="*{color}"
-                  th:if="${#fields.hasErrors('color')}"></span>
         </div>
 
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="material">Material :</label>
             <div class="col-sm-10">
                 <input class="form-control" id="material" placeholder="Material" th:field="*{material}" type="text"/>
+                <strong>
+                    <span class="error-message"
+                          th:errors="*{material}"
+                          th:if="${#fields.hasErrors('material')}">
+                    </span>
+                </strong>
             </div>
-            <span th:errors="*{material}"
-                  th:if="${#fields.hasErrors('material')}"></span>
         </div>
 
         <div th:if="${imageURL != null}">
-            <input name="hiddenImgURL" th:value="${imageURL}" type="hidden"/>
             <img alt="meme image" class="profile-picture" th:src="${imageURL}"/>
         </div>
+        <input name="hiddenImgURL" th:value="${imageURL}" type="hidden"/>
 
         <!--       <div th:if="(*{picturePath} != null)">
                    <input th:field="*{picturePath}" type="hidden">
@@ -68,11 +86,9 @@
                </div>-->
 
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="file">Upload Image:</label>
+            <label class="col-sm-2 col-form-label" for="file">[[${imageLabel}]]:</label>
             <div class="col-sm-10">
-                <span th:inline="text">[[${imageLabel}]]</span>:
                 <input class="form-control-file border" id="file" name="file" type="file">
-                (Update or add new image)
             </div>
         </div>
 
@@ -80,8 +96,13 @@
             <label class="col-sm-2 col-form-label" for="size">Size :</label>
             <div class="col-sm-10">
                 <input class="form-control" id="size" placeholder="Size" th:field="*{size}" type="text"/>
+                <strong>
+                    <span class="error-message"
+                          th:errors="*{size}"
+                          th:if="${#fields.hasErrors('size')}">
+                    </span>
+                </strong>
             </div>
-            <span th:errors="*{size}" th:if="${#fields.hasErrors('size')}"></span>
         </div>
 
         <div class="form-group row">
@@ -89,9 +110,13 @@
             <div class="col-sm-10">
                 <textarea class="form-control" id="description"
                           placeholder="Description" rows="3" th:field="*{description}"></textarea>
+                <strong>
+                     <span class="error-message"
+                           th:errors="*{description}"
+                           th:if="${#fields.hasErrors('description')}">
+                     </span>
+                </strong>
             </div>
-            <span th:errors="*{description}"
-                  th:if="${#fields.hasErrors('description')}"></span>
         </div>
 
         <div class="form-group row">
@@ -103,9 +128,13 @@
                             th:value="${option.id}">
                     </option>
                 </select>
+                <strong>
+                    <span class="error-message"
+                          th:errors="*{occasion}"
+                          th:if="${#fields.hasErrors('occasion')}">
+                    </span>
+                </strong>
             </div>
-            <span th:errors="*{occasion}"
-                  th:if="${#fields.hasErrors('occasion')}"></span>
         </div>
 
         <div class="form-group row">
@@ -117,9 +146,14 @@
                             th:value="${option.id}">
                     </option>
                 </select>
+                <strong>
+                    <span class="error-message"
+                          th:errors="*{climate}"
+                          th:if="${#fields.hasErrors('climate')}">
+                    </span>
+                </strong>
             </div>
-            <span th:errors="*{climate}"
-                  th:if="${#fields.hasErrors('climate')}"></span>
+
         </div>
 
         <div class="form-group row">
@@ -131,19 +165,27 @@
                             th:value="${option.id}">
                     </option>
                 </select>
+                <strong>
+                    <span class="error-message"
+                          th:errors="*{wind}"
+                          th:if="${#fields.hasErrors('wind')}">
+                    </span>
+                </strong>
             </div>
-            <span th:errors="*{wind}"
-                  th:if="${#fields.hasErrors('wind')}"></span>
         </div>
 
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">User :</label>
             <div align="left" class="col-sm-10">
                 <label th:text="${myuser.firstName} +' ' +${myuser.lastName}"></label>
+                <strong>
+                     <span class="error-message"
+                           th:errors="*{user}"
+                           th:if="${#fields.hasErrors('user')}">
+                    </span>
+                </strong>
             </div>
             <input th:field="*{user}" th:value="${myuser}" type="hidden">
-            <span th:errors="*{user}"
-                  th:if="${#fields.hasErrors('user')}"></span>
         </div>
 
         <button class="btn btn-primary" type="submit">Submit</button>
