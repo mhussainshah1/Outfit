@@ -8,6 +8,7 @@ import com.example.demo.business.services.FormAttributes;
 import com.example.demo.business.services.UserService;
 import com.example.demo.web.config.CloudinaryConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -56,7 +57,7 @@ public class HomeController {
     }
 
     @RequestMapping("/")
-    public String listItems(Principal principal, Model model) {
+    public String listItems(Model model, @RequestParam(defaultValue = "0") int page) {
         findAll(model);
         User user = userService.getUser();
         System.out.println(user);
@@ -71,14 +72,15 @@ public class HomeController {
         if (user != null) {
             model.addAttribute("formAttributes", new FormAttributes());
             if (userService.isUser()) {
-                model.addAttribute("items", itemRepository.findAllByUser(user));
+                model.addAttribute("items", itemRepository.findAllByUser(user,PageRequest.of(page, 4)));
             }
             if (userService.isAdmin()) {
-                model.addAttribute("items", itemRepository.findAll());
+                model.addAttribute("items", itemRepository.findAll(PageRequest.of(page, 4)));
             }
         } else {
-            model.addAttribute("items", itemRepository.findAll());
+            model.addAttribute("items", itemRepository.findAll(PageRequest.of(page, 4)));
         }
+        model.addAttribute("currentPage", page);
         return "list";
     }
 

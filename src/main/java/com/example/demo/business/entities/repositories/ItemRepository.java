@@ -4,11 +4,13 @@ import com.example.demo.business.entities.Category;
 import com.example.demo.business.entities.Climate;
 import com.example.demo.business.entities.Item;
 import com.example.demo.business.entities.User;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ItemRepository extends CrudRepository<Item, Long> {
+public interface ItemRepository extends JpaRepository<Item, Long> { //Use JpaRepository for pagination
     Iterable<Item> findAllByCategory_Id(Long id);
 
     Iterable<Item> findAllByClimate_Id(Long id);
@@ -20,6 +22,8 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
     Item findByName(String name);
 
     Iterable<Item> findAllByUser(User user);
+
+    Page<Item> findAllByUser(User user, Pageable pageable);
 
     //For detail page with user
     Iterable<Item> findAllByCategory_IdAndUser(Long id, User user);

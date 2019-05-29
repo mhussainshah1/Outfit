@@ -93,6 +93,13 @@
             </tr>
         </table>
     </form>
+    <hr/>
+    <ul class="nav nav-pills">
+        <li class="nav-item"
+            th:each="i : ${#numbers.sequence(0,items.totalPages-1)}"><a
+                class="nav-link" th:classappend="${currentPage}==${i}?'active':''" th:href="@{/(page=${i})}"
+                th:text="${i}"></a></li>
+    </ul>
 </div>
 <br/>
 <div th:replace="base::footer"></div>
