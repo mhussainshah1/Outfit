@@ -41,8 +41,8 @@ public interface ItemRepository extends JpaRepository<Item, Long> { //Use JpaRep
     //Search by Name and Description
     Page<Item> findAllByNameContainingOrDescriptionContainingAllIgnoreCase(String title, String description, Pageable pageable);
 
-    Iterable<Item> findAllByNameContainingOrDescriptionContainingAndUserAllIgnoreCase(String title, String description, User user);
+    Page<Item> findAllByNameContainingOrDescriptionContainingAndUserAllIgnoreCase(String title, String description, User user, Pageable pageable);
 
-    Page<Item> findAllByUserAndNameContainingOrDescriptionContainingAllIgnoreCase(User user, String title, String description, Pageable pageable);
+    Page<Item> findAllByUserAndNameContainingOrUserAndDescriptionContainingAllIgnoreCase(User user1, String title, User user,String description, Pageable pageable);
 
 }
