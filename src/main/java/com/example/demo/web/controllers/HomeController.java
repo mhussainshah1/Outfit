@@ -98,7 +98,6 @@ public class HomeController {
             if (userService.isUser()) {
                 model.addAttribute("items",
                         itemRepository
-//                                .findAllByNameContainingOrDescriptionContainingAndUserAllIgnoreCase(search, search, user));
                                 .findAllByUserAndNameContainingOrUserAndDescriptionContainingAllIgnoreCase(user,search,user,search,PageRequest.of(page, 4)));
             }
             if (userService.isAdmin()) {
