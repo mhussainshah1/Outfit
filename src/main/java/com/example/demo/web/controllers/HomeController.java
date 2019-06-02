@@ -199,13 +199,14 @@ public class HomeController {
     public String check(@RequestParam("check") long[] ids,
                         @RequestParam("name") String name,
                         Model model) {
+        // delete selected
         if (name.equals("delete")) {
             for (long id : ids) {
                 itemRepository.deleteById(id);
             }
             return "redirect:/";
         }
-
+        //packing list
         if (name.equals("packing")) {
             Set<Item> items = new HashSet<>();
             for (long id : ids) {
@@ -218,29 +219,6 @@ public class HomeController {
         }
         return "list";
     }
-
-    @PostMapping("/delete")
-    public String deleteBooks(@RequestParam("check") long[] ids) {
-        for (long id : ids) {
-            itemRepository.deleteById(id);
-        }
-        return "redirect:/";
-    }
-
-    @PostMapping("/packinglist")
-    public String getPackingList(@RequestParam("check") long[] ids,
-                                 Model model) {
-        findAll(model);
-        Set<Item> items = new HashSet<>();
-        for (long id : ids) {
-            items.add(itemRepository.findById(id).get());
-            System.out.println(id);
-        }
-        model.addAttribute("page_title", "Packing List");
-        model.addAttribute("items", items);
-        return "detaillist";
-    }
-
 
     @GetMapping("/about")
     public String getAbout(Model model) {
