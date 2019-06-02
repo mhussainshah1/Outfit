@@ -80,24 +80,26 @@ public class HomeController {
         } else {
             model.addAttribute("items", itemRepository.findAll(PageRequest.of(page, 4)));
         }
+        //model.addAttribute("searchString", null);
         model.addAttribute("currentPage", page);
         return "list";
     }
 
-    @PostMapping("/search")
-    public String searchword(Model model, @RequestParam String search) {
+    @GetMapping("/search")
+    public String searchword(Model model,
+                             @RequestParam String search,
+                             @RequestParam(defaultValue = "0") int page) {
         findAll(model);
         User user = userService.getUser();
         Iterable<Item> results =
-                itemRepository
-                        .findAllByNameContainingOrDescriptionContainingAllIgnoreCase(search, search);
+                itemRepository.findAllByNameContainingOrDescriptionContainingAllIgnoreCase(search, search,PageRequest.of(page, 4));
         if (user != null) {
             model.addAttribute("formAttributes", new FormAttributes());
             if (userService.isUser()) {
                 model.addAttribute("items",
                         itemRepository
 //                                .findAllByNameContainingOrDescriptionContainingAndUserAllIgnoreCase(search, search, user));
-                                .findAllByUserAndNameContainingOrDescriptionContainingAllIgnoreCase(user,search,search));
+                                .findAllByUserAndNameContainingOrDescriptionContainingAllIgnoreCase(user,search,search,PageRequest.of(page, 4)));
             }
             if (userService.isAdmin()) {
                 model.addAttribute("items", results);
@@ -105,6 +107,8 @@ public class HomeController {
         } else {
             model.addAttribute("items", results);
         }
+        model.addAttribute("searchString", search);
+        model.addAttribute("currentPage", page);
         return "list";
     }
 
@@ -223,7 +227,6 @@ public class HomeController {
         }
         return "redirect:/";
     }
-
 
     @PostMapping("/packinglist")
     public String getPackingList(@RequestParam("check") long[] ids,

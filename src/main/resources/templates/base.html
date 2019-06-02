@@ -144,7 +144,7 @@
             </li>
         </ul>
 
-        <form action="#" class="form-inline my-2 my-lg-0" method="post" th:action="@{/search}">
+        <form action="#" class="form-inline my-2 my-lg-0" method="get" th:action="@{/search}">
             <input aria-label="Search" class="form-control mr-sm-2" name="search" placeholder="Title or Description"
                    type="search">
             <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
@@ -153,9 +153,9 @@
     </div>
 </nav>
 
-<div align="center" th:fragment="footer">
+<div th:fragment="footer">
 
-    <p align="center" class="mt-5 mb-3 text-muted">&copy; 2019-2020</p>
+    <p class="mt-5 mb-3 text-muted text-center">&copy; 2019-2020</p>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script crossorigin="anonymous"

@@ -12,7 +12,7 @@
 <div class="container-float">
 
     <div class="jumbotron lead">
-        <h2 align="center"> Outfit</h2>
+        <h2 class="text-center"> Outfit</h2>
         <small>Our website will help you to choose an outfit for location according to the weather
             conditions. Create an account. Add all you outfits in the website then enter city name and see your
             outfit for the day
@@ -20,7 +20,6 @@
     </div>
 
     <div class="container" sec:authorize="isAuthenticated()">
-
         <form class="form-inline" method="post"
               th:action="@{/weather}"
               th:object="${formAttributes}">
@@ -94,11 +93,21 @@
         </table>
     </form>
     <hr/>
-    <ul class="nav nav-pills">
+
+    <ul class="nav nav-pills" th:if="${items.totalPages} &gt; 0">
         <li class="nav-item"
-            th:each="i : ${#numbers.sequence(0,items.totalPages-1)}"><a
-                class="nav-link" th:classappend="${currentPage}==${i}?'active':''" th:href="@{/(page=${i})}"
-                th:text="${i}"></a></li>
+            th:each="i : ${#numbers.sequence(0,items.totalPages-1)}">
+            <div th:if="${searchString}==null">
+                <a class="nav-link" th:classappend="${currentPage}==${i}?'active':''"
+                   th:href="@{/(page=${i})}"
+                   th:text="${i}"></a>
+            </div>
+            <div th:unless="${searchString}==null">
+                <a class="nav-link" th:classappend="${currentPage}==${i}?'active':''"
+                   th:href="@{/search(search=${searchString},page=${i})}"
+                   th:text="${i}"></a>
+            </div>
+        </li>
     </ul>
 </div>
 <br/>

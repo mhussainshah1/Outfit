@@ -39,10 +39,10 @@ public interface ItemRepository extends JpaRepository<Item, Long> { //Use JpaRep
     List<Item> findAllByCategoryAndClimateAndUser(Category category, Climate climate, User user);
 
     //Search by Name and Description
-    Iterable<Item> findAllByNameContainingOrDescriptionContainingAllIgnoreCase(String title, String description);
+    Page<Item> findAllByNameContainingOrDescriptionContainingAllIgnoreCase(String title, String description, Pageable pageable);
 
     Iterable<Item> findAllByNameContainingOrDescriptionContainingAndUserAllIgnoreCase(String title, String description, User user);
 
-    Iterable<Item> findAllByUserAndNameContainingOrDescriptionContainingAllIgnoreCase(User user, String title, String description);
+    Page<Item> findAllByUserAndNameContainingOrDescriptionContainingAllIgnoreCase(User user, String title, String description, Pageable pageable);
 
 }
