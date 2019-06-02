@@ -94,7 +94,7 @@
     </form>
     <hr/>
 
-    <ul class="nav nav-pills" th:if="${items.totalPages} &gt; 0">
+    <ul class="nav nav-pills" th:if="${items.totalPages} &gt; 0"><!--totalPages>0-->
         <li class="nav-item"
             th:each="i : ${#numbers.sequence(0,items.totalPages-1)}">
             <div th:if="${searchString}==null">

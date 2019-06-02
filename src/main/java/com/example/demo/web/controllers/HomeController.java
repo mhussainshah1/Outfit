@@ -231,6 +231,9 @@ public class HomeController {
     public String getPackingList(@RequestParam("check") long[] ids,
                                  Model model) {
         findAll(model);
+        if(ids==null){
+            return "detaillist";
+        }
         Set<Item> items = new HashSet<>();
         for (long id : ids) {
             items.add(itemRepository.findById(id).get());
