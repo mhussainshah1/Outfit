@@ -130,7 +130,7 @@ public class LoginController {
                 }
             }
         }
-        return "list";
+        return "redirect:/";
     }
 
     @GetMapping("/termsandconditions")
