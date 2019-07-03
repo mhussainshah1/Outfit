@@ -19,6 +19,8 @@
         </small>
     </div>
 
+    <div th:text="${message}"></div>
+
     <div class="container" sec:authorize="isAuthenticated()">
         <form class="form-inline" method="post"
               th:action="@{/weather}"

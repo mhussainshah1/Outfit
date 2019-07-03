@@ -49,9 +49,6 @@ public class WeatherController {
     @Autowired
     UserService userService;
 
-    public static final String ANSI_BLACK = "\u001B[30m";
-    public static final String ANSI_RED = "\u001B[31m";
-
     public void findAll(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("climates", climateRepository.findAll());
@@ -123,8 +120,8 @@ public class WeatherController {
 
         User user = userService.getUser();
 
-        System.out.println(ANSI_RED + climateString + " " + weather.getTemp());
-        System.out.println(windString + " " + weather.getWindSpeed() +ANSI_BLACK);
+        System.err.println(climateString + " " + weather.getTemp());
+        System.err.println(windString + " " + weather.getWindSpeed());
 
         Set<Item> outfit = new HashSet<>();
         for (Category category : categories) {

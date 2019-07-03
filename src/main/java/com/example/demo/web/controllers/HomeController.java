@@ -60,7 +60,6 @@ public class HomeController {
     public String listItems(Model model, @RequestParam(defaultValue = "0") int page) {
         findAll(model);
         User user = userService.getUser();
-        System.out.println(user);
         /**
          * Alternative way to get user
          *-----------------------------
@@ -211,7 +210,6 @@ public class HomeController {
             Set<Item> items = new HashSet<>();
             for (long id : ids) {
                 items.add(itemRepository.findById(id).get());
-                System.out.println(id);
             }
             model.addAttribute("page_title", "Packing List");
             model.addAttribute("items", items);

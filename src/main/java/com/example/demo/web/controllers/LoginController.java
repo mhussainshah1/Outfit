@@ -81,17 +81,15 @@ public class LoginController {
                                           //@ModelAttribute("user") is not neccesary here.
                                           // We always use if the name of object on form is different than Class
                                           //e.g. if the User class object on form is user1 instead of user then
-                                          // we have to use thi annotation
+                                          // we have to use this annotation
                                           BindingResult result,
                                           Model model,
-                                          @RequestParam("password") String pw) {
-        System.out.println("password: " + pw);
+                                          @RequestParam("password") String password) {
         findAll(model);
         model.addAttribute("page_title","Update Profile");
         if (result.hasErrors()) {
             return "register";
         } else {
-            System.out.println(user);
             //Update User and Admin
             boolean isUser = userRepository.findById(user.getId()).isPresent();
             if (isUser) {
@@ -109,11 +107,11 @@ public class LoginController {
                     return "register";
                 }
                 if (userService.isUser()) {
-                    user.setPassword(userService.encode(pw));
+                    user.setPassword(userService.encode(password));
                     userService.saveUser(user);
                 }
                 if (userService.isAdmin()) {
-                    user.setPassword(userService.encode(pw));
+                    user.setPassword(userService.encode(password));
                     userService.saveAdmin(user);
                 }
                 model.addAttribute("message","User Account Successfully Updated");
@@ -126,13 +124,13 @@ public class LoginController {
                             "We already have a username called " + user.getUsername() + "!" + " Try something else.");
                     return "register";
                 } else {
-                    user.setPassword(userService.encode(pw));
+                    user.setPassword(userService.encode(password));
                     userService.saveUser(user);
                     model.addAttribute("message","User Account Successfully Created");
                 }
             }
         }
-        return "login";
+        return "list";
     }
 
     @GetMapping("/termsandconditions")

@@ -206,7 +206,6 @@ public class Weather implements Serializable {
 
     public String getCelsiusTemperature(double kelvin) {
         double celsiusTemp = kelvin - 273.15;
-        System.out.println(String.format("%4.2f", celsiusTemp));
         return String.format("%4.1f", celsiusTemp);
     }
 
