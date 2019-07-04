@@ -65,32 +65,25 @@ public class DataLoader implements CommandLineRunner {
             Role adminRole = roleRepository.findByRole("ADMIN");
 
             //User
-            User admin = new User("admin@admin.com", "password", "Admin", "User", true, "admin");
-            admin.setPassword(userService.encode(admin.getPassword()));
+            User admin = new User("admin@admin.com", userService.encode("password"), "Admin", "User", true, "admin");
             userService.saveAdmin(admin);
 
-            User moe = new User("mhussainshah79@gmail.com", "password", "Muhammad", "Shah", true, "moe");
-            moe.setPassword(userService.encode(moe.getPassword()));
+            User moe = new User("mhussainshah79@gmail.com", userService.encode("password"), "Muhammad", "Shah", true, "moe");
             userService.saveUser(moe);
 
-            User lan = new User("tolani.oyefule@gmail.com", "password", "Tolani", "Oyefule", true, "lan");
-            lan.setPassword(userService.encode(lan.getPassword()));
+            User lan = new User("tolani.oyefule@gmail.com", userService.encode("password"), "Tolani", "Oyefule", true, "lan");
             userService.saveUser(lan);
 
-            User nan = new User("nhan.cog.huynh@gmail.com", "password", "Nhan", "Huynh", true, "nan");
-            nan.setPassword(userService.encode(nan.getPassword()));
+            User nan = new User("nhan.cog.huynh@gmail.com", userService.encode("password"), "Nhan", "Huynh", true, "nan");
             userService.saveUser(nan);
 
-            User dag = new User("dag@gmail.com", "password", "Dag", "Fasil", true, "dag");
-            dag.setPassword(userService.encode(dag.getPassword()));
+            User dag = new User("dag@gmail.com", userService.encode("password"), "Dag", "Fasil", true, "dag");
             userService.saveUser(dag);
 
-            User mel = new User("melissafong@gmail.com", "password", "Mellisa", "Lavander", true, "mel");
-            mel.setPassword(userService.encode(mel.getPassword()));
+            User mel = new User("melissafong@gmail.com", userService.encode("password"), "Mellisa", "Lavander", true, "mel");
             userService.saveUser(mel);
 
-            User jen = new User("jen@gmail.com", "password", "Jennifer", "You", true, "jen");
-            jen.setPassword(userService.encode(jen.getPassword()));
+            User jen = new User("jen@gmail.com", userService.encode("password"), "Jennifer", "You", true, "jen");
             userService.saveUser(jen);
 
             //Category
