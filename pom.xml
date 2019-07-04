@@ -70,20 +70,20 @@
         <dependency>
             <groupId>org.passay</groupId>
             <artifactId>passay</artifactId>
-            <version>RELEASE</version>
+            <version>1.5.0</version>
         </dependency>
 
         <!--cloudinary-->
         <dependency>
             <groupId>com.cloudinary</groupId>
             <artifactId>cloudinary-taglib</artifactId>
-            <version>RELEASE</version>
+            <version>1.22.1</version>
         </dependency>
 
         <dependency>
             <groupId>com.cloudinary</groupId>
             <artifactId>cloudinary-http44</artifactId>
-            <version>RELEASE</version>
+            <version>1.22.1</version>
         </dependency>
 
         <!--JSON-->
