@@ -1,6 +1,5 @@
 package com.example.demo.web.controllers;
 
-import com.example.demo.business.entities.Item;
 import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.*;
 import com.example.demo.business.services.UserService;
@@ -83,8 +82,8 @@ public class LoginController {
                                           //e.g. if the User class object on form is user1 instead of user then
                                           // we have to use this annotation
                                           BindingResult result,
-                                          Model model,
-                                          @RequestParam("password") String password) {
+                                          Model model/*,
+                                          @RequestParam("password") String password*/) {
         findAll(model);
         model.addAttribute("page_title","Update Profile");
         if (result.hasErrors()) {
@@ -93,11 +92,6 @@ public class LoginController {
             //Update User and Admin
             boolean isUser = userRepository.findById(user.getId()).isPresent();
             if (isUser) {
-                Iterable<Item> items = itemRepository.findAllByUser(user);
-                for (Item item : items) {
-                    itemRepository.save(item);
-                    user.getItems().add(item);
-                }
                 //updating with existed username
                 if (userRepository.findByUsername(user.getUsername())!= null &&
                         //current user
@@ -106,14 +100,15 @@ public class LoginController {
                             "We already have a username called " + user.getUsername() + "!" + " Try something else.");
                     return "register";
                 }
-                if (userService.isUser()) {
-                    user.setPassword(userService.encode(password));
-                    userService.saveUser(user);
-                }
-                if (userService.isAdmin()) {
-                    user.setPassword(userService.encode(password));
-                    userService.saveAdmin(user);
-                }
+
+                User userInDB = userRepository.findById(user.getId()).get();
+                userInDB.setFirstName(user.getFirstName());
+                userInDB.setLastName(user.getLastName());
+                userInDB.setEmail(user.getEmail());
+                userInDB.setUsername(user.getUsername());
+                userInDB.setPassword(userService.encode(user.getPassword()));
+                userInDB.setEnabled(user.isEnabled());
+                userRepository.save(userInDB);
                 model.addAttribute("message","User Account Successfully Updated");
             }
             //New User
@@ -124,7 +119,7 @@ public class LoginController {
                             "We already have a username called " + user.getUsername() + "!" + " Try something else.");
                     return "register";
                 } else {
-                    user.setPassword(userService.encode(password));
+                    user.setPassword(userService.encode(user.getPassword()));
                     userService.saveUser(user);
                     model.addAttribute("message","User Account Successfully Created");
                 }
