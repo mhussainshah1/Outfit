@@ -1,8 +1,7 @@
 package com.example.demo.web.controllers;
 
 import com.cloudinary.utils.ObjectUtils;
-import com.example.demo.business.entities.Item;
-import com.example.demo.business.entities.User;
+import com.example.demo.business.entities.*;
 import com.example.demo.business.entities.repositories.*;
 import com.example.demo.business.services.FormAttributes;
 import com.example.demo.business.services.UserService;
@@ -19,9 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class HomeController {
@@ -49,16 +46,36 @@ public class HomeController {
     @Autowired
     UserService userService;
 
-    public void findAll(Model model) {
+    @ModelAttribute("categories")
+    public Iterable<Category> populateCategories() {
+        return categoryRepository.findAll();
+    }
+
+    @ModelAttribute("climates")
+    public Iterable<Climate> populateClimate() {
+        return climateRepository.findAll();
+    }
+
+    @ModelAttribute("occasions")
+    public Iterable<Occasion> populateOccasion() {
+        return occasionRepository.findAll();
+    }
+
+    @ModelAttribute("winds")
+    public Iterable<Wind> populateWind() {
+        return windRepository.findAll();
+    }
+
+/*    public void findAll(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("climates", climateRepository.findAll());
         model.addAttribute("occasions", occasionRepository.findAll());
         model.addAttribute("winds", windRepository.findAll());
-    }
+    }*/
 
     @RequestMapping("/")
     public String listItems(Model model, @RequestParam(defaultValue = "0") int page) {
-        findAll(model);
+//        findAll(model);
         User user = userService.getUser();
         /**
          * Alternative way to get user
@@ -88,7 +105,7 @@ public class HomeController {
     public String searchword(Model model,
                              @RequestParam String search,
                              @RequestParam(defaultValue = "0") int page) {
-        findAll(model);
+//        findAll(model);
         User user = userService.getUser();
         Iterable<Item> results =
                 itemRepository.findAllByNameContainingOrDescriptionContainingAllIgnoreCase(search, search,PageRequest.of(page, 4));
@@ -112,14 +129,14 @@ public class HomeController {
 
     @RequestMapping("/admin")
     public String admin(Model model) {
-        findAll(model);
+//        findAll(model);
         model.addAttribute("users", userRepository.findAll());
         return "admin";
     }
 
     @GetMapping("/add")
     public String itemForm(Model model) {
-        findAll(model);
+//        findAll(model);
         model.addAttribute("imageLabel", "Upload Image");
         model.addAttribute("myuser", userService.getUser());
         model.addAttribute("item", new Item());
@@ -131,7 +148,7 @@ public class HomeController {
                               BindingResult result,
                               @RequestParam("file") MultipartFile file,
                               Model model) {
-        findAll(model);
+//        findAll(model);
         model.addAttribute("imageLabel", "Upload Image");
         model.addAttribute("myuser", userService.getUser());
         if (result.hasErrors()) {
@@ -165,7 +182,7 @@ public class HomeController {
 
     @RequestMapping("/detail/{id}")
     public String showItem(@PathVariable("id") long id, Model model) {
-        findAll(model);
+//        findAll(model);
         model.addAttribute("item", itemRepository.findById(id).get());
         return "show";
     }
@@ -174,7 +191,7 @@ public class HomeController {
     public String updateItem(@PathVariable("id") long id,
                              @ModelAttribute Item item,
                              Model model) {
-        findAll(model);
+//        findAll(model);
         item = itemRepository.findById(id).get();
         model.addAttribute("myuser", userService.getUser());
         model.addAttribute("item", itemRepository.findById(id).get());
@@ -220,7 +237,7 @@ public class HomeController {
 
     @GetMapping("/about")
     public String getAbout(Model model) {
-        findAll(model);
+//        findAll(model);
         return "about";
     }
 }
