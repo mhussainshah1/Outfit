@@ -39,8 +39,8 @@ public class OccasionController {
         model.addAttribute("occasions", occasionRepository.findAll());
         model.addAttribute("winds", windRepository.findAll());
 
-        model.addAttribute("page_title","Add Occasion");
-        model.addAttribute("process","processoccasion");
+        model.addAttribute("page_title", "Add Occasion");
+        model.addAttribute("process", "processoccasion");
     }
 
     @GetMapping("/addoccasion")

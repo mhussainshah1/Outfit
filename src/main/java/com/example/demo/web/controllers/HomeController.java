@@ -17,8 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.security.Principal;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class HomeController {
@@ -88,7 +89,7 @@ public class HomeController {
         if (user != null) {
             model.addAttribute("formAttributes", new FormAttributes());
             if (userService.isUser()) {
-                model.addAttribute("items", itemRepository.findAllByUser(user,PageRequest.of(page, 4)));
+                model.addAttribute("items", itemRepository.findAllByUser(user, PageRequest.of(page, 4)));
             }
             if (userService.isAdmin()) {
                 model.addAttribute("items", itemRepository.findAll(PageRequest.of(page, 4)));
@@ -108,13 +109,13 @@ public class HomeController {
 //        findAll(model);
         User user = userService.getUser();
         Iterable<Item> results =
-                itemRepository.findAllByNameContainingOrDescriptionContainingAllIgnoreCase(search, search,PageRequest.of(page, 4));
+                itemRepository.findAllByNameContainingOrDescriptionContainingAllIgnoreCase(search, search, PageRequest.of(page, 4));
         if (user != null) {
             model.addAttribute("formAttributes", new FormAttributes());
             if (userService.isUser()) {
                 model.addAttribute("items",
                         itemRepository
-                                .findAllByUserAndNameContainingOrUserAndDescriptionContainingAllIgnoreCase(user,search,user,search,PageRequest.of(page, 4)));
+                                .findAllByUserAndNameContainingOrUserAndDescriptionContainingAllIgnoreCase(user, search, user, search, PageRequest.of(page, 4)));
             }
             if (userService.isAdmin()) {
                 model.addAttribute("items", results);
@@ -152,7 +153,7 @@ public class HomeController {
         model.addAttribute("imageLabel", "Upload Image");
         model.addAttribute("myuser", userService.getUser());
         if (result.hasErrors()) {
-            for(ObjectError e: result.getAllErrors()){
+            for (ObjectError e : result.getAllErrors()) {
                 System.err.println(e);
             }
             return "itemform";

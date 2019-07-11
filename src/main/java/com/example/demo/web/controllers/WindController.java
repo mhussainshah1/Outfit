@@ -40,8 +40,8 @@ public class WindController {
         model.addAttribute("occasions", occasionRepository.findAll());
         model.addAttribute("winds", windRepository.findAll());
 
-        model.addAttribute("page_title","Add Wind");
-        model.addAttribute("process","processwind");
+        model.addAttribute("page_title", "Add Wind");
+        model.addAttribute("process", "processwind");
     }
 
     @GetMapping("/addwind")

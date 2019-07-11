@@ -40,8 +40,8 @@ public class ClimateController {
         model.addAttribute("occasions", occasionRepository.findAll());
         model.addAttribute("winds", windRepository.findAll());
 
-        model.addAttribute("page_title","Add Climate");
-        model.addAttribute("process","processclimate");
+        model.addAttribute("page_title", "Add Climate");
+        model.addAttribute("process", "processclimate");
     }
 
     @GetMapping("/addclimate")

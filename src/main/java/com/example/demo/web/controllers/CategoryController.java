@@ -40,8 +40,8 @@ public class CategoryController {
         model.addAttribute("occasions", occasionRepository.findAll());
         model.addAttribute("winds", windRepository.findAll());
 
-        model.addAttribute("page_title","Add Category");
-        model.addAttribute("process","processcategory");
+        model.addAttribute("page_title", "Add Category");
+        model.addAttribute("process", "processcategory");
     }
 
     @GetMapping("/addcategory")
@@ -53,8 +53,8 @@ public class CategoryController {
 
     @PostMapping("/processcategory")
     public String processCategory(@Valid @ModelAttribute("object") Category category,
-                                 BindingResult result,
-                                 Model model) {
+                                  BindingResult result,
+                                  Model model) {
         findAll(model);
         if (result.hasErrors()) {
             return "type";
