@@ -88,6 +88,12 @@ public class WindController {
         return "detaillist";
     }
 
+    @RequestMapping("/deletewind/{id}")
+    public String deleteWind(@PathVariable("id") long id) {
+        windRepository.deleteById(id);
+        return "redirect:/";
+    }
+
     @PostConstruct
     public void fillTables() {
        /* Wind wind = new Wind();

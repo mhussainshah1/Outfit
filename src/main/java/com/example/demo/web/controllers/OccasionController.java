@@ -87,6 +87,12 @@ public class OccasionController {
         return "detaillist";
     }
 
+    @RequestMapping("/deleteoccasion/{id}")
+    public String deleteOccasion(@PathVariable("id") long id) {
+        occasionRepository.deleteById(id);
+        return "redirect:/";
+    }
+
     @PostConstruct
     public void fillTables() {
        /* Occasion occasion = new Occasion();

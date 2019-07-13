@@ -20,7 +20,7 @@ public class Occasion implements Serializable {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "occasion")
+    @OneToMany(mappedBy = "occasion",orphanRemoval = true)
     private Set<Item> items;
 
     public Occasion() {

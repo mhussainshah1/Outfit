@@ -88,6 +88,12 @@ public class ClimateController {
         return "detaillist";
     }
 
+    @RequestMapping("/deleteclimate/{id}")
+    public String deleteClimate(@PathVariable("id") long id) {
+        climateRepository.deleteById(id);
+        return "redirect:/";
+    }
+
     @PostConstruct
     public void fillTables() {
        /* Climate climate = new Climate();

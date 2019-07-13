@@ -59,13 +59,21 @@ public class CategoryController {
         if (result.hasErrors()) {
             return "type";
         }
-        category.setName(category.getName().toLowerCase());
-        if (categoryRepository.findByName(category.getName()) != null) {
-            model.addAttribute("message", "You already have a category called " +
-                    category.getName() + "!" + " Try something else.");
-            return "type";
+        boolean isPresent = categoryRepository.findById(category.getId()).isPresent();
+        if(isPresent){
+            Category categoryDB = categoryRepository.findById(category.getId()).get();
+            categoryDB.setName(category.getName());
+            categoryRepository.save(categoryDB);
+            model.addAttribute("message", "Category Successfully Updated");
+        } else {
+            category.setName(category.getName().toLowerCase());
+            if (categoryRepository.findByName(category.getName()) != null) {
+                model.addAttribute("message", "You already have a category called " +
+                        category.getName() + "!" + " Try something else.");
+                return "type";
+            }
+            categoryRepository.save(category);
         }
-        categoryRepository.save(category);
         return "redirect:/";
     }
 
@@ -86,6 +94,20 @@ public class CategoryController {
             model.addAttribute("items", itemRepository.findAllByCategory_Id(id));
         }
         return "detaillist";
+    }
+
+    @RequestMapping("/deletecategory/{id}")
+    public String deleteCategory(@PathVariable("id") long id) {
+        categoryRepository.deleteById(id);
+        return "redirect:/";
+    }
+
+    @RequestMapping("/updatecategory/{id}")
+    public String updateItem(@PathVariable("id") long id, Model model) {
+        findAll(model);
+        model.addAttribute("page_title", "Update Category");
+        model.addAttribute("object", categoryRepository.findById(id).get());
+        return "type";
     }
 
     @PostConstruct

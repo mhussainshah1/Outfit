@@ -17,7 +17,6 @@ READ
 ----
 email and password comparsion on registration form through javascript before submission
 is not implemented.
-implement invalid password read from database table rather than hard coded values.
 
 UPDATE
 ------

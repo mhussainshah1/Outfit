@@ -103,7 +103,7 @@
 
 </div>
 
-<div align="center" sec:authorize="isAuthenticated()">
+<div class="text-center" sec:authorize="isAuthenticated()">
     <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
     <a th:href="@{/delete/{id}(id=${item.id})}">delete</a>
 </div>

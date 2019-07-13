@@ -19,7 +19,7 @@ public class Wind implements Serializable {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "wind")
+    @OneToMany(mappedBy = "wind" ,orphanRemoval = true)
     private Set<Item> items;
 
     public Wind() {

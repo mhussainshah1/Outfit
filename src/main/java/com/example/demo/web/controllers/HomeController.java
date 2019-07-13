@@ -241,4 +241,16 @@ public class HomeController {
 //        findAll(model);
         return "about";
     }
+
+    /**
+     * todo: put this code in the profile
+     */
+    @GetMapping("/status")
+    public String getStatus(Model model){
+        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("climates", climateRepository.findAll());
+        model.addAttribute("occasions", occasionRepository.findAll());
+        model.addAttribute("winds", windRepository.findAll());
+        return "status";
+    }
 }

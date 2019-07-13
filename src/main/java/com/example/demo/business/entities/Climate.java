@@ -21,7 +21,7 @@ public class Climate implements Serializable {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "climate")
+    @OneToMany(mappedBy = "climate" ,orphanRemoval = true)
     private Set<Item> items;
 
     public Climate() {

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<head th:replace="base::header">
+
+    <title>status</title>
+</head>
+
+<body>
+<div th:replace="base::nav"></div>
+
+<div class="container">
+    <!--insert webpage content here-->
+    <table class="table table-striped" style="width:100%">
+
+        <thead class="thead-light">
+            <tr>
+                <th>Group</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tr th:each="category ,i : ${categories}">
+            <td>
+                <label th:if="${i.first}">Category</label>
+            </td>
+            <td th:text="${category.name}"></td>
+            <td>
+                <a th:href="@{/updatecategory/{id}(id=${category.id})}">edit</a> -
+                <a th:href="@{/deletecategory/{id}(id=${category.id})}">delete</a>
+            </td>
+        </tr>
+
+        <tr th:each="climate, i : ${climates}">
+            <td>
+                <label th:if="${i.first}">Climate</label>
+            </td>
+            <td th:text="${climate.name}"></td>
+            <td>
+                <a th:href="@{/updateclimate/{id}(id=${climate.id})}">edit</a> -
+                <a th:href="@{/deleteclimate/{id}(id=${climate.id})}">delete</a>
+            </td>
+        </tr>
+
+        <tr th:each="occasion, i : ${occasions}">
+            <td>
+                <label th:if="${i.first}">Occasion</label>
+            </td>
+            <td th:text="${occasion.name}"></td>
+            <td>
+                <a th:href="@{/updateoccasion/{id}(id=${occasion.id})}">edit</a> -
+                <a th:href="@{/deleteoccasion/{id}(id=${occasion.id})}">delete</a>
+            </td>
+        </tr>
+
+        <tr th:each="wind, i : ${winds}">
+            <td>
+                <label th:if="${i.first}">Wind</label>
+            </td>
+            <td th:text="${wind.name}"></td>
+            <td>
+                <a th:href="@{/updatewind/{id}(id=${wind.id})}">edit</a> -
+                <a th:href="@{/deletewind/{id}(id=${wind.id})}">delete</a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+<div th:replace="base::footer"></div>
+</body>
+</html>

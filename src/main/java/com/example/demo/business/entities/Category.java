@@ -11,14 +11,17 @@ import java.util.Set;
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @OneToMany(mappedBy = "category")
-    public Set<Item> items;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     @NotEmpty
     @Column(unique = true)
     private String name;
+
+    @OneToMany(mappedBy = "category",orphanRemoval = true)
+    public Set<Item> items;
 
     public Category() {
         items = new HashSet<>();
