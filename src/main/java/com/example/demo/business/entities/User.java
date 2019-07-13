@@ -43,7 +43,6 @@ public class User implements Serializable {
     private boolean enabled;
 
     @NotEmpty
-    @Size(max = 32)
     @Column(name = "username", unique = true)
     private String username;
 

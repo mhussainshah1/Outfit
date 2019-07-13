@@ -16,7 +16,6 @@ public class InvalidPassword implements Serializable {
 
     @NotEmpty
     @Column(unique = true)
-    @Size(max = 32)
     private String value;
 
     public InvalidPassword() {

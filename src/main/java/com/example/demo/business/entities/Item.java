@@ -17,7 +17,6 @@ public class Item implements Serializable {
 
     @NotEmpty
     @Column(unique = true)
-    @Size(max = 100)
     private String name;
 
     @NotEmpty

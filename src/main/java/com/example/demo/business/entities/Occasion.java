@@ -18,7 +18,6 @@ public class Occasion implements Serializable {
 
     @NotEmpty
     @Column(unique = true)
-    @Size(max = 32)
     private String name;
 
     @OneToMany(mappedBy = "occasion")

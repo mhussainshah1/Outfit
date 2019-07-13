@@ -7,6 +7,7 @@ import org.passay.dictionary.ArrayWordList;
 import org.passay.dictionary.WordListDictionary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -16,7 +17,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Configuration
+//@Configuration
+@Component
 public class PasswordConstraintValidator implements ConstraintValidator<ValidPassword, String> {
 
     @Autowired
@@ -25,7 +27,7 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
     private DictionaryRule dictionaryRule;
 
     @Override
-    public void initialize(ValidPassword constraintAnnotation) {
+    public void initialize(ValidPassword validPassword) {
 
         //Option 1 : Through File
         /*try {
@@ -53,14 +55,11 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
             System.out.println("invalid password = " + password.getValue());
             passwords.add(password.getValue());
         }
-/*        passwords.add("azerty12!");
-        passwords.add("12345678!");
-        passwords.add("password123");*/
 
         Collections.sort(passwords);
         dictionaryRule = new DictionaryRule(
                 new WordListDictionary(
-                        new ArrayWordList(passwords.stream().toArray(String[]::new))));
+                        new ArrayWordList(passwords.toArray(new String[0]))));
 
     }
 
@@ -96,7 +95,7 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
         }
 
         List<String> messages = validator.getMessages(result);
-        String messageTemplate = messages.stream().collect(Collectors.joining(","));
+        String messageTemplate = String.join(",", messages);
         context.buildConstraintViolationWithTemplate(messageTemplate)
                 .addConstraintViolation()
                 .disableDefaultConstraintViolation();

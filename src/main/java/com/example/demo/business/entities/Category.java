@@ -18,7 +18,6 @@ public class Category implements Serializable {
     private long id;
     @NotEmpty
     @Column(unique = true)
-    @Size(max = 32)
     private String name;
 
     public Category() {

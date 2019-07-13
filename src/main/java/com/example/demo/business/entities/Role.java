@@ -19,7 +19,6 @@ public class Role implements Serializable {
 
     @NotEmpty
     @Column(unique = true)
-    @Size(max = 32)
     private String role;
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
