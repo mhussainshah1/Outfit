@@ -62,7 +62,7 @@ public class CategoryController {
         boolean isPresent = categoryRepository.existsById(category.getId());
         if(isPresent){
             Category categoryDB = categoryRepository.findById(category.getId()).get();
-            categoryDB.setName(category.getName());
+            categoryDB.setName(category.getName().toLowerCase());
             categoryRepository.save(categoryDB);
             model.addAttribute("message", "Category Successfully Updated");
         } else {

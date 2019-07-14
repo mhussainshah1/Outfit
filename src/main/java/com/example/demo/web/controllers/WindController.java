@@ -62,7 +62,7 @@ public class WindController {
         boolean isPresent = windRepository.existsById(wind.getId());
         if(isPresent){
             Wind windDB = windRepository.findById(wind.getId()).get();
-            windDB.setName(wind.getName());
+            windDB.setName(wind.getName().toLowerCase());
             windRepository.save(windDB);
             model.addAttribute("message", "Wind Successfully Updated");
         } else {

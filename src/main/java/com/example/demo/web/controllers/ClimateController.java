@@ -62,7 +62,7 @@ public class ClimateController {
         boolean isPresent = categoryRepository.existsById(climate.getId());
         if(isPresent){
             Climate climateDB = climateRepository.findById(climate.getId()).get();
-            climateDB.setName(climate.getName());
+            climateDB.setName(climate.getName().toLowerCase());
             climateRepository.save(climateDB);
             model.addAttribute("message", "Climate Successfully Updated");
         } else {

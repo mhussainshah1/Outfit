@@ -61,7 +61,7 @@ public class OccasionController {
         boolean isPresent = occasionRepository.existsById(occasion.getId());
         if(isPresent){
             Occasion occasionDB = occasionRepository.findById(occasion.getId()).get();
-            occasionDB.setName(occasion.getName());
+            occasionDB.setName(occasion.getName().toLowerCase());
             occasionRepository.save(occasionDB);
             model.addAttribute("message", "Occasion Successfully Updated");
         } else {
