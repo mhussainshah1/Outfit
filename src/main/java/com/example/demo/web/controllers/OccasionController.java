@@ -58,13 +58,21 @@ public class OccasionController {
         if (result.hasErrors()) {
             return "type";
         }
-        occasion.setName(occasion.getName().toLowerCase());
-        if (occasionRepository.findByName(occasion.getName()) != null) {
-            model.addAttribute("message", "You already have a occasion called " +
-                    occasion.getName() + "!" + " Try something else.");
-            return "type";
+        boolean isPresent = occasionRepository.existsById(occasion.getId());
+        if(isPresent){
+            Occasion occasionDB = occasionRepository.findById(occasion.getId()).get();
+            occasionDB.setName(occasion.getName());
+            occasionRepository.save(occasionDB);
+            model.addAttribute("message", "Occasion Successfully Updated");
+        } else {
+            occasion.setName(occasion.getName().toLowerCase());
+            if (occasionRepository.findByName(occasion.getName()) != null) {
+                model.addAttribute("message", "You already have a occasion called " +
+                        occasion.getName() + "!" + " Try something else.");
+                return "type";
+            }
+            occasionRepository.save(occasion);
         }
-        occasionRepository.save(occasion);
         return "redirect:/";
     }
 
@@ -91,6 +99,14 @@ public class OccasionController {
     public String deleteOccasion(@PathVariable("id") long id) {
         occasionRepository.deleteById(id);
         return "redirect:/";
+    }
+
+    @RequestMapping("/updateoccasion/{id}")
+    public String updateItem(@PathVariable("id") long id, Model model) {
+        findAll(model);
+        model.addAttribute("page_title", "Update Occasion");
+        model.addAttribute("object", occasionRepository.findById(id).get());
+        return "type";
     }
 
     @PostConstruct

@@ -59,13 +59,21 @@ public class ClimateController {
         if (result.hasErrors()) {
             return "type";
         }
-        climate.setName(climate.getName().toLowerCase());
-        if (climateRepository.findByName(climate.getName()) != null) {
-            model.addAttribute("message", "You already have a climate called " +
-                    climate.getName() + "!" + " Try something else.");
-            return "type";
+        boolean isPresent = categoryRepository.existsById(climate.getId());
+        if(isPresent){
+            Climate climateDB = climateRepository.findById(climate.getId()).get();
+            climateDB.setName(climate.getName());
+            climateRepository.save(climateDB);
+            model.addAttribute("message", "Climate Successfully Updated");
+        } else {
+            climate.setName(climate.getName().toLowerCase());
+            if (climateRepository.findByName(climate.getName()) != null) {
+                model.addAttribute("message", "You already have a climate called " +
+                        climate.getName() + "!" + " Try something else.");
+                return "type";
+            }
+            climateRepository.save(climate);
         }
-        climateRepository.save(climate);
         return "redirect:/";
     }
 
@@ -92,6 +100,14 @@ public class ClimateController {
     public String deleteClimate(@PathVariable("id") long id) {
         climateRepository.deleteById(id);
         return "redirect:/";
+    }
+
+    @RequestMapping("/updateclimate/{id}")
+    public String updateItem(@PathVariable("id") long id, Model model) {
+        findAll(model);
+        model.addAttribute("page_title", "Update Climate");
+        model.addAttribute("object", climateRepository.findById(id).get());
+        return "type";
     }
 
     @PostConstruct

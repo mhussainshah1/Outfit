@@ -59,13 +59,21 @@ public class WindController {
         if (result.hasErrors()) {
             return "type";
         }
-        wind.setName(wind.getName().toLowerCase());
-        if (windRepository.findByName(wind.getName()) != null) {
-            model.addAttribute("message", "You already have a wind called " +
-                    wind.getName() + "!" + " Try something else.");
-            return "type";
+        boolean isPresent = windRepository.existsById(wind.getId());
+        if(isPresent){
+            Wind windDB = windRepository.findById(wind.getId()).get();
+            windDB.setName(wind.getName());
+            windRepository.save(windDB);
+            model.addAttribute("message", "Wind Successfully Updated");
+        } else {
+            wind.setName(wind.getName().toLowerCase());
+            if (windRepository.findByName(wind.getName()) != null) {
+                model.addAttribute("message", "You already have a wind called " +
+                        wind.getName() + "!" + " Try something else.");
+                return "type";
+            }
+            windRepository.save(wind);
         }
-        windRepository.save(wind);
         return "redirect:/";
     }
 
@@ -92,6 +100,14 @@ public class WindController {
     public String deleteWind(@PathVariable("id") long id) {
         windRepository.deleteById(id);
         return "redirect:/";
+    }
+
+    @RequestMapping("/updatewind/{id}")
+    public String updateItem(@PathVariable("id") long id, Model model) {
+        findAll(model);
+        model.addAttribute("page_title", "Update Wind");
+        model.addAttribute("object", windRepository.findById(id).get());
+        return "type";
     }
 
     @PostConstruct

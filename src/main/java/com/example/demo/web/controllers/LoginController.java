@@ -93,7 +93,7 @@ public class LoginController {
             return "register";
         } else {
             //Update User and Admin
-            boolean isUser = userRepository.findById(user.getId()).isPresent();
+            boolean isUser = userRepository.existsById(user.getId());
             if (isUser) {
                 //updating with existed username
                 if (userRepository.findByUsername(user.getUsername()) != null &&
