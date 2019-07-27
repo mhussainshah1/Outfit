@@ -21,7 +21,6 @@ is not implemented.
 UPDATE
 ------
 forget password functionality is not implemented
-User can't update its own created category
 
 DELETE
 ------
