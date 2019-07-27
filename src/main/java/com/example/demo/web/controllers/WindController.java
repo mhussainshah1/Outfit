@@ -60,7 +60,7 @@ public class WindController {
             return "type";
         }
         boolean isPresent = windRepository.existsById(wind.getId());
-        if(isPresent){
+        if (isPresent) {
             Wind windDB = windRepository.findById(wind.getId()).get();
             windDB.setName(wind.getName().toLowerCase());
             windRepository.save(windDB);

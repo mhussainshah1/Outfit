@@ -88,11 +88,15 @@
 
             <td sec:authorize="isAuthenticated()">
                 <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
-                <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
+                <a class="delBtn"
+                   data-target="#myModal"
+                   data-toggle="modal"
+                   th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
             </td>
 
         </tr>
     </table>
+    <div th:replace="base::delete"></div>
 </div>
 <div th:replace="base::footer"></div>
 </body>

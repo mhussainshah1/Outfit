@@ -59,7 +59,7 @@ public class OccasionController {
             return "type";
         }
         boolean isPresent = occasionRepository.existsById(occasion.getId());
-        if(isPresent){
+        if (isPresent) {
             Occasion occasionDB = occasionRepository.findById(occasion.getId()).get();
             occasionDB.setName(occasion.getName().toLowerCase());
             occasionRepository.save(occasionDB);

@@ -60,7 +60,7 @@ public class ClimateController {
             return "type";
         }
         boolean isPresent = categoryRepository.existsById(climate.getId());
-        if(isPresent){
+        if (isPresent) {
             Climate climateDB = climateRepository.findById(climate.getId()).get();
             climateDB.setName(climate.getName().toLowerCase());
             climateRepository.save(climateDB);

@@ -60,7 +60,7 @@ public class CategoryController {
             return "type";
         }
         boolean isPresent = categoryRepository.existsById(category.getId());
-        if(isPresent){
+        if (isPresent) {
             Category categoryDB = categoryRepository.findById(category.getId()).get();
             categoryDB.setName(category.getName().toLowerCase());
             categoryRepository.save(categoryDB);

@@ -2,7 +2,6 @@ package com.example.demo.business.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,17 +10,14 @@ import java.util.Set;
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    @OneToMany(mappedBy = "category", orphanRemoval = true)
+    public Set<Item> items;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
     @NotEmpty
     @Column(unique = true)
     private String name;
-
-    @OneToMany(mappedBy = "category",orphanRemoval = true)
-    public Set<Item> items;
 
     public Category() {
         items = new HashSet<>();

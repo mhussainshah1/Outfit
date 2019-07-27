@@ -105,9 +105,26 @@
 
 <div class="text-center" sec:authorize="isAuthenticated()">
     <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
-    <a th:href="@{/delete/{id}(id=${item.id})}">delete</a>
+    <a class="delBtn"
+       data-target="#myModal"
+       data-toggle="modal"
+       th:href="@{/delete/{id}(id=${item.id})}">delete</a>
 </div>
 
+<div th:replace="base::delete"></div>
+
 <div th:replace="base::footer"></div>
+
+<script>
+    $(document).ready(function(){
+        $('.delBtn').on('click', function(event){
+            event.preventDefault();
+            var href = $(this).attr('href');
+            $('#myModal #delRef').attr('href',href);
+            $('#myModal').modal();
+        });
+    });
+</script>
+
 </body>
 </html>

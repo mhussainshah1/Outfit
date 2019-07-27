@@ -2,7 +2,6 @@ package com.example.demo.business.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +19,7 @@ public class Occasion implements Serializable {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "occasion",orphanRemoval = true)
+    @OneToMany(mappedBy = "occasion", orphanRemoval = true)
     private Set<Item> items;
 
     public Occasion() {

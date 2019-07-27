@@ -86,11 +86,15 @@
 
                 <td sec:authorize="isAuthenticated()">
                     <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
-                    <a th:href="@{/delete/{id}(id=${item.id})}">delete</a>
+                    <a th:href="@{/delete/{id}(id=${item.id})}"
+                       class="delBtn"
+                       data-toggle="modal"
+                       data-target="#myModal">Delete</a>
                 </td>
             </tr>
         </table>
     </form>
+
     <hr/>
 
     <ul class="nav nav-pills" th:if="${items.totalPages} &gt; 0"><!--totalPages>0-->
@@ -108,6 +112,7 @@
             </div>
         </li>
     </ul>
+    <div th:replace="base::delete"></div>
 </div>
 <br/>
 <div th:replace="base::footer"></div>

@@ -11,7 +11,7 @@
         <h2 th:text="${page_title}">Add Category</h2>
     </div>
 
-    <form  action="#" method="post" th:action="@{'/'+ ${process}}" th:object="${object}">
+    <form action="#" method="post" th:action="@{'/'+ ${process}}" th:object="${object}">
         <input th:field="*{id}" type="hidden"/>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="name">Name :</label>

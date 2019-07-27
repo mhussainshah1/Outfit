@@ -246,7 +246,7 @@ public class HomeController {
      * todo: put this code in the profile
      */
     @GetMapping("/status")
-    public String getStatus(Model model){
+    public String getStatus(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("climates", climateRepository.findAll());
         model.addAttribute("occasions", occasionRepository.findAll());

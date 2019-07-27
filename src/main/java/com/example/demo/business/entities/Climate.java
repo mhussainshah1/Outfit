@@ -2,7 +2,6 @@ package com.example.demo.business.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,7 +20,7 @@ public class Climate implements Serializable {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "climate" ,orphanRemoval = true)
+    @OneToMany(mappedBy = "climate", orphanRemoval = true)
     private Set<Item> items;
 
     public Climate() {
