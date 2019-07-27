@@ -36,8 +36,6 @@
                 <div aria-labelledby="navbarDropdown" class="dropdown-menu">
                     <a class="dropdown-item" href="/profile">My Profile</a>
                     <a class="dropdown-item" href="/updateUser">Update Profile</a>
-                    <a class="dropdown-item" href="/status"
-                       sec:authorize="hasAuthority('ADMIN')">Status</a>
                     <a class="dropdown-item" href="/admin"
                        sec:authorize="hasAuthority('ADMIN')">Admin</a>
 
@@ -62,7 +60,7 @@
                    data-toggle="dropdown"
                    href="#"
                    id="navbarDropdown2"
-                   role="button">Add Item
+                   role="button">Add
                 </a>
                 <div aria-labelledby="navbarDropdown" class="dropdown-menu">
                     <a class="dropdown-item" href="/addcategory">Add Category</a>
@@ -70,7 +68,10 @@
                     <a class="dropdown-item" href="/addoccasion">Add Occasion</a>
                     <a class="dropdown-item" href="/addwind">Add Wind</a>
                     <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/status">Update Above</a>
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/add">Add Item</a>
+
                 </div>
             </li>
 
