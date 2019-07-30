@@ -117,15 +117,6 @@
 
 <div th:replace="base::footer"></div>
 
-<script>
-    $(document).ready(function () {
-        $('.delBtn').on('click', function (event) {
-            event.preventDefault();
-            var href = $(this).attr('href');
-            $('#myModal #delRef').attr('href', href);
-            $('#myModal').modal();
-        });
-    });
-</script>
+
 </body>
 </html>
