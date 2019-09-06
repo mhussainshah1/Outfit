@@ -176,12 +176,12 @@ public class Weather implements Serializable {
 
     @JsonProperty("weather")
     public void setWeather(List<Map<String, Object>> weatherEntries) {
-        for (Map<String, Object> weatherEntry : weatherEntries) {
-            for (String key : weatherEntry.keySet()) {
+        for (var weatherEntry : weatherEntries) {//Map<String, Object>
+            for (var key : weatherEntry.keySet()) {//String
                 System.out.println(key + "  " + weatherEntry.get(key));
             }
         }
-        Map<String, Object> weather = weatherEntries.get(0);
+        var weather = weatherEntries.get(0);
         setWeatherDescription((String) weather.get("description"));
         setWeatherMain((String) weather.get("main"));
     }
