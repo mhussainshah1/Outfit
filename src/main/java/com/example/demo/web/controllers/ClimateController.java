@@ -80,7 +80,7 @@ public class ClimateController {
     @RequestMapping("/detailclimate/{id}")
     public String showOutfitsByClimate(@PathVariable("id") long id, Model model) {
         findAll(model);
-        User user = userService.getUser();
+        var user = userService.getUser();
         model.addAttribute("page_title", climateRepository.findById(id).get().getName());
 
         if (user != null) {//This is true with user
@@ -112,7 +112,7 @@ public class ClimateController {
 
     @PostConstruct
     public void fillTables() {
-       /* Climate climate = new Climate();
+       /* var climate = new Climate();
         climate.setTitle("Hot");
         climateRepository.save(climate);
 

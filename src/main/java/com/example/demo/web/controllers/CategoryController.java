@@ -61,7 +61,7 @@ public class CategoryController {
         }
         boolean isPresent = categoryRepository.existsById(category.getId());
         if (isPresent) {
-            Category categoryDB = categoryRepository.findById(category.getId()).get();
+            var categoryDB = categoryRepository.findById(category.getId()).get();
             categoryDB.setName(category.getName().toLowerCase());
             categoryRepository.save(categoryDB);
             model.addAttribute("message", "Category Successfully Updated");
@@ -80,7 +80,7 @@ public class CategoryController {
     @RequestMapping("/detailcategory/{id}")
     public String showOutfitsByCategory(@PathVariable("id") long id, Model model) {
         findAll(model);
-        User user = userService.getUser();
+        var user = userService.getUser();
         model.addAttribute("page_title", categoryRepository.findById(id).get().getName());
 
         if (user != null) {//This is true with user
@@ -112,7 +112,7 @@ public class CategoryController {
 
     @PostConstruct
     public void fillTables() {
-       /* Category category = new Category();
+       /* var category = new Category();
         category.setTitle("Compact");
         categoryRepository.save(category);
 

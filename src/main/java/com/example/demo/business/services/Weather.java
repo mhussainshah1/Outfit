@@ -200,12 +200,12 @@ public class Weather implements Serializable {
     }
 
     public String getFahrenheitTemperature(double kelvin) {
-        double fahrenheitTemp = (kelvin * 1.8) - 459.67;
+        var fahrenheitTemp = (kelvin * 1.8) - 459.67;
         return String.format("%4.1f", fahrenheitTemp);
     }
 
     public String getCelsiusTemperature(double kelvin) {
-        double celsiusTemp = kelvin - 273.15;
+        var celsiusTemp = kelvin - 273.15;
         return String.format("%4.1f", celsiusTemp);
     }
 

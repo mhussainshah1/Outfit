@@ -46,10 +46,10 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
         }*/
 
         //Option 2 : Through Database
-        List<String> passwords = new ArrayList<>();
+        var passwords = new ArrayList<String>();
 //        invalidPasswordRepository.findAll().forEach(p -> passwords.add(p.getValue()));
 
-        for (InvalidPassword password : invalidPasswordRepository.findAll()) {
+        for (var password : invalidPasswordRepository.findAll()) {
             System.out.println("invalid password = " + password.getValue());
             passwords.add(password.getValue());
         }
@@ -63,7 +63,7 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
 
     @Override
     public boolean isValid(String password, ConstraintValidatorContext context) {
-        PasswordValidator validator = new PasswordValidator(Arrays.asList(
+        var validator = new PasswordValidator(Arrays.asList(
                 // at least 8 characters
                 new LengthRule(8, 60),
 
@@ -86,14 +86,14 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
                 dictionaryRule
         ));
 
-        RuleResult result = validator.validate(new PasswordData(password));
+        var ruleResult = validator.validate(new PasswordData(password));
 
-        if (result.isValid()) {
+        if (ruleResult.isValid()) {
             return true;
         }
 
-        List<String> messages = validator.getMessages(result);
-        String messageTemplate = String.join(",", messages);
+        var messages = validator.getMessages(ruleResult);
+        var messageTemplate = String.join(",", messages);
         context.buildConstraintViolationWithTemplate(messageTemplate)
                 .addConstraintViolation()
                 .disableDefaultConstraintViolation();

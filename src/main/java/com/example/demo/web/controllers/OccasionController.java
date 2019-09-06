@@ -60,7 +60,7 @@ public class OccasionController {
         }
         boolean isPresent = occasionRepository.existsById(occasion.getId());
         if (isPresent) {
-            Occasion occasionDB = occasionRepository.findById(occasion.getId()).get();
+            var occasionDB = occasionRepository.findById(occasion.getId()).get();
             occasionDB.setName(occasion.getName().toLowerCase());
             occasionRepository.save(occasionDB);
             model.addAttribute("message", "Occasion Successfully Updated");
@@ -79,7 +79,7 @@ public class OccasionController {
     @RequestMapping("/detailoccasion/{id}")
     public String showOutfitsByOccasion(@PathVariable("id") long id, Model model) {
         findAll(model);
-        User user = userService.getUser();
+        var user = userService.getUser();
         model.addAttribute("page_title", occasionRepository.findById(id).get().getName());
 
         if (user != null) {//This is true with user
@@ -111,7 +111,7 @@ public class OccasionController {
 
     @PostConstruct
     public void fillTables() {
-       /* Occasion occasion = new Occasion();
+       /* var occasion = new Occasion();
         occasion.setTitle("Party");
         occasionRepository.save(occasion);
 

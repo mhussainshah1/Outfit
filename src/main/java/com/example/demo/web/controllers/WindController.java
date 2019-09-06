@@ -61,7 +61,7 @@ public class WindController {
         }
         boolean isPresent = windRepository.existsById(wind.getId());
         if (isPresent) {
-            Wind windDB = windRepository.findById(wind.getId()).get();
+            var windDB = windRepository.findById(wind.getId()).get();
             windDB.setName(wind.getName().toLowerCase());
             windRepository.save(windDB);
             model.addAttribute("message", "Wind Successfully Updated");
@@ -80,7 +80,7 @@ public class WindController {
     @RequestMapping("/detailwind/{id}")
     public String showItemsByWind(@PathVariable("id") long id, Model model) {
         findAll(model);
-        User user = userService.getUser();
+        var user = userService.getUser();
         model.addAttribute("page_title", windRepository.findById(id).get().getName());
 
         if (user != null) {//This is true with user
@@ -112,7 +112,7 @@ public class WindController {
 
     @PostConstruct
     public void fillTables() {
-       /* Wind wind = new Wind();
+       /* var wind = new Wind();
         wind.setTitle("Light");
         windRepository.save(wind);
 

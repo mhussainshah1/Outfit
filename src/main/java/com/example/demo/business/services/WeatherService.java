@@ -22,7 +22,7 @@ public class WeatherService {
 
     public Weather getWeather(FormAttributes formAttributes) throws IOException {
 
-        UriComponents uriComponents = UriComponentsBuilder
+        var uriComponents = UriComponentsBuilder
                 .newInstance()
                 .scheme("http")
                 .host(weatherData.getUrl())
@@ -30,9 +30,9 @@ public class WeatherService {
                 .query("q={keyword}&appid={appid}")
                 .buildAndExpand(formAttributes.getCity(), weatherData.getApiKey());
 
-        String uri = uriComponents.toUriString();
-        ResponseEntity<String> resp = restTemp.exchange(uri, HttpMethod.GET, null, String.class);
-        ObjectMapper mapper = new ObjectMapper();
+        var uriString = uriComponents.toUriString();
+        ResponseEntity<String> resp = restTemp.exchange(uriString, HttpMethod.GET, null, String.class);
+        var mapper = new ObjectMapper();
         return mapper.readValue(resp.getBody(), Weather.class);
     }
 }

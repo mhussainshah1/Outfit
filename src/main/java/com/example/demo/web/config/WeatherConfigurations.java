@@ -18,7 +18,7 @@ public class WeatherConfigurations {
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-        PropertySourcesPlaceholderConfigurer c = new PropertySourcesPlaceholderConfigurer();
+        var c = new PropertySourcesPlaceholderConfigurer();
         c.setIgnoreUnresolvablePlaceholders(true);
         return c;
     }

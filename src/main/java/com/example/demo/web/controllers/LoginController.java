@@ -93,7 +93,7 @@ public class LoginController {
             return "register";
         } else {
             //Update User and Admin
-            boolean isUser = userRepository.existsById(user.getId());
+            var isUser = userRepository.existsById(user.getId());
             if (isUser) {
                 //updating with existed username
                 if (userRepository.findByUsername(user.getUsername()) != null &&
@@ -104,7 +104,7 @@ public class LoginController {
                     return "register";
                 }
 
-                User userInDB = userRepository.findById(user.getId()).get();
+                var userInDB = userRepository.findById(user.getId()).get();
                 userInDB.setFirstName(user.getFirstName());
                 userInDB.setLastName(user.getLastName());
                 userInDB.setEmail(user.getEmail());
@@ -150,6 +150,4 @@ public class LoginController {
         model.addAttribute("user", userService.getUser());
         return "register";
     }
-
-
 }

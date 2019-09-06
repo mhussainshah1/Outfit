@@ -77,11 +77,11 @@ public class HomeController {
     @RequestMapping("/")
     public String listItems(Model model, @RequestParam(defaultValue = "0") int page) {
 //        findAll(model);
-        User user = userService.getUser();
+        var user = userService.getUser();
         /**
          * Alternative way to get user
          *-----------------------------
-         *  User myuser = ((CustomerUserDetails)
+         *  var myuser = ((CustomerUserDetails)
          *                 ((UsernamePasswordAuthenticationToken) principal)
          *                         .getPrincipal())
          *                 .getUsers();
@@ -107,8 +107,8 @@ public class HomeController {
                              @RequestParam String search,
                              @RequestParam(defaultValue = "0") int page) {
 //        findAll(model);
-        User user = userService.getUser();
-        Iterable<Item> results =
+        var user = userService.getUser();
+        var searchItems =
                 itemRepository.findAllByNameContainingOrDescriptionContainingAllIgnoreCase(search, search, PageRequest.of(page, 4));
         if (user != null) {
             model.addAttribute("formAttributes", new FormAttributes());
@@ -118,10 +118,10 @@ public class HomeController {
                                 .findAllByUserAndNameContainingOrUserAndDescriptionContainingAllIgnoreCase(user, search, user, search, PageRequest.of(page, 4)));
             }
             if (userService.isAdmin()) {
-                model.addAttribute("items", results);
+                model.addAttribute("items", searchItems);
             }
         } else {
-            model.addAttribute("items", results);
+            model.addAttribute("items", searchItems);
         }
         model.addAttribute("searchString", search);
         model.addAttribute("currentPage", page);
@@ -153,18 +153,18 @@ public class HomeController {
         model.addAttribute("imageLabel", "Upload Image");
         model.addAttribute("myuser", userService.getUser());
         if (result.hasErrors()) {
-            for (ObjectError e : result.getAllErrors()) {
-                System.err.println(e);
+            for (var objectError : result.getAllErrors()) {
+                System.err.println(objectError);
             }
             return "itemform";
         }
         if (!file.isEmpty()) {
             try {
-                Map uploadResult = cloudc.upload(
+                var uploadResultMap = cloudc.upload(
                         file.getBytes(), ObjectUtils.asMap("resourcetype", "auto"));
-                String url = uploadResult.get("url").toString();
-                String uploadedName = uploadResult.get("public_id").toString();
-                String transformedImage = cloudc.createUrl(uploadedName, 150, 150);
+                var url = uploadResultMap.get("url").toString();
+                var uploadedName = uploadResultMap.get("public_id").toString();
+                var transformedImage = cloudc.createUrl(uploadedName, 150, 150);
                 item.setPicturePath(transformedImage);
                 item.setUser(userService.getUser());
             } catch (IOException e) {
@@ -218,15 +218,15 @@ public class HomeController {
                         Model model) {
         // delete selected
         if (name.equals("delete")) {
-            for (long id : ids) {
+            for (var id : ids) {
                 itemRepository.deleteById(id);
             }
             return "redirect:/";
         }
         //packing list
         if (name.equals("packing")) {
-            Set<Item> items = new HashSet<>();
-            for (long id : ids) {
+            var items = new HashSet<Item>();
+            for (var id : ids) {
                 items.add(itemRepository.findById(id).get());
             }
             model.addAttribute("page_title", "Packing List");

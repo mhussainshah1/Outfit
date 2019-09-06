@@ -76,7 +76,7 @@ public class WeatherController {
         }
         model.addAttribute("page_title", formAttributes.getCity());
 
-        Weather weather = weatherService.getWeather(formAttributes);
+        var weather = weatherService.getWeather(formAttributes);
         model.addAttribute("weatherData", weather);
         model.addAttribute("items", getOutfit(weather));
         return "weatherlist";
@@ -110,21 +110,21 @@ public class WeatherController {
 
     private Set<Item> getOutfit(Weather weather) {
 
-        Iterable<Category> categories = categoryRepository.findAll();
-        double temperature = Double.valueOf(weather.getCelsiusTemperature(weather.getTemp()));
-        String climateString = getClimate(temperature);
-        Climate climate = climateRepository.findByName(climateString);
+        var categories = categoryRepository.findAll();
+        var temperature = Double.valueOf(weather.getCelsiusTemperature(weather.getTemp()));
+        var climateString = getClimate(temperature);
+        var climate = climateRepository.findByName(climateString);
 
-        String windString = getWind(weather.getWindSpeed());
-        Wind wind = windRepository.findByName(windString);
+        var windString = getWind(weather.getWindSpeed());
+        var wind = windRepository.findByName(windString);
 
-        User user = userService.getUser();
+        var user = userService.getUser();
 
         System.err.println(climateString + " " + weather.getTemp());
         System.err.println(windString + " " + weather.getWindSpeed());
 
-        Set<Item> outfit = new HashSet<>();
-        for (Category category : categories) {
+        var outfit = new HashSet<Item>();
+        for (var category : categories) {
             //pick one item from the below list
 
             List<Item> list = new ArrayList<>();
@@ -135,7 +135,7 @@ public class WeatherController {
                 list = itemRepository.findAllByCategoryAndClimate(category, climate);
             }
             if (!list.isEmpty()) {
-                int randomid = (int) (Math.random() * list.size());
+                var randomid = (int) (Math.random() * list.size());
                 outfit.add(list.get(randomid));
             }
         }
