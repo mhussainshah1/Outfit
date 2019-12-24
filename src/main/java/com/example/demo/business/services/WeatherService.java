@@ -31,8 +31,8 @@ public class WeatherService {
                 .buildAndExpand(formAttributes.getCity(), weatherData.getApiKey());
 
         var uriString = uriComponents.toUriString();
-        ResponseEntity<String> resp = restTemp.exchange(uriString, HttpMethod.GET, null, String.class);
+        var stringResponseEntity = restTemp.exchange(uriString, HttpMethod.GET, null, String.class);
         var mapper = new ObjectMapper();
-        return mapper.readValue(resp.getBody(), Weather.class);
+        return mapper.readValue(stringResponseEntity.getBody(), Weather.class);
     }
 }

@@ -253,4 +253,9 @@ public class HomeController {
         model.addAttribute("winds", windRepository.findAll());
         return "status";
     }
+
+    @GetMapping("/sample")
+    public String getSample(){
+        return "sample";
+    }
 }
