@@ -1,6 +1,7 @@
 package com.example.demo.web.controllers;
 
-import com.example.demo.business.entities.*;
+import com.example.demo.business.entities.Item;
+import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.*;
 import com.example.demo.business.services.FormAttributes;
 import com.example.demo.business.services.UserService;

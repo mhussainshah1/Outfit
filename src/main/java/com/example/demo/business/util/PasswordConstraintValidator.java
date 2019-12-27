@@ -1,6 +1,5 @@
 package com.example.demo.business.util;
 
-import com.example.demo.business.entities.InvalidPassword;
 import com.example.demo.business.entities.repositories.InvalidPasswordRepository;
 import org.passay.*;
 import org.passay.dictionary.ArrayWordList;
@@ -13,7 +12,6 @@ import javax.validation.ConstraintValidatorContext;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 //@Configuration
 @Component

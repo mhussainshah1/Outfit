@@ -11,15 +11,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 @Controller
 public class HomeController {
@@ -247,15 +244,12 @@ public class HomeController {
      */
     @GetMapping("/status")
     public String getStatus(Model model) {
-        model.addAttribute("categories", categoryRepository.findAll());
-        model.addAttribute("climates", climateRepository.findAll());
-        model.addAttribute("occasions", occasionRepository.findAll());
-        model.addAttribute("winds", windRepository.findAll());
+//        findAll(model);
         return "status";
     }
 
     @GetMapping("/sample")
-    public String getSample(){
+    public String getSample() {
         return "sample";
     }
 }

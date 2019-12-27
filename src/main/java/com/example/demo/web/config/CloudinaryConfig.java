@@ -61,7 +61,6 @@ public class CloudinaryConfig {
                         .radius(50)
                         .gravity("face"))
                 .generate(name);
-
     }
 
     /**

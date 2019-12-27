@@ -1,7 +1,6 @@
 package com.example.demo.web.controllers;
 
 import com.example.demo.business.entities.Climate;
-import com.example.demo.business.entities.User;
 import com.example.demo.business.entities.repositories.*;
 import com.example.demo.business.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
