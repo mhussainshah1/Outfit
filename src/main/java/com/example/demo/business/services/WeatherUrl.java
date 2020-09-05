@@ -8,6 +8,11 @@ public class WeatherUrl {
     public WeatherUrl() {
     }
 
+    public WeatherUrl(String url, String apiKey) {
+        this.url = url;
+        this.apiKey = apiKey;
+    }
+
     public String getApiKey() {
         return apiKey;
     }

@@ -28,7 +28,7 @@ public class SSUserDetailsService implements UserDetailsService {
         try {
             var appUser = userRepository.findByUsername(username);
             if (appUser == null) {
-                System.out.println("User not found with the provided username" + appUser.toString());
+                System.out.println("User not found with the provided username" + appUser);
                 return null;
             }
             System.out.println("User from username " + appUser.toString());

@@ -1,9 +1,7 @@
 package com.example.demo.business.services;
 
 import org.springframework.context.annotation.Bean;
-
 import javax.validation.constraints.NotEmpty;
-
 //@Service
 
 public class FormAttributes {
