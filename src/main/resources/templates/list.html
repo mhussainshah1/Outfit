@@ -40,8 +40,8 @@
         </form>
     </div>
 
-    <form action="#" method="post" th:action="@{/check}">
-        <span sec:authorize="isAuthenticated()">
+    <form action="#" id="form" method="post" th:action="@{/check}">
+        <span id ="checkBtn" sec:authorize="isAuthenticated()">
             <button class="btn btn-link" name="name" type="submit" value="packing">Packing List</button> -
             <button class="btn btn-link" name="name" type="submit" value="delete">Delete Selected</button>
         </span>
@@ -68,9 +68,8 @@
             <tr th:each="item : ${items}">
 
                 <td sec:authorize="isAuthenticated()">
-                    <input name="check" th:value="${item.id}" type="checkbox"/>
+                    <input id="check" name="check" th:value="${item.id}" type="checkbox"/>
                 </td>
-
                 <td th:text="${item.category.name}"></td>
                 <td><a th:href="@{/detail/{id}(id=${item.id})}">[[${item.name}]]</a></td>
                 <td th:text="${item.color}"></td>

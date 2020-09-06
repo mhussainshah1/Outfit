@@ -6,3 +6,14 @@ $(document).ready(function () {
         $('#myModal').modal();
     });
 });
+
+$(document).ready(function () {
+    $('#checkBtn').click(function(event) {
+        checked = $("input[type=checkbox]:checked").length;
+        if(!checked) {
+            event.preventDefault();
+            alert("You must check at least one checkbox.");
+            return false;
+        }
+    });
+});
