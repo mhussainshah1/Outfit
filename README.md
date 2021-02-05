@@ -1,6 +1,6 @@
 ### Final Project - Outfit of the Day Suggestion
 
-Create an application that would suggest an outfit to the users each day. Allow the users to enter all of the item in their wardrobe.
+Create an application that would suggest an outfit to the users each day. Allow the users to enter all of the item in their wardrobe.(https://outfitspringboot.herokuapp.com)
 
 A wardrobe at the very least should include:
 
