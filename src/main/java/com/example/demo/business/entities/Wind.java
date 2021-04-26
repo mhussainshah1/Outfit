@@ -2,12 +2,14 @@ package com.example.demo.business.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 public class Wind implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id

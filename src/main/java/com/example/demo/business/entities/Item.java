@@ -3,11 +3,13 @@ package com.example.demo.business.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.io.Serial;
 import java.io.Serializable;
 
 @Entity
 public class Item implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id

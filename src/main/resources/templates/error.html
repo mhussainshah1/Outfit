@@ -15,10 +15,10 @@
 <div class="container-float">
 
     <div class="jumbotron lead">
-        <h2 class="text-center"> Page not found</h2>
+        <h2 class="text-center" th:text="${status + ' ' + error}"></h2>
     </div>
+    <div th:text="${param.error}"></div>
 
-    <span th:text="${param.error}"></span>
 </div>
 
 <div th:replace="base::footer"></div>

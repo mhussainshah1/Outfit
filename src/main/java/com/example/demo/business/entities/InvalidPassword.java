@@ -2,11 +2,13 @@ package com.example.demo.business.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serial;
 import java.io.Serializable;
 
 @Entity
 public class InvalidPassword implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id

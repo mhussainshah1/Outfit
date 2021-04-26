@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "USER_DATA")
 public class User implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
