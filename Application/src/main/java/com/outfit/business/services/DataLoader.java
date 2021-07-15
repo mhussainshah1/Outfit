@@ -1,7 +1,5 @@
 package com.outfit.business.services;
 
-import com.example.demo.business.entities.*;
-import com.example.demo.business.entities.repositories.*;
 import com.outfit.business.entities.*;
 import com.outfit.business.entities.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
