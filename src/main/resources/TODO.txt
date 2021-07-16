@@ -1,6 +1,9 @@
 TODO
 My List
 -------
+login
+----
+send email to new users after creating successful login
 
 itemform.html
 ------------
