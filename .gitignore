@@ -1,6 +1,8 @@
 HELP.md
-/target/
+target/
 !.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
 
 ### STS ###
 .apt_generated
@@ -23,11 +25,9 @@ HELP.md
 /dist/
 /nbdist/
 /.nb-gradle/
-/build/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
 
 ### VS Code ###
 .vscode/
-
-
-#Make sure comment it if there are changes in the database before deploying to heroku
-application.properties
