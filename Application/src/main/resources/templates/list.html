@@ -41,7 +41,7 @@
     </div>
 
     <form action="#" id="form" method="post" th:action="@{/check}">
-        <span id ="checkBtn" sec:authorize="isAuthenticated()">
+        <span id="checkBtn" sec:authorize="isAuthenticated()">
             <button class="btn btn-link" name="name" type="submit" value="packing">Packing List</button> -
             <button class="btn btn-link" name="name" type="submit" value="delete">Delete Selected</button>
         </span>

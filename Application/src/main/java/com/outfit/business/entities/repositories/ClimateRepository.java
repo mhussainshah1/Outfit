@@ -1,8 +1,10 @@
 package com.outfit.business.entities.repositories;
 
 import com.outfit.business.entities.Climate;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ClimateRepository extends CrudRepository<Climate, Long> {
+@Repository
+public interface ClimateRepository extends JpaRepository<Climate, Long> {
     Climate findByName(String name);
 }

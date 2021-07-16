@@ -1,7 +1,9 @@
 package com.outfit.business.entities.repositories;
 
 import com.outfit.business.entities.InvalidPassword;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface InvalidPasswordRepository extends CrudRepository<InvalidPassword, Long> {
+@Repository
+public interface InvalidPasswordRepository extends JpaRepository<InvalidPassword, Long> {
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.example</groupId>
+    <groupId>com.application</groupId>
     <artifactId>Application</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Application</name>
@@ -92,17 +92,6 @@
             <version>1.29.0</version>
         </dependency>
 
-        <!--JSON-->
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-json</artifactId>
-            <version>2.5.2</version>
-        </dependency>
 
         <!--test-->
         <dependency>
@@ -118,13 +107,18 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons</artifactId>
-            <version>2.5.2</version>
         </dependency>
 
-        <!--        modules-->
+        <!--        child modules     -->
         <dependency>
             <groupId>com.login</groupId>
             <artifactId>Login</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.weather</groupId>
+            <artifactId>Weather</artifactId>
             <version>${project.version}</version>
         </dependency>
 

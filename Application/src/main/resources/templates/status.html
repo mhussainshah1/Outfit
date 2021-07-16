@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org"
 >
 
 <head th:replace="base::header">
@@ -34,8 +34,8 @@
                 <a class="delBtn"
                    data-target="#myModal"
                    data-toggle="modal"
-                   th:href="@{/deletecategory/{id}(id=${category.id})}"
-                   sec:authorize="hasAuthority('ADMIN')">delete</a>
+                   sec:authorize="hasAuthority('ADMIN')"
+                   th:href="@{/deletecategory/{id}(id=${category.id})}">delete</a>
             </td>
         </tr>
 
@@ -49,8 +49,8 @@
                 <a class="delBtn"
                    data-target="#myModal"
                    data-toggle="modal"
-                   th:href="@{/deleteclimate/{id}(id=${climate.id})}"
-                   sec:authorize="hasAuthority('ADMIN')">delete</a>
+                   sec:authorize="hasAuthority('ADMIN')"
+                   th:href="@{/deleteclimate/{id}(id=${climate.id})}">delete</a>
             </td>
         </tr>
 
@@ -64,8 +64,8 @@
                 <a class="delBtn"
                    data-target="#myModal"
                    data-toggle="modal"
-                   th:href="@{/deleteoccasion/{id}(id=${occasion.id})}"
-                   sec:authorize="hasAuthority('ADMIN')">delete</a>
+                   sec:authorize="hasAuthority('ADMIN')"
+                   th:href="@{/deleteoccasion/{id}(id=${occasion.id})}">delete</a>
             </td>
         </tr>
 
@@ -79,8 +79,8 @@
                 <a class="delBtn"
                    data-target="#myModal"
                    data-toggle="modal"
-                   th:href="@{/deletewind/{id}(id=${wind.id})}"
-                   sec:authorize="hasAuthority('ADMIN')">delete</a>
+                   sec:authorize="hasAuthority('ADMIN')"
+                   th:href="@{/deletewind/{id}(id=${wind.id})}">delete</a>
             </td>
         </tr>
     </table>

@@ -8,9 +8,9 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $('#checkBtn').click(function(event) {
+    $('#checkBtn').click(function (event) {
         checked = $("input[type=checkbox]:checked").length;
-        if(!checked) {
+        if (!checked) {
             event.preventDefault();
             alert("You must check at least one checkbox.");
             return false;

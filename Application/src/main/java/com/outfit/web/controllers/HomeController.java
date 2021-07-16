@@ -214,7 +214,7 @@ public class HomeController {
                         @RequestParam("name") String name,
                         Model model) {
 
-         // delete selected
+        // delete selected
         if (name.equals("delete")) {
             for (var id : ids) {
                 itemRepository.deleteById(id);

@@ -30,7 +30,7 @@ public class WeatherConfigurations {
 
     @Bean
     public WeatherUrl weatherUrl() {
-        return new WeatherUrl(url,apikey);
+        return new WeatherUrl(url, apikey);
     }
 
 }
