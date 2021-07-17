@@ -72,12 +72,7 @@
             <version>42.2.22</version>
         </dependency>
 
-        <!--For Password Verification-->
-        <dependency>
-            <groupId>org.passay</groupId>
-            <artifactId>passay</artifactId>
-            <version>1.6.0</version>
-        </dependency>
+
 
         <!--cloudinary-->
         <dependency>
@@ -111,8 +106,8 @@
 
         <!--        child modules     -->
         <dependency>
-            <groupId>com.login</groupId>
-            <artifactId>Login</artifactId>
+            <groupId>com.password</groupId>
+            <artifactId>Password</artifactId>
             <version>${project.version}</version>
         </dependency>
 

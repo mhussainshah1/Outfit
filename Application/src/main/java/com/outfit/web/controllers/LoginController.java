@@ -80,7 +80,7 @@ public class LoginController {
 
     @PostMapping("/register")
     public String processRegistrationPage(@Valid @ModelAttribute("user") User user,
-                                          //@ModelAttribute("user") is not neccesary here.
+                                          //@ModelAttribute("user") is not necessary here.
                                           // We always use if the name of object on form is different than Class
                                           //e.g. if the User class object on form is user1 instead of user then
                                           // we have to use this annotation

@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.login</groupId>
-    <artifactId>Login</artifactId>
+    <groupId>com.password</groupId>
+    <artifactId>Password</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Login</name>
+    <name>Password</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -70,6 +70,14 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!--For Password Verification-->
+        <dependency>
+            <groupId>org.passay</groupId>
+            <artifactId>passay</artifactId>
+            <version>1.6.0</version>
+        </dependency>
+
+        <!--        test        -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

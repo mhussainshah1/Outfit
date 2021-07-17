@@ -36,11 +36,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/h2/**", "/termsandconditions", "/register",
-                        "/css/**", "/js/**", "/img/**",
-                        "/detail/{id}", "/detailcategory/{id}",
-                        "/detailclimate/{id}", "/detailoccasion/{id}",
-                        "/detailwind/{id}", "/search", "/about").permitAll()
+                .antMatchers("/",
+                        "/h2/**",
+                        "/termsandconditions",
+                        "/register",
+                        "/css/**",
+                        "/js/**",
+                        "/img/**",
+                        "/detail/{id}",
+                        "/detailcategory/{id}",
+                        "/detailclimate/{id}",
+                        "/detailoccasion/{id}",
+                        "/detailwind/{id}",
+                        "/search",
+                        "/about").permitAll()
 //                .access("hasAnyAuthority('USER','ADMIN')")
                 .antMatchers("/admin").access("hasAuthority('ADMIN')")
                 .anyRequest().authenticated()

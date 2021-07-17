@@ -14,7 +14,7 @@
 
     <modules>
         <module>Application</module>
-        <module>Login</module>
+        <module>Password</module>
         <module>Weather</module>
     </modules>
 

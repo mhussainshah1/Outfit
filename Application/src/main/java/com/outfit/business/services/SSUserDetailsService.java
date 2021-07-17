@@ -2,6 +2,7 @@ package com.outfit.business.services;
 
 import com.outfit.business.entities.User;
 import com.outfit.business.entities.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +18,7 @@ import java.util.Set;
 @Service
 public class SSUserDetailsService implements UserDetailsService {
 
+    @Autowired
     private UserRepository userRepository;
 
     public SSUserDetailsService(UserRepository userRepository) {
