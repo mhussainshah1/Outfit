@@ -72,8 +72,6 @@
             <version>42.2.22</version>
         </dependency>
 
-
-
         <!--cloudinary-->
         <dependency>
             <groupId>com.cloudinary</groupId>
