@@ -19,7 +19,7 @@ import java.util.Set;
 public class SSUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public SSUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
