@@ -25,8 +25,8 @@ public class PasswordService {
     }
 
     public void addNewInvalidPassword(InvalidPassword invalidPassword) {
-        Optional<InvalidPassword> studentOptional = invalidPasswordRepository.findInvalidPasswordByValue(invalidPassword.getValue());
-        if (studentOptional.isPresent()) {
+        Optional<InvalidPassword> invalidPasswordByValue = invalidPasswordRepository.findInvalidPasswordByValue(invalidPassword.getValue());
+        if (invalidPasswordByValue.isPresent()) {
             throw new IllegalStateException("invalid password taken");
         }
         invalidPasswordRepository.save(invalidPassword);
@@ -43,14 +43,14 @@ public class PasswordService {
 
     @Transactional //use the setter to update the entity in database when possible
     //Entity go to managed state
-    public void updateStudent(Long id, String value, String email) {
+    public void updateInvalidPassword(Long id, String value, String email) {
 
-        InvalidPassword student = invalidPasswordRepository
+        InvalidPassword invalidPassword = invalidPasswordRepository
                 .findById(id)
                 .orElseThrow(() -> new IllegalStateException("invalid password with id " + id + " does not exists"));
 
-        if (value != null && value.length() > 0 && !Objects.equals(student.getValue(), value)) {
-            student.setValue(value);
+        if (value != null && value.length() > 0 && !Objects.equals(invalidPassword.getValue(), value)) {
+            invalidPassword.setValue(value);
 
         }
     }

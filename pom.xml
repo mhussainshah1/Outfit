@@ -9,6 +9,11 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <properties>
+        <spring.framework.version>5.3.23</spring.framework.version>
+        <java.version>17</java.version>
+    </properties>
+
     <name>Outfit</name>
     <description>Final project Outfit for Spring Boot</description>
 
