@@ -1,7 +1,7 @@
 package com.outfit.business.entities;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;

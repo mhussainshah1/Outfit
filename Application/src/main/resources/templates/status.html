@@ -34,7 +34,7 @@
                 <a class="delBtn"
                    data-target="#myModal"
                    data-toggle="modal"
-                   sec:authorize="hasAuthority('ADMIN')"
+                   sec:authorize="hasRole('ADMIN')"
                    th:href="@{/deletecategory/{id}(id=${category.id})}">delete</a>
             </td>
         </tr>
@@ -49,7 +49,7 @@
                 <a class="delBtn"
                    data-target="#myModal"
                    data-toggle="modal"
-                   sec:authorize="hasAuthority('ADMIN')"
+                   sec:authorize="hasRole('ADMIN')"
                    th:href="@{/deleteclimate/{id}(id=${climate.id})}">delete</a>
             </td>
         </tr>
@@ -64,7 +64,7 @@
                 <a class="delBtn"
                    data-target="#myModal"
                    data-toggle="modal"
-                   sec:authorize="hasAuthority('ADMIN')"
+                   sec:authorize="hasRole('ADMIN')"
                    th:href="@{/deleteoccasion/{id}(id=${occasion.id})}">delete</a>
             </td>
         </tr>
@@ -79,7 +79,7 @@
                 <a class="delBtn"
                    data-target="#myModal"
                    data-toggle="modal"
-                   sec:authorize="hasAuthority('ADMIN')"
+                   sec:authorize="hasRole('ADMIN')"
                    th:href="@{/deletewind/{id}(id=${wind.id})}">delete</a>
             </td>
         </tr>

@@ -58,7 +58,7 @@
                 <th>Picture</th>
                 <th>Discription</th>
                 <th>Wind</th>
-                <th sec:authorize="hasAuthority('ADMIN')">User</th>
+                <th sec:authorize="hasRole('ADMIN')">User</th>
                 <th>Climate</th>
                 <th>Occasion</th>
                 <th sec:authorize="isAuthenticated()">Actions</th>
@@ -78,7 +78,7 @@
                 <td><img alt="Picture" th:src="${item.picturePath}"></td>
                 <td th:text="${item.description}"></td>
 
-                <td sec:authorize="hasAuthority('ADMIN')" th:text="${item.user.username}"></td>
+                <td sec:authorize="hasRole('ADMIN')" th:text="${item.user.username}"></td>
                 <td th:text="${item.wind.name}"></td>
                 <td th:text="${item.climate.name}"></td>
                 <td th:text="${item.occasion.name}"></td>

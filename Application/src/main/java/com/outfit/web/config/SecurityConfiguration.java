@@ -5,19 +5,19 @@ import com.outfit.business.services.SSUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SecurityConfiguration {
     @Autowired
-    private SSUserDetailsService userDetailService;
+    private SSUserDetailsService userDetailsService;
 
     @Autowired
     private UserRepository userRepository;
@@ -27,22 +27,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
-    public UserDetailsService userDetailsServiceBean() throws Exception {
-        return new SSUserDetailsService(userRepository);
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers("/",
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests()
+                .requestMatchers("/",
                         "/h2/**",
                         "/termsandconditions",
                         "/register",
-                        "/css/**",
-                        "/js/**",
-                        "/img/**",
                         "/detail/{id}",
                         "/detailcategory/{id}",
                         "/detailclimate/{id}",
@@ -51,25 +42,34 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/search",
                         "/about").permitAll()
 //                .access("hasAnyAuthority('USER','ADMIN')")
-                .antMatchers("/admin").access("hasAuthority('ADMIN')")
+                .requestMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
                 .and()
                 .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login").permitAll()
+                .logoutUrl("/logout")//.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout").permitAll()
                 .and()
                 .httpBasic();
         http
                 .csrf().disable();
         http
                 .headers().frameOptions().disable();
+        return http.build();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsServiceBean())
-                .passwordEncoder(passwordEncoder());
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return web -> web.ignoring().requestMatchers("/css/**", "/js/**", "/img/**");
+    }
+
+    @Bean
+    public AuthenticationProvider userDetailsService(BCryptPasswordEncoder passwordEncoder) {
+        userDetailsService = new SSUserDetailsService(userRepository);
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(userDetailsService);
+        provider.setPasswordEncoder(passwordEncoder);
+        return provider;
     }
 }
