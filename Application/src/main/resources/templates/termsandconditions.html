@@ -2,12 +2,12 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
 >
-<head th:replace="base::header">
+<head th:replace="~{base::header}">
     <title>Terms And Conditions</title>
 </head>
 
 <body>
-<div th:replace="base::nav"></div>
+<div th:replace="~{base::nav}"></div>
 
 <div class="container container-float">
     <h1>Terms and Conditions ("Terms")</h1>
@@ -95,6 +95,6 @@
     <p>If you have any questions about these Terms, please contact us.</p>
 </div>
 
-<div th:replace="base::footer"></div>
+<div th:replace="~{base::footer}"></div>
 </body>
 </html>

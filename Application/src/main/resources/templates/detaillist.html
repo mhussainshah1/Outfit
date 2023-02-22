@@ -2,12 +2,12 @@
 <html lang="en"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="base::header">
+<head th:replace="~{base::header}">
     <title>Category List</title>
 </head>
 
 <body>
-<div th:replace="base::nav"></div>
+<div th:replace="~{base::nav}"></div>
 <div class="container-float">
     <div class="jumbotron lead">
         <h2 class="text-center" th:text="${page_title}"></h2>
@@ -57,9 +57,9 @@
             </td>
         </tr>
     </table>
-    <div th:replace="base::delete"></div>
+    <div th:replace="~{base::delete}"></div>
 </div>
 <br/>
-<div th:replace="base::footer"></div>
+<div th:replace="~{base::footer}"></div>
 </body>
 </html>

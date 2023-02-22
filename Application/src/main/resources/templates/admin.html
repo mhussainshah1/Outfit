@@ -3,13 +3,13 @@
       xmlns:th="http://www.thymeleaf.org"
 >
 
-<head th:replace="base::header">
+<head th:replace="~{base::header}">
 
     <title>admin</title>
 </head>
 
 <body>
-<div th:replace="base::nav"></div>
+<div th:replace="~{base::nav}"></div>
 
 <div class="container">
     <div class="jumbotron lead">
@@ -31,6 +31,6 @@
     </table>
 </div>
 
-<div th:replace="base::footer"></div>
+<div th:replace="~{base::footer}"></div>
 </body>
 </html>

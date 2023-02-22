@@ -34,6 +34,9 @@ public class SecurityConfiguration {
                         "/h2/**",
                         "/termsandconditions",
                         "/register",
+                        "/css/**",
+                        "/js/**",
+                        "/img/**",
                         "/detail/{id}",
                         "/detailcategory/{id}",
                         "/detailclimate/{id}",
@@ -59,10 +62,10 @@ public class SecurityConfiguration {
         return http.build();
     }
 
-    @Bean
+/*    @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return web -> web.ignoring().requestMatchers("/css/**", "/js/**", "/img/**");
-    }
+    }*/
 
     @Bean
     public AuthenticationProvider userDetailsService(BCryptPasswordEncoder passwordEncoder) {

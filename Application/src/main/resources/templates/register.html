@@ -3,12 +3,12 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="base::header">
+<head th:replace="~{base::header}">
     <title th:text="${page_title}">Registration</title>
 </head>
 
 <body>
-<div th:replace="base::nav"></div>
+<div th:replace="~{base::nav}"></div>
 
 <div class="container col-md-6 col-md-offset-3 text-center">
 
@@ -125,6 +125,6 @@
          </div>-->
     </div>
 </div>
-<div th:replace="base::footer"></div>
+<div th:replace="~{base::footer}"></div>
 </body>
 </html>

@@ -4,13 +4,13 @@
       xmlns:th="http://www.thymeleaf.org"
 >
 
-<head th:replace="base::header">
+<head th:replace="~{base::header}">
 
     <title>status</title>
 </head>
 
 <body>
-<div th:replace="base::nav"></div>
+<div th:replace="~{base::nav}"></div>
 
 <div class="container">
     <!--insert webpage content here-->
@@ -84,8 +84,8 @@
             </td>
         </tr>
     </table>
-    <div th:replace="base::delete"></div>
+    <div th:replace="~{base::delete}"></div>
 </div>
-<div th:replace="base::footer"></div>
+<div th:replace="~{base::footer}"></div>
 </body>
 </html>

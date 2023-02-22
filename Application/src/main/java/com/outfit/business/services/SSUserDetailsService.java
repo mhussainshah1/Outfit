@@ -55,7 +55,7 @@ public class SSUserDetailsService implements UserDetailsService {
             var grantedAuthority = new SimpleGrantedAuthority("ROLE_" + role.getRole());
             authorities.add(grantedAuthority);
         }
-        System.out.println("User authorities are" + authorities);
+        System.out.println("User authorities are: " + authorities);
         return authorities;
     }
 }

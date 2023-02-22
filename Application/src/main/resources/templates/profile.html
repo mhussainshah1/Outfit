@@ -3,12 +3,12 @@
       xmlns:th="http://www.thymeleaf.org"
 >
 
-<head th:replace="base::header">
+<head th:replace="~{base::header}">
     <title>profile</title>
 </head>
 
 <body>
-<div th:replace="base::nav"></div>
+<div th:replace="~{base::nav}"></div>
 <div class="container text-center">
     <div class="jumbotron lead">
         <h2 class="text-center" th:text="${user.firstName} +' ' +${user.lastName}"></h2>
@@ -27,6 +27,6 @@
     </div>
 </div>
 
-<div th:replace="base::footer"></div>
+<div th:replace="~{base::footer}"></div>
 </body>
 </html>
