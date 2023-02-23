@@ -5,6 +5,7 @@ import com.outfit.business.entities.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -34,6 +35,9 @@ public class DataLoader implements CommandLineRunner {
     PasswordService passwordService;
 
     @Autowired
+    BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
     UserService userService;
 
     @Value("${run.dataloader}")
@@ -59,25 +63,25 @@ public class DataLoader implements CommandLineRunner {
             var adminRole = roleRepository.findByRole("ADMIN");
 
             //User
-            var admin = new User("admin@admin.com", userService.encode("password"), "Admin", "User", true, "admin");
+            var admin = new User("admin@admin.com", passwordEncoder.encode("password"), "Admin", "User", true, "admin");
             userService.saveAdmin(admin);
 
-            var moe = new User("mhussainshah79@gmail.com", userService.encode("password"), "Muhammad", "Shah", true, "moe");
+            var moe = new User("mhussainshah79@gmail.com", passwordEncoder.encode("password"), "Muhammad", "Shah", true, "moe");
             userService.saveUser(moe);
 
-            var lan = new User("tolani.oyefule@gmail.com", userService.encode("password"), "Tolani", "Oyefule", true, "lan");
+            var lan = new User("tolani.oyefule@gmail.com", passwordEncoder.encode("password"), "Tolani", "Oyefule", true, "lan");
             userService.saveUser(lan);
 
-            var nan = new User("nhan.cog.huynh@gmail.com", userService.encode("password"), "Nhan", "Huynh", true, "nan");
+            var nan = new User("nhan.cog.huynh@gmail.com", passwordEncoder.encode("password"), "Nhan", "Huynh", true, "nan");
             userService.saveUser(nan);
 
-            var dag = new User("dag@gmail.com", userService.encode("password"), "Dag", "Fasil", true, "dag");
+            var dag = new User("dag@gmail.com", passwordEncoder.encode("password"), "Dag", "Fasil", true, "dag");
             userService.saveUser(dag);
 
-            var mel = new User("melissafong@gmail.com", userService.encode("password"), "Mellisa", "Lavander", true, "mel");
+            var mel = new User("melissafong@gmail.com", passwordEncoder.encode("password"), "Mellisa", "Lavander", true, "mel");
             userService.saveUser(mel);
 
-            var jen = new User("jen@gmail.com", userService.encode("password"), "Jennifer", "You", true, "jen");
+            var jen = new User("jen@gmail.com", passwordEncoder.encode("password"), "Jennifer", "You", true, "jen");
             userService.saveUser(jen);
 
             //Category

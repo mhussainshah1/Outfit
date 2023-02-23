@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="base :: header">
+<head th:replace="~{base::header}">
     <title>About the Author</title>
 </head>
 
 <body>
-<div th:replace="base :: nav "></div>
+<div th:replace="~{base::nav}"></div>
 
 <div class="container text-center">
     <h2>Meet the Designers</h2>
@@ -118,6 +118,6 @@
         </div>
     </div>
 </div>
-<div th:replace="base :: footer"></div>
+<div th:replace="~{base::footer}"></div>
 </body>
 </html>

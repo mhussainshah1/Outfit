@@ -6,6 +6,7 @@ import com.outfit.business.services.UserService;
 import com.outfit.business.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -41,6 +42,9 @@ public class LoginController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
 
     public void findAll(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
@@ -109,7 +113,7 @@ public class LoginController {
                 userInDB.setLastName(user.getLastName());
                 userInDB.setEmail(user.getEmail());
                 userInDB.setUsername(user.getUsername());
-                userInDB.setPassword(userService.encode(user.getPassword()));
+                userInDB.setPassword(passwordEncoder.encode(user.getPassword()));
                 userInDB.setEnabled(user.isEnabled());
                 userRepository.save(userInDB);
                 model.addAttribute("message", "User Account Successfully Updated");
@@ -122,7 +126,7 @@ public class LoginController {
                             "We already have a username called " + user.getUsername() + "!" + " Try something else.");
                     return "register";
                 } else {
-                    user.setPassword(userService.encode(user.getPassword()));
+                    user.setPassword(passwordEncoder.encode(user.getPassword()));
                     userService.saveUser(user);
                     model.addAttribute("message", "User Account Successfully Created");
                 }

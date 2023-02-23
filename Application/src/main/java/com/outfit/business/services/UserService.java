@@ -59,10 +59,10 @@ public class UserService {
         return userRepository.findByUsername(currentUserName);
     }
 
-    public String encode(String password) {
+/*    public String encode(String password) {
         var passwordEncoder = new BCryptPasswordEncoder();
         return passwordEncoder.encode(password);
-    }
+    }*/
 
     public boolean isAdmin() {
         var authentication = SecurityContextHolder.getContext().getAuthentication();
