@@ -68,13 +68,13 @@ public class UserService {
         var authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getAuthorities()
                 .stream()
-                .anyMatch(r -> r.getAuthority().equals("ADMIN"));
+                .anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
     }
 
     public boolean isUser() {
         var authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getAuthorities()
                 .stream()
-                .anyMatch(r -> r.getAuthority().equals("USER"));
+                .anyMatch(r -> r.getAuthority().equals("ROLE_USER"));
     }
 }

@@ -36,7 +36,6 @@ public class Item implements Serializable {
     private String description;
 
     @ManyToOne
-    @NotNull
     private User user;
 
     @ManyToOne

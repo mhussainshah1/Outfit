@@ -5,8 +5,6 @@ import com.outfit.business.services.SSUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -48,6 +46,7 @@ public class SecurityConfiguration {
                 .requestMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
+                .userDetailsService(userDetailsService)
                 .formLogin().loginPage("/login").permitAll()
                 .and()
                 .logout()
@@ -62,17 +61,17 @@ public class SecurityConfiguration {
         return http.build();
     }
 
-/*    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.ignoring().requestMatchers("/css/**", "/js/**", "/img/**");
-    }*/
-
     @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return web -> web.ignoring().requestMatchers("/resources/**", "/error");
+    }
+
+   /* @Bean
     public AuthenticationProvider userDetailsService(BCryptPasswordEncoder passwordEncoder) {
         userDetailsService = new SSUserDetailsService(userRepository);
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
         provider.setPasswordEncoder(passwordEncoder);
         return provider;
-    }
+    }*/
 }
