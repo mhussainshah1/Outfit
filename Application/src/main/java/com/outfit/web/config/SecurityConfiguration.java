@@ -1,6 +1,5 @@
 package com.outfit.web.config;
 
-import com.outfit.business.entities.repositories.UserRepository;
 import com.outfit.business.services.SSUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
