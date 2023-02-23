@@ -10,38 +10,43 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DataLoader implements CommandLineRunner {
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    RoleRepository roleRepository;
-
-    @Autowired
-    CategoryRepository categoryRepository;
-
-    @Autowired
-    ItemRepository itemRepository;
-
-    @Autowired
-    ClimateRepository climateRepository;
-
-    @Autowired
-    OccasionRepository occasionRepository;
-
-    @Autowired
-    WindRepository windRepository;
-
-    @Autowired
-    PasswordService passwordService;
-
-    @Autowired
-    BCryptPasswordEncoder passwordEncoder;
-
-    @Autowired
-    UserService userService;
-
-    @Value("${run.dataloader}")
+    private UserRepository userRepository;
+    private RoleRepository roleRepository;
+    private CategoryRepository categoryRepository;
+    private ItemRepository itemRepository;
+    private ClimateRepository climateRepository;
+    private OccasionRepository occasionRepository;
+    private WindRepository windRepository;
+    private PasswordService passwordService;
+    private BCryptPasswordEncoder passwordEncoder;
+    private UserService userService;
+    //    @Value("${run.dataloader}")
     private boolean rundataloader;
+
+    @Autowired
+    public DataLoader(UserRepository userRepository,
+                      RoleRepository roleRepository,
+                      CategoryRepository categoryRepository,
+                      ItemRepository itemRepository,
+                      ClimateRepository climateRepository,
+                      OccasionRepository occasionRepository,
+                      WindRepository windRepository,
+                      PasswordService passwordService,
+                      BCryptPasswordEncoder passwordEncoder,
+                      UserService userService,
+                      @Value("${run.dataloader}") boolean rundataloader) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.categoryRepository = categoryRepository;
+        this.itemRepository = itemRepository;
+        this.climateRepository = climateRepository;
+        this.occasionRepository = occasionRepository;
+        this.windRepository = windRepository;
+        this.passwordService = passwordService;
+        this.passwordEncoder = passwordEncoder;
+        this.userService = userService;
+        this.rundataloader = rundataloader;
+    }
 
     @Override
     public void run(String... args) throws Exception {

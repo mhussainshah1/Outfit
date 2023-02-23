@@ -30,14 +30,7 @@ public class HomeController {
     private UserService userService;
 
     @Autowired
-    public HomeController(CategoryRepository categoryRepository,
-                          OccasionRepository occasionRepository,
-                          ClimateRepository climateRepository,
-                          WindRepository windRepository,
-                          ItemRepository itemRepository,
-                          UserRepository userRepository,
-                          CloudinaryConfig cloudc,
-                          UserService userService) {
+    public HomeController(CategoryRepository categoryRepository, OccasionRepository occasionRepository, ClimateRepository climateRepository, WindRepository windRepository, ItemRepository itemRepository, UserRepository userRepository, CloudinaryConfig cloudc, UserService userService) {
         this.categoryRepository = categoryRepository;
         this.occasionRepository = occasionRepository;
         this.climateRepository = climateRepository;
@@ -245,7 +238,7 @@ public class HomeController {
     }
 
     /**
-     * TODO: put this code in the profile
+     * todo: put this code in the profile
      */
     @GetMapping("/status")
     public String getStatus(Model model) {

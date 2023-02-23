@@ -21,12 +21,7 @@ public class ClimateController {
     private WindRepository windRepository;
     private UserService userService;
     @Autowired
-    public ClimateController(ItemRepository itemRepository,
-                             CategoryRepository categoryRepository,
-                             ClimateRepository climateRepository,
-                             OccasionRepository occasionRepository,
-                             WindRepository windRepository,
-                             UserService userService) {
+    public ClimateController(ItemRepository itemRepository, CategoryRepository categoryRepository, ClimateRepository climateRepository, OccasionRepository occasionRepository, WindRepository windRepository, UserService userService) {
         this.itemRepository = itemRepository;
         this.categoryRepository = categoryRepository;
         this.climateRepository = climateRepository;
