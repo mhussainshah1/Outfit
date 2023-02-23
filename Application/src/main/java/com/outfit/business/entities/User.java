@@ -2,10 +2,10 @@ package com.outfit.business.entities;
 
 import com.outfit.business.util.ValidPassword;
 
-import javax.persistence.*;
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -149,7 +149,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        String string = "User{" +
+        StringBuilder string = new StringBuilder("User{" +
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
@@ -157,20 +157,20 @@ public class User implements Serializable {
                 ", lastName='" + lastName + '\'' +
                 ", enabled=" + enabled +
                 ", username='" + username + '\'' +
-                ", roles= [";
-             /*   for(Role role : roles){
-                    string += role.getRole();
-                }*/
+                ", roles= [");
+                for(Role role : roles){
+                    string.append(role.getRole());
+                }
 
-        string += "], items=[";
+        string.append("], items=[");
 
-                /*for(Item item : items){
-                    string += item.getName();
-                }*/
+                for(Item item : items){
+                    string.append(item.getName());
+                }
 
-        string += "]}";
+        string.append("]}");
 
-        return string;
+        return string.toString();
     }
 
     @Override

@@ -13,15 +13,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserService {
-    @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
+    private RoleRepository roleRepository;
 
     @Autowired
-    RoleRepository roleRepository;
-
-    @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     public User findByEmail(String email) {
@@ -59,22 +57,22 @@ public class UserService {
         return userRepository.findByUsername(currentUserName);
     }
 
-    public String encode(String password) {
+/*    public String encode(String password) {
         var passwordEncoder = new BCryptPasswordEncoder();
         return passwordEncoder.encode(password);
-    }
+    }*/
 
     public boolean isAdmin() {
         var authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getAuthorities()
                 .stream()
-                .anyMatch(r -> r.getAuthority().equals("ADMIN"));
+                .anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
     }
 
     public boolean isUser() {
         var authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getAuthorities()
                 .stream()
-                .anyMatch(r -> r.getAuthority().equals("USER"));
+                .anyMatch(r -> r.getAuthority().equals("ROLE_USER"));
     }
 }

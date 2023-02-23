@@ -6,6 +6,7 @@ import com.outfit.business.entities.repositories.*;
 import com.outfit.business.services.FormAttributes;
 import com.outfit.business.services.UserService;
 import com.outfit.web.config.CloudinaryConfig;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -14,35 +15,31 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.HashSet;
 
 @Controller
 public class HomeController {
-    @Autowired
-    CategoryRepository categoryRepository;
+    private CategoryRepository categoryRepository;
+    private OccasionRepository occasionRepository;
+    private ClimateRepository climateRepository;
+    private WindRepository windRepository;
+    private ItemRepository itemRepository;
+    private UserRepository userRepository;
+    private CloudinaryConfig cloudc;
+    private UserService userService;
 
     @Autowired
-    OccasionRepository occasionRepository;
-
-    @Autowired
-    ClimateRepository climateRepository;
-
-    @Autowired
-    WindRepository windRepository;
-
-    @Autowired
-    ItemRepository itemRepository;
-
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    CloudinaryConfig cloudc;
-
-    @Autowired
-    UserService userService;
+    public HomeController(CategoryRepository categoryRepository, OccasionRepository occasionRepository, ClimateRepository climateRepository, WindRepository windRepository, ItemRepository itemRepository, UserRepository userRepository, CloudinaryConfig cloudc, UserService userService) {
+        this.categoryRepository = categoryRepository;
+        this.occasionRepository = occasionRepository;
+        this.climateRepository = climateRepository;
+        this.windRepository = windRepository;
+        this.itemRepository = itemRepository;
+        this.userRepository = userRepository;
+        this.cloudc = cloudc;
+        this.userService = userService;
+    }
 
     @ModelAttribute("categories")
     public Iterable<Category> populateCategories() {

@@ -9,29 +9,26 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
-import javax.validation.Valid;
+import jakarta.annotation.PostConstruct;
+import jakarta.validation.Valid;
 
 @Controller
 public class CategoryController {
-
+    private ItemRepository itemRepository;
+    private CategoryRepository categoryRepository;
+    private ClimateRepository climateRepository;
+    private OccasionRepository occasionRepository;
+    private WindRepository windRepository;
+    private UserService userService;
     @Autowired
-    ItemRepository itemRepository;
-
-    @Autowired
-    CategoryRepository categoryRepository;
-
-    @Autowired
-    ClimateRepository climateRepository;
-
-    @Autowired
-    OccasionRepository occasionRepository;
-
-    @Autowired
-    WindRepository windRepository;
-
-    @Autowired
-    UserService userService;
+    public CategoryController(ItemRepository itemRepository, CategoryRepository categoryRepository, ClimateRepository climateRepository, OccasionRepository occasionRepository, WindRepository windRepository, UserService userService) {
+        this.itemRepository = itemRepository;
+        this.categoryRepository = categoryRepository;
+        this.climateRepository = climateRepository;
+        this.occasionRepository = occasionRepository;
+        this.windRepository = windRepository;
+        this.userService = userService;
+    }
 
     public void findAll(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());

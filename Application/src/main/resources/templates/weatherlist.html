@@ -3,11 +3,11 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="base::header">
+<head th:replace="~{base::header}">
     <title>Weather Data</title>
 </head>
 <body>
-<div th:replace="base::nav"></div>
+<div th:replace="~{base::nav}"></div>
 
 <div align="center" class="div1">
     <h2>Weather Data</h2>
@@ -96,8 +96,8 @@
 
         </tr>
     </table>
-    <div th:replace="base::delete"></div>
+    <div th:replace="~{base::delete}"></div>
 </div>
-<div th:replace="base::footer"></div>
+<div th:replace="~{base::footer}"></div>
 </body>
 </html>

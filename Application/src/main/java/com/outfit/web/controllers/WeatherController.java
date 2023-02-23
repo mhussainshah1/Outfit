@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -25,30 +25,25 @@ import java.util.Set;
 
 @Controller
 public class WeatherController {
-
+    private RestTemplate restTemp;
+    private WeatherService weatherService;
+    private ItemRepository itemRepository;
+    private CategoryRepository categoryRepository;
+    private OccasionRepository occasionRepository;
+    private WindRepository windRepository;
+    private ClimateRepository climateRepository;
+    private UserService userService;
     @Autowired
-    RestTemplate restTemp;
-
-    @Autowired
-    WeatherService weatherService;
-
-    @Autowired
-    ItemRepository itemRepository;
-
-    @Autowired
-    CategoryRepository categoryRepository;
-
-    @Autowired
-    OccasionRepository occasionRepository;
-
-    @Autowired
-    WindRepository windRepository;
-
-    @Autowired
-    ClimateRepository climateRepository;
-
-    @Autowired
-    UserService userService;
+    public WeatherController(RestTemplate restTemp, WeatherService weatherService, ItemRepository itemRepository, CategoryRepository categoryRepository, OccasionRepository occasionRepository, WindRepository windRepository, ClimateRepository climateRepository, UserService userService) {
+        this.restTemp = restTemp;
+        this.weatherService = weatherService;
+        this.itemRepository = itemRepository;
+        this.categoryRepository = categoryRepository;
+        this.occasionRepository = occasionRepository;
+        this.windRepository = windRepository;
+        this.climateRepository = climateRepository;
+        this.userService = userService;
+    }
 
     public void findAll(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());

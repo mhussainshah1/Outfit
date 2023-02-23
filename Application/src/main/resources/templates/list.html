@@ -2,12 +2,12 @@
 <html lang="en"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="base::header">
+<head th:replace="~{base::header}">
     <title>List</title>
 
 </head>
 <body>
-<div th:replace="base::nav"></div>
+<div th:replace="~{base::nav}"></div>
 
 <div class="container-float">
 
@@ -44,6 +44,8 @@
         <span id="checkBtn" sec:authorize="isAuthenticated()">
             <button class="btn btn-link" name="name" type="submit" value="packing">Packing List</button> -
             <button class="btn btn-link" name="name" type="submit" value="delete">Delete Selected</button>
+
+
         </span>
 
         <table class="table table-striped" style="width:100%">
@@ -58,7 +60,7 @@
                 <th>Picture</th>
                 <th>Discription</th>
                 <th>Wind</th>
-                <th sec:authorize="hasAuthority('ADMIN')">User</th>
+                <th sec:authorize="hasRole('ADMIN')">User</th>
                 <th>Climate</th>
                 <th>Occasion</th>
                 <th sec:authorize="isAuthenticated()">Actions</th>
@@ -78,7 +80,7 @@
                 <td><img alt="Picture" th:src="${item.picturePath}"></td>
                 <td th:text="${item.description}"></td>
 
-                <td sec:authorize="hasAuthority('ADMIN')" th:text="${item.user.username}"></td>
+                <td sec:authorize="hasRole('ADMIN')" th:text="${item.user.username}"></td>
                 <td th:text="${item.wind.name}"></td>
                 <td th:text="${item.climate.name}"></td>
                 <td th:text="${item.occasion.name}"></td>
@@ -111,9 +113,9 @@
             </div>
         </li>
     </ul>
-    <div th:replace="base::delete"></div>
+    <div th:replace="~{base::delete}"></div>
 </div>
 <br/>
-<div th:replace="base::footer"></div>
+<div th:replace="~{base::footer}"></div>
 </body>
 </html>

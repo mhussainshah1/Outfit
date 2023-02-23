@@ -6,6 +6,7 @@ import com.outfit.business.services.UserService;
 import com.outfit.business.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,33 +15,31 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import java.security.Principal;
 
 @Controller
 public class LoginController {
-
+    private UserRepository userRepository;
+    private CategoryRepository categoryRepository;
+    private ItemRepository itemRepository;
+    private ClimateRepository climateRepository;
+    private OccasionRepository occasionRepository;
+    private WindRepository windRepository;
+    private UserService userService;
+    BCryptPasswordEncoder passwordEncoder;
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    CategoryRepository categoryRepository;
-
-    @Autowired
-    ItemRepository itemRepository;
-
-    @Autowired
-    ClimateRepository climateRepository;
-
-    @Autowired
-    OccasionRepository occasionRepository;
-
-    @Autowired
-    WindRepository windRepository;
-
-    @Autowired
-    UserService userService;
+    public LoginController(UserRepository userRepository, CategoryRepository categoryRepository, ItemRepository itemRepository, ClimateRepository climateRepository, OccasionRepository occasionRepository, WindRepository windRepository, UserService userService, BCryptPasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.categoryRepository = categoryRepository;
+        this.itemRepository = itemRepository;
+        this.climateRepository = climateRepository;
+        this.occasionRepository = occasionRepository;
+        this.windRepository = windRepository;
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public void findAll(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
@@ -109,7 +108,7 @@ public class LoginController {
                 userInDB.setLastName(user.getLastName());
                 userInDB.setEmail(user.getEmail());
                 userInDB.setUsername(user.getUsername());
-                userInDB.setPassword(userService.encode(user.getPassword()));
+                userInDB.setPassword(passwordEncoder.encode(user.getPassword()));
                 userInDB.setEnabled(user.isEnabled());
                 userRepository.save(userInDB);
                 model.addAttribute("message", "User Account Successfully Updated");
@@ -122,7 +121,7 @@ public class LoginController {
                             "We already have a username called " + user.getUsername() + "!" + " Try something else.");
                     return "register";
                 } else {
-                    user.setPassword(userService.encode(user.getPassword()));
+                    user.setPassword(passwordEncoder.encode(user.getPassword()));
                     userService.saveUser(user);
                     model.addAttribute("message", "User Account Successfully Created");
                 }

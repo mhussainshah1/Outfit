@@ -5,39 +5,48 @@ import com.outfit.business.entities.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DataLoader implements CommandLineRunner {
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    RoleRepository roleRepository;
-
-    @Autowired
-    CategoryRepository categoryRepository;
-
-    @Autowired
-    ItemRepository itemRepository;
-
-    @Autowired
-    ClimateRepository climateRepository;
-
-    @Autowired
-    OccasionRepository occasionRepository;
-
-    @Autowired
-    WindRepository windRepository;
-
-    @Autowired
-    PasswordService passwordService;
-
-    @Autowired
-    UserService userService;
-
-    @Value("${run.dataloader}")
+    private UserRepository userRepository;
+    private RoleRepository roleRepository;
+    private CategoryRepository categoryRepository;
+    private ItemRepository itemRepository;
+    private ClimateRepository climateRepository;
+    private OccasionRepository occasionRepository;
+    private WindRepository windRepository;
+    private PasswordService passwordService;
+    private BCryptPasswordEncoder passwordEncoder;
+    private UserService userService;
+    //    @Value("${run.dataloader}")
     private boolean rundataloader;
+
+    @Autowired
+    public DataLoader(UserRepository userRepository,
+                      RoleRepository roleRepository,
+                      CategoryRepository categoryRepository,
+                      ItemRepository itemRepository,
+                      ClimateRepository climateRepository,
+                      OccasionRepository occasionRepository,
+                      WindRepository windRepository,
+                      PasswordService passwordService,
+                      BCryptPasswordEncoder passwordEncoder,
+                      UserService userService,
+                      @Value("${run.dataloader}") boolean rundataloader) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.categoryRepository = categoryRepository;
+        this.itemRepository = itemRepository;
+        this.climateRepository = climateRepository;
+        this.occasionRepository = occasionRepository;
+        this.windRepository = windRepository;
+        this.passwordService = passwordService;
+        this.passwordEncoder = passwordEncoder;
+        this.userService = userService;
+        this.rundataloader = rundataloader;
+    }
 
     @Override
     public void run(String... args) throws Exception {
@@ -59,25 +68,25 @@ public class DataLoader implements CommandLineRunner {
             var adminRole = roleRepository.findByRole("ADMIN");
 
             //User
-            var admin = new User("admin@admin.com", userService.encode("password"), "Admin", "User", true, "admin");
+            var admin = new User("admin@admin.com", passwordEncoder.encode("password"), "Admin", "User", true, "admin");
             userService.saveAdmin(admin);
 
-            var moe = new User("mhussainshah79@gmail.com", userService.encode("password"), "Muhammad", "Shah", true, "moe");
+            var moe = new User("mhussainshah79@gmail.com", passwordEncoder.encode("password"), "Muhammad", "Shah", true, "moe");
             userService.saveUser(moe);
 
-            var lan = new User("tolani.oyefule@gmail.com", userService.encode("password"), "Tolani", "Oyefule", true, "lan");
+            var lan = new User("tolani.oyefule@gmail.com", passwordEncoder.encode("password"), "Tolani", "Oyefule", true, "lan");
             userService.saveUser(lan);
 
-            var nan = new User("nhan.cog.huynh@gmail.com", userService.encode("password"), "Nhan", "Huynh", true, "nan");
+            var nan = new User("nhan.cog.huynh@gmail.com", passwordEncoder.encode("password"), "Nhan", "Huynh", true, "nan");
             userService.saveUser(nan);
 
-            var dag = new User("dag@gmail.com", userService.encode("password"), "Dag", "Fasil", true, "dag");
+            var dag = new User("dag@gmail.com", passwordEncoder.encode("password"), "Dag", "Fasil", true, "dag");
             userService.saveUser(dag);
 
-            var mel = new User("melissafong@gmail.com", userService.encode("password"), "Mellisa", "Lavander", true, "mel");
+            var mel = new User("melissafong@gmail.com", passwordEncoder.encode("password"), "Mellisa", "Lavander", true, "mel");
             userService.saveUser(mel);
 
-            var jen = new User("jen@gmail.com", userService.encode("password"), "Jennifer", "You", true, "jen");
+            var jen = new User("jen@gmail.com", passwordEncoder.encode("password"), "Jennifer", "You", true, "jen");
             userService.saveUser(jen);
 
             //Category

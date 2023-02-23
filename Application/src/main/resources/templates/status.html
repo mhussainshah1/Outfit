@@ -4,13 +4,13 @@
       xmlns:th="http://www.thymeleaf.org"
 >
 
-<head th:replace="base::header">
+<head th:replace="~{base::header}">
 
     <title>status</title>
 </head>
 
 <body>
-<div th:replace="base::nav"></div>
+<div th:replace="~{base::nav}"></div>
 
 <div class="container">
     <!--insert webpage content here-->
@@ -34,7 +34,7 @@
                 <a class="delBtn"
                    data-target="#myModal"
                    data-toggle="modal"
-                   sec:authorize="hasAuthority('ADMIN')"
+                   sec:authorize="hasRole('ADMIN')"
                    th:href="@{/deletecategory/{id}(id=${category.id})}">delete</a>
             </td>
         </tr>
@@ -49,7 +49,7 @@
                 <a class="delBtn"
                    data-target="#myModal"
                    data-toggle="modal"
-                   sec:authorize="hasAuthority('ADMIN')"
+                   sec:authorize="hasRole('ADMIN')"
                    th:href="@{/deleteclimate/{id}(id=${climate.id})}">delete</a>
             </td>
         </tr>
@@ -64,7 +64,7 @@
                 <a class="delBtn"
                    data-target="#myModal"
                    data-toggle="modal"
-                   sec:authorize="hasAuthority('ADMIN')"
+                   sec:authorize="hasRole('ADMIN')"
                    th:href="@{/deleteoccasion/{id}(id=${occasion.id})}">delete</a>
             </td>
         </tr>
@@ -79,13 +79,13 @@
                 <a class="delBtn"
                    data-target="#myModal"
                    data-toggle="modal"
-                   sec:authorize="hasAuthority('ADMIN')"
+                   sec:authorize="hasRole('ADMIN')"
                    th:href="@{/deletewind/{id}(id=${wind.id})}">delete</a>
             </td>
         </tr>
     </table>
-    <div th:replace="base::delete"></div>
+    <div th:replace="~{base::delete}"></div>
 </div>
-<div th:replace="base::footer"></div>
+<div th:replace="~{base::footer}"></div>
 </body>
 </html>

@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="base::header">
+<head th:replace="~{base::header}">
 
     <title>Sample</title>
 </head>
 
 <body>
-<div th:replace="base::nav"></div>
+<div th:replace="~{base::nav}"></div>
 
 <nav class="navbar-expand-lg bg-dark navbar-dark" id="navbarResponsive">
     <ul class="navbar-nav ml-auto">
@@ -44,6 +44,6 @@
 
 </div>
 
-<div th:replace="base::footer"></div>
+<div th:replace="~{base::footer}"></div>
 </body>
 </html>

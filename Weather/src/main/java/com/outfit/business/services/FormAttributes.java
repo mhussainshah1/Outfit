@@ -2,7 +2,7 @@ package com.outfit.business.services;
 
 import org.springframework.context.annotation.Bean;
 
-import javax.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotEmpty;
 //@Service
 
 public class FormAttributes {
