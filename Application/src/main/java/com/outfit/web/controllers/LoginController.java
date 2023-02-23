@@ -21,30 +21,25 @@ import java.security.Principal;
 
 @Controller
 public class LoginController {
-
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    CategoryRepository categoryRepository;
-
-    @Autowired
-    ItemRepository itemRepository;
-
-    @Autowired
-    ClimateRepository climateRepository;
-
-    @Autowired
-    OccasionRepository occasionRepository;
-
-    @Autowired
-    WindRepository windRepository;
-
-    @Autowired
-    UserService userService;
-
-    @Autowired
+    private UserRepository userRepository;
+    private CategoryRepository categoryRepository;
+    private ItemRepository itemRepository;
+    private ClimateRepository climateRepository;
+    private OccasionRepository occasionRepository;
+    private WindRepository windRepository;
+    private UserService userService;
     BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    public LoginController(UserRepository userRepository, CategoryRepository categoryRepository, ItemRepository itemRepository, ClimateRepository climateRepository, OccasionRepository occasionRepository, WindRepository windRepository, UserService userService, BCryptPasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.categoryRepository = categoryRepository;
+        this.itemRepository = itemRepository;
+        this.climateRepository = climateRepository;
+        this.occasionRepository = occasionRepository;
+        this.windRepository = windRepository;
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public void findAll(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());

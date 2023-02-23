@@ -18,11 +18,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
-    @Autowired
     private SSUserDetailsService userDetailsService;
 
     @Autowired
-    private UserRepository userRepository;
+    public SecurityConfiguration(SSUserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     @Bean
     public static BCryptPasswordEncoder passwordEncoder() {

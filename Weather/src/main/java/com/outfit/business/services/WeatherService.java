@@ -11,12 +11,14 @@ import java.io.IOException;
 
 @Service
 public class WeatherService {
-
-    @Autowired
-    RestTemplate restTemp;
-
-    @Autowired
+    private RestTemplate restTemp;
     private WeatherUrl weatherData;
+
+    @Autowired
+    public WeatherService(RestTemplate restTemp, WeatherUrl weatherData) {
+        this.restTemp = restTemp;
+        this.weatherData = weatherData;
+    }
 
     public Weather getWeather(FormAttributes formAttributes) throws IOException {
 

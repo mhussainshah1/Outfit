@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class PasswordService {
 
-    private final InvalidPasswordRepository invalidPasswordRepository;
+    private InvalidPasswordRepository invalidPasswordRepository;
 
     @Autowired
     public PasswordService(InvalidPasswordRepository invalidPasswordRepository) {

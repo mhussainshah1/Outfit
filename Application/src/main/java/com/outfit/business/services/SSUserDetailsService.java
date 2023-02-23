@@ -18,10 +18,9 @@ import java.util.*;
 @Transactional
 @Service
 public class SSUserDetailsService implements UserDetailsService {
+    private UserRepository userRepository;
 
     @Autowired
-    private final UserRepository userRepository;
-
     public SSUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }

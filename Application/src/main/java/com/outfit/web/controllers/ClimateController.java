@@ -14,24 +14,21 @@ import jakarta.validation.Valid;
 
 @Controller
 public class ClimateController {
-
+    private ItemRepository itemRepository;
+    private CategoryRepository categoryRepository;
+    private ClimateRepository climateRepository;
+    private OccasionRepository occasionRepository;
+    private WindRepository windRepository;
+    private UserService userService;
     @Autowired
-    ItemRepository itemRepository;
-
-    @Autowired
-    CategoryRepository categoryRepository;
-
-    @Autowired
-    ClimateRepository climateRepository;
-
-    @Autowired
-    OccasionRepository occasionRepository;
-
-    @Autowired
-    WindRepository windRepository;
-
-    @Autowired
-    UserService userService;
+    public ClimateController(ItemRepository itemRepository, CategoryRepository categoryRepository, ClimateRepository climateRepository, OccasionRepository occasionRepository, WindRepository windRepository, UserService userService) {
+        this.itemRepository = itemRepository;
+        this.categoryRepository = categoryRepository;
+        this.climateRepository = climateRepository;
+        this.occasionRepository = occasionRepository;
+        this.windRepository = windRepository;
+        this.userService = userService;
+    }
 
     public void findAll(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
