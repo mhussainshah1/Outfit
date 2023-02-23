@@ -39,7 +39,7 @@ public class CloudinaryConfig {
     public String createUrl(String name) {
         return cloudinary
                 .url()
-                .transformation(new Transformation()
+                .transformation(new Transformation<>()
                         .width(100)
                         .height(100)
                         .crop("fill")
@@ -54,7 +54,7 @@ public class CloudinaryConfig {
     public String createUrl(String name, int width, int height) {
         return cloudinary
                 .url()
-                .transformation(new Transformation()
+                .transformation(new Transformation<>()
                         .width(width)
                         .height(height)
                         .crop("fill")
@@ -69,7 +69,7 @@ public class CloudinaryConfig {
     public String createSmallImage(String url, int width, int height) {
         return cloudinary
                 .url()
-                .transformation(new Transformation()
+                .transformation(new Transformation<>()
                         .width(width)
                         .height(height)
                         .crop("fill")
@@ -82,7 +82,7 @@ public class CloudinaryConfig {
     public String createUrl(String name, int width, int height, String action) {
         return cloudinary
                 .url()
-                .transformation(new Transformation()
+                .transformation(new Transformation<>()
                         .width(width) //50
                         .height(height)//50
                         .border("2px_solid_black")
