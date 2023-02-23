@@ -48,6 +48,9 @@ public class LoginController {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
+
     public void findAll(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("climates", climateRepository.findAll());

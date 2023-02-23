@@ -5,9 +5,13 @@ import com.outfit.business.services.SSUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -27,37 +31,35 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests()
-                .requestMatchers("/",
-                        "/h2/**",
-                        "/termsandconditions",
-                        "/register",
-                        "/css/**",
-                        "/js/**",
-                        "/img/**",
-                        "/detail/{id}",
-                        "/detailcategory/{id}",
-                        "/detailclimate/{id}",
-                        "/detailoccasion/{id}",
-                        "/detailwind/{id}",
-                        "/search",
-                        "/about").permitAll()
-//                .access("hasAnyAuthority('USER','ADMIN')")
-                .requestMatchers("/admin").hasRole("ADMIN")
-                .anyRequest().authenticated()
-                .and()
-                .userDetailsService(userDetailsService)
-                .formLogin().loginPage("/login").permitAll()
-                .and()
-                .logout()
-                .logoutUrl("/logout")//.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout").permitAll()
-                .and()
-                .httpBasic();
+        http.authorizeHttpRequests(authz -> authz
+                        .requestMatchers("/",
+                                "/h2/**",
+                                "/termsandconditions",
+                                "/register",
+                                "/css/**",
+                                "/js/**",
+                                "/img/**",
+                                "/detail/{id}",
+                                "/detailcategory/{id}",
+                                "/detailclimate/{id}",
+                                "/detailoccasion/{id}",
+                                "/detailwind/{id}",
+                                "/search",
+                                "/about").permitAll()//.hasAnyRole("USER","ADMIN")
+                        .requestMatchers("/admin").hasRole("ADMIN")
+                        .anyRequest().authenticated())
+//                .userDetailsService(userDetailsService)
+                .formLogin(login -> login
+                        .loginPage("/login").permitAll())
+                .logout(logout -> logout
+                        .logoutUrl("/logout")//.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutSuccessUrl("/login?logout").permitAll())
+                .httpBasic(Customizer.withDefaults());
         http
-                .csrf().disable();
-        http
-                .headers().frameOptions().disable();
+                .csrf(CsrfConfigurer::disable)
+                .headers(headers -> headers
+                        .frameOptions()
+                        .disable());
         return http.build();
     }
 
@@ -74,4 +76,13 @@ public class SecurityConfiguration {
         provider.setPasswordEncoder(passwordEncoder);
         return provider;
     }*/
+
+    @Bean
+    public AuthenticationManager userDetailsService(HttpSecurity http) throws Exception {
+        return http.getSharedObject(AuthenticationManagerBuilder.class)
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder())
+                .and()
+                .build();
+    }
 }
