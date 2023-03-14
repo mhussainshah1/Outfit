@@ -238,7 +238,7 @@ public class HomeController {
     }
 
     /**
-     * todo: put this code in the profile
+     * TODO: put this code in the profile
      */
     @GetMapping("/status")
     public String getStatus(Model model) {

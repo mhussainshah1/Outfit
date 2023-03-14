@@ -1,31 +1,31 @@
-TODO
 My List
 -------
 login
 ----
-send email to new users after creating successful login
+TODO send email to new users after creating successful login
 
 itemform.html
 ------------
-color popup for color
+TODO color popup for color
 
 
 PROBLEMS:
 -------
 ADD
 ---
-
+TODO make parent child like describe in url https://www.javatpoint.com/spring-boot-multi-module-project
 
 READ
 ----
-email and password comparison on registration form through javascript before submission
-is not implemented.
+TODO email and password comparison on registration form through javascript before submission is not implemented.
 
 UPDATE
 ------
-forget password functionality is not implemented
+TODO forget password functionality is not implemented
 
 DELETE
 ------
-User can't delete its own created category
-Admin should only update and delete its own data.
+TODO User can't delete its own created category
+TODO Admin should only update and delete its own data.
+
+
