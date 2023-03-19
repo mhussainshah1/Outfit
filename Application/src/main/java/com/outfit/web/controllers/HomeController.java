@@ -30,7 +30,14 @@ public class HomeController {
     private UserService userService;
 
     @Autowired
-    public HomeController(CategoryRepository categoryRepository, OccasionRepository occasionRepository, ClimateRepository climateRepository, WindRepository windRepository, ItemRepository itemRepository, UserRepository userRepository, CloudinaryConfig cloudc, UserService userService) {
+    public HomeController(CategoryRepository categoryRepository,
+                          OccasionRepository occasionRepository,
+                          ClimateRepository climateRepository,
+                          WindRepository windRepository,
+                          ItemRepository itemRepository,
+                          UserRepository userRepository,
+                          CloudinaryConfig cloudc,
+                          UserService userService) {
         this.categoryRepository = categoryRepository;
         this.occasionRepository = occasionRepository;
         this.climateRepository = climateRepository;

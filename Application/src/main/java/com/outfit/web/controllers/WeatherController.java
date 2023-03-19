@@ -91,9 +91,9 @@ public class WeatherController {
         return climate;
     }
 
-    private String getWind(double windSpeed) {
+    private String getWind(Number windSpeed) {
         String wind;
-        long speed = Math.round(windSpeed);
+        long speed = windSpeed.longValue();
         if (speed < 10) {
             wind = "Light";
         } else if (speed >= 10 && speed < 38) {
@@ -107,7 +107,7 @@ public class WeatherController {
     private Set<Item> getOutfit(Weather weather) {
 
         var categories = categoryRepository.findAll();
-        var temperature = Double.valueOf(weather.getCelsiusTemperature(weather.getTemp()));
+        var temperature = Double.parseDouble(weather.getCelsiusTemperature(weather.getTemp()));
         var climateString = getClimate(temperature);
         var climate = climateRepository.findByName(climateString);
 

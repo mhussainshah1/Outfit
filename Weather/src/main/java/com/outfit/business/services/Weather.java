@@ -59,7 +59,7 @@ public class Weather implements Serializable {
     private double tempMax;
 
     @JsonProperty("speed")
-    private double windSpeed;
+    private Number windSpeed;
 
     @JsonProperty("deg")
     private Number windDirection;
@@ -135,11 +135,11 @@ public class Weather implements Serializable {
         this.tempMax = tempMax;
     }
 
-    public double getWindSpeed() {
+    public Number getWindSpeed() {
         return windSpeed;
     }
 
-    public void setWindSpeed(double windSpeed) {
+    public void setWindSpeed(Number windSpeed) {
         this.windSpeed = windSpeed;
     }
 
@@ -183,7 +183,7 @@ public class Weather implements Serializable {
 
     @JsonProperty("wind")
     public void setWind(Map<String, Object> wind) {
-        setWindSpeed((double) wind.get("speed"));
+        setWindSpeed((Number) wind.get("speed"));
         setWindDirection((Number) wind.get("deg"));
     }
 
