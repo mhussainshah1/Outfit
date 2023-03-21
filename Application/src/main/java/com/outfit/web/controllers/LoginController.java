@@ -30,7 +30,14 @@ public class LoginController {
     private UserService userService;
     BCryptPasswordEncoder passwordEncoder;
     @Autowired
-    public LoginController(UserRepository userRepository, CategoryRepository categoryRepository, ItemRepository itemRepository, ClimateRepository climateRepository, OccasionRepository occasionRepository, WindRepository windRepository, UserService userService, BCryptPasswordEncoder passwordEncoder) {
+    public LoginController(UserRepository userRepository,
+                           CategoryRepository categoryRepository,
+                           ItemRepository itemRepository,
+                           ClimateRepository climateRepository,
+                           OccasionRepository occasionRepository,
+                           WindRepository windRepository,
+                           UserService userService,
+                           BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.categoryRepository = categoryRepository;
         this.itemRepository = itemRepository;

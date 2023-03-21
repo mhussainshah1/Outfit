@@ -30,7 +30,6 @@ public class PasswordService {
             throw new IllegalStateException("invalid password taken");
         }
         invalidPasswordRepository.save(invalidPassword);
-//        System.out.println(student);
     }
 
     public void deleteInvalidPassword(Long id) {

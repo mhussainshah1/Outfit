@@ -164,11 +164,11 @@ public class Weather implements Serializable {
 
     @JsonProperty("weather")
     public void setWeather(List<Map<String, Object>> weatherEntries) {
-        for (var weatherEntry : weatherEntries) {//Map<String, Object>
+        /*for (var weatherEntry : weatherEntries) {//Map<String, Object>
             for (var key : weatherEntry.keySet()) {//String
                 System.out.println(key + "  " + weatherEntry.get(key));
             }
-        }
+        }*/
         var weather = weatherEntries.get(0);
         setWeatherDescription((String) weather.get("description"));
         setWeatherMain((String) weather.get("main"));
@@ -197,4 +197,19 @@ public class Weather implements Serializable {
         return String.format("%4.1f", celsiusTemp);
     }
 
+    @Override
+    public String toString() {
+        return "Weather{" +
+                "name='" + name + '\'' +
+                ", lat=" + lat +
+                ", lon=" + lon +
+                ", weatherMain='" + weatherMain + '\'' +
+                ", weatherDescription='" + weatherDescription + '\'' +
+                ", temp=" + temp +
+                ", tempMin=" + tempMin +
+                ", tempMax=" + tempMax +
+                ", windSpeed=" + windSpeed +
+                ", windDirection=" + windDirection +
+                '}';
+    }
 }

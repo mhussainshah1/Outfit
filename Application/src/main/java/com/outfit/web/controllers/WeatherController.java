@@ -106,6 +106,7 @@ public class WeatherController {
 
     private Set<Item> getOutfit(Weather weather) {
 
+        System.err.println("Weather = " + weather);
         var categories = categoryRepository.findAll();
         var temperature = Double.parseDouble(weather.getCelsiusTemperature(weather.getTemp()));
         var climateString = getClimate(temperature);
@@ -115,9 +116,6 @@ public class WeatherController {
         var wind = windRepository.findByName(windString);
 
         var user = userService.getUser();
-
-        System.err.println(climateString + " " + weather.getTemp());
-        System.err.println(windString + " " + weather.getWindSpeed());
 
         var outfit = new HashSet<Item>();
         for (var category : categories) {
