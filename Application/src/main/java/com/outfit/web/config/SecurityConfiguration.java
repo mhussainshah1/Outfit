@@ -32,7 +32,7 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/",
+                        .requestMatchers("/**",
                                 "/h2/**",
                                 "/termsandconditions",
                                 "/register",
