@@ -65,7 +65,7 @@ public class SecurityConfiguration {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.ignoring().requestMatchers("/resources/**", "/error");
+        return web -> web.ignoring().requestMatchers("/resources/**", "/error" , "/webjars/**");
     }
 
    /* @Bean

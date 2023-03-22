@@ -100,7 +100,6 @@
         </dependency>
 
         <!--test-->
-
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
@@ -111,7 +110,7 @@
             <artifactId>spring-data-commons</artifactId>
         </dependency>
 
-        <!--        child modules     -->
+        <!--child module-->
         <dependency>
             <groupId>com.password</groupId>
             <artifactId>Password</artifactId>

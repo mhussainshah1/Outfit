@@ -12,7 +12,7 @@
     <artifactId>Password</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Password</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Login Verification module</description>
 
     <dependencies>
         <dependency>
