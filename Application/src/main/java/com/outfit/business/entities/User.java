@@ -1,11 +1,11 @@
 package com.outfit.business.entities;
 
 import com.outfit.business.util.ValidPassword;
-
 import jakarta.persistence.*;
-import jakarta.validation.constraints.AssertTrue;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.*;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -30,6 +30,11 @@ public class User implements Serializable {
     @ValidPassword
     @Column(name = "password")
     private String password;
+
+    @NotNull(message = "not match")
+    @NotEmpty
+    @Transient
+    private String confirmPassword;
 
     @NotEmpty
     @Column(name = "first_name")
@@ -97,6 +102,24 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+        checkPassword();//check
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+        checkPassword();//check
+    }
+
+    private void checkPassword() {
+        if (password == null || confirmPassword == null) {
+            return;
+        } else if (!password.equals(confirmPassword)) {
+            this.confirmPassword = null;
+        }
     }
 
     public String getFirstName() {
@@ -158,15 +181,15 @@ public class User implements Serializable {
                 ", enabled=" + enabled +
                 ", username='" + username + '\'' +
                 ", roles= [");
-                for(Role role : roles){
-                    string.append(role.getRole());
-                }
+        for (Role role : roles) {
+            string.append(role.getRole());
+        }
 
         string.append("], items=[");
 
-                for(Item item : items){
-                    string.append(item.getName());
-                }
+        for (Item item : items) {
+            string.append(item.getName());
+        }
 
         string.append("]}");
 

@@ -27,12 +27,10 @@
                             th:value="${option.id}">
                     </option>
                 </select>
-                <strong>
-                    <span class="error-message"
-                          th:errors="*{category}"
-                          th:if="${#fields.hasErrors('category')}">
+                <span class="error-message font-weight-bold"
+                      th:errors="*{category}"
+                      th:if="${#fields.hasErrors('category')}">
                     </span>
-                </strong>
             </div>
         </div>
 
@@ -40,11 +38,9 @@
             <label class="col-sm-2 col-form-label" for="name">Item's Name:</label>
             <div class="col-sm-10 text-left">
                 <input class="form-control" id="name" placeholder="Item's Name" th:field="*{name}" type="text"/>
-                <strong>
-                <span class="error-message"
+                <span class="error-message font-weight-bold"
                       th:errors="*{name}"
                       th:if="${#fields.hasErrors('name')}"></span>
-                </strong>
             </div>
         </div>
 
@@ -52,12 +48,12 @@
             <label class="col-sm-2 col-form-label" for="color">Color:</label>
             <div class="col-sm-10 text-left">
                 <input class="form-control" id="color" placeholder="Color" th:field="*{color}" type="text"/>
-                <strong>
-                 <span class="error-message"
-                       th:errors="*{color}"
-                       th:if="${#fields.hasErrors('color')}">
+
+                <span class="error-message font-weight-bold"
+                      th:errors="*{color}"
+                      th:if="${#fields.hasErrors('color')}">
                  </span>
-                </strong>
+
             </div>
         </div>
 
@@ -65,12 +61,12 @@
             <label class="col-sm-2 col-form-label" for="material">Material :</label>
             <div class="col-sm-10 text-left">
                 <input class="form-control" id="material" placeholder="Material" th:field="*{material}" type="text"/>
-                <strong>
-                    <span class="error-message"
-                          th:errors="*{material}"
-                          th:if="${#fields.hasErrors('material')}">
+
+                <span class="error-message font-weight-bold"
+                      th:errors="*{material}"
+                      th:if="${#fields.hasErrors('material')}">
                     </span>
-                </strong>
+
             </div>
         </div>
 
@@ -96,12 +92,12 @@
             <label class="col-sm-2 col-form-label" for="size">Size :</label>
             <div class="col-sm-10 text-left">
                 <input class="form-control" id="size" placeholder="Size" th:field="*{size}" type="text"/>
-                <strong>
-                    <span class="error-message"
-                          th:errors="*{size}"
-                          th:if="${#fields.hasErrors('size')}">
+
+                <span class="error-message font-weight-bold"
+                      th:errors="*{size}"
+                      th:if="${#fields.hasErrors('size')}">
                     </span>
-                </strong>
+
             </div>
         </div>
 
@@ -110,12 +106,10 @@
             <div class="col-sm-10 text-left">
                 <textarea class="form-control" id="description" placeholder="Description" rows="3"
                           th:field="*{description}"></textarea>
-                <strong>
-                     <span class="error-message"
-                           th:errors="*{description}"
-                           th:if="${#fields.hasErrors('description')}">
+                <span class="error-message font-weight-bold"
+                      th:errors="*{description}"
+                      th:if="${#fields.hasErrors('description')}">
                      </span>
-                </strong>
             </div>
         </div>
 
@@ -128,12 +122,10 @@
                             th:value="${option.id}">
                     </option>
                 </select>
-                <strong>
-                    <span class="error-message"
-                          th:errors="*{occasion}"
-                          th:if="${#fields.hasErrors('occasion')}">
+                <span class="error-message font-weight-bold"
+                      th:errors="*{occasion}"
+                      th:if="${#fields.hasErrors('occasion')}">
                     </span>
-                </strong>
             </div>
         </div>
 
@@ -146,12 +138,10 @@
                             th:value="${option.id}">
                     </option>
                 </select>
-                <strong>
-                    <span class="error-message"
-                          th:errors="*{climate}"
-                          th:if="${#fields.hasErrors('climate')}">
+                <span class="error-message font-weight-bold"
+                      th:errors="*{climate}"
+                      th:if="${#fields.hasErrors('climate')}">
                     </span>
-                </strong>
             </div>
         </div>
 
@@ -164,12 +154,10 @@
                             th:value="${option.id}">
                     </option>
                 </select>
-                <strong>
-                    <span class="error-message"
-                          th:errors="*{wind}"
-                          th:if="${#fields.hasErrors('wind')}">
+                <span class="error-message font-weight-bold"
+                      th:errors="*{wind}"
+                      th:if="${#fields.hasErrors('wind')}">
                     </span>
-                </strong>
             </div>
         </div>
 
@@ -177,12 +165,10 @@
             <label class="col-sm-2 col-form-label">User :</label>
             <div class="col-sm-10 text-left">
                 <label th:text="${myuser.firstName} +' ' +${myuser.lastName}"></label>
-                <strong>
-                     <span class="error-message"
-                           th:errors="*{user}"
-                           th:if="${#fields.hasErrors('user')}">
+                <span class="error-message font-weight-bold"
+                      th:errors="*{user}"
+                      th:if="${#fields.hasErrors('user')}">
                     </span>
-                </strong>
             </div>
             <input th:field="*{user}" type="hidden">
         </div>

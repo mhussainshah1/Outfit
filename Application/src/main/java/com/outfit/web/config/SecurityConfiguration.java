@@ -33,12 +33,15 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authz -> authz
                         .requestMatchers("/**",
+                                "/resources/**",
                                 "/h2/**",
                                 "/termsandconditions",
                                 "/register",
                                 "/css/**",
                                 "/js/**",
                                 "/img/**",
+                                "/error",
+                                "/webjars/**",
                                 "/detail/{id}",
                                 "/detailcategory/{id}",
                                 "/detailclimate/{id}",
@@ -63,10 +66,10 @@ public class SecurityConfiguration {
         return http.build();
     }
 
-    @Bean
+/*    @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.ignoring().requestMatchers("/resources/**", "/error" , "/webjars/**");
-    }
+        return web -> web.ignoring().requestMatchers("/resources/**", "/error", "/webjars/**");
+    }*/
 
    /* @Bean
     public AuthenticationProvider userDetailsService(BCryptPasswordEncoder passwordEncoder) {

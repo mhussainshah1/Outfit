@@ -17,12 +17,10 @@
             <label class="col-sm-2 col-form-label" for="name">Name :</label>
             <div class="col-sm-10 text-left">
                 <input class="form-control" th:field="*{name}" th:placeholder="${page_title}" type="text">
-                <strong>
-                     <span class="error-message"
-                           th:errors="*{name}"
-                           th:if="${#fields.hasErrors('name')}">
+                <span class="error-message font-weight-bold"
+                      th:errors="*{name}"
+                      th:if="${#fields.hasErrors('name')}">
                      </span>
-                </strong>
             </div>
         </div>
 
