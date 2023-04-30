@@ -68,25 +68,25 @@ public class DataLoader implements CommandLineRunner {
             var adminRole = roleRepository.findByRole("ADMIN");
 
             //User
-            var admin = new User("admin@admin.com", passwordEncoder.encode("password"), "Admin", "User", true, "admin");
+            var admin = new User("admin@admin.com", passwordEncoder.encode("password"), "Admin", "User", true, "admin",AuthenticationProvider.LOCAL);
             userService.saveAdmin(admin);
 
-            var moe = new User("mhussainshah79@gmail.com", passwordEncoder.encode("password"), "Muhammad", "Shah", true, "moe");
+            var moe = new User("mhussainshah79@gmail.com", passwordEncoder.encode("password"), "Muhammad", "Shah", true, "mhussainshah79@gmail.com",AuthenticationProvider.LOCAL);
             userService.saveUser(moe);
 
-            var lan = new User("tolani.oyefule@gmail.com", passwordEncoder.encode("password"), "Tolani", "Oyefule", true, "lan");
+            var lan = new User("tolani.oyefule@gmail.com", passwordEncoder.encode("password"), "Tolani", "Oyefule", true, "lan",AuthenticationProvider.LOCAL);
             userService.saveUser(lan);
 
-            var nan = new User("nhan.cog.huynh@gmail.com", passwordEncoder.encode("password"), "Nhan", "Huynh", true, "nan");
+            var nan = new User("nhan.cog.huynh@gmail.com", passwordEncoder.encode("password"), "Nhan", "Huynh", true, "nan",AuthenticationProvider.LOCAL);
             userService.saveUser(nan);
 
-            var dag = new User("dag@gmail.com", passwordEncoder.encode("password"), "Dag", "Fasil", true, "dag");
+            var dag = new User("dag@gmail.com", passwordEncoder.encode("password"), "Dag", "Fasil", true, "dag",AuthenticationProvider.LOCAL);
             userService.saveUser(dag);
 
-            var mel = new User("melissafong@gmail.com", passwordEncoder.encode("password"), "Mellisa", "Lavander", true, "mel");
+            var mel = new User("melissafong@gmail.com", passwordEncoder.encode("password"), "Mellisa", "Lavander", true, "mel",AuthenticationProvider.LOCAL);
             userService.saveUser(mel);
 
-            var jen = new User("jen@gmail.com", passwordEncoder.encode("password"), "Jennifer", "You", true, "jen");
+            var jen = new User("jen@gmail.com", passwordEncoder.encode("password"), "Jennifer", "You", true, "jen",AuthenticationProvider.LOCAL);
             userService.saveUser(jen);
 
             //Category

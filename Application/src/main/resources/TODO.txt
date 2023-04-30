@@ -6,7 +6,6 @@ TODO send email to new users after creating successful login
 
 itemform.html
 ------------
-TODO color popup for color
 
 
 PROBLEMS:
@@ -18,7 +17,7 @@ https://www.javatpoint.com/spring-boot-multi-module-project
 
 READ
 ----
-TODO email and password comparison on registration form through javascript before submission is not implemented.
+TODO email and password comparison on a registration form through javascript before submission is not implemented.
 https://www.geeksforgeeks.org/password-matching-using-javascript/
 
 

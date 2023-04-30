@@ -2,7 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="~{base::header}">
-
     <title>login</title>
 </head>
 
@@ -10,31 +9,31 @@
 
 <div th:replace="~{base::nav}"></div>
 
-<div class="container col-md-6 col-md-offset-3 text-center">
+<div class="container col-md-6 text-center">
 
-    <div class="jumbotron lead">
+    <div class="container-fluid py-5 bg-light">
         <h2>Login</h2>
     </div>
 
     <div class="error-message" th:if="${param.error}">
-        Invalid username or password
+        <p>Invalid username or password</p>
     </div>
 
     <div th:if="${param.logout}">
-        You have been logged out
+        <p>You have been logged out</p>
     </div>
 
     <div th:text="${message}"></div>
 
     <form method="post" th:action="@{/login}">
 
-        <div class="form-group row">
+        <div class="mb-3 row">
             <label class="col-sm-2 col-form-label" for="username">Username:</label>
             <div class="col-sm-10">
                 <input class="form-control" id="username" name="username" placeholder="User Name" type="text">
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <label class="col-sm-2 col-form-label" for="password">Password:</label>
             <div class="col-sm-10">
                 <input class="form-control" id="password" name="password" placeholder="Password" type="password">
@@ -43,10 +42,30 @@
         <div>
             <button class="btn btn-primary" type="submit">Submit</button>
         </div>
-
+        <div><p>OR</p></div>
+        <div>
+            <a class="btn btn-secondary fab fa-github" title="Github"
+               th:href="@{/oauth2/authorization/github}"></a>
+            &nbsp;&nbsp;
+            <a class="btn btn-secondary fab fa-google" title="Google"
+               th:href="@{/oauth2/authorization/google}"></a>
+            &nbsp;&nbsp;
+            <a class="btn btn-secondary fab fa-facebook" title="Facebook"
+               th:href="@{/oauth2/authorization/facebook}"></a>
+        </div>
+        <!--        <div>
+                    Logged in as: <span id="user"></span>
+                    <div>
+                        <button class="btn btn-primary" onClick="logout()">Logout</button>
+                    </div>
+                </div>-->
+        <div class="container text-danger error"></div>
         <br/>
         <div>
             <a href="/register">Register here</a>
+        </div>
+        <div>
+            <a href="/forgot-password">Forget Password</a>
         </div>
     </form>
 </div>

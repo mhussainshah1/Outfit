@@ -7,16 +7,18 @@ import com.outfit.business.services.FormAttributes;
 import com.outfit.business.services.UserService;
 import com.outfit.business.services.Weather;
 import com.outfit.business.services.WeatherService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
-import jakarta.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -61,13 +63,17 @@ public class WeatherController {
     @PostMapping("/weather")
     public String getWeather(@Valid @ModelAttribute("formAttributes") FormAttributes formAttributes,
                              BindingResult result,
-                             //@RequestParam("city") String city,
+//                             @RequestParam("city") String city,
+                             @RequestParam(defaultValue = "0") int page,
                              Model model)
             throws IOException {
         findAll(model);
         if (result.hasErrors()) {
             User user = userService.getUser();
-            model.addAttribute("items", itemRepository.findAllByUser(user));
+            model.addAttribute("items", itemRepository.findAllByUser(user, PageRequest.of(page, 4)));
+            for (var objectError : result.getAllErrors()) {
+                System.err.println(objectError);
+            }
             return "list";
         }
         model.addAttribute("page_title", formAttributes.getCity());

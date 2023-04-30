@@ -7,7 +7,7 @@
 <div th:replace="~{base::nav}"></div>
 <div class="container col-md-8 col-md-offset-3 text-center">
 
-    <div class="jumbotron lead">
+    <div class="container-fluid py-5 bg-light">
         <h2 class="text-center">Add Item</h2>
     </div>
 
@@ -18,10 +18,10 @@
           th:object="${item}">
         <input th:field="*{id}" type="hidden"/>
 
-        <div class="form-group row">
+        <div class="mb-3 row">
             <label class="col-sm-2 col-form-label" for="category">Category:</label>
-            <div class="col-sm-10 text-left">
-                <select class="custom-select" id="category" th:field="*{category}">
+            <div class="col-sm-10 text-start">
+                <select class="form-select" id="category" th:field="*{category}">
                     <option th:each="option: ${categories}"
                             th:utext="${option.name}"
                             th:value="${option.id}">
@@ -34,9 +34,9 @@
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="mb-3 row">
             <label class="col-sm-2 col-form-label" for="name">Item's Name:</label>
-            <div class="col-sm-10 text-left">
+            <div class="col-sm-10 text-start">
                 <input class="form-control" id="name" placeholder="Item's Name" th:field="*{name}" type="text"/>
                 <span class="error-message font-weight-bold"
                       th:errors="*{name}"
@@ -44,10 +44,10 @@
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="mb-3 row">
             <label class="col-sm-2 col-form-label" for="color">Color:</label>
-            <div class="col-sm-10 text-left">
-                <input class="form-control" id="color" placeholder="Color" th:field="*{color}" type="text"/>
+            <div class="col-sm-10 text-start">
+                <input class="form-control form-control-color" id="color" th:field="*{color}" type="color" title="Choose your color" value="#563d7c"/>
 
                 <span class="error-message font-weight-bold"
                       th:errors="*{color}"
@@ -57,9 +57,9 @@
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="mb-3 row">
             <label class="col-sm-2 col-form-label" for="material">Material :</label>
-            <div class="col-sm-10 text-left">
+            <div class="col-sm-10 text-start">
                 <input class="form-control" id="material" placeholder="Material" th:field="*{material}" type="text"/>
 
                 <span class="error-message font-weight-bold"
@@ -81,16 +81,16 @@
             <span th:errors="*{picturePath}" th:if="${#fields.hasErrors('picturePath')}"></span>
         </div>
 
-        <div class="form-group row">
+        <div class="mb-3 row">
             <label class="col-sm-2 col-form-label" for="file">[[${imageLabel}]]:</label>
-            <div class="col-sm-10 text-left">
-                <input class="form-control-file border" id="file" name="file" type="file">
+            <div class="col-sm-10 text-start">
+                <input class="form-control border" id="file" name="file" type="file">
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="mb-3 row">
             <label class="col-sm-2 col-form-label" for="size">Size :</label>
-            <div class="col-sm-10 text-left">
+            <div class="col-sm-10 text-start">
                 <input class="form-control" id="size" placeholder="Size" th:field="*{size}" type="text"/>
 
                 <span class="error-message font-weight-bold"
@@ -101,9 +101,9 @@
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="mb-3 row">
             <label class="col-sm-2 col-form-label" for="description">Description :</label>
-            <div class="col-sm-10 text-left">
+            <div class="col-sm-10 text-start">
                 <textarea class="form-control" id="description" placeholder="Description" rows="3"
                           th:field="*{description}"></textarea>
                 <span class="error-message font-weight-bold"
@@ -113,10 +113,10 @@
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="mb-3 row">
             <label class="col-sm-2 col-form-label" for="occasion">Occasion:</label>
-            <div class="col-sm-10 text-left">
-                <select class="custom-select" id="occasion" th:field="*{occasion}">
+            <div class="col-sm-10 text-start">
+                <select class="form-select" id="occasion" th:field="*{occasion}">
                     <option th:each="option: ${occasions}"
                             th:utext="${option.name}"
                             th:value="${option.id}">
@@ -129,10 +129,10 @@
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="mb-3 row">
             <label class="col-sm-2 col-form-label" for="climate">Climate:</label>
-            <div class="col-sm-10 text-left">
-                <select class="custom-select" id="climate" th:field="*{climate}">
+            <div class="col-sm-10 text-start">
+                <select class="form-select" id="climate" th:field="*{climate}">
                     <option th:each="option: ${climates}"
                             th:utext="${option.name}"
                             th:value="${option.id}">
@@ -145,10 +145,10 @@
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="mb-3 row">
             <label class="col-sm-2 col-form-label" for="wind">Wind:</label>
-            <div class="col-sm-10 text-left">
-                <select class="custom-select" id="wind" th:field="*{wind}">
+            <div class="col-sm-10 text-start">
+                <select class="form-select" id="wind" th:field="*{wind}">
                     <option th:each="option: ${winds}"
                             th:utext="${option.name}"
                             th:value="${option.id}">
@@ -160,10 +160,9 @@
                     </span>
             </div>
         </div>
-
-        <div class="form-group row">
+        <div class="mb-3 row">
             <label class="col-sm-2 col-form-label">User :</label>
-            <div class="col-sm-10 text-left">
+            <div class="col-sm-10 text-start">
                 <label th:text="${myuser.firstName} +' ' +${myuser.lastName}"></label>
                 <span class="error-message font-weight-bold"
                       th:errors="*{user}"

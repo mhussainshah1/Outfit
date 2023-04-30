@@ -38,10 +38,10 @@ public class Weather implements Serializable {
     private String name;
 
     @JsonProperty("lat")
-    private double lat;
+    private Number lat;
 
     @JsonProperty("lon")
-    private double lon;
+    private Number lon;
 
     @JsonPropertyOrder("main")
     private String weatherMain;
@@ -50,13 +50,13 @@ public class Weather implements Serializable {
     private String weatherDescription;
 
     @JsonProperty("temp")
-    private double temp;
+    private Number temp;
 
     @JsonProperty("temp_min")
-    private double tempMin;
+    private Number tempMin;
 
     @JsonProperty("temp_max")
-    private double tempMax;
+    private Number tempMax;
 
     @JsonProperty("speed")
     private Number windSpeed;
@@ -79,19 +79,19 @@ public class Weather implements Serializable {
         this.name = name;
     }
 
-    public double getLat() {
+    public Number getLat() {
         return lat;
     }
 
-    public void setLat(double lat) {
+    public void setLat(Number lat) {
         this.lat = lat;
     }
 
-    public double getLon() {
+    public Number getLon() {
         return lon;
     }
 
-    public void setLon(double lon) {
+    public void setLon(Number lon) {
         this.lon = lon;
     }
 
@@ -111,27 +111,27 @@ public class Weather implements Serializable {
         this.weatherDescription = weatherDescription;
     }
 
-    public double getTemp() {
-        return temp;
+    public Double getTemp() {
+        return (Double) temp;
     }
 
-    public void setTemp(double temp) {
+    public void setTemp(Number temp) {
         this.temp = temp;
     }
 
-    public double getTempMin() {
+    public Number getTempMin() {
         return tempMin;
     }
 
-    public void setTempMin(double tempMin) {
+    public void setTempMin(Number tempMin) {
         this.tempMin = tempMin;
     }
 
-    public double getTempMax() {
+    public Number getTempMax() {
         return tempMax;
     }
 
-    public void setTempMax(double tempMax) {
+    public void setTempMax(Number tempMax) {
         this.tempMax = tempMax;
     }
 
@@ -158,8 +158,8 @@ public class Weather implements Serializable {
 
     @JsonProperty("coord")
     public void setCoord(Map<String, Object> coord) {
-        setLon((double) coord.get("lon"));
-        setLat((double) coord.get("lat"));
+        setLon((Number) coord.get("lon"));
+        setLat((Number) coord.get("lat"));
     }
 
     @JsonProperty("weather")
@@ -176,9 +176,9 @@ public class Weather implements Serializable {
 
     @JsonProperty("main")
     public void setMain(Map<String, Object> main) {
-        setTemp((double) main.get("temp"));
-        setTempMin((double) main.get("temp_min"));
-        setTempMax((double) main.get("temp_max"));
+        setTemp((Number) main.get("temp"));
+        setTempMin((Number) main.get("temp_min"));
+        setTempMax((Number) main.get("temp_max"));
     }
 
     @JsonProperty("wind")

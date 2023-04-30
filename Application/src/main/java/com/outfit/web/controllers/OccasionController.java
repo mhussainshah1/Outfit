@@ -3,14 +3,13 @@ package com.outfit.web.controllers;
 import com.outfit.business.entities.Occasion;
 import com.outfit.business.entities.repositories.*;
 import com.outfit.business.services.UserService;
+import jakarta.annotation.PostConstruct;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import jakarta.annotation.PostConstruct;
-import jakarta.validation.Valid;
 
 @Controller
 public class OccasionController {
