@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{base::header}">
+    <title>item details</title>
+</head>
+
+<body>
+<div th:replace="~{base::nav}"></div>
+
+<div class="container text-start">
+    <div class="row">
+        <div class="col">
+            <p>Category:</p>
+        </div>
+        <div class="col">
+            <p th:text="${item.category.name}"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <p>Item:</p>
+        </div>
+        <div class="col">
+            <p th:text="${item.name}"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <p>Color:</p>
+        </div>
+        <div class="col">
+            <p th:text="${item.color}"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <p>Material:</p>
+        </div>
+        <div class="col">
+            <p th:text="${item.material}"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <p>Picture:</p>
+        </div>
+        <div class="col">
+            <img alt="picture"
+                 class="profile-picture"
+                 src="#"
+                 th:alt="Picture"
+                 th:src="${item.picturePath}"> <!-- th:text="${message.picturePath}" -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <p>Size:</p>
+        </div>
+        <div class="col">
+            <p th:text="${item.size}"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <p>Description:</p>
+        </div>
+        <div class="col">
+            <p th:text="${item.description}"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <p>Occasion:</p>
+        </div>
+        <div class="col">
+            <p th:text="${item.occasion.name}"></p><br/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <span>Climate:</span>
+        </div>
+        <div class="col">
+            <p th:text="${item.climate.name}"></p>
+        </div>
+    </div>
+    <div class="row" sec:authorize="isAuthenticated()">
+        <div class="col">
+            <p>User:</p>
+        </div>
+        <div class="col">
+            <p th:text="${item.user.firstName} +' ' +${item.user.lastName}"></p>
+        </div>
+    </div>
+
+</div>
+
+<div class="text-center" sec:authorize="isAuthenticated()">
+    <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
+    <a class="delBtn"
+       data-target="#myModal"
+       data-toggle="modal"
+       th:href="@{/delete/{id}(id=${item.id})}">delete</a>
+</div>
+
+<div th:replace="~{base::delete}"></div>
+
+<div th:replace="~{base::footer}"></div>
+
+</body>
+</html>

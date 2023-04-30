@@ -1,0 +1,33 @@
+My List
+-------
+login
+----
+TODO send email to new users after creating successful login
+
+itemform.html
+------------
+
+
+PROBLEMS:
+-------
+ADD
+---
+TODO make parent child like describe in url
+https://www.javatpoint.com/spring-boot-multi-module-project
+
+READ
+----
+TODO email and password comparison on a registration form through javascript before submission is not implemented.
+https://www.geeksforgeeks.org/password-matching-using-javascript/
+
+
+UPDATE
+------
+TODO forget password functionality is not implemented
+
+DELETE
+------
+TODO User can't delete its own created category
+TODO Admin should only update and delete its own data.
+
+

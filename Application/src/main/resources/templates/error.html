@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{base::header}">
+    <title>Title</title>
+</head>
+
+<body>
+<div th:replace="~{base::nav}"></div>
+
+
+<div class="container-float">
+
+    <div class="container-fluid py-5 bg-light">
+        <h2 class="text-center" th:text="${status + ' ' + error}"></h2>
+    </div>
+    <div th:text="${param.error}"></div>
+
+</div>
+<div class="container col-md-9 col-md-offset-3 text-center">
+    <div class="text-start">
+        <div class="mb-3 row">
+            <label class="col-sm-1 col-form-label">Date</label>
+            <div class="col-sm-11 text-start" th:text="${timestamp}"/>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-1 col-form-label">Path</label>
+            <div class="col-sm-11 text-start" th:text="${path}"/>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-1 col-form-label">Error</label>
+            <div class="col-sm-11 text-start" th:text="${error}"/>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-1 col-form-label">Status</label>
+            <div class="col-sm-11 text-start" th:text="${status}"/>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-1 col-form-label">Message</label>
+            <div class="col-sm-11 text-start" th:text="${message}"/>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-1 col-form-label">Exception</label>
+            <div class="col-sm-11 text-start" th:text="${exception}"/>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-1 col-form-label">Trace</label>
+            <div class="col-sm-11 text-start">
+                <pre th:text="${trace}"/>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="~{base::footer}"></div>
+</body>
+</html>

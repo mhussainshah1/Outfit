@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{base::header}">
+    <title>List</title>
+
+</head>
+<body>
+<div th:replace="~{base::nav}"></div>
+
+<div class="container-float">
+
+    <div class="container-fluid py-5 bg-light text-center">
+        <h2 class="text-center"> Outfit</h2>
+        <p class="fs-5">Our website will help you to choose an outfit for location according to the weather
+            conditions. Create an account. Add all you outfits in the website then enter city name and see your
+            outfit for the day
+        </p>
+    </div>
+
+    <div th:text="${message}"></div>
+
+    <div class="container text-center" sec:authorize="isAuthenticated()">
+        <form class="row g-3 align-items-center" method="post"
+              th:action="@{/weather}"
+              th:object="${formAttributes}">
+
+            <div class="col-auto">
+                <label for="city">Enter city name to select outfit as per weather:</label>
+            </div>
+            <div class="col-sm-7">
+                <input class="form-control" id="city" placeholder="City" th:field="*{city}" type="text">
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-primary mb-2" type="submit">Submit</button>
+            </div>
+            <div>
+                <span class="error-message font-weight-bold"
+                      th:errors="*{city}"
+                      th:if="${#fields.hasErrors('city')}">
+                </span>
+            </div>
+        </form>
+    </div>
+
+    <form action="#" id="form" method="post" th:action="@{/check}">
+        <span id="checkBtn" sec:authorize="isAuthenticated()">
+            <button class="btn btn-link" name="name" type="submit" value="packing">Packing List</button> -
+            <button class="btn btn-link" name="name" type="submit" value="delete">Delete Selected</button>
+
+
+        </span>
+
+        <table class="table table-striped" style="width:100%">
+            <thead class="thead-light">
+            <tr>
+                <th sec:authorize="isAuthenticated()">Select</th>
+                <th>Category</th>
+                <th>Title</th>
+                <th>Color</th>
+                <th>Material</th>
+                <th>Size</th>
+                <th>Picture</th>
+                <th>Discription</th>
+                <th>Wind</th>
+                <th sec:authorize="hasRole('ADMIN')">User</th>
+                <th>Climate</th>
+                <th>Occasion</th>
+                <th sec:authorize="isAuthenticated()">Actions</th>
+            </tr>
+            </thead>
+            <!--enhanced for loop-->
+            <tr th:each="item : ${items}">
+
+                <td sec:authorize="isAuthenticated()">
+                    <input id="check" name="check" th:value="${item.id}" type="checkbox"/>
+                </td>
+                <td th:text="${item.category.name}"></td>
+                <td><a th:href="@{/detail/{id}(id=${item.id})}">[[${item.name}]]</a></td>
+                <td th:text="${item.color}"></td>
+                <td th:text="${item.material}"></td>
+                <td th:text="${item.size}"></td>
+                <td><img alt="Picture" th:src="${item.picturePath}"></td>
+                <td th:text="${item.description}"></td>
+
+                <td sec:authorize="hasRole('ADMIN')" th:text="${item.user.username}"></td>
+                <td th:text="${item.wind.name}"></td>
+                <td th:text="${item.climate.name}"></td>
+                <td th:text="${item.occasion.name}"></td>
+
+                <td sec:authorize="isAuthenticated()">
+                    <a th:href="@{/update/{id}(id=${item.id})}">Edit</a> -
+                    <a class="delBtn"
+                       data-target="#myModal"
+                       data-toggle="modal"
+                       th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <hr/>
+
+    <ul class="nav nav-pills" th:if="${items.totalPages} &gt; 0"><!--totalPages>0-->
+        <li class="nav-item"
+            th:each="i : ${#numbers.sequence(0,items.totalPages-1)}">
+            <div th:if="${searchString}==null">
+                <a class="nav-link" th:classappend="${currentPage}==${i}?'active':''"
+                   th:href="@{/(page=${i})}"
+                   th:text="${i}"></a>
+            </div>
+            <div th:unless="${searchString}==null">
+                <a class="nav-link" th:classappend="${currentPage}==${i}?'active':''"
+                   th:href="@{/search(search=${searchString},page=${i})}"
+                   th:text="${i}"></a>
+            </div>
+        </li>
+    </ul>
+    <div th:replace="~{base::delete}"></div>
+</div>
+<!--<div sec:authorize="isAuthenticated()">
+    <span th:text="${#authentication}"></span>
+    <p></p>
+    <span th:text="${#authentication.principal}"></span>&lt;!&ndash;user &ndash;&gt;
+    <p></p>
+    <span th:text="${#authentication.principal.firstName}"></span>
+    <p></p>
+    <span th:text="${#authentication.principal.lastName}"></span>
+</div>-->
+<br/>
+<div th:replace="~{base::footer}"></div>
+</body>
+</html>

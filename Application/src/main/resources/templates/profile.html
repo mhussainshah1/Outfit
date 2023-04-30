@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<head th:replace="~{base::header}">
+    <title>profile</title>
+</head>
+
+<body>
+<div th:replace="~{base::nav}"></div>
+<div class="container text-center">
+    <div class="container-fluid py-5 bg-light">
+        <h2 class="text-center" th:text="${user.firstName} +' ' +${user.lastName}"></h2>
+    </div>
+
+    <div>
+        <span class="font-weight-bold" th:text="${user.username}"></span>
+        <br/>
+        <span th:text="${user.email}"></span>
+        <br/>
+        <br/>
+        <img id="gravatar"
+             th:alt="|${user.firstName}  ${user.lastName}|"
+             th:src="@{'http://gravatar.com/avatar/' + ${HASH} + '?s=200'}">
+    </div>
+</div>
+
+<div th:replace="~{base::footer}"></div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{base::header}">
+    <title>Weather Data</title>
+</head>
+<body>
+<div th:replace="~{base::nav}"></div>
+
+<div class="div1 text-center">
+    <div class="container-fluid py-5 bg-light">
+        <h2>Weather Data</h2>
+    </div>
+    <table class="table table-striped" id="table" style="width:100%">
+        <tr>
+            <th>City</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Wind Speed</th>
+            <th>Wind Direction</th>
+            <th>Precipitation</th>
+            <th>Temp<br/>(°C / °F)</th>
+            <th>Min Temp<br/>(°C / °F)</th>
+            <th>Max Temp<br/>(°C / °F)</th>
+            <th>Weather</th>
+        </tr>
+        <tr th:each="weather ,iterStat: ${weatherData}">
+            <td><span th:text="${weather.name}"></span></td>
+            <td><span th:text="${weather.lat}"></span></td>
+            <td><span th:text="${weather.lon}"></span></td>
+            <td><span th:text="${weather.windSpeed}"></span></td>
+            <td><span th:text="${weather.windDirection}"></span></td>
+            <td><span th:text="${weather.weatherMain}"></span></td>
+
+            <td>
+                <!--<span th:text="${#numbers.formatDecimal(weather.temp,2,1)}"></span>-->
+                <span th:text="${weather.getCelsiusTemperature(weather.temp)}"></span> /
+                <span th:text="${weather.getFahrenheitTemperature(weather.temp)}"></span>
+            </td>
+            <td>
+                <!--<span th:text="${#numbers.formatDecimal(weather.tempMin,2,1)}"></span>-->
+                <span th:text="${weather.getCelsiusTemperature(weather.tempMin)}"></span> /
+                <span th:text="${weather.getFahrenheitTemperature(weather.tempMin)}"></span>
+            </td>
+            <td>
+                <!--<span th:text="${#numbers.formatDecimal(weather.tempMax,2,1)}"></span>-->
+                <span th:text="${weather.getCelsiusTemperature(weather.tempMax)}"></span> /
+                <span th:text="${weather.getFahrenheitTemperature(weather.tempMin)}"></span>
+            </td>
+
+            <td><span th:text="${weather.weatherDescription}"></span></td>
+        </tr>
+    </table>
+
+    <table class="table table-striped" style="width:100%">
+        <thead class="thead-light">
+        <tr>
+            <th sec:authorize="isAuthenticated()">Select</th>
+            <th>Category</th>
+            <th>Title</th>
+            <th>Color</th>
+            <th>Material</th>
+            <th>Size</th>
+            <th>Picture</th>
+            <th>Discription</th>
+            <th>User</th>
+            <th>Climate</th>
+            <th>Occasion</th>
+            <th sec:authorize="isAuthenticated()">Actions</th>
+        </tr>
+        </thead>
+
+        <!--enhanced for loop-->
+        <tr th:each="item : ${items}">
+            <td sec:authorize="isAuthenticated()">
+                <input name="check" th:value="${item.id}" type="checkbox"/>
+            </td>
+            <td th:text="${item.category.name}"></td>
+            <td><a th:href="@{/detail/{id}(id=${item.id})}">[[${item.name}]]</a></td>
+            <td th:text="${item.color}"></td>
+            <td th:text="${item.material}"></td>
+            <td th:text="${item.size}"></td>
+            <td><img alt="Picture" th:src="${item.picturePath}"></td>
+            <td th:text="${item.description}"></td>
+            <td th:text="${item.user.username}"></td>
+            <td th:text="${item.climate.name}"></td>
+            <td th:text="${item.occasion.name}"></td>
+
+            <td sec:authorize="isAuthenticated()">
+                <a th:href="@{/update/{id}(id=${item.id})}">edit</a> -
+                <a class="delBtn"
+                   data-target="#myModal"
+                   data-toggle="modal"
+                   th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
+            </td>
+
+        </tr>
+    </table>
+    <div th:replace="~{base::delete}"></div>
+</div>
+<div th:replace="~{base::footer}"></div>
+</body>
+</html>
