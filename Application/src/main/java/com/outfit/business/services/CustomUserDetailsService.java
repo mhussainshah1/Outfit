@@ -17,11 +17,11 @@ import java.util.*;
 
 @Transactional
 @Service
-public class SSUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
     private UserRepository userRepository;
 
     @Autowired
-    public SSUserDetailsService(UserRepository userRepository) {
+    public CustomUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -33,8 +33,7 @@ public class SSUserDetailsService implements UserDetailsService {
                 System.out.println("User not found with the provided username" + appUser);
                 return null;
             }
-            System.out.println("User from username " + appUser);
-            return new CustomerUserDetails(appUser, getAuthorities(appUser));
+            return new CustomUserDetails(appUser, getAuthorities(appUser));
         } catch (Exception e) {
             throw new UsernameNotFoundException("User not found");
         }
@@ -54,7 +53,6 @@ public class SSUserDetailsService implements UserDetailsService {
             var grantedAuthority = new SimpleGrantedAuthority("ROLE_" + role.getRole());
             authorities.add(grantedAuthority);
         }
-        System.out.println("User authorities are: " + authorities);
         return authorities;
     }
 }

@@ -5,7 +5,6 @@ import com.outfit.business.entities.repositories.RoleRepository;
 import com.outfit.business.entities.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -50,11 +49,18 @@ public class UserService {
         userRepository.save(user);
     }
 
-    // returns currently logged in user
+    // returns currently logged-in user
     public User getUser() {
         var authentication = SecurityContextHolder.getContext().getAuthentication();
-        var currentUserName = authentication.getName();
-        return userRepository.findByUsername(currentUserName);
+        Object user = authentication.getPrincipal();//user
+        String email = null;
+        if (user instanceof CustomOAuth2User) {
+            email = ((CustomOAuth2User) user).getAttribute("email");
+        }
+        if(user instanceof CustomUserDetails) {
+            email = ((CustomUserDetails) user).getUser().getEmail();
+        }
+        return userRepository.findByEmail(email);
     }
 
 /*    public String encode(String password) {
@@ -73,6 +79,17 @@ public class UserService {
         var authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getAuthorities()
                 .stream()
-                .anyMatch(r -> r.getAuthority().equals("ROLE_USER"));
+                .anyMatch(r -> r.getAuthority().equals("ROLE_USER") || r.getAuthority().equals("OAUTH2_USER"));
+    }
+
+    public void createNewUserAfterOAuthLoginSuccess(String email, String firstName,String lastName, AuthenticationProvider provider) {
+        User user = new User(email, "", firstName, lastName, true, email, provider);
+        userRepository.save(user);
+
+    }
+
+    public void updateUserAfterOathLoginSuccess(User user, AuthenticationProvider provider) {
+        user.setAuthProvider(provider);
+        userRepository.save(user);
     }
 }

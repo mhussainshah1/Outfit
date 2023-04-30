@@ -64,7 +64,7 @@ public class LoginController {
         return "profile";
     }
 
-    @PostMapping("/forgot-password")
+    @GetMapping("/forgot-password")
     public String forgetPassword() {
         return "/";
     }
@@ -127,7 +127,7 @@ public class LoginController {
                 }
             }
         }
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     @GetMapping("/termsandconditions")

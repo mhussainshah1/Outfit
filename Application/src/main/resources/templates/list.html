@@ -11,32 +11,36 @@
 
 <div class="container-float">
 
-    <div class="jumbotron lead">
+    <div class="container-fluid py-5 bg-light text-center">
         <h2 class="text-center"> Outfit</h2>
-        <small>Our website will help you to choose an outfit for location according to the weather
+        <p class="fs-5">Our website will help you to choose an outfit for location according to the weather
             conditions. Create an account. Add all you outfits in the website then enter city name and see your
             outfit for the day
-        </small>
+        </p>
     </div>
 
     <div th:text="${message}"></div>
 
-    <div class="container" sec:authorize="isAuthenticated()">
-        <form class="form-inline" method="post"
+    <div class="container text-center" sec:authorize="isAuthenticated()">
+        <form class="row g-3 align-items-center" method="post"
               th:action="@{/weather}"
               th:object="${formAttributes}">
 
-            <div class="form-group mb-2">
-                <label for="city"> Enter city name to select outfit as per weather: </label>
+            <div class="col-auto">
+                <label for="city">Enter city name to select outfit as per weather:</label>
+            </div>
+            <div class="col-sm-7">
                 <input class="form-control" id="city" placeholder="City" th:field="*{city}" type="text">
             </div>
-            <div class="form-group mx-sm-3 mb-2">
-                <span class="error-message"
+            <div class="col-auto">
+                <button class="btn btn-primary mb-2" type="submit">Submit</button>
+            </div>
+            <div>
+                <span class="error-message font-weight-bold"
                       th:errors="*{city}"
                       th:if="${#fields.hasErrors('city')}">
                 </span>
             </div>
-            <button class="btn btn-primary mb-2" type="submit">Submit</button>
         </form>
     </div>
 
@@ -115,6 +119,15 @@
     </ul>
     <div th:replace="~{base::delete}"></div>
 </div>
+<!--<div sec:authorize="isAuthenticated()">
+    <span th:text="${#authentication}"></span>
+    <p></p>
+    <span th:text="${#authentication.principal}"></span>&lt;!&ndash;user &ndash;&gt;
+    <p></p>
+    <span th:text="${#authentication.principal.firstName}"></span>
+    <p></p>
+    <span th:text="${#authentication.principal.lastName}"></span>
+</div>-->
 <br/>
 <div th:replace="~{base::footer}"></div>
 </body>

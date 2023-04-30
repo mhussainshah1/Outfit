@@ -10,9 +10,9 @@
 <body>
 <div th:replace="~{base::nav}"></div>
 
-<div class="container col-md-6 col-md-offset-3 text-center">
+<div class="container col-md-6 text-center">
 
-    <div class="jumbotron lead">
+    <div class="container-fluid py-5 bg-light">
         <h2 th:text="${page_title}">Registration/Update Profile</h2>
     </div>
 
@@ -26,11 +26,11 @@
            th:text="${error}">Validation error>
         </p>
 
-        <div class="text-left">
+        <div class="text-start">
 
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label" for="firstName">First Name</label>
-                <div class="col-sm-10 text-left">
+                <div class="col-sm-10 text-start">
                     <input class="form-control" id="firstName" placeholder="First Name" th:field="*{firstName}"
                            type="text">
                     <span class="error-message font-weight-bold"
@@ -40,9 +40,9 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label" for="lastName">Last Name</label>
-                <div class="col-sm-10 text-left">
+                <div class="col-sm-10 text-start">
                     <input class="form-control" id="lastName" placeholder="Last Name" th:field="*{lastName}"
                            type="text">
                     <span class="error-message font-weight-bold"
@@ -52,9 +52,9 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label" for="email">Email</label>
-                <div class="col-sm-10 text-left">
+                <div class="col-sm-10 text-start">
                     <input class="form-control" id="email" placeholder="Email" th:field="*{email}" type="text">
                     <span class="error-message font-weight-bold"
                           th:errors="*{email}"
@@ -63,9 +63,9 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label" for="username">Username</label>
-                <div class="col-sm-10 text-left">
+                <div class="col-sm-10 text-start">
                     <input class="form-control" id="username" placeholder="User Name" th:field="*{username}"
                            type="text">
                     <span class="error-message font-weight-bold"
@@ -75,12 +75,12 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label" for="password">Password</label>
                 <div class="col-sm-10">
                     <input class="form-control" id="password" placeholder="Password" th:field="*{password}"
                            type="password">
-                    <ul class="text-left"
+                    <ul class="text-start"
                         th:each="error: ${#fields.errors('password')}">
                         <li th:each="message : ${error.split(',')}">
                             <span class="error-message font-weight-bold" th:text="${message}"/>
@@ -89,7 +89,7 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label" for="confirmPassword">Confirm Password</label>
                 <div class="col-sm-10">
                     <input class="form-control" id="confirmPassword" placeholder="Confirm Password"
@@ -104,26 +104,28 @@
 
         </div>
 
-        <div class="form-group form-check">
-            <div>
-                <input class="form-check-input" id="enabled" th:field="*{enabled}" type="checkbox"/>
-                <label class="form-check-label" for="enabled">
-                    I agree with the <a href="/termsandconditions">terms and conditions</a> for Registration.
-                </label>
-            </div>
-            <span class="error-message font-weight-bold" th:errors="*{enabled}"
-                  th:if="${#fields.hasErrors('enabled')}">Term Error
+        <div class="row mb-3">
+            <div class="col-sm-10 offset-sm-2">
+                <div class="form-check">
+                    <input class="form-check-input" id="enabled" th:field="*{enabled}" type="checkbox"/>
+                    <label class="form-check-label" for="enabled">
+                        I agree with the <a href="/termsandconditions">terms and conditions</a> for Registration.
+                    </label>
+                </div>
+                <span class="error-message font-weight-bold" th:errors="*{enabled}"
+                      th:if="${#fields.hasErrors('enabled')}">Term Error
                 </span>
+            </div>
         </div>
         <button class="btn btn-primary" type="submit">Register</button>
     </form>
-    <div class="row text-left" sec:authorize="!isAuthenticated()">
+    <div class="row text-start" sec:authorize="!isAuthenticated()">
         <div class="col-md-12">
             Already registered? <a href="/" th:href="@{/login}">Login</a>
         </div>
-        <!-- <div class="col-md-12">
-             Forgot password? <a href="/" th:href="@{/forgot-password}">Reset password</a>
-         </div>-->
+        <div class="col-md-12">
+            Forgot password? <a href="/" th:href="@{/forgot-password}">Reset password</a>
+        </div>
     </div>
 </div>
 <div th:replace="~{base::footer}"></div>

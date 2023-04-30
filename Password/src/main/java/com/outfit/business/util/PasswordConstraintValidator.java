@@ -43,12 +43,11 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
             throw new RuntimeException("could not load word list", e);
         }*/
 
-        //Option 2 : Through Database
+        //Option 2: Through Database
         var passwords = new ArrayList<String>();
 //        invalidPasswordRepository.findAll().forEach(p -> passwords.add(p.getValue()));
 
         for (var password : invalidPasswordRepository.findAll()) {
-            System.out.println("invalid password = " + password.getValue());
             passwords.add(password.getValue());
         }
 
