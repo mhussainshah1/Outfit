@@ -1,9 +1,12 @@
 package com.outfit.business.web.controllers;
 
-import com.outfit.persistence.model.User;
+import com.outfit.business.services.EmailService;
 import com.outfit.business.services.UserService;
 import com.outfit.business.util.MD5Util;
 import com.outfit.persistence.dao.*;
+import com.outfit.persistence.model.User;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,12 +18,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
 import java.security.Principal;
 
 @Controller
 public class LoginController {
+    BCryptPasswordEncoder passwordEncoder;
     private UserRepository userRepository;
     private CategoryRepository categoryRepository;
     private ItemRepository itemRepository;
@@ -28,7 +30,9 @@ public class LoginController {
     private OccasionRepository occasionRepository;
     private WindRepository windRepository;
     private UserService userService;
-    BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private EmailService emailService;
+
     @Autowired
     public LoginController(UserRepository userRepository, CategoryRepository categoryRepository, ItemRepository itemRepository, ClimateRepository climateRepository, OccasionRepository occasionRepository, WindRepository windRepository, UserService userService, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
@@ -124,6 +128,19 @@ public class LoginController {
                     user.setPassword(passwordEncoder.encode(user.getPassword()));
                     userService.saveUser(user);
                     model.addAttribute("message", "User Account Successfully Created");
+                    String subject = "Welcome to our email list";
+                    String body = """
+                            Dear $firstName ,
+                                                        
+                            Thanks for registring our web site. We'll make sure to send you announcements about new products and promotions.
+                            Have a great day and thanks again!
+                                                        
+                                                        
+                            Muhammad Shah
+                            Java Certified Professional
+                            """.replace("$firstName",user.getFirstName());
+
+                    emailService.sendSimpleEmail(user.getEmail(),subject, body);
                 }
             }
         }

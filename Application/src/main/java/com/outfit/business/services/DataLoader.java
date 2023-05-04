@@ -52,8 +52,8 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         if (rundataloader) {
-            //if you want to run dataloader once then change run.dataloader = true in application.properties.
-            // it will help you to not comment out whole class
+            //if you want to run dataloader once, then change run.dataloader = true in application.properties.
+            // it will help you to not comment on whole class
 
             //Password
             passwordService.addNewInvalidPassword(new InvalidPassword("azerty12!"));

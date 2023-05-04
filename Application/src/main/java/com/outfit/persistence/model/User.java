@@ -23,7 +23,7 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    //@NotEmpty
+    @NotEmpty
     @Email
     @Column(name = "email", nullable = false)
     private String email;

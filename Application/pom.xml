@@ -111,6 +111,12 @@
             <artifactId>webjars-locator-core</artifactId>
         </dependency>
 
+        <!--mail-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+
         <!--test-->
         <dependency>
             <groupId>org.springframework.security</groupId>
